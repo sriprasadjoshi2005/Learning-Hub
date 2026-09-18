@@ -5,9 +5,9 @@ body {
   margin: 0;
   color: #222;
   background-color: #eef4ff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='%232563eb' fill-opacity='0.12'%3E%3Ctext x='35' y='65' font-size='34' font-family='serif'%3E%E2%88%AB f(x) dx%3C/text%3E%3Ctext x='370' y='55' font-size='28' font-family='monospace'%3E%7B%20code()%20%7D%3C/text%3E%3Ctext x='100' y='135' font-size='25' font-family='monospace'%3EF%20%3D%20ma%3C/text%3E%3Ctext x='430' y='145' font-size='32' font-family='serif'%3E%E2%88%9E%3C/text%3E%3Ctext x='25' y='205' font-size='24' font-family='monospace'%3E10110101%3C/text%3E%3Ctext x='235' y='210' font-size='30' font-family='serif'%3EE%20%3D%20mc%C2%B2%3C/text%3E%3Ctext x='450' y='230' font-size='22' font-family='monospace'%3E%3C/%3E%3C/text%3E%3Ctext x='65' y='285' font-size='30' font-family='serif'%3E%E2%88%82y/%E2%88%82x%3C/text%3E%3Ctext x='340' y='300' font-size='27' font-family='monospace'%3Efor(i=0;i%3Cn;i%2B%2B)%3C/text%3E%3Ctext x='500' y='350' font-size='32' font-family='serif'%3E%E2%88%86%3C/text%3E%3Ctext x='20' y='370' font-size='23' font-family='monospace'%3EV%20%3D%20IR%3C/text%3E%3Ctext x='180' y='390' font-size='35' font-family='serif'%3E%E2%88%9A(x%C2%B2%20%2B%20y%C2%B2)%3C/text%3E%3Ctext x='410' y='425' font-size='25' font-family='monospace'%3Ewhile(True)%3A%3C/text%3E%3Ctext x='55' y='470' font-size='28' font-family='serif'%3E%E2%88%91 a%E2%82%99%3C/text%3E%3Ctext x='300' y='500' font-size='24' font-family='monospace'%3E01001001%3C/text%3E%3Ctext x='465' y='525' font-size='30' font-family='serif'%3E%E2%88%9E%3C/text%3E%3Ctext x='100' y='555' font-size='25' font-family='monospace'%3E%3Cdiv%3E%20%3C%2Fdiv%3E%3C/text%3E%3C/g%3E%3Cg stroke='%232563eb' stroke-opacity='0.07' fill='none'%3E%3Cpath d='M0 100 Q75 20 150 100 T300 100 T450 100 T600 100'/%3E%3Cpath d='M0 430 Q75 350 150 430 T300 430 T450 430 T600 430'/%3E%3Cpath d='M520 0 L520 600 M520 300 L600 300'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("/static/background.svg");
   background-repeat: repeat;
-  background-size: 600px 600px;
+  background-size: 900px 700px;
   background-attachment: fixed;
   min-height: 100vh;
 }
