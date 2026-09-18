@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: learning-hub
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # A persistent disk keeps the SQLite database across deploys/restarts, but
+      # Render's free plan doesn't support disks. If you upgrade to a paid plan,
+      # uncomment this var plus the "disk:" block below (see the README) so progress
+      # stops resetting on every deploy.
+      # - key: DB_PATH
+      #   value: /opt/render/project/src/data/database.db
+# disk:
+#   name: learning-hub-data
+#   mountPath: /opt/render/project/src/data
+#   sizeGB: 1
