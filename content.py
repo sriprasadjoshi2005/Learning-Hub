@@ -1,3663 +1,1087 @@
 """
-Learning Hub — structured lesson and quiz content.
+All lesson and quiz content lives here as plain Python data.
 
-Each subject contains 20 lessons progressing from foundations to advanced applications.
-Each lesson contains exactly 5 quiz questions: 2 easy, 2 moderate, and 1 difficult.
-The quiz answer field is the 0-based index of the correct option.
-The difficulty field can be used by the quiz/result templates to display question levels.
+Structure (unchanged from before):
+    SUBJECTS[key] = {"name": str, "lessons": [{"id", "title", "content", "quiz"}]}
+    quiz item      = {"question": str, "options": [str, ...], "answer": int}  # 0-based
+
+To keep this file short, lessons are built with the L() helper below instead of
+repeating the same dict keys 90 times. The resulting data shape is identical.
+
+To add a lesson: append L(next_id, "Title", "<p>...</p>", (question, options, answer), (...))
+Lesson ids inside a subject must be consecutive integers starting at 1 — lessons unlock in order.
+Each lesson has exactly 2 quiz questions, so scores are reported out of 2.
 """
 
-QUIZ_REMARKS = {'excellent': 'Excellent work! You have demonstrated a strong understanding of this lesson.', 'good': 'Good work! You understand the main ideas, but reviewing a few concepts will strengthen your mastery.', 'needs_review': 'Keep practising. Review the lesson carefully and retry the quiz to strengthen your understanding.', 'weak': 'This topic needs more attention. Revisit the lesson, work through examples, and try the quiz again.'}
+QUIZ_LENGTH = 2
+
+
+def L(lesson_id, title, content, *questions):
+    """Build one lesson. Each question is a (text, options, answer_index) tuple."""
+    return {
+        "id": lesson_id,
+        "title": title,
+        "content": content.strip(),
+        "quiz": [{"question": q, "options": list(o), "answer": a} for q, o, a in questions],
+    }
+
+
+def score(lesson, responses):
+    """Return (correct, total) for a list of chosen option indices."""
+    quiz = lesson["quiz"]
+    correct = sum(1 for q, r in zip(quiz, responses) if r == q["answer"])
+    return correct, len(quiz)
+
 
 SUBJECTS = {
     "maths": {
         "name": "Mathematics",
         "lessons": [
-            {
-                "id": 1,
-                "title": "Number Systems",
-                "content": """
-                    <p>This lesson develops <b>Number Systems</b> at the basic foundations level.</p>
-                            <p>It covers natural, whole, integer, rational, irrational and real numbers; place value and properties of operations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Number Systems', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Number Systems?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Number Systems?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Number Systems should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Number Systems?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Arithmetic Operations",
-                "content": """
-                    <p>This lesson develops <b>Arithmetic Operations</b> at the basic foundations level.</p>
-                            <p>It covers order of operations, factors, multiples, divisibility, HCF and LCM, and estimation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Arithmetic Operations', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Arithmetic Operations?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Arithmetic Operations?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Arithmetic Operations should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Arithmetic Operations?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Fractions, Decimals and Percentages",
-                "content": """
-                    <p>This lesson develops <b>Fractions, Decimals and Percentages</b> at the basic foundations level.</p>
-                            <p>It covers equivalent fractions, decimal conversion, percentage change and real-world percentage calculations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Fractions, Decimals and Percentages', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Fractions, Decimals and Percentages?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Fractions, Decimals and Percentages?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Fractions, Decimals and Percentages should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Fractions, Decimals and Percentages?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Ratio, Proportion and Variation",
-                "content": """
-                    <p>This lesson develops <b>Ratio, Proportion and Variation</b> at the basic foundations level.</p>
-                            <p>It covers ratios, rates, direct proportion, inverse proportion and scaling.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Ratio, Proportion and Variation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Ratio, Proportion and Variation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Ratio, Proportion and Variation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Ratio, Proportion and Variation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Ratio, Proportion and Variation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Algebraic Expressions",
-                "content": """
-                    <p>This lesson develops <b>Algebraic Expressions</b> at the basic foundations level.</p>
-                            <p>It covers variables, constants, coefficients, terms, simplification, expansion and factorisation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Algebraic Expressions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Algebraic Expressions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Algebraic Expressions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Algebraic Expressions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Algebraic Expressions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Linear Equations and Inequalities",
-                "content": """
-                    <p>This lesson develops <b>Linear Equations and Inequalities</b> at the basic foundations level.</p>
-                            <p>It covers solving one-variable equations and inequalities and representing solutions on a number line.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Linear Equations and Inequalities', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Linear Equations and Inequalities?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Linear Equations and Inequalities?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Linear Equations and Inequalities should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Linear Equations and Inequalities?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Polynomials",
-                "content": """
-                    <p>This lesson develops <b>Polynomials</b> at the basic foundations level.</p>
-                            <p>It covers degree, operations, identities, factor theorem and roots.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Polynomials', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Polynomials?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Polynomials?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Polynomials should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Polynomials?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Sequences and Series",
-                "content": """
-                    <p>This lesson develops <b>Sequences and Series</b> at the intermediate methods level.</p>
-                            <p>It covers patterns, arithmetic and geometric progressions, nth terms and sums.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Sequences and Series', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Sequences and Series?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Sequences and Series?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Sequences and Series should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Sequences and Series?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Coordinate Geometry",
-                "content": """
-                    <p>This lesson develops <b>Coordinate Geometry</b> at the intermediate methods level.</p>
-                            <p>It covers Cartesian plane, distance, midpoint, slope and equations of straight lines.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Coordinate Geometry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Coordinate Geometry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Coordinate Geometry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Coordinate Geometry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Coordinate Geometry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Plane Geometry",
-                "content": """
-                    <p>This lesson develops <b>Plane Geometry</b> at the intermediate methods level.</p>
-                            <p>It covers points, lines, angles, polygons, congruence, similarity and geometric reasoning.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Plane Geometry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Plane Geometry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Plane Geometry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Plane Geometry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Plane Geometry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Triangles and Quadrilaterals",
-                "content": """
-                    <p>This lesson develops <b>Triangles and Quadrilaterals</b> at the intermediate methods level.</p>
-                            <p>It covers triangle properties, congruence, similarity, Pythagoras and quadrilateral properties.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Triangles and Quadrilaterals', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Triangles and Quadrilaterals?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Triangles and Quadrilaterals?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Triangles and Quadrilaterals should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Triangles and Quadrilaterals?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Circles",
-                "content": """
-                    <p>This lesson develops <b>Circles</b> at the intermediate methods level.</p>
-                            <p>It covers radius, diameter, chord, arc, tangent, circumference, area and basic circle theorems.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Circles', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Circles?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Circles?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Circles should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Circles?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Trigonometry Basics",
-                "content": """
-                    <p>This lesson develops <b>Trigonometry Basics</b> at the intermediate methods level.</p>
-                            <p>It covers sine, cosine, tangent, right triangles, angles and standard values.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Trigonometry Basics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Trigonometry Basics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Trigonometry Basics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Trigonometry Basics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Trigonometry Basics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Trigonometric Identities and Equations",
-                "content": """
-                    <p>This lesson develops <b>Trigonometric Identities and Equations</b> at the intermediate methods level.</p>
-                            <p>It covers fundamental identities, transformations and solving basic trigonometric equations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Trigonometric Identities and Equations', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Trigonometric Identities and Equations?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Trigonometric Identities and Equations?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Trigonometric Identities and Equations should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Trigonometric Identities and Equations?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Exponents and Logarithms",
-                "content": """
-                    <p>This lesson develops <b>Exponents and Logarithms</b> at the advanced applications and connections level.</p>
-                            <p>It covers laws of indices, exponential growth and logarithms as inverse operations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Exponents and Logarithms', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Exponents and Logarithms?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Exponents and Logarithms?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Exponents and Logarithms should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Exponents and Logarithms?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Functions and Graphs",
-                "content": """
-                    <p>This lesson develops <b>Functions and Graphs</b> at the advanced applications and connections level.</p>
-                            <p>It covers domain, range, notation, transformations, inverse functions and graph interpretation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Functions and Graphs', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Functions and Graphs?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Functions and Graphs?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Functions and Graphs should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Functions and Graphs?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Limits and Continuity",
-                "content": """
-                    <p>This lesson develops <b>Limits and Continuity</b> at the advanced applications and connections level.</p>
-                            <p>It covers approaching values, one-sided limits, continuity and basic limit laws.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Limits and Continuity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Limits and Continuity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Limits and Continuity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Limits and Continuity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Limits and Continuity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Differential Calculus",
-                "content": """
-                    <p>This lesson develops <b>Differential Calculus</b> at the advanced applications and connections level.</p>
-                            <p>It covers derivative as rate of change, differentiation rules, tangent lines and applications.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Differential Calculus', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Differential Calculus?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Differential Calculus?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Differential Calculus should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Differential Calculus?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Integral Calculus",
-                "content": """
-                    <p>This lesson develops <b>Integral Calculus</b> at the advanced applications and connections level.</p>
-                            <p>It covers antiderivatives, definite integrals, area and the fundamental theorem of calculus.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Integral Calculus', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Integral Calculus?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Integral Calculus?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Integral Calculus should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Integral Calculus?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Probability and Statistics",
-                "content": """
-                    <p>This lesson develops <b>Probability and Statistics</b> at the advanced applications and connections level.</p>
-                            <p>It covers data summaries, distributions, probability rules, conditional probability and expected value.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Probability and Statistics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Probability and Statistics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Probability and Statistics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Probability and Statistics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Probability and Statistics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
+            L(1, "Introduction to Algebra", """
+                <p>Algebra uses letters such as <b>x</b> and <b>y</b> to stand in for unknown numbers,
+                so that one rule can describe many situations at once.</p>
+                <p>An equation like <code>x + 5 = 12</code> asks: what number, added to 5, gives 12?
+                Subtracting 5 from both sides leaves <code>x = 7</code>.</p>
+                <p>The golden rule: whatever you do to one side of an equation you must do to the
+                other, so the two sides stay balanced.</p>
+            """,
+              ("Solve: x + 5 = 12. What is x?", ("5", "6", "7", "17"), 2),
+              ("Why must the same operation be applied to both sides of an equation?",
+               ("To make the numbers smaller", "To keep both sides equal",
+                "To remove the letter x", "It is optional"), 1)),
+            L(2, "Linear Equations", """
+                <p>A linear equation has variables raised only to the power 1, e.g. <code>3x - 4 = 11</code>.
+                Solve it by undoing operations in reverse order: add 4, then divide by 3, giving <code>x = 5</code>.</p>
+                <p>When the unknown appears on both sides, gather the x terms on one side first:
+                <code>5x - 2 = 3x + 8</code> becomes <code>2x = 10</code>, so <code>x = 5</code>.</p>
+                <p>Always check by substituting your answer back into the original equation.</p>
+            """,
+              ("Solve: 3x - 4 = 11.", ("x = 3", "x = 5", "x = 7", "x = 15"), 1),
+              ("Solving 5x - 2 = 3x + 8, the sensible first step is to:",
+               ("Divide everything by 5", "Subtract 3x from both sides",
+                "Add 2 to only the left side", "Square both sides"), 1)),
+            L(3, "Expanding and Factorising", """
+                <p>Expanding removes brackets: <code>3(x + 4) = 3x + 12</code>. Every term inside the
+                bracket is multiplied by the term outside.</p>
+                <p>For two brackets, multiply each term in the first by each term in the second:
+                <code>(x + 2)(x + 3) = x&sup2; + 5x + 6</code>.</p>
+                <p>Factorising is the reverse: rewrite an expression as a product. For
+                <code>x&sup2; + 5x + 6</code> look for two numbers that multiply to 6 and add to 5 &mdash; 2 and 3.</p>
+            """,
+              ("Expand (x + 2)(x + 3).", ("x&sup2; + 6", "x&sup2; + 5x + 6", "x&sup2; + 5x", "2x + 3"), 1),
+              ("To factorise x&sup2; + 7x + 10 you need two numbers that:",
+               ("Add to 10 and multiply to 7", "Multiply to 10 and add to 7",
+                "Are both equal to 5", "Subtract to give 10"), 1)),
+            L(4, "Quadratic Equations", """
+                <p>A quadratic has the form <code>ax&sup2; + bx + c = 0</code> and can have two, one, or no
+                real solutions.</p>
+                <p>If it factorises, use the fact that a product is zero only when a factor is zero:
+                <code>(x - 2)(x - 3) = 0</code> gives <code>x = 2</code> or <code>x = 3</code>.</p>
+                <p>Otherwise use the formula <code>x = (-b &plusmn; &radic;(b&sup2; - 4ac)) / 2a</code>.
+                The part <code>b&sup2; - 4ac</code> is the discriminant: negative means no real roots.</p>
+            """,
+              ("The solutions of (x - 2)(x - 3) = 0 are:",
+               ("x = -2 and x = -3", "x = 2 and x = 3", "x = 6 only", "x = 5"), 1),
+              ("If b&sup2; - 4ac is negative, the quadratic has:",
+               ("Two real roots", "One repeated root", "No real roots", "Infinitely many roots"), 2)),
+            L(5, "Angles and Shapes", """
+                <p>Angles on a straight line add to 180&deg;, and angles around a point add to 360&deg;.</p>
+                <p>A triangle's three interior angles always total <b>180&deg;</b>; a quadrilateral's total 360&deg;.
+                A square has four equal sides and four 90&deg; angles.</p>
+                <p>Perimeter is the total distance around a shape; area is the space it covers.</p>
+            """,
+              ("The interior angles of a triangle add up to:",
+               ("90 degrees", "180 degrees", "270 degrees", "360 degrees"), 1),
+              ("A triangle has angles of 40&deg; and 75&deg;. The third angle is:",
+               ("55 degrees", "65 degrees", "75 degrees", "115 degrees"), 1)),
+            L(6, "Triangles and Pythagoras", """
+                <p>In a right-angled triangle the longest side, opposite the right angle, is the
+                <b>hypotenuse</b>.</p>
+                <p>Pythagoras' theorem states <code>a&sup2; + b&sup2; = c&sup2;</code>, where c is the hypotenuse.
+                With sides 3 and 4, the hypotenuse is &radic;25 = 5.</p>
+                <p>The theorem works only for right-angled triangles, and can also be used backwards to
+                test whether a triangle contains a right angle.</p>
+            """,
+              ("A right-angled triangle has short sides 3 and 4. The hypotenuse is:",
+               ("5", "6", "7", "12"), 0),
+              ("Pythagoras' theorem can be applied to:",
+               ("Any triangle", "Right-angled triangles only",
+                "Squares only", "Triangles with equal sides only"), 1)),
+            L(7, "Circles", """
+                <p>The radius runs from the centre to the edge; the diameter is twice the radius.</p>
+                <p>Circumference = <code>2&pi;r</code> and area = <code>&pi;r&sup2;</code>, where &pi; &asymp; 3.14.</p>
+                <p>So a circle of radius 5 cm has circumference about 31.4 cm and area about 78.5 cm&sup2;.</p>
+            """,
+              ("The area of a circle is given by:", ("2&pi;r", "&pi;r&sup2;", "&pi;d", "r&sup2;"), 1),
+              ("A circle has diameter 10 cm. Its circumference is roughly:",
+               ("15.7 cm", "31.4 cm", "78.5 cm", "100 cm"), 1)),
+            L(8, "Fractions, Decimals and Percentages", """
+                <p>These are three ways of writing the same idea: 1/4 = 0.25 = 25%.</p>
+                <p>To find a percentage of an amount, convert to a decimal and multiply:
+                15% of 80 is 0.15 &times; 80 = 12.</p>
+                <p>For a percentage increase, multiply by (1 + rate). A 20% rise on 50 gives
+                50 &times; 1.2 = 60.</p>
+            """,
+              ("What is 15% of 80?", ("8", "12", "15", "20"), 1),
+              ("Increasing 50 by 20% gives:", ("55", "60", "70", "100"), 1)),
+            L(9, "Ratio and Proportion", """
+                <p>A ratio compares quantities, e.g. 2:3. To share &pound;50 in the ratio 2:3, note there are
+                5 parts, so each part is &pound;10, giving &pound;20 and &pound;30.</p>
+                <p>Two quantities are in direct proportion when doubling one doubles the other.</p>
+                <p>In inverse proportion their product stays constant: as one doubles, the other halves.</p>
+            """,
+              ("Sharing 50 in the ratio 2:3 gives:", ("20 and 30", "25 and 25", "10 and 40", "15 and 35"), 0),
+              ("In inverse proportion, when one quantity doubles the other:",
+               ("Doubles", "Halves", "Stays the same", "Increases by 2"), 1)),
+            L(10, "Indices and Standard Form", """
+                <p>Indices show repeated multiplication: <code>2&sup5; = 32</code>. Rules:
+                <code>a&#8319; &times; a&#7504; = a&#8319;&#8314;&#7504;</code> and <code>a&#8319; &divide; a&#7504; = a&#8319;&#8315;&#7504;</code>.</p>
+                <p>Anything to the power 0 equals 1, and a negative index means a reciprocal:
+                <code>2&#8315;&sup3; = 1/8</code>.</p>
+                <p>Standard form writes numbers as <code>A &times; 10&#8319;</code> with 1 &le; A &lt; 10, so
+                4500 becomes <code>4.5 &times; 10&sup3;</code>.</p>
+            """,
+              ("Write 4500 in standard form.",
+               ("45 &times; 10&sup2;", "4.5 &times; 10&sup3;", "4.5 &times; 10&#8308;", "0.45 &times; 10&#8308;"), 1),
+              ("What is the value of 2&#8315;&sup3;?", ("-8", "-6", "1/8", "6"), 2)),
+            L(11, "Coordinates and Straight Line Graphs", """
+                <p>Points are written as (x, y), measured from the origin (0, 0).</p>
+                <p>A straight line has equation <code>y = mx + c</code>, where m is the gradient
+                (steepness) and c is the y-intercept.</p>
+                <p>Gradient = change in y divided by change in x. Parallel lines share the same gradient.</p>
+            """,
+              ("In y = mx + c, the letter m represents the:",
+               ("y-intercept", "Gradient", "x value", "Area under the line"), 1),
+              ("The line y = 3x + 2 crosses the y-axis at:",
+               ("(0, 2)", "(2, 0)", "(0, 3)", "(3, 2)"), 0)),
+            L(12, "Sequences", """
+                <p>A sequence is an ordered list of terms. In an <b>arithmetic</b> sequence you add a
+                constant difference each time: 3, 7, 11, 15 (difference 4).</p>
+                <p>The nth term of that sequence is <code>4n - 1</code>, which lets you jump straight to
+                any term.</p>
+                <p>In a <b>geometric</b> sequence you multiply by a constant ratio: 2, 6, 18, 54.</p>
+            """,
+              ("The nth term of 3, 7, 11, 15, ... is:", ("n + 4", "4n - 1", "4n + 3", "3n"), 1),
+              ("The sequence 2, 6, 18, 54 is:",
+               ("Arithmetic with difference 4", "Geometric with ratio 3",
+                "Neither", "Geometric with ratio 2"), 1)),
+            L(13, "Averages and Data", """
+                <p>The <b>mean</b> is the total divided by how many values there are; the <b>median</b>
+                is the middle value when ordered; the <b>mode</b> is the most common value.</p>
+                <p>The range (largest minus smallest) measures spread, not average.</p>
+                <p>For 2, 3, 3, 8 the mean is 4, the median 3, the mode 3 and the range 6.</p>
+            """,
+              ("For the data 2, 3, 3, 8 the mean is:", ("3", "4", "5", "6"), 1),
+              ("The range of a data set measures:",
+               ("The most common value", "The middle value", "The spread", "The total"), 2)),
+            L(14, "Introduction to Trigonometry", """
+                <p>In a right-angled triangle, the ratios of sides depend only on the angles:
+                <code>sin&theta; = opp/hyp</code>, <code>cos&theta; = adj/hyp</code>,
+                <code>tan&theta; = opp/adj</code> (remember SOH CAH TOA).</p>
+                <p>Use them to find a missing side when you know an angle and one side.</p>
+                <p>To find a missing angle, use the inverse functions, e.g. <code>&theta; = tan&#8315;&sup1;(opp/adj)</code>.</p>
+            """,
+              ("Which ratio equals opposite divided by hypotenuse?",
+               ("sin", "cos", "tan", "None"), 0),
+              ("To find an angle when you know the opposite and adjacent sides, use:",
+               ("sin", "cos", "tan inverse", "Pythagoras"), 2)),
+            L(15, "Introduction to Calculus", """
+                <p>Calculus studies change. <b>Differentiation</b> finds the gradient of a curve at a
+                point &mdash; the instantaneous rate of change.</p>
+                <p>The rule for powers: if <code>y = x&#8319;</code> then <code>dy/dx = nx&#8319;&#8315;&sup1;</code>.
+                So for <code>y = x&sup3;</code>, <code>dy/dx = 3x&sup2;</code>.</p>
+                <p>Where the gradient is zero the curve has a turning point &mdash; a maximum or minimum.</p>
+            """,
+              ("If y = x&sup3;, then dy/dx is:", ("3x", "x&sup2;", "3x&sup2;", "3x&#8308;"), 2),
+              ("At a maximum or minimum point of a curve, the gradient is:",
+               ("Zero", "One", "Always positive", "Undefined"), 0)),
         ],
     },
-    "physics": {
-        "name": "Physics",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Units, Dimensions and Measurement",
-                "content": """
-                    <p>This lesson develops <b>Units, Dimensions and Measurement</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of units, dimensions and measurement.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Units, Dimensions and Measurement', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Units, Dimensions and Measurement?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Units, Dimensions and Measurement?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Units, Dimensions and Measurement should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Units, Dimensions and Measurement?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Scalars and Vectors",
-                "content": """
-                    <p>This lesson develops <b>Scalars and Vectors</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of scalars and vectors.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Scalars and Vectors', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Scalars and Vectors?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Scalars and Vectors?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Scalars and Vectors should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Scalars and Vectors?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Motion in One Dimension",
-                "content": """
-                    <p>This lesson develops <b>Motion in One Dimension</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of motion in one dimension.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Motion in One Dimension', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Motion in One Dimension?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Motion in One Dimension?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Motion in One Dimension should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Motion in One Dimension?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Motion in Two Dimensions",
-                "content": """
-                    <p>This lesson develops <b>Motion in Two Dimensions</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of motion in two dimensions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Motion in Two Dimensions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Motion in Two Dimensions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Motion in Two Dimensions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Motion in Two Dimensions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Motion in Two Dimensions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Newton's Laws of Motion",
-                "content": """
-                    <p>This lesson develops <b>Newton's Laws of Motion</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of newton's laws of motion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', "Newton's Laws of Motion", 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': "[Easy] Which approach is most appropriate when first learning Newton's Laws of Motion?", 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': "[Moderate] Which skill is most directly developed by studying Newton's Laws of Motion?", 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': "[Moderate] A strong solution involving Newton's Laws of Motion should usually include:", 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': "[Difficult] What best demonstrates mastery of Newton's Laws of Motion?", 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Work, Energy and Power",
-                "content": """
-                    <p>This lesson develops <b>Work, Energy and Power</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of work, energy and power.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Work, Energy and Power', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Work, Energy and Power?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Work, Energy and Power?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Work, Energy and Power should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Work, Energy and Power?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Momentum and Collisions",
-                "content": """
-                    <p>This lesson develops <b>Momentum and Collisions</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of momentum and collisions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Momentum and Collisions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Momentum and Collisions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Momentum and Collisions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Momentum and Collisions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Momentum and Collisions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Circular Motion and Gravitation",
-                "content": """
-                    <p>This lesson develops <b>Circular Motion and Gravitation</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of circular motion and gravitation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Circular Motion and Gravitation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Circular Motion and Gravitation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Circular Motion and Gravitation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Circular Motion and Gravitation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Circular Motion and Gravitation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Rotational Motion",
-                "content": """
-                    <p>This lesson develops <b>Rotational Motion</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of rotational motion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Rotational Motion', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Rotational Motion?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Rotational Motion?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Rotational Motion should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Rotational Motion?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Properties of Matter",
-                "content": """
-                    <p>This lesson develops <b>Properties of Matter</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of properties of matter.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Properties of Matter', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Properties of Matter?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Properties of Matter?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Properties of Matter should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Properties of Matter?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Oscillations",
-                "content": """
-                    <p>This lesson develops <b>Oscillations</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of oscillations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Oscillations', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Oscillations?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Oscillations?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Oscillations should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Oscillations?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Waves and Sound",
-                "content": """
-                    <p>This lesson develops <b>Waves and Sound</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of waves and sound.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Waves and Sound', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Waves and Sound?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Waves and Sound?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Waves and Sound should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Waves and Sound?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Thermal Physics",
-                "content": """
-                    <p>This lesson develops <b>Thermal Physics</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of thermal physics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Thermal Physics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Thermal Physics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Thermal Physics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Thermal Physics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Thermal Physics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Thermodynamics",
-                "content": """
-                    <p>This lesson develops <b>Thermodynamics</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of thermodynamics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Thermodynamics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Thermodynamics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Thermodynamics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Thermodynamics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Thermodynamics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Electrostatics",
-                "content": """
-                    <p>This lesson develops <b>Electrostatics</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of electrostatics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Electrostatics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Electrostatics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Electrostatics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Electrostatics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Electrostatics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Current Electricity",
-                "content": """
-                    <p>This lesson develops <b>Current Electricity</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of current electricity.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Current Electricity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Current Electricity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Current Electricity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Current Electricity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Current Electricity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Magnetism and Electromagnetic Induction",
-                "content": """
-                    <p>This lesson develops <b>Magnetism and Electromagnetic Induction</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of magnetism and electromagnetic induction.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Magnetism and Electromagnetic Induction', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Magnetism and Electromagnetic Induction?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Magnetism and Electromagnetic Induction?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Magnetism and Electromagnetic Induction should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Magnetism and Electromagnetic Induction?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Optics",
-                "content": """
-                    <p>This lesson develops <b>Optics</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of optics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Optics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Optics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Optics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Optics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Optics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Modern Physics",
-                "content": """
-                    <p>This lesson develops <b>Modern Physics</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of modern physics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Modern Physics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Modern Physics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Modern Physics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Modern Physics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Modern Physics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Semiconductors and Electronics",
-                "content": """
-                    <p>This lesson develops <b>Semiconductors and Electronics</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of semiconductors and electronics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Semiconductors and Electronics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Semiconductors and Electronics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Semiconductors and Electronics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Semiconductors and Electronics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Semiconductors and Electronics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "chemistry": {
-        "name": "Chemistry",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Atoms and the Periodic Table",
-                "content": """
-                    <p>This lesson develops <b>Atoms and the Periodic Table</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of atoms and the periodic table.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Atoms and the Periodic Table', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Atoms and the Periodic Table?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Atoms and the Periodic Table?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Atoms and the Periodic Table should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Atoms and the Periodic Table?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Mole Concept and Stoichiometry",
-                "content": """
-                    <p>This lesson develops <b>Mole Concept and Stoichiometry</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of mole concept and stoichiometry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Mole Concept and Stoichiometry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Mole Concept and Stoichiometry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Mole Concept and Stoichiometry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Mole Concept and Stoichiometry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Mole Concept and Stoichiometry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Chemical Bonding",
-                "content": """
-                    <p>This lesson develops <b>Chemical Bonding</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of chemical bonding.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Chemical Bonding', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Chemical Bonding?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Chemical Bonding?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Chemical Bonding should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Chemical Bonding?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "States of Matter",
-                "content": """
-                    <p>This lesson develops <b>States of Matter</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of states of matter.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'States of Matter', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning States of Matter?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying States of Matter?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving States of Matter should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of States of Matter?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Thermochemistry",
-                "content": """
-                    <p>This lesson develops <b>Thermochemistry</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of thermochemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Thermochemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Thermochemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Thermochemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Thermochemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Thermochemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Chemical Equilibrium",
-                "content": """
-                    <p>This lesson develops <b>Chemical Equilibrium</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of chemical equilibrium.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Chemical Equilibrium', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Chemical Equilibrium?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Chemical Equilibrium?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Chemical Equilibrium should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Chemical Equilibrium?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Ionic Equilibrium",
-                "content": """
-                    <p>This lesson develops <b>Ionic Equilibrium</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of ionic equilibrium.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Ionic Equilibrium', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Ionic Equilibrium?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Ionic Equilibrium?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Ionic Equilibrium should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Ionic Equilibrium?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Redox Reactions",
-                "content": """
-                    <p>This lesson develops <b>Redox Reactions</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of redox reactions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Redox Reactions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Redox Reactions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Redox Reactions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Redox Reactions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Redox Reactions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Electrochemistry",
-                "content": """
-                    <p>This lesson develops <b>Electrochemistry</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of electrochemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Electrochemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Electrochemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Electrochemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Electrochemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Electrochemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Chemical Kinetics",
-                "content": """
-                    <p>This lesson develops <b>Chemical Kinetics</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of chemical kinetics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Chemical Kinetics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Chemical Kinetics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Chemical Kinetics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Chemical Kinetics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Chemical Kinetics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Solutions",
-                "content": """
-                    <p>This lesson develops <b>Solutions</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of solutions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Solutions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Solutions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Solutions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Solutions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Solutions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Surface Chemistry",
-                "content": """
-                    <p>This lesson develops <b>Surface Chemistry</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of surface chemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Surface Chemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Surface Chemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Surface Chemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Surface Chemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Surface Chemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Introduction to Organic Chemistry",
-                "content": """
-                    <p>This lesson develops <b>Introduction to Organic Chemistry</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of introduction to organic chemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Introduction to Organic Chemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Introduction to Organic Chemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Introduction to Organic Chemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Introduction to Organic Chemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Introduction to Organic Chemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Hydrocarbons",
-                "content": """
-                    <p>This lesson develops <b>Hydrocarbons</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of hydrocarbons.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Hydrocarbons', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Hydrocarbons?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Hydrocarbons?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Hydrocarbons should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Hydrocarbons?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Functional Groups",
-                "content": """
-                    <p>This lesson develops <b>Functional Groups</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of functional groups.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Functional Groups', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Functional Groups?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Functional Groups?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Functional Groups should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Functional Groups?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Organic Reactions",
-                "content": """
-                    <p>This lesson develops <b>Organic Reactions</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of organic reactions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Organic Reactions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Organic Reactions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Organic Reactions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Organic Reactions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Organic Reactions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Polymers",
-                "content": """
-                    <p>This lesson develops <b>Polymers</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of polymers.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Polymers', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Polymers?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Polymers?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Polymers should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Polymers?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Coordination Chemistry",
-                "content": """
-                    <p>This lesson develops <b>Coordination Chemistry</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of coordination chemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Coordination Chemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Coordination Chemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Coordination Chemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Coordination Chemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Coordination Chemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Metallurgy and Materials",
-                "content": """
-                    <p>This lesson develops <b>Metallurgy and Materials</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of metallurgy and materials.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Metallurgy and Materials', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Metallurgy and Materials?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Metallurgy and Materials?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Metallurgy and Materials should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Metallurgy and Materials?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Environmental Chemistry",
-                "content": """
-                    <p>This lesson develops <b>Environmental Chemistry</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of environmental chemistry.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Environmental Chemistry', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Environmental Chemistry?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Environmental Chemistry?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Environmental Chemistry should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Environmental Chemistry?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "biology": {
-        "name": "Biology",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Introduction to Biology and Scientific Method",
-                "content": """
-                    <p>This lesson develops <b>Introduction to Biology and Scientific Method</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of introduction to biology and scientific method.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Introduction to Biology and Scientific Method', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Introduction to Biology and Scientific Method?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Introduction to Biology and Scientific Method?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Introduction to Biology and Scientific Method should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Introduction to Biology and Scientific Method?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Biological Molecules",
-                "content": """
-                    <p>This lesson develops <b>Biological Molecules</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of biological molecules.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Biological Molecules', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Biological Molecules?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Biological Molecules?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Biological Molecules should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Biological Molecules?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Cell Structure",
-                "content": """
-                    <p>This lesson develops <b>Cell Structure</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cell structure.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cell Structure', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cell Structure?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cell Structure?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cell Structure should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cell Structure?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Cell Membrane and Transport",
-                "content": """
-                    <p>This lesson develops <b>Cell Membrane and Transport</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cell membrane and transport.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cell Membrane and Transport', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cell Membrane and Transport?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cell Membrane and Transport?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cell Membrane and Transport should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cell Membrane and Transport?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Cellular Respiration",
-                "content": """
-                    <p>This lesson develops <b>Cellular Respiration</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cellular respiration.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cellular Respiration', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cellular Respiration?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cellular Respiration?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cellular Respiration should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cellular Respiration?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Photosynthesis",
-                "content": """
-                    <p>This lesson develops <b>Photosynthesis</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of photosynthesis.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Photosynthesis', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Photosynthesis?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Photosynthesis?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Photosynthesis should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Photosynthesis?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Cell Division",
-                "content": """
-                    <p>This lesson develops <b>Cell Division</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cell division.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cell Division', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cell Division?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cell Division?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cell Division should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cell Division?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Genetics",
-                "content": """
-                    <p>This lesson develops <b>Genetics</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of genetics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Genetics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Genetics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Genetics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Genetics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Genetics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "DNA, RNA and Protein Synthesis",
-                "content": """
-                    <p>This lesson develops <b>DNA, RNA and Protein Synthesis</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of dna, rna and protein synthesis.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'DNA, RNA and Protein Synthesis', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning DNA, RNA and Protein Synthesis?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying DNA, RNA and Protein Synthesis?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving DNA, RNA and Protein Synthesis should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of DNA, RNA and Protein Synthesis?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Evolution",
-                "content": """
-                    <p>This lesson develops <b>Evolution</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of evolution.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Evolution', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Evolution?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Evolution?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Evolution should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Evolution?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Classification and Biodiversity",
-                "content": """
-                    <p>This lesson develops <b>Classification and Biodiversity</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of classification and biodiversity.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Classification and Biodiversity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Classification and Biodiversity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Classification and Biodiversity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Classification and Biodiversity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Classification and Biodiversity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Plant Structure and Transport",
-                "content": """
-                    <p>This lesson develops <b>Plant Structure and Transport</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of plant structure and transport.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Plant Structure and Transport', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Plant Structure and Transport?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Plant Structure and Transport?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Plant Structure and Transport should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Plant Structure and Transport?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Plant Reproduction",
-                "content": """
-                    <p>This lesson develops <b>Plant Reproduction</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of plant reproduction.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Plant Reproduction', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Plant Reproduction?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Plant Reproduction?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Plant Reproduction should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Plant Reproduction?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Human Digestive System",
-                "content": """
-                    <p>This lesson develops <b>Human Digestive System</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of human digestive system.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Human Digestive System', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Human Digestive System?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Human Digestive System?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Human Digestive System should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Human Digestive System?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Human Circulatory System",
-                "content": """
-                    <p>This lesson develops <b>Human Circulatory System</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of human circulatory system.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Human Circulatory System', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Human Circulatory System?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Human Circulatory System?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Human Circulatory System should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Human Circulatory System?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Human Respiratory System",
-                "content": """
-                    <p>This lesson develops <b>Human Respiratory System</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of human respiratory system.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Human Respiratory System', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Human Respiratory System?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Human Respiratory System?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Human Respiratory System should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Human Respiratory System?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Nervous and Endocrine Systems",
-                "content": """
-                    <p>This lesson develops <b>Nervous and Endocrine Systems</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of nervous and endocrine systems.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Nervous and Endocrine Systems', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Nervous and Endocrine Systems?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Nervous and Endocrine Systems?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Nervous and Endocrine Systems should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Nervous and Endocrine Systems?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Immune System and Disease",
-                "content": """
-                    <p>This lesson develops <b>Immune System and Disease</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of immune system and disease.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Immune System and Disease', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Immune System and Disease?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Immune System and Disease?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Immune System and Disease should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Immune System and Disease?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Ecology and Ecosystems",
-                "content": """
-                    <p>This lesson develops <b>Ecology and Ecosystems</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of ecology and ecosystems.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Ecology and Ecosystems', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Ecology and Ecosystems?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Ecology and Ecosystems?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Ecology and Ecosystems should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Ecology and Ecosystems?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Biotechnology",
-                "content": """
-                    <p>This lesson develops <b>Biotechnology</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of biotechnology.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Biotechnology', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Biotechnology?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Biotechnology?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Biotechnology should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Biotechnology?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "computer_science": {
-        "name": "Computer Science",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Computers and Information",
-                "content": """
-                    <p>This lesson develops <b>Computers and Information</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of computers and information.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Computers and Information', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Computers and Information?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Computers and Information?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Computers and Information should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Computers and Information?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Binary and Data Representation",
-                "content": """
-                    <p>This lesson develops <b>Binary and Data Representation</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of binary and data representation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Binary and Data Representation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Binary and Data Representation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Binary and Data Representation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Binary and Data Representation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Binary and Data Representation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Programming Fundamentals",
-                "content": """
-                    <p>This lesson develops <b>Programming Fundamentals</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of programming fundamentals.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Programming Fundamentals', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Programming Fundamentals?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Programming Fundamentals?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Programming Fundamentals should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Programming Fundamentals?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Variables, Types and Operators",
-                "content": """
-                    <p>This lesson develops <b>Variables, Types and Operators</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of variables, types and operators.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Variables, Types and Operators', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Variables, Types and Operators?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Variables, Types and Operators?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Variables, Types and Operators should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Variables, Types and Operators?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Conditionals and Loops",
-                "content": """
-                    <p>This lesson develops <b>Conditionals and Loops</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of conditionals and loops.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Conditionals and Loops', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Conditionals and Loops?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Conditionals and Loops?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Conditionals and Loops should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Conditionals and Loops?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Functions and Modularity",
-                "content": """
-                    <p>This lesson develops <b>Functions and Modularity</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of functions and modularity.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Functions and Modularity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Functions and Modularity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Functions and Modularity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Functions and Modularity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Functions and Modularity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Data Structures",
-                "content": """
-                    <p>This lesson develops <b>Data Structures</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of data structures.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Data Structures', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Data Structures?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Data Structures?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Data Structures should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Data Structures?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Algorithms and Complexity",
-                "content": """
-                    <p>This lesson develops <b>Algorithms and Complexity</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of algorithms and complexity.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Algorithms and Complexity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Algorithms and Complexity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Algorithms and Complexity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Algorithms and Complexity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Algorithms and Complexity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Object-Oriented Programming",
-                "content": """
-                    <p>This lesson develops <b>Object-Oriented Programming</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of object-oriented programming.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Object-Oriented Programming', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Object-Oriented Programming?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Object-Oriented Programming?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Object-Oriented Programming should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Object-Oriented Programming?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Recursion",
-                "content": """
-                    <p>This lesson develops <b>Recursion</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of recursion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Recursion', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Recursion?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Recursion?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Recursion should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Recursion?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Databases and SQL",
-                "content": """
-                    <p>This lesson develops <b>Databases and SQL</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of databases and sql.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Databases and SQL', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Databases and SQL?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Databases and SQL?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Databases and SQL should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Databases and SQL?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Computer Networks",
-                "content": """
-                    <p>This lesson develops <b>Computer Networks</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of computer networks.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Computer Networks', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Computer Networks?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Computer Networks?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Computer Networks should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Computer Networks?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Operating Systems",
-                "content": """
-                    <p>This lesson develops <b>Operating Systems</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of operating systems.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Operating Systems', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Operating Systems?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Operating Systems?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Operating Systems should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Operating Systems?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Computer Architecture",
-                "content": """
-                    <p>This lesson develops <b>Computer Architecture</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of computer architecture.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Computer Architecture', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Computer Architecture?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Computer Architecture?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Computer Architecture should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Computer Architecture?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Cybersecurity Fundamentals",
-                "content": """
-                    <p>This lesson develops <b>Cybersecurity Fundamentals</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cybersecurity fundamentals.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cybersecurity Fundamentals', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cybersecurity Fundamentals?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cybersecurity Fundamentals?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cybersecurity Fundamentals should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cybersecurity Fundamentals?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Web Development",
-                "content": """
-                    <p>This lesson develops <b>Web Development</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of web development.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Web Development', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Web Development?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Web Development?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Web Development should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Web Development?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Software Engineering and Git",
-                "content": """
-                    <p>This lesson develops <b>Software Engineering and Git</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of software engineering and git.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Software Engineering and Git', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Software Engineering and Git?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Software Engineering and Git?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Software Engineering and Git should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Software Engineering and Git?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Artificial Intelligence and Machine Learning",
-                "content": """
-                    <p>This lesson develops <b>Artificial Intelligence and Machine Learning</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of artificial intelligence and machine learning.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Artificial Intelligence and Machine Learning', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Artificial Intelligence and Machine Learning?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Artificial Intelligence and Machine Learning?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Artificial Intelligence and Machine Learning should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Artificial Intelligence and Machine Learning?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Data Science",
-                "content": """
-                    <p>This lesson develops <b>Data Science</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of data science.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Data Science', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Data Science?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Data Science?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Data Science should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Data Science?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Advanced Algorithms",
-                "content": """
-                    <p>This lesson develops <b>Advanced Algorithms</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of advanced algorithms.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Advanced Algorithms', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Advanced Algorithms?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Advanced Algorithms?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Advanced Algorithms should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Advanced Algorithms?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "english": {
-        "name": "English",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Parts of Speech",
-                "content": """
-                    <p>This lesson develops <b>Parts of Speech</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of parts of speech.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Parts of Speech', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Parts of Speech?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Parts of Speech?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Parts of Speech should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Parts of Speech?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Sentence Structure",
-                "content": """
-                    <p>This lesson develops <b>Sentence Structure</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of sentence structure.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Sentence Structure', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Sentence Structure?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Sentence Structure?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Sentence Structure should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Sentence Structure?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Tenses",
-                "content": """
-                    <p>This lesson develops <b>Tenses</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of tenses.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Tenses', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Tenses?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Tenses?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Tenses should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Tenses?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Subject-Verb Agreement",
-                "content": """
-                    <p>This lesson develops <b>Subject-Verb Agreement</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of subject-verb agreement.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Subject-Verb Agreement', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Subject-Verb Agreement?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Subject-Verb Agreement?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Subject-Verb Agreement should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Subject-Verb Agreement?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Articles and Determiners",
-                "content": """
-                    <p>This lesson develops <b>Articles and Determiners</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of articles and determiners.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Articles and Determiners', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Articles and Determiners?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Articles and Determiners?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Articles and Determiners should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Articles and Determiners?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Prepositions and Conjunctions",
-                "content": """
-                    <p>This lesson develops <b>Prepositions and Conjunctions</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of prepositions and conjunctions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Prepositions and Conjunctions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Prepositions and Conjunctions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Prepositions and Conjunctions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Prepositions and Conjunctions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Prepositions and Conjunctions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Active and Passive Voice",
-                "content": """
-                    <p>This lesson develops <b>Active and Passive Voice</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of active and passive voice.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Active and Passive Voice', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Active and Passive Voice?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Active and Passive Voice?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Active and Passive Voice should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Active and Passive Voice?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Direct and Indirect Speech",
-                "content": """
-                    <p>This lesson develops <b>Direct and Indirect Speech</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of direct and indirect speech.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Direct and Indirect Speech', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Direct and Indirect Speech?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Direct and Indirect Speech?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Direct and Indirect Speech should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Direct and Indirect Speech?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Punctuation",
-                "content": """
-                    <p>This lesson develops <b>Punctuation</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of punctuation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Punctuation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Punctuation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Punctuation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Punctuation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Punctuation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Vocabulary and Word Formation",
-                "content": """
-                    <p>This lesson develops <b>Vocabulary and Word Formation</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of vocabulary and word formation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Vocabulary and Word Formation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Vocabulary and Word Formation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Vocabulary and Word Formation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Vocabulary and Word Formation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Vocabulary and Word Formation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Reading Comprehension",
-                "content": """
-                    <p>This lesson develops <b>Reading Comprehension</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of reading comprehension.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Reading Comprehension', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Reading Comprehension?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Reading Comprehension?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Reading Comprehension should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Reading Comprehension?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Paragraph Writing",
-                "content": """
-                    <p>This lesson develops <b>Paragraph Writing</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of paragraph writing.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Paragraph Writing', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Paragraph Writing?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Paragraph Writing?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Paragraph Writing should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Paragraph Writing?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Essay Writing",
-                "content": """
-                    <p>This lesson develops <b>Essay Writing</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of essay writing.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Essay Writing', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Essay Writing?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Essay Writing?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Essay Writing should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Essay Writing?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Formal Writing",
-                "content": """
-                    <p>This lesson develops <b>Formal Writing</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of formal writing.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Formal Writing', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Formal Writing?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Formal Writing?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Formal Writing should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Formal Writing?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Creative Writing",
-                "content": """
-                    <p>This lesson develops <b>Creative Writing</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of creative writing.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Creative Writing', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Creative Writing?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Creative Writing?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Creative Writing should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Creative Writing?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Argument and Critical Reading",
-                "content": """
-                    <p>This lesson develops <b>Argument and Critical Reading</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of argument and critical reading.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Argument and Critical Reading', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Argument and Critical Reading?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Argument and Critical Reading?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Argument and Critical Reading should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Argument and Critical Reading?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Rhetoric and Persuasion",
-                "content": """
-                    <p>This lesson develops <b>Rhetoric and Persuasion</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of rhetoric and persuasion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Rhetoric and Persuasion', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Rhetoric and Persuasion?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Rhetoric and Persuasion?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Rhetoric and Persuasion should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Rhetoric and Persuasion?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Literary Devices",
-                "content": """
-                    <p>This lesson develops <b>Literary Devices</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of literary devices.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Literary Devices', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Literary Devices?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Literary Devices?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Literary Devices should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Literary Devices?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Poetry and Prose",
-                "content": """
-                    <p>This lesson develops <b>Poetry and Prose</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of poetry and prose.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Poetry and Prose', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Poetry and Prose?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Poetry and Prose?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Poetry and Prose should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Poetry and Prose?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Advanced Grammar and Style",
-                "content": """
-                    <p>This lesson develops <b>Advanced Grammar and Style</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of advanced grammar and style.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Advanced Grammar and Style', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Advanced Grammar and Style?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Advanced Grammar and Style?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Advanced Grammar and Style should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Advanced Grammar and Style?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "economics": {
-        "name": "Economics",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Introduction to Economics",
-                "content": """
-                    <p>This lesson develops <b>Introduction to Economics</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of introduction to economics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Introduction to Economics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Introduction to Economics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Introduction to Economics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Introduction to Economics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Introduction to Economics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Scarcity and Opportunity Cost",
-                "content": """
-                    <p>This lesson develops <b>Scarcity and Opportunity Cost</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of scarcity and opportunity cost.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Scarcity and Opportunity Cost', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Scarcity and Opportunity Cost?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Scarcity and Opportunity Cost?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Scarcity and Opportunity Cost should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Scarcity and Opportunity Cost?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Demand",
-                "content": """
-                    <p>This lesson develops <b>Demand</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of demand.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Demand', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Demand?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Demand?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Demand should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Demand?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Supply",
-                "content": """
-                    <p>This lesson develops <b>Supply</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of supply.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Supply', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Supply?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Supply?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Supply should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Supply?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Market Equilibrium",
-                "content": """
-                    <p>This lesson develops <b>Market Equilibrium</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of market equilibrium.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Market Equilibrium', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Market Equilibrium?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Market Equilibrium?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Market Equilibrium should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Market Equilibrium?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Elasticity",
-                "content": """
-                    <p>This lesson develops <b>Elasticity</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of elasticity.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Elasticity', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Elasticity?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Elasticity?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Elasticity should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Elasticity?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Consumer Behaviour",
-                "content": """
-                    <p>This lesson develops <b>Consumer Behaviour</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of consumer behaviour.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Consumer Behaviour', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Consumer Behaviour?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Consumer Behaviour?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Consumer Behaviour should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Consumer Behaviour?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Production and Costs",
-                "content": """
-                    <p>This lesson develops <b>Production and Costs</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of production and costs.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Production and Costs', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Production and Costs?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Production and Costs?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Production and Costs should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Production and Costs?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Market Structures",
-                "content": """
-                    <p>This lesson develops <b>Market Structures</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of market structures.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Market Structures', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Market Structures?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Market Structures?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Market Structures should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Market Structures?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "National Income",
-                "content": """
-                    <p>This lesson develops <b>National Income</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of national income.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'National Income', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning National Income?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying National Income?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving National Income should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of National Income?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Inflation",
-                "content": """
-                    <p>This lesson develops <b>Inflation</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of inflation.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Inflation', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Inflation?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Inflation?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Inflation should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Inflation?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Unemployment",
-                "content": """
-                    <p>This lesson develops <b>Unemployment</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of unemployment.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Unemployment', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Unemployment?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Unemployment?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Unemployment should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Unemployment?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Money and Banking",
-                "content": """
-                    <p>This lesson develops <b>Money and Banking</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of money and banking.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Money and Banking', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Money and Banking?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Money and Banking?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Money and Banking should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Money and Banking?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Fiscal Policy",
-                "content": """
-                    <p>This lesson develops <b>Fiscal Policy</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of fiscal policy.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Fiscal Policy', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Fiscal Policy?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Fiscal Policy?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Fiscal Policy should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Fiscal Policy?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Monetary Policy",
-                "content": """
-                    <p>This lesson develops <b>Monetary Policy</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of monetary policy.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Monetary Policy', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Monetary Policy?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Monetary Policy?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Monetary Policy should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Monetary Policy?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "International Trade",
-                "content": """
-                    <p>This lesson develops <b>International Trade</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of international trade.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'International Trade', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning International Trade?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying International Trade?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving International Trade should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of International Trade?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Exchange Rates",
-                "content": """
-                    <p>This lesson develops <b>Exchange Rates</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of exchange rates.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Exchange Rates', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Exchange Rates?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Exchange Rates?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Exchange Rates should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Exchange Rates?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Economic Growth and Development",
-                "content": """
-                    <p>This lesson develops <b>Economic Growth and Development</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of economic growth and development.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Economic Growth and Development', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Economic Growth and Development?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Economic Growth and Development?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Economic Growth and Development should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Economic Growth and Development?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Public Finance",
-                "content": """
-                    <p>This lesson develops <b>Public Finance</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of public finance.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Public Finance', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Public Finance?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Public Finance?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Public Finance should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Public Finance?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Indian Economy: Foundations",
-                "content": """
-                    <p>This lesson develops <b>Indian Economy: Foundations</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of indian economy: foundations.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Indian Economy: Foundations', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Indian Economy: Foundations?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Indian Economy: Foundations?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Indian Economy: Foundations should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Indian Economy: Foundations?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "indian_history": {
-        "name": "Indian History",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Prehistoric India",
-                "content": """
-                    <p>This lesson develops <b>Prehistoric India</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of prehistoric india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Prehistoric India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Prehistoric India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Prehistoric India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Prehistoric India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Prehistoric India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Indus Valley Civilization",
-                "content": """
-                    <p>This lesson develops <b>Indus Valley Civilization</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of indus valley civilization.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Indus Valley Civilization', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Indus Valley Civilization?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Indus Valley Civilization?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Indus Valley Civilization should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Indus Valley Civilization?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Vedic Period",
-                "content": """
-                    <p>This lesson develops <b>Vedic Period</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of vedic period.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Vedic Period', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Vedic Period?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Vedic Period?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Vedic Period should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Vedic Period?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Mahajanapadas and Buddhism",
-                "content": """
-                    <p>This lesson develops <b>Mahajanapadas and Buddhism</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of mahajanapadas and buddhism.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Mahajanapadas and Buddhism', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Mahajanapadas and Buddhism?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Mahajanapadas and Buddhism?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Mahajanapadas and Buddhism should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Mahajanapadas and Buddhism?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Mauryan Empire",
-                "content": """
-                    <p>This lesson develops <b>Mauryan Empire</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of mauryan empire.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Mauryan Empire', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Mauryan Empire?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Mauryan Empire?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Mauryan Empire should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Mauryan Empire?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Post-Mauryan India",
-                "content": """
-                    <p>This lesson develops <b>Post-Mauryan India</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of post-mauryan india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Post-Mauryan India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Post-Mauryan India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Post-Mauryan India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Post-Mauryan India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Post-Mauryan India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Gupta Empire",
-                "content": """
-                    <p>This lesson develops <b>Gupta Empire</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of gupta empire.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Gupta Empire', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Gupta Empire?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Gupta Empire?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Gupta Empire should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Gupta Empire?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Early Medieval India",
-                "content": """
-                    <p>This lesson develops <b>Early Medieval India</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of early medieval india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Early Medieval India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Early Medieval India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Early Medieval India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Early Medieval India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Early Medieval India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Delhi Sultanate",
-                "content": """
-                    <p>This lesson develops <b>Delhi Sultanate</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of delhi sultanate.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Delhi Sultanate', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Delhi Sultanate?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Delhi Sultanate?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Delhi Sultanate should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Delhi Sultanate?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Mughal Empire",
-                "content": """
-                    <p>This lesson develops <b>Mughal Empire</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of mughal empire.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Mughal Empire', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Mughal Empire?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Mughal Empire?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Mughal Empire should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Mughal Empire?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Maratha Power",
-                "content": """
-                    <p>This lesson develops <b>Maratha Power</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of maratha power.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Maratha Power', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Maratha Power?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Maratha Power?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Maratha Power should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Maratha Power?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Regional Kingdoms in Early Modern India",
-                "content": """
-                    <p>This lesson develops <b>Regional Kingdoms in Early Modern India</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of regional kingdoms in early modern india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Regional Kingdoms in Early Modern India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Regional Kingdoms in Early Modern India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Regional Kingdoms in Early Modern India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Regional Kingdoms in Early Modern India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Regional Kingdoms in Early Modern India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "European Trading Companies in India",
-                "content": """
-                    <p>This lesson develops <b>European Trading Companies in India</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of european trading companies in india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'European Trading Companies in India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning European Trading Companies in India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying European Trading Companies in India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving European Trading Companies in India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of European Trading Companies in India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "British Expansion in India",
-                "content": """
-                    <p>This lesson develops <b>British Expansion in India</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of british expansion in india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'British Expansion in India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning British Expansion in India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying British Expansion in India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving British Expansion in India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of British Expansion in India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Revolt of 1857",
-                "content": """
-                    <p>This lesson develops <b>Revolt of 1857</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of revolt of 1857.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Revolt of 1857', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Revolt of 1857?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Revolt of 1857?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Revolt of 1857 should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Revolt of 1857?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Socio-Religious Reform Movements",
-                "content": """
-                    <p>This lesson develops <b>Socio-Religious Reform Movements</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of socio-religious reform movements.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Socio-Religious Reform Movements', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Socio-Religious Reform Movements?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Socio-Religious Reform Movements?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Socio-Religious Reform Movements should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Socio-Religious Reform Movements?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Indian National Congress and Early Nationalism",
-                "content": """
-                    <p>This lesson develops <b>Indian National Congress and Early Nationalism</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of indian national congress and early nationalism.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Indian National Congress and Early Nationalism', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Indian National Congress and Early Nationalism?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Indian National Congress and Early Nationalism?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Indian National Congress and Early Nationalism should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Indian National Congress and Early Nationalism?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Gandhian Era",
-                "content": """
-                    <p>This lesson develops <b>Gandhian Era</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of gandhian era.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Gandhian Era', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Gandhian Era?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Gandhian Era?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Gandhian Era should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Gandhian Era?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Indian Independence and Partition",
-                "content": """
-                    <p>This lesson develops <b>Indian Independence and Partition</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of indian independence and partition.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Indian Independence and Partition', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Indian Independence and Partition?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Indian Independence and Partition?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Indian Independence and Partition should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Indian Independence and Partition?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Post-Independence India",
-                "content": """
-                    <p>This lesson develops <b>Post-Independence India</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of post-independence india.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Post-Independence India', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Post-Independence India?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Post-Independence India?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Post-Independence India should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Post-Independence India?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "geography": {
-        "name": "Geography",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Earth and Its Motions",
-                "content": """
-                    <p>This lesson develops <b>Earth and Its Motions</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of earth and its motions.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Earth and Its Motions', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Earth and Its Motions?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Earth and Its Motions?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Earth and Its Motions should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Earth and Its Motions?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Latitudes, Longitudes and Time",
-                "content": """
-                    <p>This lesson develops <b>Latitudes, Longitudes and Time</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of latitudes, longitudes and time.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Latitudes, Longitudes and Time', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Latitudes, Longitudes and Time?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Latitudes, Longitudes and Time?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Latitudes, Longitudes and Time should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Latitudes, Longitudes and Time?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Maps and Scale",
-                "content": """
-                    <p>This lesson develops <b>Maps and Scale</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of maps and scale.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Maps and Scale', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Maps and Scale?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Maps and Scale?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Maps and Scale should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Maps and Scale?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Rocks and the Rock Cycle",
-                "content": """
-                    <p>This lesson develops <b>Rocks and the Rock Cycle</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of rocks and the rock cycle.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Rocks and the Rock Cycle', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Rocks and the Rock Cycle?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Rocks and the Rock Cycle?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Rocks and the Rock Cycle should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Rocks and the Rock Cycle?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Plate Tectonics",
-                "content": """
-                    <p>This lesson develops <b>Plate Tectonics</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of plate tectonics.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Plate Tectonics', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Plate Tectonics?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Plate Tectonics?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Plate Tectonics should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Plate Tectonics?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Landforms",
-                "content": """
-                    <p>This lesson develops <b>Landforms</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of landforms.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Landforms', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Landforms?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Landforms?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Landforms should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Landforms?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Atmosphere",
-                "content": """
-                    <p>This lesson develops <b>Atmosphere</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of atmosphere.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Atmosphere', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Atmosphere?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Atmosphere?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Atmosphere should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Atmosphere?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Weather and Climate",
-                "content": """
-                    <p>This lesson develops <b>Weather and Climate</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of weather and climate.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Weather and Climate', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Weather and Climate?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Weather and Climate?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Weather and Climate should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Weather and Climate?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Oceans and Water Cycle",
-                "content": """
-                    <p>This lesson develops <b>Oceans and Water Cycle</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of oceans and water cycle.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Oceans and Water Cycle', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Oceans and Water Cycle?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Oceans and Water Cycle?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Oceans and Water Cycle should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Oceans and Water Cycle?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Soils",
-                "content": """
-                    <p>This lesson develops <b>Soils</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of soils.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Soils', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Soils?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Soils?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Soils should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Soils?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Natural Vegetation and Biomes",
-                "content": """
-                    <p>This lesson develops <b>Natural Vegetation and Biomes</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of natural vegetation and biomes.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Natural Vegetation and Biomes', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Natural Vegetation and Biomes?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Natural Vegetation and Biomes?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Natural Vegetation and Biomes should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Natural Vegetation and Biomes?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Population Geography",
-                "content": """
-                    <p>This lesson develops <b>Population Geography</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of population geography.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Population Geography', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Population Geography?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Population Geography?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Population Geography should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Population Geography?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Migration and Urbanization",
-                "content": """
-                    <p>This lesson develops <b>Migration and Urbanization</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of migration and urbanization.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Migration and Urbanization', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Migration and Urbanization?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Migration and Urbanization?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Migration and Urbanization should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Migration and Urbanization?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Agriculture",
-                "content": """
-                    <p>This lesson develops <b>Agriculture</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of agriculture.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Agriculture', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Agriculture?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Agriculture?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Agriculture should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Agriculture?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Mineral and Energy Resources",
-                "content": """
-                    <p>This lesson develops <b>Mineral and Energy Resources</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of mineral and energy resources.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Mineral and Energy Resources', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Mineral and Energy Resources?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Mineral and Energy Resources?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Mineral and Energy Resources should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Mineral and Energy Resources?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Industries",
-                "content": """
-                    <p>This lesson develops <b>Industries</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of industries.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Industries', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Industries?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Industries?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Industries should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Industries?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Transport and Communication",
-                "content": """
-                    <p>This lesson develops <b>Transport and Communication</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of transport and communication.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Transport and Communication', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Transport and Communication?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Transport and Communication?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Transport and Communication should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Transport and Communication?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Environmental Geography",
-                "content": """
-                    <p>This lesson develops <b>Environmental Geography</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of environmental geography.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Environmental Geography', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Environmental Geography?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Environmental Geography?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Environmental Geography should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Environmental Geography?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Disasters and Risk Reduction",
-                "content": """
-                    <p>This lesson develops <b>Disasters and Risk Reduction</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of disasters and risk reduction.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Disasters and Risk Reduction', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Disasters and Risk Reduction?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Disasters and Risk Reduction?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Disasters and Risk Reduction should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Disasters and Risk Reduction?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "India: Physical and Economic Geography",
-                "content": """
-                    <p>This lesson develops <b>India: Physical and Economic Geography</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of india: physical and economic geography.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'India: Physical and Economic Geography', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning India: Physical and Economic Geography?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying India: Physical and Economic Geography?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving India: Physical and Economic Geography should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of India: Physical and Economic Geography?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
-    "psychology": {
-        "name": "Psychology",
-        "lessons": [
-            {
-                "id": 1,
-                "title": "Introduction to Psychology",
-                "content": """
-                    <p>This lesson develops <b>Introduction to Psychology</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of introduction to psychology.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Introduction to Psychology', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Introduction to Psychology?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Introduction to Psychology?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Introduction to Psychology should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Introduction to Psychology?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Research Methods",
-                "content": """
-                    <p>This lesson develops <b>Research Methods</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of research methods.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Research Methods', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Research Methods?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Research Methods?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Research Methods should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Research Methods?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 3,
-                "title": "Biological Bases of Behaviour",
-                "content": """
-                    <p>This lesson develops <b>Biological Bases of Behaviour</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of biological bases of behaviour.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Biological Bases of Behaviour', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Biological Bases of Behaviour?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Biological Bases of Behaviour?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Biological Bases of Behaviour should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Biological Bases of Behaviour?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 4,
-                "title": "Sensation and Perception",
-                "content": """
-                    <p>This lesson develops <b>Sensation and Perception</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of sensation and perception.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Sensation and Perception', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Sensation and Perception?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Sensation and Perception?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Sensation and Perception should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Sensation and Perception?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 5,
-                "title": "Learning",
-                "content": """
-                    <p>This lesson develops <b>Learning</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of learning.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Learning', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Learning?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Learning?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Learning should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Learning?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 6,
-                "title": "Memory",
-                "content": """
-                    <p>This lesson develops <b>Memory</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of memory.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Memory', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Memory?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Memory?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Memory should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Memory?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 7,
-                "title": "Thinking and Problem Solving",
-                "content": """
-                    <p>This lesson develops <b>Thinking and Problem Solving</b> at the basic foundations level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of thinking and problem solving.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Thinking and Problem Solving', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Thinking and Problem Solving?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Thinking and Problem Solving?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Thinking and Problem Solving should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Thinking and Problem Solving?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 8,
-                "title": "Intelligence",
-                "content": """
-                    <p>This lesson develops <b>Intelligence</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of intelligence.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Intelligence', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Intelligence?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Intelligence?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Intelligence should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Intelligence?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 9,
-                "title": "Motivation and Emotion",
-                "content": """
-                    <p>This lesson develops <b>Motivation and Emotion</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of motivation and emotion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Motivation and Emotion', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Motivation and Emotion?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Motivation and Emotion?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Motivation and Emotion should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Motivation and Emotion?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 10,
-                "title": "Developmental Psychology",
-                "content": """
-                    <p>This lesson develops <b>Developmental Psychology</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of developmental psychology.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Developmental Psychology', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Developmental Psychology?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Developmental Psychology?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Developmental Psychology should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Developmental Psychology?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 11,
-                "title": "Personality",
-                "content": """
-                    <p>This lesson develops <b>Personality</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of personality.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Personality', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Personality?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Personality?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Personality should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Personality?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 12,
-                "title": "Social Psychology",
-                "content": """
-                    <p>This lesson develops <b>Social Psychology</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of social psychology.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Social Psychology', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Social Psychology?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Social Psychology?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Social Psychology should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Social Psychology?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 13,
-                "title": "Attitudes and Persuasion",
-                "content": """
-                    <p>This lesson develops <b>Attitudes and Persuasion</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of attitudes and persuasion.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Attitudes and Persuasion', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Attitudes and Persuasion?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Attitudes and Persuasion?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Attitudes and Persuasion should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Attitudes and Persuasion?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 14,
-                "title": "Stress and Coping",
-                "content": """
-                    <p>This lesson develops <b>Stress and Coping</b> at the intermediate methods level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of stress and coping.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Stress and Coping', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Stress and Coping?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Stress and Coping?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Stress and Coping should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Stress and Coping?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 15,
-                "title": "Psychological Disorders",
-                "content": """
-                    <p>This lesson develops <b>Psychological Disorders</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of psychological disorders.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Psychological Disorders', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Psychological Disorders?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Psychological Disorders?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Psychological Disorders should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Psychological Disorders?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 16,
-                "title": "Therapy and Mental Health",
-                "content": """
-                    <p>This lesson develops <b>Therapy and Mental Health</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of therapy and mental health.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Therapy and Mental Health', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Therapy and Mental Health?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Therapy and Mental Health?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Therapy and Mental Health should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Therapy and Mental Health?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 17,
-                "title": "Cognition and Decision Making",
-                "content": """
-                    <p>This lesson develops <b>Cognition and Decision Making</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of cognition and decision making.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Cognition and Decision Making', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Cognition and Decision Making?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Cognition and Decision Making?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Cognition and Decision Making should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Cognition and Decision Making?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 18,
-                "title": "Language and Communication",
-                "content": """
-                    <p>This lesson develops <b>Language and Communication</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of language and communication.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Language and Communication', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Language and Communication?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Language and Communication?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Language and Communication should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Language and Communication?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 19,
-                "title": "Organizational Psychology",
-                "content": """
-                    <p>This lesson develops <b>Organizational Psychology</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of organizational psychology.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Organizational Psychology', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Organizational Psychology?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Organizational Psychology?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Organizational Psychology should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Organizational Psychology?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-            {
-                "id": 20,
-                "title": "Applied Psychology and Everyday Life",
-                "content": """
-                    <p>This lesson develops <b>Applied Psychology and Everyday Life</b> at the advanced applications and connections level.</p>
-                            <p>It covers the key ideas, terminology, examples and problem-solving methods of applied psychology and everyday life.</p>
-                            <p>Focus on definitions first, then worked examples, relationships between ideas, and finally
-                            applying the concepts to unfamiliar problems. You should be able to explain the main ideas,
-                            choose an appropriate method, and check whether your result is reasonable.</p>
-                """,
-                "quiz": [
-                    {'question': '[Easy] What is the main topic studied in this lesson?', 'options': ['Unrelated topic', 'Applied Psychology and Everyday Life', 'A random historical event', 'Computer hardware'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Easy] Which approach is most appropriate when first learning Applied Psychology and Everyday Life?', 'options': ['Memorise answers without understanding', 'Learn definitions and simple examples first', 'Skip examples', 'Start with the hardest problem'], 'answer': 1, 'difficulty': 'easy'},
-                    {'question': '[Moderate] Which skill is most directly developed by studying Applied Psychology and Everyday Life?', 'options': ['Choosing and applying relevant concepts', 'Ignoring assumptions', 'Avoiding calculations', 'Guessing without checking'], 'answer': 0, 'difficulty': 'moderate'},
-                    {'question': '[Moderate] A strong solution involving Applied Psychology and Everyday Life should usually include:', 'options': ['Only a final answer', 'A relevant method and a check of the result', 'No explanation', 'An unrelated formula'], 'answer': 1, 'difficulty': 'moderate'},
-                    {'question': '[Difficult] What best demonstrates mastery of Applied Psychology and Everyday Life?', 'options': ['Repeating one memorised example', 'Applying the ideas to an unfamiliar problem and justifying the method', 'Skipping foundational ideas', 'Selecting an answer at random'], 'answer': 1, 'difficulty': 'difficult'},
-                ],
-            },
-        ],
-    },
+}
+
+SUBJECTS["physics"] = {
+    "name": "Physics",
+    "lessons": [
+        L(1, "Introduction to Motion", """
+            <p>Motion describes how an object's position changes over time.</p>
+            <p><b>Speed</b> is distance divided by time; <b>velocity</b> is speed together with a
+            direction, which makes it a vector quantity.</p>
+            <p>A car travelling 100 km in 2 hours has an average speed of 50 km/h, even if it sped
+            up and slowed down along the way.</p>
+        """,
+          ("A car travels 100 km in 2 hours. Its average speed is:",
+           ("25 km/h", "50 km/h", "100 km/h", "200 km/h"), 1),
+          ("What makes velocity different from speed?",
+           ("It includes direction", "It is always larger", "It has no units", "There is no difference"), 0)),
+        L(2, "Acceleration and Motion Graphs", """
+            <p>Acceleration is the rate of change of velocity, measured in m/s&sup2;:
+            <code>a = (v - u) / t</code>.</p>
+            <p>On a distance-time graph the gradient gives speed; a horizontal line means the object
+            is stationary.</p>
+            <p>On a velocity-time graph the gradient gives acceleration and the area under the line
+            gives the distance travelled.</p>
+        """,
+          ("The gradient of a velocity-time graph represents:",
+           ("Distance", "Speed", "Acceleration", "Force"), 2),
+          ("A car goes from 0 to 20 m/s in 4 s. Its acceleration is:",
+           ("4 m/s&sup2;", "5 m/s&sup2;", "20 m/s&sup2;", "80 m/s&sup2;"), 1)),
+        L(3, "Forces and Newton's Laws", """
+            <p>A force is a push or a pull, measured in newtons. Newton's first law: an object stays
+            at rest or moves at constant velocity unless a resultant force acts on it (inertia).</p>
+            <p>Newton's second law: <code>Force = mass &times; acceleration</code>.</p>
+            <p>Newton's third law: every action has an equal and opposite reaction, acting on a
+            different object.</p>
+        """,
+          ("A 5 kg mass accelerates at 3 m/s&sup2;. The resultant force is:",
+           ("1.7 N", "8 N", "15 N", "45 N"), 2),
+          ("Newton's first law is also called the law of:",
+           ("Gravity", "Inertia", "Reaction", "Momentum"), 1)),
+        L(4, "Gravity, Mass and Weight", """
+            <p>Mass is the amount of matter in an object and does not change with location; weight is
+            the force of gravity on that mass.</p>
+            <p><code>Weight = mass &times; gravitational field strength</code>. On Earth g &asymp; 10 N/kg,
+            so a 60 kg person weighs about 600 N.</p>
+            <p>On the Moon g is about one sixth of Earth's, so the same person weighs far less but has
+            exactly the same mass.</p>
+        """,
+          ("The weight of a 60 kg person on Earth (g = 10 N/kg) is about:",
+           ("6 N", "60 N", "600 N", "6000 N"), 2),
+          ("Taking an object to the Moon changes its:",
+           ("Mass only", "Weight only", "Both mass and weight", "Neither"), 1)),
+        L(5, "Work, Energy and Power", """
+            <p>Work done = force &times; distance moved in the direction of the force, measured in joules.</p>
+            <p>Energy is conserved: it transfers between stores such as kinetic
+            (<code>&frac12;mv&sup2;</code>) and gravitational potential (<code>mgh</code>).</p>
+            <p>Power is the rate of energy transfer: <code>P = E / t</code>, measured in watts.</p>
+        """,
+          ("Power is best described as:",
+           ("Total energy used", "Energy transferred per second", "Force times distance", "Mass times acceleration"), 1),
+          ("A force of 20 N moves an object 3 m. Work done is:",
+           ("6 J", "23 J", "60 J", "600 J"), 2)),
+        L(6, "Momentum", """
+            <p>Momentum = mass &times; velocity, measured in kg m/s, and it is a vector.</p>
+            <p>In a closed system total momentum before a collision equals total momentum after &mdash;
+            the principle of conservation of momentum.</p>
+            <p>Crumple zones and airbags increase the time taken to change momentum, which reduces the
+            force experienced.</p>
+        """,
+          ("Momentum is calculated as:",
+           ("mass &times; acceleration", "mass &times; velocity", "force &times; time", "&frac12;mv&sup2;"), 1),
+          ("Airbags reduce injury because they:",
+           ("Increase the force", "Increase the time over which momentum changes",
+            "Reduce the mass", "Increase the velocity"), 1)),
+        L(7, "Density and Pressure", """
+            <p>Density = mass / volume, usually in kg/m&sup3;. Objects less dense than a fluid float in it.</p>
+            <p>Pressure = force / area, measured in pascals. A sharp knife has a tiny contact area, so
+            a modest force gives a very high pressure.</p>
+            <p>In a liquid, pressure increases with depth and acts in all directions.</p>
+        """,
+          ("Pressure is calculated as:",
+           ("Force &times; area", "Force / area", "Area / force", "Mass / volume"), 1),
+          ("Pressure in a liquid increases as you go:",
+           ("Deeper", "Shallower", "Sideways only", "It stays constant"), 0)),
+        L(8, "Heat and Temperature", """
+            <p>Temperature measures how hot something is; thermal energy depends on both temperature
+            and mass.</p>
+            <p>Heat transfers by conduction (through solids), convection (in fluids, driven by density
+            differences) and radiation (infrared waves, needing no medium).</p>
+            <p>Insulation, such as trapped air in a jumper, slows conduction and convection.</p>
+        """,
+          ("Energy from the Sun reaches Earth by:",
+           ("Conduction", "Convection", "Radiation", "Evaporation"), 2),
+          ("Convection currents occur because heated fluid becomes:",
+           ("Denser and sinks", "Less dense and rises", "Solid", "Colder"), 1)),
+        L(9, "Waves", """
+            <p>Waves transfer energy without transferring matter. In <b>transverse</b> waves the
+            oscillation is perpendicular to travel (light); in <b>longitudinal</b> waves it is parallel (sound).</p>
+            <p>Key terms: amplitude, wavelength, frequency (hertz) and period.</p>
+            <p>The wave equation is <code>v = f&lambda;</code>: speed equals frequency times wavelength.</p>
+        """,
+          ("The wave equation is:",
+           ("v = f + &lambda;", "v = f&lambda;", "v = &lambda;/f", "f = v&lambda;"), 1),
+          ("Sound waves are:",
+           ("Transverse", "Longitudinal", "Electromagnetic", "Stationary"), 1)),
+        L(10, "Sound and Hearing", """
+            <p>Sound is a longitudinal wave of compressions and rarefactions, so it needs a medium and
+            cannot travel through a vacuum.</p>
+            <p>Higher frequency is heard as higher pitch; larger amplitude is heard as greater loudness.</p>
+            <p>Sound travels faster in solids than in liquids, and faster in liquids than in gases,
+            because particles are closer together.</p>
+        """,
+          ("Sound cannot travel through:",
+           ("Water", "Steel", "A vacuum", "Air"), 2),
+          ("Increasing the frequency of a sound increases its:",
+           ("Loudness", "Pitch", "Speed", "Amplitude"), 1)),
+        L(11, "Light and Optics", """
+            <p>Light travels in straight lines and reflects so that the angle of incidence equals the
+            angle of reflection.</p>
+            <p>Refraction is the bending of light when it changes speed entering a new medium, which is
+            why a straw looks bent in water.</p>
+            <p>Converging lenses bring parallel rays to a focus and are used in cameras and eyes;
+            white light can be dispersed into a spectrum by a prism.</p>
+        """,
+          ("Light bending as it passes from air into glass is called:",
+           ("Reflection", "Refraction", "Diffraction", "Dispersion"), 1),
+          ("In reflection, the angle of incidence is:",
+           ("Always 90&deg;", "Equal to the angle of reflection", "Twice the angle of reflection", "Always zero"), 1)),
+        L(12, "Current, Voltage and Resistance", """
+            <p>Current is the rate of flow of charge, measured in amperes; voltage is the energy given
+            per unit charge, measured in volts.</p>
+            <p>Resistance opposes current. Ohm's law states <code>V = IR</code>.</p>
+            <p>So a 12 V supply pushing 2 A through a component means the component has a resistance
+            of 6 ohms.</p>
+        """,
+          ("Ohm's law is written as:", ("V = I/R", "V = IR", "I = VR", "R = VI"), 1),
+          ("A 12 V supply drives 2 A through a resistor. Its resistance is:",
+           ("2 &Omega;", "6 &Omega;", "14 &Omega;", "24 &Omega;"), 1)),
+        L(13, "Electrical Circuits", """
+            <p>In a <b>series</b> circuit there is one path: current is the same everywhere and the
+            supply voltage is shared between components.</p>
+            <p>In a <b>parallel</b> circuit there are branches: each branch gets the full supply voltage
+            and the currents in the branches add up to the total.</p>
+            <p>Adding resistors in series increases total resistance; adding them in parallel decreases it.</p>
+        """,
+          ("In a series circuit, the current:",
+           ("Is the same at every point", "Splits between components",
+            "Is zero", "Doubles at each component"), 0),
+          ("Components in parallel each receive:",
+           ("A share of the supply voltage", "The full supply voltage", "No voltage", "Double the voltage"), 1)),
+        L(14, "Magnetism and Electromagnetism", """
+            <p>Magnets have north and south poles; like poles repel and unlike poles attract.</p>
+            <p>A current in a wire creates a magnetic field around it. Coiling the wire into a solenoid
+            around an iron core makes an electromagnet that can be switched on and off.</p>
+            <p>A current-carrying wire in a magnetic field experiences a force &mdash; the motor effect.
+            Moving a magnet near a coil induces a voltage, which is how generators work.</p>
+        """,
+          ("Two north poles placed near each other will:",
+           ("Attract", "Repel", "Do nothing", "Become south poles"), 1),
+          ("Moving a magnet into a coil of wire will:",
+           ("Induce a voltage", "Destroy the magnet", "Stop the current", "Have no effect"), 0)),
+        L(15, "Atoms and Radioactivity", """
+            <p>An atom has a tiny nucleus of protons and neutrons, surrounded by electrons.</p>
+            <p>Unstable nuclei decay and emit radiation: alpha (stopped by paper), beta (stopped by thin
+            aluminium) and gamma (reduced by thick lead).</p>
+            <p>Half-life is the time for half the undecayed nuclei in a sample to decay &mdash; a random
+            process that is predictable only on average.</p>
+        """,
+          ("Which type of radiation is the most penetrating?",
+           ("Alpha", "Beta", "Gamma", "They are equal"), 2),
+          ("Half-life is the time taken for:",
+           ("All nuclei to decay", "Half the undecayed nuclei to decay",
+            "The mass to double", "Radiation to stop entirely"), 1)),
+    ],
+}
+
+SUBJECTS["chemistry"] = {
+    "name": "Chemistry",
+    "lessons": [
+        L(1, "States of Matter", """
+            <p>Matter exists mainly as solids, liquids and gases, differing in how tightly their
+            particles are held together.</p>
+            <p>Solids have a fixed shape and volume; liquids take the shape of their container; gases
+            expand to fill any space.</p>
+            <p>Changes of state are physical, not chemical: melting, boiling, condensing and freezing
+            rearrange particles but do not make new substances.</p>
+        """,
+          ("Which state has a fixed volume but takes the shape of its container?",
+           ("Solid", "Liquid", "Gas", "Plasma"), 1),
+          ("Melting ice into water is:",
+           ("A chemical change", "A physical change", "Combustion", "Oxidation"), 1)),
+        L(2, "Atomic Structure", """
+            <p>Atoms contain protons (positive) and neutrons (neutral) in the nucleus, with electrons
+            (negative) in shells around it.</p>
+            <p>The atomic number is the number of protons and defines the element; the mass number is
+            protons plus neutrons.</p>
+            <p><b>Isotopes</b> are atoms of the same element with different numbers of neutrons, such as
+            carbon-12 and carbon-14.</p>
+        """,
+          ("The atomic number of an element equals its number of:",
+           ("Neutrons", "Protons", "Electrons plus neutrons", "Shells"), 1),
+          ("Isotopes of an element differ in their number of:",
+           ("Protons", "Electrons", "Neutrons", "Shells"), 2)),
+        L(3, "The Periodic Table", """
+            <p>Elements are arranged in order of atomic number. Vertical <b>groups</b> share chemical
+            properties; horizontal <b>periods</b> show gradual change.</p>
+            <p>Group 1 alkali metals are highly reactive, group 7 halogens are reactive non-metals, and
+            group 0 noble gases are inert because their outer shells are full.</p>
+            <p>The group number tells you the number of electrons in the outer shell.</p>
+        """,
+          ("Elements in the same group have the same number of:",
+           ("Protons", "Neutrons", "Outer-shell electrons", "Shells"), 2),
+          ("Noble gases are unreactive because their outer shells are:",
+           ("Empty", "Full", "Half full", "Missing"), 1)),
+        L(4, "Chemical Bonding", """
+            <p>Atoms bond to achieve full outer shells. In <b>ionic</b> bonding a metal transfers
+            electrons to a non-metal, forming charged ions that attract strongly.</p>
+            <p>In <b>covalent</b> bonding two non-metals share pairs of electrons, as in water.</p>
+            <p>In <b>metallic</b> bonding positive ions sit in a sea of delocalised electrons, which is
+            why metals conduct electricity and can be bent.</p>
+        """,
+          ("Sodium chloride is held together by:",
+           ("Covalent bonds", "Ionic bonds", "Metallic bonds", "No bonds"), 1),
+          ("Metals conduct electricity because they contain:",
+           ("Shared pairs of electrons", "Delocalised electrons", "Neutrons", "Negative ions"), 1)),
+        L(5, "Formulae and Equations", """
+            <p>A chemical formula shows the elements present and how many atoms of each:
+            <code>H&#8322;O</code> has two hydrogens and one oxygen.</p>
+            <p>Equations must be balanced because atoms are never created or destroyed:
+            <code>2H&#8322; + O&#8322; &rarr; 2H&#8322;O</code>.</p>
+            <p>State symbols (s), (l), (g) and (aq) add useful detail.</p>
+        """,
+          ("Equations must be balanced because:",
+           ("It looks neater", "Atoms are conserved in a reaction",
+            "Energy must be equal", "Charges must be zero"), 1),
+          ("How many atoms in total are in one molecule of H&#8322;O?",
+           ("2", "3", "4", "1"), 1)),
+        L(6, "The Mole and Reacting Masses", """
+            <p>The mole is the chemist's counting unit: one mole contains 6.02 &times; 10&sup2;&sup3; particles
+            (Avogadro's number).</p>
+            <p>One mole of a substance has a mass in grams equal to its relative formula mass, so one
+            mole of water is 18 g.</p>
+            <p><code>moles = mass / relative formula mass</code>, which lets you predict how much product
+            a reaction will give.</p>
+        """,
+          ("Moles are calculated as:",
+           ("mass &times; Mr", "mass / Mr", "Mr / mass", "mass + Mr"), 1),
+          ("36 g of water (Mr = 18) is how many moles?",
+           ("0.5", "1", "2", "18"), 2)),
+        L(7, "Acids, Bases and pH", """
+            <p>Acids release H&#8314; ions in solution; alkalis release OH&#8315; ions. The pH scale runs
+            from 0 (strongly acidic) to 14 (strongly alkaline), with 7 neutral.</p>
+            <p>Neutralisation produces a salt and water:
+            <code>acid + base &rarr; salt + water</code>.</p>
+            <p>Indicators such as litmus or universal indicator show pH by changing colour.</p>
+        """,
+          ("A solution with pH 2 is:",
+           ("Strongly alkaline", "Neutral", "Strongly acidic", "Weakly alkaline"), 2),
+          ("Acid + base produces:",
+           ("Salt + water", "Hydrogen + oxygen", "Only a gas", "A metal"), 0)),
+        L(8, "Types of Chemical Reaction", """
+            <p>Common patterns include combustion (burning in oxygen), oxidation (gain of oxygen or loss
+            of electrons) and reduction (the opposite).</p>
+            <p>In displacement a more reactive element takes the place of a less reactive one; in
+            thermal decomposition heat breaks a compound apart.</p>
+            <p>Reactions that release heat are exothermic; those that absorb it are endothermic.</p>
+        """,
+          ("A reaction that releases heat to the surroundings is:",
+           ("Endothermic", "Exothermic", "Neutral", "Reversible"), 1),
+          ("Heating calcium carbonate to give calcium oxide and carbon dioxide is:",
+           ("Displacement", "Thermal decomposition", "Combustion", "Neutralisation"), 1)),
+        L(9, "Metals and the Reactivity Series", """
+            <p>Metals can be ranked by reactivity: potassium, sodium and calcium are very reactive,
+            while gold and platinum are very unreactive.</p>
+            <p>A more reactive metal displaces a less reactive one from its compound, e.g. zinc
+            displaces copper from copper sulfate.</p>
+            <p>Very reactive metals are extracted by electrolysis; less reactive ones can be reduced
+            with carbon.</p>
+        """,
+          ("Which metal is the most reactive?",
+           ("Gold", "Copper", "Potassium", "Silver"), 2),
+          ("Zinc added to copper sulfate solution will:",
+           ("Do nothing", "Displace the copper", "Dissolve the sulfate", "Form a gas only"), 1)),
+        L(10, "Electrolysis", """
+            <p>Electrolysis uses electricity to break down an ionic compound that is molten or dissolved,
+            so its ions are free to move.</p>
+            <p>Positive ions (cations) move to the negative cathode; negative ions (anions) move to the
+            positive anode.</p>
+            <p>It is used to extract aluminium from its ore and to electroplate objects with a thin
+            metal layer.</p>
+        """,
+          ("Positive ions travel towards the:",
+           ("Anode", "Cathode", "Battery", "Beaker"), 1),
+          ("Electrolysis requires the compound to be:",
+           ("Solid", "Molten or dissolved", "A gas", "Unreactive"), 1)),
+        L(11, "Rates of Reaction", """
+            <p>Reaction rate measures how quickly reactants are used up or products formed.</p>
+            <p>Rate increases with higher temperature, higher concentration or pressure, smaller
+            particle size (larger surface area) and with a catalyst.</p>
+            <p>Collision theory explains this: reactions happen when particles collide often enough and
+            with enough energy.</p>
+        """,
+          ("Which change will slow a reaction down?",
+           ("Raising the temperature", "Using a catalyst",
+            "Using larger lumps of solid", "Increasing concentration"), 2),
+          ("A catalyst speeds up a reaction and is:",
+           ("Used up completely", "Unchanged at the end", "Turned into product", "Always a gas"), 1)),
+        L(12, "Energy Changes in Reactions", """
+            <p>Breaking bonds requires energy; making bonds releases it. The overall balance decides
+            whether a reaction is exothermic or endothermic.</p>
+            <p>Combustion and neutralisation are exothermic; thermal decomposition and many dissolving
+            reactions are endothermic.</p>
+            <p>Activation energy is the minimum energy needed for a reaction to begin, and catalysts
+            lower it.</p>
+        """,
+          ("Making chemical bonds:",
+           ("Absorbs energy", "Releases energy", "Has no energy change", "Always cools the mixture"), 1),
+          ("A catalyst works by lowering the:",
+           ("Temperature", "Activation energy", "Concentration", "Mass of product"), 1)),
+        L(13, "Introduction to Organic Chemistry", """
+            <p>Organic chemistry studies compounds of carbon, which forms four bonds and long chains.</p>
+            <p>Alkanes such as methane (CH&#8324;) have only single bonds and are saturated; alkenes such
+            as ethene (C&#8322;H&#8324;) contain a double bond and are unsaturated.</p>
+            <p>Crude oil is separated by fractional distillation into useful fractions such as petrol
+            and diesel.</p>
+        """,
+          ("Alkenes are described as unsaturated because they contain:",
+           ("Only single bonds", "A carbon-carbon double bond", "No carbon", "Extra hydrogen"), 1),
+          ("Crude oil is separated into fractions by:",
+           ("Filtration", "Fractional distillation", "Electrolysis", "Chromatography"), 1)),
+        L(14, "Separating Mixtures", """
+            <p>Mixtures are not chemically bonded, so physical methods can separate them.</p>
+            <p>Filtration removes insoluble solids; evaporation and crystallisation recover dissolved
+            solids; simple distillation separates a solvent from a solution.</p>
+            <p>Chromatography separates substances by how strongly they are attracted to the paper
+            versus the solvent.</p>
+        """,
+          ("To recover pure water from salty water you would use:",
+           ("Filtration", "Distillation", "Chromatography", "Decanting"), 1),
+          ("Chromatography is most useful for separating:",
+           ("Sand from water", "Coloured dyes in an ink", "Iron from sulfur", "Oxygen from air"), 1)),
+        L(15, "Chemistry and the Environment", """
+            <p>The atmosphere is roughly 78% nitrogen and 21% oxygen, with small amounts of carbon
+            dioxide and other gases.</p>
+            <p>Burning fossil fuels releases carbon dioxide, which traps heat and contributes to global
+            warming, plus sulfur dioxide, which causes acid rain.</p>
+            <p>Reducing emissions, recycling and using renewable energy limit these effects.</p>
+        """,
+          ("The most abundant gas in the atmosphere is:",
+           ("Oxygen", "Nitrogen", "Carbon dioxide", "Argon"), 1),
+          ("Sulfur dioxide from burning fuels mainly causes:",
+           ("Acid rain", "Ozone repair", "Global cooling", "Hard water"), 0)),
+    ],
+}
+
+SUBJECTS["biology"] = {
+    "name": "Biology",
+    "lessons": [
+        L(1, "Cells: The Basic Unit of Life", """
+            <p>All living things are made of cells. Animal cells have a nucleus, cytoplasm, cell
+            membrane and mitochondria.</p>
+            <p>Plant cells have these too, plus a cellulose cell wall, a permanent vacuole and
+            chloroplasts for photosynthesis.</p>
+            <p>The nucleus stores DNA and controls the cell; mitochondria release energy through
+            respiration.</p>
+        """,
+          ("Which structure is found in plant cells but not animal cells?",
+           ("Nucleus", "Chloroplast", "Cell membrane", "Cytoplasm"), 1),
+          ("Most energy release in a cell happens in the:",
+           ("Nucleus", "Mitochondria", "Vacuole", "Cell wall"), 1)),
+        L(2, "Cell Division", """
+            <p><b>Mitosis</b> produces two genetically identical daughter cells and is used for growth,
+            repair and asexual reproduction.</p>
+            <p><b>Meiosis</b> produces four genetically different gametes with half the normal number of
+            chromosomes.</p>
+            <p>Fertilisation restores the full chromosome number and, with meiosis, creates variation.</p>
+        """,
+          ("Mitosis produces cells that are:",
+           ("Genetically identical", "Genetically different", "Always gametes", "Half-sized"), 0),
+          ("Meiosis is important because it produces:",
+           ("Identical body cells", "Gametes with variation", "More mitochondria", "Larger cells"), 1)),
+        L(3, "Movement In and Out of Cells", """
+            <p><b>Diffusion</b> is the net movement of particles from high to low concentration, and
+            needs no energy.</p>
+            <p><b>Osmosis</b> is the diffusion of water across a partially permeable membrane, from
+            dilute to concentrated solution.</p>
+            <p><b>Active transport</b> moves substances against the concentration gradient and requires
+            energy from respiration.</p>
+        """,
+          ("Osmosis is the movement of:",
+           ("Any particle down a gradient", "Water across a partially permeable membrane",
+            "Glucose using energy", "Gases only"), 1),
+          ("Active transport differs from diffusion because it:",
+           ("Requires energy", "Is faster", "Only moves water", "Needs no membrane"), 0)),
+        L(4, "Enzymes", """
+            <p>Enzymes are biological catalysts made of protein that speed up reactions without being
+            used up.</p>
+            <p>Each enzyme has an active site with a specific shape, fitting only its substrate &mdash;
+            the lock-and-key idea.</p>
+            <p>Extreme heat or the wrong pH changes the active site's shape, denaturing the enzyme so it
+            no longer works.</p>
+        """,
+          ("Enzymes are specific because of the shape of their:",
+           ("Nucleus", "Active site", "Membrane", "Substrate only"), 1),
+          ("High temperatures stop enzymes working because they:",
+           ("Dissolve", "Denature", "Multiply", "Become substrates"), 1)),
+        L(5, "Nutrition and Digestion", """
+            <p>A balanced diet supplies carbohydrates, proteins, fats, vitamins, minerals, fibre and water.</p>
+            <p>Digestion breaks large insoluble molecules into small soluble ones: amylase digests starch
+            to sugars, protease digests proteins to amino acids, lipase digests fats.</p>
+            <p>Absorption happens in the small intestine, whose villi give a huge surface area.</p>
+        """,
+          ("Proteins are digested by:",
+           ("Amylase", "Protease", "Lipase", "Bile"), 1),
+          ("Villi in the small intestine increase the rate of absorption by increasing:",
+           ("Surface area", "Temperature", "Acidity", "Blood pressure"), 0)),
+        L(6, "Respiration", """
+            <p>Aerobic respiration releases energy using oxygen:
+            <code>glucose + oxygen &rarr; carbon dioxide + water</code>.</p>
+            <p>Anaerobic respiration happens without oxygen. In muscles it produces lactic acid and far
+            less energy; in yeast it produces ethanol and carbon dioxide.</p>
+            <p>Respiration occurs continuously in all living cells, not only in animals.</p>
+        """,
+          ("Aerobic respiration produces:",
+           ("Carbon dioxide and water", "Oxygen and glucose", "Lactic acid only", "Ethanol"), 0),
+          ("Anaerobic respiration in human muscle produces:",
+           ("Ethanol", "Lactic acid", "Oxygen", "Starch"), 1)),
+        L(7, "Photosynthesis", """
+            <p>Plants make their own food using light energy:
+            <code>carbon dioxide + water &rarr; glucose + oxygen</code>.</p>
+            <p>It takes place in chloroplasts, which contain the green pigment chlorophyll.</p>
+            <p>The rate is limited by light intensity, carbon dioxide concentration and temperature &mdash;
+            the limiting factors.</p>
+        """,
+          ("Photosynthesis takes place in the:",
+           ("Mitochondria", "Chloroplasts", "Nucleus", "Vacuole"), 1),
+          ("Which is NOT a limiting factor of photosynthesis?",
+           ("Light intensity", "Carbon dioxide level", "Temperature", "Oxygen level"), 3)),
+        L(8, "The Circulatory System", """
+            <p>The heart is a double pump: the right side sends blood to the lungs, the left side to the
+            rest of the body.</p>
+            <p>Arteries carry blood away from the heart at high pressure; veins return it with valves to
+            stop backflow; capillaries allow exchange with tissues.</p>
+            <p>Red blood cells carry oxygen using haemoglobin, white blood cells fight infection, and
+            platelets help clotting.</p>
+        """,
+          ("Arteries carry blood:",
+           ("Towards the heart", "Away from the heart", "Only to the lungs", "Only when resting"), 1),
+          ("Oxygen is transported by:",
+           ("Platelets", "Plasma only", "Red blood cells", "White blood cells"), 2)),
+        L(9, "Breathing and Gas Exchange", """
+            <p>Air travels through the trachea and bronchi into millions of tiny alveoli.</p>
+            <p>Alveoli are adapted for exchange: a huge surface area, very thin walls, a moist lining and
+            a rich blood supply.</p>
+            <p>Oxygen diffuses into the blood while carbon dioxide diffuses out, both moving down their
+            concentration gradients.</p>
+        """,
+          ("Gas exchange in the lungs happens in the:",
+           ("Trachea", "Bronchi", "Alveoli", "Diaphragm"), 2),
+          ("Alveoli are efficient partly because their walls are:",
+           ("Thick and tough", "Very thin", "Dry", "Impermeable"), 1)),
+        L(10, "Coordination: Nerves and Hormones", """
+            <p>The nervous system gives fast, short-lived responses using electrical impulses along
+            neurones.</p>
+            <p>A reflex arc (receptor &rarr; sensory neurone &rarr; relay &rarr; motor neurone &rarr; effector)
+            bypasses conscious thought for speed.</p>
+            <p>Hormones are chemical messengers carried in the blood; insulin, for example, lowers blood
+            glucose.</p>
+        """,
+          ("Reflex actions are fast because they:",
+           ("Use hormones", "Do not involve conscious thought",
+            "Travel through blood", "Involve only one neurone"), 1),
+          ("Insulin is a hormone that:",
+           ("Raises blood glucose", "Lowers blood glucose", "Digests fat", "Carries oxygen"), 1)),
+        L(11, "Genetics and Inheritance", """
+            <p>Genes come in versions called alleles, which may be dominant or recessive.</p>
+            <p>An organism's genotype is its alleles; the phenotype is the characteristic you observe.</p>
+            <p>A Punnett square predicts offspring: two heterozygous parents (Bb &times; Bb) give a 3:1
+            ratio of dominant to recessive phenotypes.</p>
+        """,
+          ("A recessive characteristic is only shown when the organism has:",
+           ("One recessive allele", "Two recessive alleles", "One dominant allele", "No alleles"), 1),
+          ("Crossing Bb with Bb gives a phenotype ratio of about:",
+           ("1:1", "2:1", "3:1", "4:0"), 2)),
+        L(12, "DNA and Protein Synthesis", """
+            <p>DNA is a double helix of two strands, with bases pairing A-T and C-G.</p>
+            <p>A gene is a section of DNA coding for a sequence of amino acids that folds into a protein.</p>
+            <p>Mutations change the base sequence; most have little effect, but some alter the protein
+            and therefore the organism.</p>
+        """,
+          ("In DNA, the base adenine always pairs with:",
+           ("Cytosine", "Guanine", "Thymine", "Another adenine"), 2),
+          ("A gene codes for:",
+           ("A whole organism", "A protein", "A cell membrane", "A chromosome pair"), 1)),
+        L(13, "Evolution and Natural Selection", """
+            <p>Individuals within a species vary. Those with characteristics best suited to the
+            environment are more likely to survive and reproduce.</p>
+            <p>They pass on the useful alleles, so over many generations the population changes &mdash;
+            evolution by natural selection, proposed by Charles Darwin.</p>
+            <p>Antibiotic-resistant bacteria are a modern example of the same process.</p>
+        """,
+          ("Natural selection acts on:",
+           ("Variation between individuals", "Identical individuals", "Only plants", "Learned behaviour"), 0),
+          ("Antibiotic resistance spreads because resistant bacteria:",
+           ("Choose to change", "Survive and reproduce", "Grow larger", "Stop dividing"), 1)),
+        L(14, "Ecosystems and Food Chains", """
+            <p>A food chain starts with a producer, usually a plant that captures light energy, followed
+            by primary and secondary consumers.</p>
+            <p>Only about 10% of energy passes to the next level, which is why chains are short.</p>
+            <p>Decomposers recycle nutrients from dead material back into the soil, keeping the carbon
+            and nitrogen cycles turning.</p>
+        """,
+          ("The first organism in a food chain is always a:",
+           ("Predator", "Producer", "Decomposer", "Herbivore"), 1),
+          ("Roughly how much energy is passed to the next trophic level?",
+           ("10%", "50%", "90%", "100%"), 0)),
+        L(15, "Health, Disease and Immunity", """
+            <p>Communicable diseases are caused by pathogens: bacteria, viruses, fungi and protists.</p>
+            <p>The body defends itself with barriers such as skin and stomach acid, and with white blood
+            cells that engulf pathogens or produce antibodies.</p>
+            <p>Vaccination introduces a harmless form of a pathogen so the immune system can respond
+            quickly if the real one arrives. Antibiotics treat bacteria, not viruses.</p>
+        """,
+          ("Antibiotics are effective against:",
+           ("Viruses", "Bacteria", "All pathogens", "Fungi only"), 1),
+          ("Vaccination works by:",
+           ("Killing all bacteria", "Training the immune system in advance",
+            "Replacing white blood cells", "Blocking the skin"), 1)),
+    ],
+}
+
+SUBJECTS["computer_science"] = {
+    "name": "Computer Science",
+    "lessons": [
+        L(1, "How Computers Store Data", """
+            <p>Computers store everything as <b>binary</b> &mdash; sequences of 0s and 1s called bits,
+            because circuits reliably represent just two states.</p>
+            <p>8 bits make 1 <b>byte</b>, which can hold a value from 0 to 255 or a single character.</p>
+            <p>Photos, music and this lesson are all ultimately patterns of bits interpreted according
+            to a file format.</p>
+        """,
+          ("How many bits make up one byte?", ("4", "8", "16", "32"), 1),
+          ("A single byte can represent values from:", ("0 to 8", "0 to 100", "0 to 255", "0 to 1024"), 2)),
+        L(2, "Number Systems", """
+            <p>Denary (base 10) uses digits 0-9; binary (base 2) uses 0-1; hexadecimal (base 16) uses
+            0-9 then A-F.</p>
+            <p>In binary, place values double: 1011 is 8 + 0 + 2 + 1 = 11 in denary.</p>
+            <p>Hex is popular with programmers because one hex digit represents exactly four bits, making
+            long binary strings readable.</p>
+        """,
+          ("The binary number 1011 equals which denary value?", ("7", "9", "11", "13"), 2),
+          ("One hexadecimal digit represents how many bits?", ("2", "4", "8", "16"), 1)),
+        L(3, "Hardware and the CPU", """
+            <p>The CPU fetches, decodes and executes instructions in a continuous cycle.</p>
+            <p>Key parts are the control unit, the arithmetic logic unit (ALU) and registers; cache is
+            small fast memory close to the CPU.</p>
+            <p>RAM is volatile working memory, lost when power goes; secondary storage such as an SSD
+            keeps data permanently.</p>
+        """,
+          ("The repeating cycle a CPU performs is:",
+           ("Save-load-print", "Fetch-decode-execute", "Read-write-delete", "Input-output"), 1),
+          ("RAM is described as volatile because it:",
+           ("Is very fast", "Loses its contents without power", "Cannot be upgraded", "Stores programs forever"), 1)),
+        L(4, "Software and Operating Systems", """
+            <p>System software runs the machine; application software does jobs for the user.</p>
+            <p>An operating system manages memory, processes, files, devices and user accounts, hiding
+            hardware complexity behind a consistent interface.</p>
+            <p>Utility programs handle housekeeping such as backup, compression and virus scanning.</p>
+        """,
+          ("Which is an example of application software?",
+           ("Windows", "A word processor", "A device driver", "The BIOS"), 1),
+          ("A key job of an operating system is:",
+           ("Writing your documents", "Managing memory and processes",
+            "Designing hardware", "Compiling all code"), 1)),
+        L(5, "Introduction to Algorithms", """
+            <p>An algorithm is a precise step-by-step set of instructions for solving a problem.</p>
+            <p>To find the largest number in a list, assume the first is largest, then compare it with
+            each remaining number, updating whenever a bigger one appears.</p>
+            <p>Good algorithms are unambiguous, finite (they stop) and correct. They can be planned with
+            pseudocode or flowcharts before coding.</p>
+        """,
+          ("An algorithm is best described as:",
+           ("A programming language", "A step-by-step set of instructions",
+            "A type of hardware", "A file format"), 1),
+          ("Which is NOT a property of a good algorithm?",
+           ("It terminates", "It is unambiguous", "It runs forever", "It gives a correct result"), 2)),
+        L(6, "Searching Algorithms", """
+            <p>A <b>linear search</b> checks each item in turn. It works on any list but is slow for
+            large data.</p>
+            <p>A <b>binary search</b> repeatedly halves a <i>sorted</i> list, discarding the half that
+            cannot contain the target.</p>
+            <p>Binary search finds an item among a million sorted records in about 20 comparisons.</p>
+        """,
+          ("Binary search requires the data to be:",
+           ("Sorted", "Unsorted", "Numeric only", "Stored in a file"), 0),
+          ("Linear search works by:",
+           ("Halving the list", "Checking items one by one", "Sorting first", "Guessing randomly"), 1)),
+        L(7, "Sorting Algorithms", """
+            <p><b>Bubble sort</b> repeatedly compares neighbouring items and swaps them if out of order;
+            simple but slow.</p>
+            <p><b>Insertion sort</b> builds a sorted section by inserting each new item into place, and
+            is efficient on nearly sorted data.</p>
+            <p><b>Merge sort</b> splits the list in half, sorts each half and merges them; it is much
+            faster on large lists.</p>
+        """,
+          ("Bubble sort works by:",
+           ("Splitting the list in half", "Swapping adjacent items that are out of order",
+            "Inserting into a new list", "Counting occurrences"), 1),
+          ("Which sort uses a divide-and-conquer approach?",
+           ("Bubble sort", "Insertion sort", "Merge sort", "Linear sort"), 2)),
+        L(8, "Programming Basics", """
+            <p>A variable is a named store whose value can change; a constant cannot.</p>
+            <p>Common data types are integer, real/float, Boolean, character and string. Choosing the
+            right type saves memory and prevents errors.</p>
+            <p>Programs follow three basic constructs: sequence, selection and iteration.</p>
+        """,
+          ("A Boolean variable can hold:",
+           ("Any whole number", "True or False", "A line of text", "A decimal"), 1),
+          ("The three basic programming constructs are:",
+           ("Input, output, storage", "Sequence, selection, iteration",
+            "Compile, run, debug", "Variables, constants, arrays"), 1)),
+        L(9, "Selection and Iteration", """
+            <p>Selection chooses a path: <code>if score &gt;= 50: print("Pass")</code>, optionally with
+            elif and else branches.</p>
+            <p>A <b>for</b> loop repeats a set number of times; a <b>while</b> loop repeats until a
+            condition becomes false.</p>
+            <p>A while loop whose condition never becomes false creates an infinite loop.</p>
+        """,
+          ("Which loop should you use when the number of repetitions is known in advance?",
+           ("while loop", "for loop", "if statement", "recursive call"), 1),
+          ("An infinite loop happens when:",
+           ("The condition never becomes false", "The code has no loop",
+            "You use a for loop", "A variable is a string"), 0)),
+        L(10, "Functions and Decomposition", """
+            <p>Decomposition breaks a large problem into smaller sub-problems, each solved by a function.</p>
+            <p>Functions take parameters and usually return a value, so the same code can be reused with
+            different inputs.</p>
+            <p>Local variables exist only inside a function; global variables are visible throughout the
+            program and are best used sparingly.</p>
+        """,
+          ("The main benefit of using functions is:",
+           ("Programs run without errors", "Code can be reused and is easier to maintain",
+            "Less memory is always used", "No variables are needed"), 1),
+          ("A local variable can be accessed:",
+           ("Anywhere in the program", "Only inside its function", "Only by the OS", "Only once"), 1)),
+        L(11, "Data Structures", """
+            <p>An array or list stores many values under one name, accessed by index starting at 0.</p>
+            <p>A record (or dictionary) groups related fields of different types, such as a student's
+            name, age and grade.</p>
+            <p>A stack is last-in-first-out; a queue is first-in-first-out, used for printer jobs and
+            scheduling.</p>
+        """,
+          ("A stack operates on which principle?",
+           ("First in, first out", "Last in, first out", "Random access", "Sorted order"), 1),
+          ("In most languages, the first element of an array has index:",
+           ("0", "1", "-1", "It varies randomly"), 0)),
+        L(12, "Databases and SQL", """
+            <p>A relational database stores data in tables of records and fields, linked by keys.</p>
+            <p>A primary key uniquely identifies each record; a foreign key refers to a primary key in
+            another table, avoiding duplicated data.</p>
+            <p>SQL queries the data, e.g.
+            <code>SELECT name FROM students WHERE grade &gt; 70;</code></p>
+        """,
+          ("A primary key is used to:",
+           ("Encrypt the table", "Uniquely identify each record",
+            "Sort the database", "Link to the internet"), 1),
+          ("Which SQL keyword filters which rows are returned?",
+           ("SELECT", "FROM", "WHERE", "ORDER"), 2)),
+        L(13, "Networks and the Internet", """
+            <p>A LAN covers a small area such as a school; a WAN, like the internet, spans large
+            distances.</p>
+            <p>Devices follow protocols: TCP/IP for transferring data, HTTP/HTTPS for web pages.</p>
+            <p>Data is split into packets that travel independently and are reassembled at the
+            destination; DNS translates domain names into IP addresses.</p>
+        """,
+          ("Data sent across the internet is broken into:",
+           ("Files", "Packets", "Pixels", "Bytes only"), 1),
+          ("DNS is responsible for:",
+           ("Encrypting data", "Converting domain names into IP addresses",
+            "Storing web pages", "Blocking viruses"), 1)),
+        L(14, "Cybersecurity", """
+            <p>Threats include malware, phishing emails, brute-force attacks and social engineering that
+            targets people rather than systems.</p>
+            <p>Defences include strong unique passwords, two-factor authentication, firewalls, software
+            updates and regular backups.</p>
+            <p>Encryption scrambles data so that intercepting it is useless without the key.</p>
+        """,
+          ("Phishing is an attack that mainly targets:",
+           ("Network cables", "People, by tricking them into revealing information",
+            "Hard drives", "Printers"), 1),
+          ("Encryption protects data by:",
+           ("Deleting it", "Making it unreadable without the key",
+            "Compressing it", "Backing it up"), 1)),
+        L(15, "Efficiency and Big-O", """
+            <p>Two correct algorithms can differ hugely in speed, so we compare how work grows with
+            input size n.</p>
+            <p>Big-O notation captures this: O(1) is constant, O(log n) very efficient (binary search),
+            O(n) linear, and O(n&sup2;) slow for large n (bubble sort).</p>
+            <p>There is often a trade-off between time taken and memory used.</p>
+        """,
+          ("Binary search has a time complexity of:",
+           ("O(1)", "O(log n)", "O(n)", "O(n&sup2;)"), 1),
+          ("An O(n&sup2;) algorithm becomes a problem when:",
+           ("The input is tiny", "The input grows large", "Memory is cheap", "The data is sorted"), 1)),
+    ],
+}
+
+SUBJECTS["english"] = {
+    "name": "English",
+    "lessons": [
+        L(1, "Parts of Speech", """
+            <p>Every word in a sentence does a job. Nouns name things, verbs express actions or states,
+            and adjectives describe nouns.</p>
+            <p>Adverbs modify verbs, adjectives or other adverbs, often telling us how, when or where.</p>
+            <p>Pronouns replace nouns, prepositions show relationships (in, under, before) and
+            conjunctions join ideas.</p>
+        """,
+          ("In &quot;She ran quickly&quot;, the word &quot;quickly&quot; is:",
+           ("An adjective", "An adverb", "A noun", "A preposition"), 1),
+          ("A word that joins two clauses together is a:",
+           ("Pronoun", "Conjunction", "Preposition", "Determiner"), 1)),
+        L(2, "Sentence Structure", """
+            <p>A clause needs a subject and a verb. A main clause makes sense alone; a subordinate
+            clause does not.</p>
+            <p>Simple sentences have one clause, compound sentences join two main clauses with and, but
+            or so, and complex sentences add a subordinate clause.</p>
+            <p>Varying sentence length controls pace: short sentences create tension, longer ones build
+            description.</p>
+        """,
+          ("&quot;Although it was raining, we walked home&quot; is a:",
+           ("Simple sentence", "Compound sentence", "Complex sentence", "Fragment"), 2),
+          ("A subordinate clause is one that:",
+           ("Can stand alone", "Cannot stand alone as a sentence",
+            "Contains no verb", "Must start a sentence"), 1)),
+        L(3, "Punctuation", """
+            <p>Full stops end sentences; commas separate items in a list, mark clauses and follow
+            introductory phrases.</p>
+            <p>Apostrophes show omission (don't) or possession (the dog's bowl; the dogs' bowls for
+            plurals).</p>
+            <p>Semicolons link two closely related main clauses, while colons introduce a list,
+            explanation or quotation.</p>
+        """,
+          ("Which sentence uses the apostrophe correctly?",
+           ("The dog's are barking", "The dogs' bowls were empty",
+            "Its' a fine day", "The cat lost it's collar"), 1),
+          ("A semicolon is best used to:",
+           ("Introduce a list", "Join two closely related main clauses",
+            "Show possession", "End a question"), 1)),
+        L(4, "Verb Tenses", """
+            <p>Tense places an action in time: past, present or future.</p>
+            <p>Simple tenses state a fact (she walks), continuous tenses show ongoing action (she is
+            walking), and perfect tenses link to another time (she has walked).</p>
+            <p>Consistency matters: shifting tense mid-paragraph without reason confuses the reader.</p>
+        """,
+          ("&quot;She has finished her homework&quot; is in the:",
+           ("Past simple", "Present perfect", "Future continuous", "Past continuous"), 1),
+          ("Unnecessary changes of tense within a paragraph usually:",
+           ("Add style", "Confuse the reader", "Are required", "Improve accuracy"), 1)),
+        L(5, "Active and Passive Voice", """
+            <p>In the active voice the subject performs the action: "The chef cooked the meal."</p>
+            <p>In the passive voice the subject receives it: "The meal was cooked by the chef." The doer
+            can even be left out.</p>
+            <p>Active writing is usually clearer and more direct; passive suits formal, scientific or
+            deliberately impersonal writing.</p>
+        """,
+          ("Which sentence is in the passive voice?",
+           ("The dog chased the ball", "The ball was chased by the dog",
+            "The dog is fast", "Chase the ball!"), 1),
+          ("The passive voice is often chosen when the writer wants to:",
+           ("Be as direct as possible", "Emphasise the action rather than the doer",
+            "Shorten every sentence", "Avoid all verbs"), 1)),
+        L(6, "Vocabulary and Word Building", """
+            <p>Prefixes change meaning at the start of a word (unhappy, rewrite); suffixes usually change
+            word class (happiness, quickly).</p>
+            <p>Synonyms have similar meanings but different shades: "said", "muttered" and "declared"
+            are not interchangeable.</p>
+            <p>Register matters &mdash; choose formal vocabulary for essays and letters, informal for
+            dialogue and personal writing.</p>
+        """,
+          ("Adding the prefix &quot;un-&quot; to a word usually:",
+           ("Reverses its meaning", "Makes it plural", "Changes the tense", "Makes it a verb"), 0),
+          ("Choosing &quot;muttered&quot; instead of &quot;said&quot; mainly affects:",
+           ("Grammar", "Tone and precision of meaning", "Tense", "Sentence length"), 1)),
+        L(7, "Paragraphs and Cohesion", """
+            <p>A paragraph develops one main idea, usually opening with a topic sentence.</p>
+            <p>Start a new paragraph when time, place, topic or speaker changes.</p>
+            <p>Connectives such as however, therefore, in addition and consequently signal how ideas
+            relate and keep writing cohesive.</p>
+        """,
+          ("The sentence that introduces a paragraph's main idea is the:",
+           ("Conclusion", "Topic sentence", "Quotation", "Connective"), 1),
+          ("Which connective signals contrast?",
+           ("Furthermore", "However", "Similarly", "Therefore"), 1)),
+        L(8, "Descriptive Writing", """
+            <p>Strong description appeals to several senses, not only sight, and favours precise nouns
+            and verbs over piles of adjectives.</p>
+            <p>"Show, don't tell": instead of "he was nervous", write "his hands would not stay still".</p>
+            <p>Zooming from a wide view to a small detail gives description shape and stops it drifting.</p>
+        """,
+          ("&quot;Show, don't tell&quot; advises a writer to:",
+           ("Explain feelings directly", "Reveal feelings through detail and action",
+            "Use more adjectives", "Write shorter sentences"), 1),
+          ("Effective description usually appeals to:",
+           ("Sight only", "Several senses", "Sound only", "No senses"), 1)),
+        L(9, "Persuasive Writing", """
+            <p>Persuasion works by combining credibility, emotion and logic.</p>
+            <p>Useful techniques include rhetorical questions, the rule of three, direct address, facts
+            and statistics, and anecdote.</p>
+            <p>Structure matters: a clear line of argument, counter-argument acknowledged and answered,
+            and a memorable closing call to action.</p>
+        """,
+          ("&quot;Are we really going to ignore this?&quot; is an example of:",
+           ("A statistic", "A rhetorical question", "An anecdote", "Alliteration"), 1),
+          ("Addressing the opposing view in a persuasive piece usually:",
+           ("Weakens the argument", "Strengthens it by showing balance",
+            "Is never allowed", "Replaces evidence"), 1)),
+        L(10, "Formal Letters and Emails", """
+            <p>Formal writing needs a clear purpose stated early, standard English and a polite,
+            impersonal tone.</p>
+            <p>Conventions include a greeting, organised paragraphs and a suitable sign-off: "Yours
+            sincerely" when you know the name, "Yours faithfully" when you do not.</p>
+            <p>Avoid contractions, slang and emojis; keep sentences clear rather than long.</p>
+        """,
+          ("If a formal letter begins &quot;Dear Sir or Madam&quot;, it should end:",
+           ("Yours sincerely", "Yours faithfully", "Best wishes", "Cheers"), 1),
+          ("Which is inappropriate in a formal email?",
+           ("Clear paragraphs", "Slang and contractions", "A polite greeting", "Standard spelling"), 1)),
+        L(11, "Reading Comprehension and Inference", """
+            <p>Explicit information is stated directly; implicit meaning must be inferred from clues.</p>
+            <p>Inference means drawing a supported conclusion &mdash; a character who "avoided her eyes"
+            may be hiding something.</p>
+            <p>In analysis, use the point-evidence-explanation pattern: make a claim, quote briefly, then
+            explain how the language supports it.</p>
+        """,
+          ("Inference means:",
+           ("Repeating what the text says", "Drawing a conclusion from clues in the text",
+            "Guessing with no evidence", "Summarising the plot"), 1),
+          ("In PEE, the E that follows the evidence stands for:",
+           ("Example", "Explanation", "Emphasis", "Ending"), 1)),
+        L(12, "Figurative Language", """
+            <p>A simile compares using like or as; a metaphor says one thing <i>is</i> another.</p>
+            <p>Personification gives human qualities to non-human things; hyperbole exaggerates for
+            effect.</p>
+            <p>Sound devices such as alliteration, assonance and onomatopoeia shape how a line feels
+            when read aloud.</p>
+        """,
+          ("&quot;The wind whispered through the trees&quot; is an example of:",
+           ("Simile", "Personification", "Hyperbole", "Onomatopoeia"), 1),
+          ("The difference between a simile and a metaphor is that a simile:",
+           ("Uses like or as", "Is always shorter", "Describes sound", "Cannot be used in poetry"), 0)),
+        L(13, "Analysing Poetry", """
+            <p>Read for meaning first, then consider form: stanzas, line length, rhyme scheme and rhythm.</p>
+            <p>Enjambment runs a sentence over a line break to create flow or surprise; caesura is a
+            pause within a line.</p>
+            <p>Strong analysis links technique to effect &mdash; not just "the poet uses a metaphor" but
+            what that metaphor makes the reader feel or understand.</p>
+        """,
+          ("Enjambment is when:",
+           ("A line ends with a full stop", "A sentence continues over a line break",
+            "Two words rhyme", "A stanza repeats"), 1),
+          ("Good poetry analysis always connects a technique to its:",
+           ("Length", "Effect on the reader", "Publication date", "Rhyme only"), 1)),
+        L(14, "Narrative and Prose Technique", """
+            <p>Point of view shapes everything: first person is intimate but limited, third person
+            omniscient sees all.</p>
+            <p>Structure can be reordered with flashbacks, foreshadowing and cliffhangers to control
+            tension.</p>
+            <p>Characters are built through action, dialogue and reaction rather than lists of traits;
+            setting can mirror mood.</p>
+        """,
+          ("A story told using &quot;I&quot; is written in:",
+           ("Third person", "First person", "Second person", "Omniscient narration"), 1),
+          ("Hinting at events to come later in a story is called:",
+           ("Flashback", "Foreshadowing", "Exposition", "Resolution"), 1)),
+        L(15, "Drama and Shakespeare", """
+            <p>Drama is written to be performed, so meaning comes from dialogue, stage directions and
+            performance choices.</p>
+            <p>A soliloquy lets a character voice private thoughts alone on stage; an aside is a remark
+            only the audience hears.</p>
+            <p>Shakespeare often wrote in iambic pentameter &mdash; ten syllables with five stressed
+            beats &mdash; and used prose for lower-status or comic characters.</p>
+        """,
+          ("A soliloquy is a speech delivered:",
+           ("To another character", "Alone, revealing private thoughts",
+            "By the narrator", "By the whole cast"), 1),
+          ("Iambic pentameter contains how many syllables per line?",
+           ("Five", "Eight", "Ten", "Twelve"), 2)),
+    ],
 }
