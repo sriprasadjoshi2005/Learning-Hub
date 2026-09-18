@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ subject_name }}{% endblock %}
+{% block content %}
+<h1>{{ subject_name }}</h1>
+<ul class="lesson-list">
+  {% for l in lessons %}
+  <li class="{{ 'done' if l.completed else '' }} {{ 'locked' if not l.unlocked else '' }}">
+    {% if l.unlocked %}
+      <a href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=l.id) }}">{{ l.title }}</a>
+    {% else %}
+      <span>{{ l.title }} (locked)</span>
+    {% endif %}
+    {% if l.completed %}<span class="badge">Completed</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('dashboard') }}">&larr; Back to dashboard</a>
+{% endblock %}

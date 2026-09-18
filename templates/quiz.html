@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Quiz: {{ lesson.title }}{% endblock %}
+{% block content %}
+<h1>Quiz: {{ lesson.title }}</h1>
+<form method="POST">
+  {% for q in lesson.quiz %}
+    {% set qidx = loop.index0 %}
+    <fieldset>
+      <legend>{{ loop.index }}. {{ q.question }}</legend>
+      {% for opt in q.options %}
+        <label class="option">
+          <input type="radio" name="q{{ qidx }}" value="{{ loop.index0 }}" required>
+          {{ opt }}
+        </label>
+      {% endfor %}
+    </fieldset>
+  {% endfor %}
+  <button class="btn" type="submit">Submit answers</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Quiz Result{% endblock %}
+{% block content %}
+<h1>Result: {{ lesson.title }}</h1>
+<p class="score">You scored {{ correct }} / {{ total }} ({{ score }}%)</p>
+<p class="remark">{{ remark }}</p>
+
+{% if passed %}
+  <p>Lesson marked as completed.</p>
+  {% if next_lesson %}
+    <a class="btn" href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=next_lesson.id) }}">Continue to next lesson</a>
+  {% else %}
+    <p>You've completed all lessons in {{ subject_name }}!</p>
+  {% endif %}
+{% else %}
+  <a class="btn" href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=lesson.id) }}">Review lesson and try again</a>
+{% endif %}
+
+<br><br>
+<a href="{{ url_for('subject_view', subject_key=subject_key) }}">&larr; Back to {{ subject_name }}</a>
+{% endblock %}

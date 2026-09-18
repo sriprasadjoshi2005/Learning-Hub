@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Welcome, {{ user_name }}</h1>
+<p>Pick a subject to continue.</p>
+<div class="cards">
+  {% for s in subjects %}
+  <a class="card" href="{{ url_for('subject_view', subject_key=s.key) }}">
+    <h2>{{ s.name }}</h2>
+    <p>{{ s.done }} / {{ s.total }} lessons completed</p>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
