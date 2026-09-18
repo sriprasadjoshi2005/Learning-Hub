@@ -119,30 +119,25 @@ fieldset {
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 8px;
+
   padding: 1.2rem;
   margin: 0 0 1rem 0;
 
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
 }
 
-fieldset legend {
-  display: block;
-
-  padding: 0;
-  margin: 0 0 0.8rem 0;
-
-  width: auto;
-  max-width: 100%;
+.question {
+  width: 100%;
+  margin: 0 0 1.2rem 0;
 
   font-weight: 600;
   line-height: 1.5;
 
-  white-space: normal;
   overflow-wrap: break-word;
   word-break: normal;
 }
+
 .option {
   display: flex;
   align-items: flex-start;
@@ -150,37 +145,24 @@ fieldset legend {
   width: 100%;
   max-width: 100%;
 
-  margin: 0.6rem 0;
+  margin: 0 0 0.8rem 0;
   padding: 0;
 
   gap: 0.5rem;
 
   line-height: 1.4;
-
-  overflow-wrap: break-word;
-  word-break: normal;
-  white-space: normal;
 }
 
 .option input {
   flex: 0 0 auto;
+
   margin: 0.2rem 0 0 0;
 }
 
-.option label {
+.option span {
   flex: 1;
   min-width: 0;
-  max-width: 100%;
 
-  overflow-wrap: break-word;
-  word-break: normal;
-  white-space: normal;
-}
-
-.option label {
-  flex: 1;
-  min-width: 0;
-  max-width: 100%;
   overflow-wrap: break-word;
   word-break: normal;
   white-space: normal;
