@@ -119,38 +119,67 @@ fieldset {
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 8px;
+
+  /* Equal internal spacing */
   padding: 1.2rem;
-  margin-bottom: 1rem;
+
+  margin: 0 0 1rem 0;
+
   width: 100%;
   max-width: 100%;
+
   overflow: hidden;
 }
 
 fieldset legend {
+  /* Remove browser's default extra spacing */
+  padding: 0;
+  margin: 0 0 0.8rem 0;
+
   width: 100%;
   max-width: 100%;
+
   white-space: normal;
   overflow-wrap: break-word;
   word-break: normal;
+
   line-height: 1.5;
   font-weight: 600;
 }
-
 .option {
   display: flex;
   align-items: flex-start;
+
+  /* Keep radio and text together */
   gap: 0.5rem;
+
   width: 100%;
   max-width: 100%;
+
+  /* Important: no horizontal padding */
   margin: 0.6rem 0;
-  padding: 0.6rem;
+  padding: 0.6rem 0;
+
   line-height: 1.4;
+
   overflow-wrap: break-word;
 }
 
 .option input {
   flex: 0 0 auto;
-  margin-top: 0.2rem;
+
+  /* Align radio with the option text */
+  margin: 0.2rem 0 0 0;
+}
+
+.option label {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
 }
 
 .option label {
