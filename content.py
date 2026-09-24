@@ -372,361 +372,6 @@ SUBJECTS["physics"] = {
     ],
 }
 
-SUBJECTS["chemistry"] = {
-    "name": "Chemistry",
-    "lessons": [
-        L(1, "States of Matter", """
-            <p>Matter exists mainly as solids, liquids and gases, differing in how tightly their
-            particles are held together.</p>
-            <p>Solids have a fixed shape and volume; liquids take the shape of their container; gases
-            expand to fill any space.</p>
-            <p>Changes of state are physical, not chemical: melting, boiling, condensing and freezing
-            rearrange particles but do not make new substances.</p>
-        """,
-          ("Which state has a fixed volume but takes the shape of its container?",
-           ("Solid", "Liquid", "Gas", "Plasma"), 1),
-          ("Melting ice into water is:",
-           ("A chemical change", "A physical change", "Combustion", "Oxidation"), 1)),
-        L(2, "Atomic Structure", """
-            <p>Atoms contain protons (positive) and neutrons (neutral) in the nucleus, with electrons
-            (negative) in shells around it.</p>
-            <p>The atomic number is the number of protons and defines the element; the mass number is
-            protons plus neutrons.</p>
-            <p><b>Isotopes</b> are atoms of the same element with different numbers of neutrons, such as
-            carbon-12 and carbon-14.</p>
-        """,
-          ("The atomic number of an element equals its number of:",
-           ("Neutrons", "Protons", "Electrons plus neutrons", "Shells"), 1),
-          ("Isotopes of an element differ in their number of:",
-           ("Protons", "Electrons", "Neutrons", "Shells"), 2)),
-        L(3, "The Periodic Table", """
-            <p>Elements are arranged in order of atomic number. Vertical <b>groups</b> share chemical
-            properties; horizontal <b>periods</b> show gradual change.</p>
-            <p>Group 1 alkali metals are highly reactive, group 7 halogens are reactive non-metals, and
-            group 0 noble gases are inert because their outer shells are full.</p>
-            <p>The group number tells you the number of electrons in the outer shell.</p>
-        """,
-          ("Elements in the same group have the same number of:",
-           ("Protons", "Neutrons", "Outer-shell electrons", "Shells"), 2),
-          ("Noble gases are unreactive because their outer shells are:",
-           ("Empty", "Full", "Half full", "Missing"), 1)),
-        L(4, "Chemical Bonding", """
-            <p>Atoms bond to achieve full outer shells. In <b>ionic</b> bonding a metal transfers
-            electrons to a non-metal, forming charged ions that attract strongly.</p>
-            <p>In <b>covalent</b> bonding two non-metals share pairs of electrons, as in water.</p>
-            <p>In <b>metallic</b> bonding positive ions sit in a sea of delocalised electrons, which is
-            why metals conduct electricity and can be bent.</p>
-        """,
-          ("Sodium chloride is held together by:",
-           ("Covalent bonds", "Ionic bonds", "Metallic bonds", "No bonds"), 1),
-          ("Metals conduct electricity because they contain:",
-           ("Shared pairs of electrons", "Delocalised electrons", "Neutrons", "Negative ions"), 1)),
-        L(5, "Formulae and Equations", """
-            <p>A chemical formula shows the elements present and how many atoms of each:
-            <code>H&#8322;O</code> has two hydrogens and one oxygen.</p>
-            <p>Equations must be balanced because atoms are never created or destroyed:
-            <code>2H&#8322; + O&#8322; &rarr; 2H&#8322;O</code>.</p>
-            <p>State symbols (s), (l), (g) and (aq) add useful detail.</p>
-        """,
-          ("Equations must be balanced because:",
-           ("It looks neater", "Atoms are conserved in a reaction",
-            "Energy must be equal", "Charges must be zero"), 1),
-          ("How many atoms in total are in one molecule of H&#8322;O?",
-           ("2", "3", "4", "1"), 1)),
-        L(6, "The Mole and Reacting Masses", """
-            <p>The mole is the chemist's counting unit: one mole contains 6.02 &times; 10&sup2;&sup3; particles
-            (Avogadro's number).</p>
-            <p>One mole of a substance has a mass in grams equal to its relative formula mass, so one
-            mole of water is 18 g.</p>
-            <p><code>moles = mass / relative formula mass</code>, which lets you predict how much product
-            a reaction will give.</p>
-        """,
-          ("Moles are calculated as:",
-           ("mass &times; Mr", "mass / Mr", "Mr / mass", "mass + Mr"), 1),
-          ("36 g of water (Mr = 18) is how many moles?",
-           ("0.5", "1", "2", "18"), 2)),
-        L(7, "Acids, Bases and pH", """
-            <p>Acids release H&#8314; ions in solution; alkalis release OH&#8315; ions. The pH scale runs
-            from 0 (strongly acidic) to 14 (strongly alkaline), with 7 neutral.</p>
-            <p>Neutralisation produces a salt and water:
-            <code>acid + base &rarr; salt + water</code>.</p>
-            <p>Indicators such as litmus or universal indicator show pH by changing colour.</p>
-        """,
-          ("A solution with pH 2 is:",
-           ("Strongly alkaline", "Neutral", "Strongly acidic", "Weakly alkaline"), 2),
-          ("Acid + base produces:",
-           ("Salt + water", "Hydrogen + oxygen", "Only a gas", "A metal"), 0)),
-        L(8, "Types of Chemical Reaction", """
-            <p>Common patterns include combustion (burning in oxygen), oxidation (gain of oxygen or loss
-            of electrons) and reduction (the opposite).</p>
-            <p>In displacement a more reactive element takes the place of a less reactive one; in
-            thermal decomposition heat breaks a compound apart.</p>
-            <p>Reactions that release heat are exothermic; those that absorb it are endothermic.</p>
-        """,
-          ("A reaction that releases heat to the surroundings is:",
-           ("Endothermic", "Exothermic", "Neutral", "Reversible"), 1),
-          ("Heating calcium carbonate to give calcium oxide and carbon dioxide is:",
-           ("Displacement", "Thermal decomposition", "Combustion", "Neutralisation"), 1)),
-        L(9, "Metals and the Reactivity Series", """
-            <p>Metals can be ranked by reactivity: potassium, sodium and calcium are very reactive,
-            while gold and platinum are very unreactive.</p>
-            <p>A more reactive metal displaces a less reactive one from its compound, e.g. zinc
-            displaces copper from copper sulfate.</p>
-            <p>Very reactive metals are extracted by electrolysis; less reactive ones can be reduced
-            with carbon.</p>
-        """,
-          ("Which metal is the most reactive?",
-           ("Gold", "Copper", "Potassium", "Silver"), 2),
-          ("Zinc added to copper sulfate solution will:",
-           ("Do nothing", "Displace the copper", "Dissolve the sulfate", "Form a gas only"), 1)),
-        L(10, "Electrolysis", """
-            <p>Electrolysis uses electricity to break down an ionic compound that is molten or dissolved,
-            so its ions are free to move.</p>
-            <p>Positive ions (cations) move to the negative cathode; negative ions (anions) move to the
-            positive anode.</p>
-            <p>It is used to extract aluminium from its ore and to electroplate objects with a thin
-            metal layer.</p>
-        """,
-          ("Positive ions travel towards the:",
-           ("Anode", "Cathode", "Battery", "Beaker"), 1),
-          ("Electrolysis requires the compound to be:",
-           ("Solid", "Molten or dissolved", "A gas", "Unreactive"), 1)),
-        L(11, "Rates of Reaction", """
-            <p>Reaction rate measures how quickly reactants are used up or products formed.</p>
-            <p>Rate increases with higher temperature, higher concentration or pressure, smaller
-            particle size (larger surface area) and with a catalyst.</p>
-            <p>Collision theory explains this: reactions happen when particles collide often enough and
-            with enough energy.</p>
-        """,
-          ("Which change will slow a reaction down?",
-           ("Raising the temperature", "Using a catalyst",
-            "Using larger lumps of solid", "Increasing concentration"), 2),
-          ("A catalyst speeds up a reaction and is:",
-           ("Used up completely", "Unchanged at the end", "Turned into product", "Always a gas"), 1)),
-        L(12, "Energy Changes in Reactions", """
-            <p>Breaking bonds requires energy; making bonds releases it. The overall balance decides
-            whether a reaction is exothermic or endothermic.</p>
-            <p>Combustion and neutralisation are exothermic; thermal decomposition and many dissolving
-            reactions are endothermic.</p>
-            <p>Activation energy is the minimum energy needed for a reaction to begin, and catalysts
-            lower it.</p>
-        """,
-          ("Making chemical bonds:",
-           ("Absorbs energy", "Releases energy", "Has no energy change", "Always cools the mixture"), 1),
-          ("A catalyst works by lowering the:",
-           ("Temperature", "Activation energy", "Concentration", "Mass of product"), 1)),
-        L(13, "Introduction to Organic Chemistry", """
-            <p>Organic chemistry studies compounds of carbon, which forms four bonds and long chains.</p>
-            <p>Alkanes such as methane (CH&#8324;) have only single bonds and are saturated; alkenes such
-            as ethene (C&#8322;H&#8324;) contain a double bond and are unsaturated.</p>
-            <p>Crude oil is separated by fractional distillation into useful fractions such as petrol
-            and diesel.</p>
-        """,
-          ("Alkenes are described as unsaturated because they contain:",
-           ("Only single bonds", "A carbon-carbon double bond", "No carbon", "Extra hydrogen"), 1),
-          ("Crude oil is separated into fractions by:",
-           ("Filtration", "Fractional distillation", "Electrolysis", "Chromatography"), 1)),
-        L(14, "Separating Mixtures", """
-            <p>Mixtures are not chemically bonded, so physical methods can separate them.</p>
-            <p>Filtration removes insoluble solids; evaporation and crystallisation recover dissolved
-            solids; simple distillation separates a solvent from a solution.</p>
-            <p>Chromatography separates substances by how strongly they are attracted to the paper
-            versus the solvent.</p>
-        """,
-          ("To recover pure water from salty water you would use:",
-           ("Filtration", "Distillation", "Chromatography", "Decanting"), 1),
-          ("Chromatography is most useful for separating:",
-           ("Sand from water", "Coloured dyes in an ink", "Iron from sulfur", "Oxygen from air"), 1)),
-        L(15, "Chemistry and the Environment", """
-            <p>The atmosphere is roughly 78% nitrogen and 21% oxygen, with small amounts of carbon
-            dioxide and other gases.</p>
-            <p>Burning fossil fuels releases carbon dioxide, which traps heat and contributes to global
-            warming, plus sulfur dioxide, which causes acid rain.</p>
-            <p>Reducing emissions, recycling and using renewable energy limit these effects.</p>
-        """,
-          ("The most abundant gas in the atmosphere is:",
-           ("Oxygen", "Nitrogen", "Carbon dioxide", "Argon"), 1),
-          ("Sulfur dioxide from burning fuels mainly causes:",
-           ("Acid rain", "Ozone repair", "Global cooling", "Hard water"), 0)),
-    ],
-}
-
-SUBJECTS["biology"] = {
-    "name": "Biology",
-    "lessons": [
-        L(1, "Cells: The Basic Unit of Life", """
-            <p>All living things are made of cells. Animal cells have a nucleus, cytoplasm, cell
-            membrane and mitochondria.</p>
-            <p>Plant cells have these too, plus a cellulose cell wall, a permanent vacuole and
-            chloroplasts for photosynthesis.</p>
-            <p>The nucleus stores DNA and controls the cell; mitochondria release energy through
-            respiration.</p>
-        """,
-          ("Which structure is found in plant cells but not animal cells?",
-           ("Nucleus", "Chloroplast", "Cell membrane", "Cytoplasm"), 1),
-          ("Most energy release in a cell happens in the:",
-           ("Nucleus", "Mitochondria", "Vacuole", "Cell wall"), 1)),
-        L(2, "Cell Division", """
-            <p><b>Mitosis</b> produces two genetically identical daughter cells and is used for growth,
-            repair and asexual reproduction.</p>
-            <p><b>Meiosis</b> produces four genetically different gametes with half the normal number of
-            chromosomes.</p>
-            <p>Fertilisation restores the full chromosome number and, with meiosis, creates variation.</p>
-        """,
-          ("Mitosis produces cells that are:",
-           ("Genetically identical", "Genetically different", "Always gametes", "Half-sized"), 0),
-          ("Meiosis is important because it produces:",
-           ("Identical body cells", "Gametes with variation", "More mitochondria", "Larger cells"), 1)),
-        L(3, "Movement In and Out of Cells", """
-            <p><b>Diffusion</b> is the net movement of particles from high to low concentration, and
-            needs no energy.</p>
-            <p><b>Osmosis</b> is the diffusion of water across a partially permeable membrane, from
-            dilute to concentrated solution.</p>
-            <p><b>Active transport</b> moves substances against the concentration gradient and requires
-            energy from respiration.</p>
-        """,
-          ("Osmosis is the movement of:",
-           ("Any particle down a gradient", "Water across a partially permeable membrane",
-            "Glucose using energy", "Gases only"), 1),
-          ("Active transport differs from diffusion because it:",
-           ("Requires energy", "Is faster", "Only moves water", "Needs no membrane"), 0)),
-        L(4, "Enzymes", """
-            <p>Enzymes are biological catalysts made of protein that speed up reactions without being
-            used up.</p>
-            <p>Each enzyme has an active site with a specific shape, fitting only its substrate &mdash;
-            the lock-and-key idea.</p>
-            <p>Extreme heat or the wrong pH changes the active site's shape, denaturing the enzyme so it
-            no longer works.</p>
-        """,
-          ("Enzymes are specific because of the shape of their:",
-           ("Nucleus", "Active site", "Membrane", "Substrate only"), 1),
-          ("High temperatures stop enzymes working because they:",
-           ("Dissolve", "Denature", "Multiply", "Become substrates"), 1)),
-        L(5, "Nutrition and Digestion", """
-            <p>A balanced diet supplies carbohydrates, proteins, fats, vitamins, minerals, fibre and water.</p>
-            <p>Digestion breaks large insoluble molecules into small soluble ones: amylase digests starch
-            to sugars, protease digests proteins to amino acids, lipase digests fats.</p>
-            <p>Absorption happens in the small intestine, whose villi give a huge surface area.</p>
-        """,
-          ("Proteins are digested by:",
-           ("Amylase", "Protease", "Lipase", "Bile"), 1),
-          ("Villi in the small intestine increase the rate of absorption by increasing:",
-           ("Surface area", "Temperature", "Acidity", "Blood pressure"), 0)),
-        L(6, "Respiration", """
-            <p>Aerobic respiration releases energy using oxygen:
-            <code>glucose + oxygen &rarr; carbon dioxide + water</code>.</p>
-            <p>Anaerobic respiration happens without oxygen. In muscles it produces lactic acid and far
-            less energy; in yeast it produces ethanol and carbon dioxide.</p>
-            <p>Respiration occurs continuously in all living cells, not only in animals.</p>
-        """,
-          ("Aerobic respiration produces:",
-           ("Carbon dioxide and water", "Oxygen and glucose", "Lactic acid only", "Ethanol"), 0),
-          ("Anaerobic respiration in human muscle produces:",
-           ("Ethanol", "Lactic acid", "Oxygen", "Starch"), 1)),
-        L(7, "Photosynthesis", """
-            <p>Plants make their own food using light energy:
-            <code>carbon dioxide + water &rarr; glucose + oxygen</code>.</p>
-            <p>It takes place in chloroplasts, which contain the green pigment chlorophyll.</p>
-            <p>The rate is limited by light intensity, carbon dioxide concentration and temperature &mdash;
-            the limiting factors.</p>
-        """,
-          ("Photosynthesis takes place in the:",
-           ("Mitochondria", "Chloroplasts", "Nucleus", "Vacuole"), 1),
-          ("Which is NOT a limiting factor of photosynthesis?",
-           ("Light intensity", "Carbon dioxide level", "Temperature", "Oxygen level"), 3)),
-        L(8, "The Circulatory System", """
-            <p>The heart is a double pump: the right side sends blood to the lungs, the left side to the
-            rest of the body.</p>
-            <p>Arteries carry blood away from the heart at high pressure; veins return it with valves to
-            stop backflow; capillaries allow exchange with tissues.</p>
-            <p>Red blood cells carry oxygen using haemoglobin, white blood cells fight infection, and
-            platelets help clotting.</p>
-        """,
-          ("Arteries carry blood:",
-           ("Towards the heart", "Away from the heart", "Only to the lungs", "Only when resting"), 1),
-          ("Oxygen is transported by:",
-           ("Platelets", "Plasma only", "Red blood cells", "White blood cells"), 2)),
-        L(9, "Breathing and Gas Exchange", """
-            <p>Air travels through the trachea and bronchi into millions of tiny alveoli.</p>
-            <p>Alveoli are adapted for exchange: a huge surface area, very thin walls, a moist lining and
-            a rich blood supply.</p>
-            <p>Oxygen diffuses into the blood while carbon dioxide diffuses out, both moving down their
-            concentration gradients.</p>
-        """,
-          ("Gas exchange in the lungs happens in the:",
-           ("Trachea", "Bronchi", "Alveoli", "Diaphragm"), 2),
-          ("Alveoli are efficient partly because their walls are:",
-           ("Thick and tough", "Very thin", "Dry", "Impermeable"), 1)),
-        L(10, "Coordination: Nerves and Hormones", """
-            <p>The nervous system gives fast, short-lived responses using electrical impulses along
-            neurones.</p>
-            <p>A reflex arc (receptor &rarr; sensory neurone &rarr; relay &rarr; motor neurone &rarr; effector)
-            bypasses conscious thought for speed.</p>
-            <p>Hormones are chemical messengers carried in the blood; insulin, for example, lowers blood
-            glucose.</p>
-        """,
-          ("Reflex actions are fast because they:",
-           ("Use hormones", "Do not involve conscious thought",
-            "Travel through blood", "Involve only one neurone"), 1),
-          ("Insulin is a hormone that:",
-           ("Raises blood glucose", "Lowers blood glucose", "Digests fat", "Carries oxygen"), 1)),
-        L(11, "Genetics and Inheritance", """
-            <p>Genes come in versions called alleles, which may be dominant or recessive.</p>
-            <p>An organism's genotype is its alleles; the phenotype is the characteristic you observe.</p>
-            <p>A Punnett square predicts offspring: two heterozygous parents (Bb &times; Bb) give a 3:1
-            ratio of dominant to recessive phenotypes.</p>
-        """,
-          ("A recessive characteristic is only shown when the organism has:",
-           ("One recessive allele", "Two recessive alleles", "One dominant allele", "No alleles"), 1),
-          ("Crossing Bb with Bb gives a phenotype ratio of about:",
-           ("1:1", "2:1", "3:1", "4:0"), 2)),
-        L(12, "DNA and Protein Synthesis", """
-            <p>DNA is a double helix of two strands, with bases pairing A-T and C-G.</p>
-            <p>A gene is a section of DNA coding for a sequence of amino acids that folds into a protein.</p>
-            <p>Mutations change the base sequence; most have little effect, but some alter the protein
-            and therefore the organism.</p>
-        """,
-          ("In DNA, the base adenine always pairs with:",
-           ("Cytosine", "Guanine", "Thymine", "Another adenine"), 2),
-          ("A gene codes for:",
-           ("A whole organism", "A protein", "A cell membrane", "A chromosome pair"), 1)),
-        L(13, "Evolution and Natural Selection", """
-            <p>Individuals within a species vary. Those with characteristics best suited to the
-            environment are more likely to survive and reproduce.</p>
-            <p>They pass on the useful alleles, so over many generations the population changes &mdash;
-            evolution by natural selection, proposed by Charles Darwin.</p>
-            <p>Antibiotic-resistant bacteria are a modern example of the same process.</p>
-        """,
-          ("Natural selection acts on:",
-           ("Variation between individuals", "Identical individuals", "Only plants", "Learned behaviour"), 0),
-          ("Antibiotic resistance spreads because resistant bacteria:",
-           ("Choose to change", "Survive and reproduce", "Grow larger", "Stop dividing"), 1)),
-        L(14, "Ecosystems and Food Chains", """
-            <p>A food chain starts with a producer, usually a plant that captures light energy, followed
-            by primary and secondary consumers.</p>
-            <p>Only about 10% of energy passes to the next level, which is why chains are short.</p>
-            <p>Decomposers recycle nutrients from dead material back into the soil, keeping the carbon
-            and nitrogen cycles turning.</p>
-        """,
-          ("The first organism in a food chain is always a:",
-           ("Predator", "Producer", "Decomposer", "Herbivore"), 1),
-          ("Roughly how much energy is passed to the next trophic level?",
-           ("10%", "50%", "90%", "100%"), 0)),
-        L(15, "Health, Disease and Immunity", """
-            <p>Communicable diseases are caused by pathogens: bacteria, viruses, fungi and protists.</p>
-            <p>The body defends itself with barriers such as skin and stomach acid, and with white blood
-            cells that engulf pathogens or produce antibodies.</p>
-            <p>Vaccination introduces a harmless form of a pathogen so the immune system can respond
-            quickly if the real one arrives. Antibiotics treat bacteria, not viruses.</p>
-        """,
-          ("Antibiotics are effective against:",
-           ("Viruses", "Bacteria", "All pathogens", "Fungi only"), 1),
-          ("Vaccination works by:",
-           ("Killing all bacteria", "Training the immune system in advance",
-            "Replacing white blood cells", "Blocking the skin"), 1)),
-    ],
-}
-
 SUBJECTS["computer_science"] = {
     "name": "Computer Science",
     "lessons": [
@@ -903,185 +548,201 @@ SUBJECTS["computer_science"] = {
     ],
 }
 
-SUBJECTS["english"] = {
-    "name": "English",
+SUBJECTS["electronics"] = {
+    "name": "Electronics",
     "lessons": [
-        L(1, "Parts of Speech", """
-            <p>Every word in a sentence does a job. Nouns name things, verbs express actions or states,
-            and adjectives describe nouns.</p>
-            <p>Adverbs modify verbs, adjectives or other adverbs, often telling us how, when or where.</p>
-            <p>Pronouns replace nouns, prepositions show relationships (in, under, before) and
-            conjunctions join ideas.</p>
+        L(1, "Introduction to Circuits", """
+            <p>An electronic circuit is a closed loop that lets electric charge flow from a power
+            source, through components, and back again.</p>
+            <p>Every circuit needs a source of energy (such as a battery), a path for current
+            (conductors), and a load that does something useful, such as a bulb or motor.</p>
+            <p>Circuit diagrams use standard symbols so that any engineer, anywhere, can read the same
+            circuit the same way.</p>
         """,
-          ("In &quot;She ran quickly&quot;, the word &quot;quickly&quot; is:",
-           ("An adjective", "An adverb", "A noun", "A preposition"), 1),
-          ("A word that joins two clauses together is a:",
-           ("Pronoun", "Conjunction", "Preposition", "Determiner"), 1)),
-        L(2, "Sentence Structure", """
-            <p>A clause needs a subject and a verb. A main clause makes sense alone; a subordinate
-            clause does not.</p>
-            <p>Simple sentences have one clause, compound sentences join two main clauses with and, but
-            or so, and complex sentences add a subordinate clause.</p>
-            <p>Varying sentence length controls pace: short sentences create tension, longer ones build
-            description.</p>
+          ("A complete electronic circuit must always have:",
+           ("A closed loop for current to flow", "At least ten components",
+            "Only alternating current", "A microcontroller"), 0),
+          ("Circuit diagrams use standard symbols mainly so that:",
+           ("Circuits look more colourful", "Anyone can read and build the same circuit",
+            "Components are cheaper", "Current flows faster"), 1)),
+        L(2, "Voltage, Current and Resistance", """
+            <p>Voltage is the electrical "push" that drives charge around a circuit, measured in volts.</p>
+            <p>Current is the rate of flow of charge, measured in amperes; resistance opposes that flow,
+            measured in ohms.</p>
+            <p>Ohm's law ties the three together: <code>V = I &times; R</code>. Doubling the resistance
+            while keeping voltage fixed halves the current.</p>
         """,
-          ("&quot;Although it was raining, we walked home&quot; is a:",
-           ("Simple sentence", "Compound sentence", "Complex sentence", "Fragment"), 2),
-          ("A subordinate clause is one that:",
-           ("Can stand alone", "Cannot stand alone as a sentence",
-            "Contains no verb", "Must start a sentence"), 1)),
-        L(3, "Punctuation", """
-            <p>Full stops end sentences; commas separate items in a list, mark clauses and follow
-            introductory phrases.</p>
-            <p>Apostrophes show omission (don't) or possession (the dog's bowl; the dogs' bowls for
-            plurals).</p>
-            <p>Semicolons link two closely related main clauses, while colons introduce a list,
-            explanation or quotation.</p>
+          ("Which quantity is measured in amperes?", ("Voltage", "Current", "Resistance", "Power"), 1),
+          ("A 9 V supply drives current through a 3 &Omega; resistor. The current is:",
+           ("1 A", "3 A", "6 A", "27 A"), 1)),
+        L(3, "Series and Parallel Circuits", """
+            <p>In a <b>series</b> circuit components are connected end to end in a single loop, so the
+            same current flows through each one.</p>
+            <p>In a <b>parallel</b> circuit components are connected across separate branches, so each
+            branch sees the full supply voltage.</p>
+            <p>If one bulb fails in a series circuit the whole loop breaks; in a parallel circuit the
+            other branches keep working.</p>
         """,
-          ("Which sentence uses the apostrophe correctly?",
-           ("The dog's are barking", "The dogs' bowls were empty",
-            "Its' a fine day", "The cat lost it's collar"), 1),
-          ("A semicolon is best used to:",
-           ("Introduce a list", "Join two closely related main clauses",
-            "Show possession", "End a question"), 1)),
-        L(4, "Verb Tenses", """
-            <p>Tense places an action in time: past, present or future.</p>
-            <p>Simple tenses state a fact (she walks), continuous tenses show ongoing action (she is
-            walking), and perfect tenses link to another time (she has walked).</p>
-            <p>Consistency matters: shifting tense mid-paragraph without reason confuses the reader.</p>
+          ("If one bulb breaks in a series circuit, the other bulbs:",
+           ("Get brighter", "Stop working too", "Are unaffected", "Explode"), 1),
+          ("In a parallel circuit, each branch receives:",
+           ("A fraction of the supply voltage", "The full supply voltage",
+            "No voltage", "Double the supply voltage"), 1)),
+        L(4, "Resistors and Resistor Networks", """
+            <p>A resistor limits current flow and is often used to protect other components or set a
+            precise voltage or current.</p>
+            <p>Resistors in series add directly: <code>R_total = R1 + R2</code>. Resistors in parallel
+            combine so the total is always less than the smallest individual resistor.</p>
+            <p>Colour bands printed on a resistor's body encode its resistance value and tolerance.</p>
         """,
-          ("&quot;She has finished her homework&quot; is in the:",
-           ("Past simple", "Present perfect", "Future continuous", "Past continuous"), 1),
-          ("Unnecessary changes of tense within a paragraph usually:",
-           ("Add style", "Confuse the reader", "Are required", "Improve accuracy"), 1)),
-        L(5, "Active and Passive Voice", """
-            <p>In the active voice the subject performs the action: "The chef cooked the meal."</p>
-            <p>In the passive voice the subject receives it: "The meal was cooked by the chef." The doer
-            can even be left out.</p>
-            <p>Active writing is usually clearer and more direct; passive suits formal, scientific or
-            deliberately impersonal writing.</p>
+          ("Two 10 &Omega; resistors connected in series give a total resistance of:",
+           ("5 &Omega;", "10 &Omega;", "20 &Omega;", "100 &Omega;"), 2),
+          ("Combining resistors in parallel always gives a total resistance that is:",
+           ("Greater than any single resistor", "Equal to the largest resistor",
+            "Less than the smallest resistor", "Always zero"), 2)),
+        L(5, "Capacitors", """
+            <p>A capacitor stores electrical charge on two conductive plates separated by an insulator,
+            measured in farads.</p>
+            <p>It charges up when connected to a supply and discharges when the supply is removed,
+            smoothing out voltage changes.</p>
+            <p>Capacitors are used for smoothing power supplies, timing circuits and filtering unwanted
+            signal noise.</p>
         """,
-          ("Which sentence is in the passive voice?",
-           ("The dog chased the ball", "The ball was chased by the dog",
-            "The dog is fast", "Chase the ball!"), 1),
-          ("The passive voice is often chosen when the writer wants to:",
-           ("Be as direct as possible", "Emphasise the action rather than the doer",
-            "Shorten every sentence", "Avoid all verbs"), 1)),
-        L(6, "Vocabulary and Word Building", """
-            <p>Prefixes change meaning at the start of a word (unhappy, rewrite); suffixes usually change
-            word class (happiness, quickly).</p>
-            <p>Synonyms have similar meanings but different shades: "said", "muttered" and "declared"
-            are not interchangeable.</p>
-            <p>Register matters &mdash; choose formal vocabulary for essays and letters, informal for
-            dialogue and personal writing.</p>
+          ("A capacitor mainly works by:",
+           ("Converting current to light", "Storing charge on two plates",
+            "Amplifying a signal", "Switching current on and off"), 1),
+          ("A common use for a capacitor in a power supply is:",
+           ("Smoothing voltage fluctuations", "Increasing resistance",
+            "Generating a magnetic field", "Storing programs"), 0)),
+        L(6, "Diodes and Rectification", """
+            <p>A diode allows current to flow in only one direction, acting like a one-way valve for
+            electricity.</p>
+            <p>A light-emitting diode (LED) also gives off light when current passes through it in the
+            correct direction, and needs a resistor in series to limit current.</p>
+            <p>Rectification uses diodes to convert alternating current (AC), which reverses direction,
+            into direct current (DC), which flows one way.</p>
         """,
-          ("Adding the prefix &quot;un-&quot; to a word usually:",
-           ("Reverses its meaning", "Makes it plural", "Changes the tense", "Makes it a verb"), 0),
-          ("Choosing &quot;muttered&quot; instead of &quot;said&quot; mainly affects:",
-           ("Grammar", "Tone and precision of meaning", "Tense", "Sentence length"), 1)),
-        L(7, "Paragraphs and Cohesion", """
-            <p>A paragraph develops one main idea, usually opening with a topic sentence.</p>
-            <p>Start a new paragraph when time, place, topic or speaker changes.</p>
-            <p>Connectives such as however, therefore, in addition and consequently signal how ideas
-            relate and keep writing cohesive.</p>
+          ("A diode allows current to flow:",
+           ("In both directions equally", "In one direction only",
+            "Only when cold", "Only in AC circuits"), 1),
+          ("Rectification is the process of converting:",
+           ("DC to AC", "AC to DC", "Voltage to resistance", "Light to current"), 1)),
+        L(7, "Transistors as Switches", """
+            <p>A transistor is a semiconductor device that can act as an electronic switch or an
+            amplifier.</p>
+            <p>A small current or voltage at the base (or gate) controls a much larger current flowing
+            between the other two terminals.</p>
+            <p>This lets a low-power signal, such as from a sensor, switch a high-power output like a
+            motor or lamp.</p>
         """,
-          ("The sentence that introduces a paragraph's main idea is the:",
-           ("Conclusion", "Topic sentence", "Quotation", "Connective"), 1),
-          ("Which connective signals contrast?",
-           ("Furthermore", "However", "Similarly", "Therefore"), 1)),
-        L(8, "Descriptive Writing", """
-            <p>Strong description appeals to several senses, not only sight, and favours precise nouns
-            and verbs over piles of adjectives.</p>
-            <p>"Show, don't tell": instead of "he was nervous", write "his hands would not stay still".</p>
-            <p>Zooming from a wide view to a small detail gives description shape and stops it drifting.</p>
+          ("A transistor used as a switch is controlled by:",
+           ("A small current or voltage at its base/gate", "Removing all resistors",
+            "Connecting it to AC only", "Heating it up"), 0),
+          ("A key use of transistors in circuits is to:",
+           ("Store large amounts of charge", "Switch or amplify a signal",
+            "Convert AC to DC directly", "Measure resistance"), 1)),
+        L(8, "Logic Gates", """
+            <p>Logic gates perform simple decisions on digital signals that are either HIGH (1) or LOW
+            (0).</p>
+            <p>An <b>AND</b> gate outputs 1 only when all its inputs are 1; an <b>OR</b> gate outputs 1
+            when at least one input is 1; a <b>NOT</b> gate simply inverts its input.</p>
+            <p>Combining a handful of basic gates can build circuits that add numbers or make complex
+            decisions.</p>
         """,
-          ("&quot;Show, don't tell&quot; advises a writer to:",
-           ("Explain feelings directly", "Reveal feelings through detail and action",
-            "Use more adjectives", "Write shorter sentences"), 1),
-          ("Effective description usually appeals to:",
-           ("Sight only", "Several senses", "Sound only", "No senses"), 1)),
-        L(9, "Persuasive Writing", """
-            <p>Persuasion works by combining credibility, emotion and logic.</p>
-            <p>Useful techniques include rhetorical questions, the rule of three, direct address, facts
-            and statistics, and anecdote.</p>
-            <p>Structure matters: a clear line of argument, counter-argument acknowledged and answered,
-            and a memorable closing call to action.</p>
+          ("An AND gate outputs 1 when:",
+           ("At least one input is 1", "All inputs are 1", "All inputs are 0", "It is never 1"), 1),
+          ("A NOT gate takes one input and:",
+           ("Doubles it", "Leaves it unchanged", "Inverts it", "Ignores it"), 2)),
+        L(9, "Boolean Algebra and Truth Tables", """
+            <p>Boolean algebra describes logic using only two values, true and false (1 and 0), and
+            operators such as AND, OR and NOT.</p>
+            <p>A truth table lists every possible combination of inputs alongside the resulting output,
+            making a gate's behaviour easy to check.</p>
+            <p>Combining gates, such as AND followed by NOT (a NAND gate), can build any other logic
+            function.</p>
         """,
-          ("&quot;Are we really going to ignore this?&quot; is an example of:",
-           ("A statistic", "A rhetorical question", "An anecdote", "Alliteration"), 1),
-          ("Addressing the opposing view in a persuasive piece usually:",
-           ("Weakens the argument", "Strengthens it by showing balance",
-            "Is never allowed", "Replaces evidence"), 1)),
-        L(10, "Formal Letters and Emails", """
-            <p>Formal writing needs a clear purpose stated early, standard English and a polite,
-            impersonal tone.</p>
-            <p>Conventions include a greeting, organised paragraphs and a suitable sign-off: "Yours
-            sincerely" when you know the name, "Yours faithfully" when you do not.</p>
-            <p>Avoid contractions, slang and emojis; keep sentences clear rather than long.</p>
+          ("A truth table shows:",
+           ("The voltage of a circuit", "Every input combination and its output",
+            "The resistance of a gate", "The cost of components"), 1),
+          ("Combining an AND gate with a NOT gate on its output creates a:",
+           ("NOR gate", "NAND gate", "XOR gate", "Buffer"), 1)),
+        L(10, "Digital vs Analogue Signals", """
+            <p>An <b>analogue</b> signal varies smoothly and continuously, like the volume from a
+            microphone.</p>
+            <p>A <b>digital</b> signal has only discrete levels, usually just HIGH and LOW, making it
+            more resistant to noise and easier to process.</p>
+            <p>An analogue-to-digital converter (ADC) samples an analogue signal at intervals and
+            represents each sample as a binary number.</p>
         """,
-          ("If a formal letter begins &quot;Dear Sir or Madam&quot;, it should end:",
-           ("Yours sincerely", "Yours faithfully", "Best wishes", "Cheers"), 1),
-          ("Which is inappropriate in a formal email?",
-           ("Clear paragraphs", "Slang and contractions", "A polite greeting", "Standard spelling"), 1)),
-        L(11, "Reading Comprehension and Inference", """
-            <p>Explicit information is stated directly; implicit meaning must be inferred from clues.</p>
-            <p>Inference means drawing a supported conclusion &mdash; a character who "avoided her eyes"
-            may be hiding something.</p>
-            <p>In analysis, use the point-evidence-explanation pattern: make a claim, quote briefly, then
-            explain how the language supports it.</p>
+          ("A digital signal differs from an analogue signal because it:",
+           ("Varies smoothly", "Has only discrete levels", "Cannot be measured", "Is always louder"), 1),
+          ("An ADC is used to:",
+           ("Convert digital signals to analogue", "Convert analogue signals to digital",
+            "Amplify a signal", "Store charge"), 1)),
+        L(11, "Sensors and Input Devices", """
+            <p>Sensors convert a physical quantity, such as light, temperature or pressure, into an
+            electrical signal a circuit can process.</p>
+            <p>A light-dependent resistor (LDR) lowers its resistance as light increases; a thermistor's
+            resistance changes with temperature.</p>
+            <p>These are often used with a voltage divider so their changing resistance produces a
+            changing voltage a circuit can read.</p>
         """,
-          ("Inference means:",
-           ("Repeating what the text says", "Drawing a conclusion from clues in the text",
-            "Guessing with no evidence", "Summarising the plot"), 1),
-          ("In PEE, the E that follows the evidence stands for:",
-           ("Example", "Explanation", "Emphasis", "Ending"), 1)),
-        L(12, "Figurative Language", """
-            <p>A simile compares using like or as; a metaphor says one thing <i>is</i> another.</p>
-            <p>Personification gives human qualities to non-human things; hyperbole exaggerates for
-            effect.</p>
-            <p>Sound devices such as alliteration, assonance and onomatopoeia shape how a line feels
-            when read aloud.</p>
+          ("A light-dependent resistor (LDR) changes its:",
+           ("Voltage output directly", "Resistance with light level",
+            "Colour with temperature", "Current with sound"), 1),
+          ("Sensors are useful in circuits because they:",
+           ("Store energy for later", "Convert physical quantities into electrical signals",
+            "Always produce digital output", "Increase supply voltage"), 1)),
+        L(12, "Output Devices and Actuators", """
+            <p>Output devices convert an electrical signal into a useful physical effect: LEDs produce
+            light, buzzers produce sound, and motors produce movement.</p>
+            <p>A relay uses a small control current to switch a separate, often much higher-power,
+            circuit on or off, keeping the two electrically isolated.</p>
+            <p>Motors and other high-current outputs are usually driven through a transistor or relay
+            rather than directly from a microcontroller pin.</p>
         """,
-          ("&quot;The wind whispered through the trees&quot; is an example of:",
-           ("Simile", "Personification", "Hyperbole", "Onomatopoeia"), 1),
-          ("The difference between a simile and a metaphor is that a simile:",
-           ("Uses like or as", "Is always shorter", "Describes sound", "Cannot be used in poetry"), 0)),
-        L(13, "Analysing Poetry", """
-            <p>Read for meaning first, then consider form: stanzas, line length, rhyme scheme and rhythm.</p>
-            <p>Enjambment runs a sentence over a line break to create flow or surprise; caesura is a
-            pause within a line.</p>
-            <p>Strong analysis links technique to effect &mdash; not just "the poet uses a metaphor" but
-            what that metaphor makes the reader feel or understand.</p>
+          ("A relay is useful because it allows a small current to:",
+           ("Directly power a motor with no other components", "Switch a separate, higher-power circuit",
+            "Store charge for later use", "Convert AC into light"), 1),
+          ("Which of these is an output device?", ("Thermistor", "LDR", "Buzzer", "Push switch"), 2)),
+        L(13, "Power Supplies and Batteries", """
+            <p>Batteries store chemical energy and release it as direct current (DC) at a roughly
+            constant voltage until they run low.</p>
+            <p>Connecting cells in series increases total voltage; connecting them in parallel increases
+            available current (capacity) while keeping voltage the same.</p>
+            <p>Mains electricity is alternating current (AC) and must usually be transformed and
+            rectified before it can power DC circuits and electronics.</p>
         """,
-          ("Enjambment is when:",
-           ("A line ends with a full stop", "A sentence continues over a line break",
-            "Two words rhyme", "A stanza repeats"), 1),
-          ("Good poetry analysis always connects a technique to its:",
-           ("Length", "Effect on the reader", "Publication date", "Rhyme only"), 1)),
-        L(14, "Narrative and Prose Technique", """
-            <p>Point of view shapes everything: first person is intimate but limited, third person
-            omniscient sees all.</p>
-            <p>Structure can be reordered with flashbacks, foreshadowing and cliffhangers to control
-            tension.</p>
-            <p>Characters are built through action, dialogue and reaction rather than lists of traits;
-            setting can mirror mood.</p>
+          ("Connecting two identical cells in series mainly increases the circuit's:",
+           ("Resistance", "Total voltage", "Total current capacity", "Frequency"), 1),
+          ("Mains electricity supplied to homes is normally:",
+           ("Direct current (DC)", "Alternating current (AC)", "Static electricity", "Always 9 V"), 1)),
+        L(14, "Printed Circuit Boards and Prototyping", """
+            <p>A breadboard lets components be connected temporarily without soldering, ideal for
+            testing and prototyping a design.</p>
+            <p>A printed circuit board (PCB) has copper tracks etched onto an insulating board, giving a
+            permanent, compact and reliable connection between components.</p>
+            <p>Moving from breadboard to PCB usually happens once a design has been tested and is ready
+            for a final, durable version.</p>
         """,
-          ("A story told using &quot;I&quot; is written in:",
-           ("Third person", "First person", "Second person", "Omniscient narration"), 1),
-          ("Hinting at events to come later in a story is called:",
-           ("Flashback", "Foreshadowing", "Exposition", "Resolution"), 1)),
-        L(15, "Drama and Shakespeare", """
-            <p>Drama is written to be performed, so meaning comes from dialogue, stage directions and
-            performance choices.</p>
-            <p>A soliloquy lets a character voice private thoughts alone on stage; an aside is a remark
-            only the audience hears.</p>
-            <p>Shakespeare often wrote in iambic pentameter &mdash; ten syllables with five stressed
-            beats &mdash; and used prose for lower-status or comic characters.</p>
+          ("A breadboard is mainly used for:",
+           ("Permanent soldered circuits", "Temporary prototyping and testing",
+            "Generating mains electricity", "Storing programs"), 1),
+          ("Copper tracks on a PCB serve the same purpose as:",
+           ("Wires connecting components", "Batteries", "Resistors", "Sensors"), 0)),
+        L(15, "Microcontrollers and Embedded Systems", """
+            <p>A microcontroller is a small computer on a single chip, containing a processor, memory
+            and input/output pins, used to control a specific device.</p>
+            <p>An embedded system is any computer system built into a larger product, such as a washing
+            machine or a car, rather than a general-purpose computer.</p>
+            <p>Microcontrollers are typically programmed once and then repeatedly read sensors, make
+            decisions, and drive outputs in a continuous loop.</p>
         """,
-          ("A soliloquy is a speech delivered:",
-           ("To another character", "Alone, revealing private thoughts",
-            "By the narrator", "By the whole cast"), 1),
-          ("Iambic pentameter contains how many syllables per line?",
-           ("Five", "Eight", "Ten", "Twelve"), 2)),
+          ("A microcontroller is best described as:",
+           ("A type of resistor", "A small computer on a single chip",
+            "A kind of battery", "A logic gate only"), 1),
+          ("An embedded system is a computer system that is:",
+           ("Only found in desktop PCs", "Built into a larger product to control it",
+            "Never connected to sensors", "Always analogue"), 1)),
     ],
 }
