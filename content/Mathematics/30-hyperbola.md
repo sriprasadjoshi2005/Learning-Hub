@@ -1,11 +1,7 @@
 ---
 title: Hyperbola
 level: advanced
-lesson: 30
-subject: Mathematics
 ---
-
-# Lesson 30: Hyperbola
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Hyperbola: c²=a²+b²; e=c/a; for horizontal transverse axis, asymptotes y=±(b
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. For x²/9−y²/16=1, c equals:**
+1. For x²/9−y²/16=1, c equals:
 - [ ] 3
 - [ ] 4
 - [x] 5
 - [ ] 7
-> **Explanation:** c²=a²+b²=9+16=25.
+> c²=a²+b²=9+16=25.
 
-**2. The eccentricity of a hyperbola is:**
+2. The eccentricity of a hyperbola is:
 - [ ] 0<e<1
 - [ ] e=1
 - [x] e>1
 - [ ] e=0
-> **Explanation:** A hyperbola has eccentricity greater than one.
+> A hyperbola has eccentricity greater than one.
 
-**3. The asymptotes of x²/a²−y²/b²=1 are:**
+3. The asymptotes of x²/a²−y²/b²=1 are:
 - [ ] y=±(a/b)x
 - [x] y=±(b/a)x
 - [ ] x=±a
 - [ ] y=±b
-> **Explanation:** Set the quadratic terms to balance: y=±(b/a)x.
+> Set the quadratic terms to balance: y=±(b/a)x.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
