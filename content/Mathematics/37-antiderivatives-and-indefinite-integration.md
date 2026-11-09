@@ -1,11 +1,7 @@
 ---
 title: Antiderivatives and Indefinite Integration
 level: intermediate
-lesson: 37
-subject: Mathematics
 ---
-
-# Lesson 37: Antiderivatives and Indefinite Integration
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Treat integration as reverse differentiation and learn standard antiderivatives 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. ∫x³ dx equals:**
+1. ∫x³ dx equals:
 - [ ] 3x²+C
 - [x] x⁴/4+C
 - [ ] x⁴+C
 - [ ] x²/2+C
-> **Explanation:** Increase the exponent by one and divide by the new exponent.
+> Increase the exponent by one and divide by the new exponent.
 
-**2. ∫1/x dx equals:**
+2. ∫1/x dx equals:
 - [ ] x²/2+C
 - [x] ln|x|+C
 - [ ] 1/x²+C
 - [ ] e^x+C
-> **Explanation:** This is the logarithmic antiderivative.
+> This is the logarithmic antiderivative.
 
-**3. ∫cos x dx equals:**
+3. ∫cos x dx equals:
 - [ ] −sin x+C
 - [x] sin x+C
 - [ ] −cos x+C
 - [ ] tan x+C
-> **Explanation:** The derivative of sin x is cos x.
+> The derivative of sin x is cos x.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
