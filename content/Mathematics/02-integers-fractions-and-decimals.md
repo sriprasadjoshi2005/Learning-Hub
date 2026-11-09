@@ -40,21 +40,21 @@ a/b = a ÷ b (b ≠ 0); to divide by a fraction, multiply by its reciprocal.
 
 ## Quiz
 
-1. Compute 2/5 + 1/10.**
+1. Compute 2/5 + 1/10.
 - [ ] 3/15
 - [x] 1/2
 - [ ] 3/10
 - [ ] 2/10
 > 2/5 = 4/10; adding gives 5/10 = 1/2.
 
-2. What is (−6)(−4)?**
+2. What is (−6)(−4)?
 - [ ] −24
 - [ ] −10
 - [ ] 10
 - [x] 24
 >The product of two negative numbers is positive.
 
-3. Which decimal equals 3/8?**
+3. Which decimal equals 3/8?
 - [x] 0.375
 - [ ] 0.38
 - [ ] 0.35
