@@ -1,5 +1,5 @@
 ---
-title: Exam Problem-Solving: Equations, Functions and Algebra
+title: Exam Problem-Solving-Equations, Functions and Algebra
 level: exam
 ---
 
