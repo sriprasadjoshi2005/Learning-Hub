@@ -1,11 +1,7 @@
 ---
 title: Quadratic Expressions, Roots and Inequality Sign Analysis
 level: intermediate
-lesson: 18
-subject: Mathematics
 ---
-
-# Lesson 18: Quadratic Expressions, Roots and Inequality Sign Analysis
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ For a quadratic with positive leading coefficient and roots α<β, it is negativ
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Solve (x−2)(x−5)>0.**
+1. Solve (x−2)(x−5)>0.
 - [ ] 2<x<5
 - [x] x<2 or x>5
 - [ ] x≤2 or x≥5
 - [ ] All real x
-> **Explanation:** An upward quadratic is positive outside its distinct roots.
+> An upward quadratic is positive outside its distinct roots.
 
-**2. Solve (x−1)²≥0.**
+2. Solve (x−1)²≥0.
 - [ ] x>1
 - [ ] x<1
 - [x] All real x
 - [ ] x=1 only
 > **Explanation:** A real square is always non-negative.
 
-**3. For x²−9<0, the solution is:**
+3. For x²−9<0, the solution is:
 - [ ] x<−3 or x>3
 - [x] −3<x<3
 - [ ] −3≤x≤3
 - [ ] No real values
-> **Explanation:** The upward parabola is below zero between −3 and 3.
+> The upward parabola is below zero between −3 and 3.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
