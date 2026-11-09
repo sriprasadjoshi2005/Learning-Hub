@@ -1,11 +1,7 @@
 ---
-title: Applications of Derivatives: Tangents, Normals and Rates
+title: Applications of Derivatives-Tangents, Normals and Rates
 level: advanced
-lesson: 35
-subject: Mathematics
 ---
-
-# Lesson 35: Applications of Derivatives: Tangents, Normals and Rates
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Tangent at x=a: y−f(a)=f'(a)(x−a).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The tangent slope to y=x³ at x=2 is:**
+1. The tangent slope to y=x³ at x=2 is:
 - [ ] 6
 - [ ] 8
 - [x] 12
 - [ ] 3
-> **Explanation:** dy/dx=3x², so at 2 the slope is 12.
+> dy/dx=3x², so at 2 the slope is 12.
 
-**2. The tangent to y=x² at (1,1) is:**
+2. The tangent to y=x² at (1,1) is:
 - [ ] y=x+1
 - [x] y=2x−1
 - [ ] y=2x+1
 - [ ] y=x−1
-> **Explanation:** Slope is 2; y−1=2(x−1), so y=2x−1.
+> Slope is 2; y−1=2(x−1), so y=2x−1.
 
-**3. If A=πr², dA/dt equals:**
+3. If A=πr², dA/dt equals:
 - [ ] π dr/dt
 - [x] 2πr dr/dt
 - [ ] 2πr
 - [ ] πr²
-> **Explanation:** Differentiate with respect to time using the chain rule.
+> Differentiate with respect to time using the chain rule.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
