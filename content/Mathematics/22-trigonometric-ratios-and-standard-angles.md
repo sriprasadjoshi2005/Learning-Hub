@@ -1,11 +1,7 @@
 ---
 title: Trigonometric Ratios and Standard Angles
-level: beginner
-lesson: 22
-subject: Mathematics
+level: intermediate
 ---
-
-# Lesson 22: Trigonometric Ratios and Standard Angles
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ sinθ=opposite/hypotenuse; cosθ=adjacent/hypotenuse; tanθ=opposite/adjacent.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. sin 30° equals:**
+1. sin 30° equals:
 - [ ] √3/2
 - [x] 1/2
 - [ ] 1
 - [ ] 0
-> **Explanation:** The standard exact value is one-half.
+> The standard exact value is one-half.
 
-**2. tan 45° equals:**
+2. tan 45° equals:
 - [ ] 0
 - [ ] 1/2
 - [x] 1
 - [ ] √3
-> **Explanation:** At 45°, opposite and adjacent legs are equal.
+> At 45°, opposite and adjacent legs are equal.
 
-**3. If sin θ=3/5 and θ is acute, cos θ is:**
+3. If sin θ=3/5 and θ is acute, cos θ is:
 - [ ] 3/5
 - [x] 4/5
 - [ ] 5/3
 - [ ] 1/5
-> **Explanation:** Use sin²θ+cos²θ=1 and choose the positive root.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> Use sin²θ+cos²θ=1 and choose the positive root.
