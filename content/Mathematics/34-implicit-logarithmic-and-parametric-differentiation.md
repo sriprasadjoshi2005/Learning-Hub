@@ -1,11 +1,7 @@
 ---
 title: Implicit, Logarithmic and Parametric Differentiation
 level: advanced
-lesson: 34
-subject: Mathematics
 ---
-
-# Lesson 34: Implicit, Logarithmic and Parametric Differentiation
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Implicit: differentiate y as a function of x; parametric: dy/dx=(dy/dt)/(dx/dt).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Differentiating x²+y²=1 gives:**
+1. Differentiating x²+y²=1 gives:
 - [ ] 2x+2y=0
 - [x] 2x+2y y'=0
 - [ ] 2x y'+2y=0
 - [ ] x+y'=0
-> **Explanation:** Differentiate y² using the chain rule.
+> Differentiate y² using the chain rule.
 
-**2. For x=t² and y=t³, dy/dx is:**
+2. For x=t² and y=t³, dy/dx is:
 - [ ] 2t/3
 - [x] 3t/2
 - [ ] t
 - [ ] 6t
-> **Explanation:** dy/dt=3t² and dx/dt=2t; ratio=3t/2.
+> dy/dt=3t² and dx/dt=2t; ratio=3t/2.
 
-**3. The logarithmic derivative of x^x for x>0 is:**
+3. The logarithmic derivative of x^x for x>0 is:
 - [ ] x
 - [ ] 1/x
 - [x] ln x+1
 - [ ] x ln x
-> **Explanation:** ln y=x ln x; differentiating gives y'/y=ln x+1.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> ln y=x ln x; differentiating gives y'/y=ln x+1.
