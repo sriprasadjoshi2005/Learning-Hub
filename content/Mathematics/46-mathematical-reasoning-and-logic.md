@@ -1,11 +1,7 @@
 ---
 title: Mathematical Reasoning and Logic
 level: intermediate
-lesson: 46
-subject: Mathematics
 ---
-
-# Lesson 46: Mathematical Reasoning and Logic
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Contrapositive of p⇒q is ¬q⇒¬p; negating ∀ gives ∃¬.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. p∧q is true when:**
+1. p∧q is true when:
 - [ ] At least one is true
 - [x] Both are true
 - [ ] Both are false
 - [ ] p is false
-> **Explanation:** Conjunction requires both propositions to be true.
+> Conjunction requires both propositions to be true.
 
-**2. The contrapositive of p⇒q is:**
+2. The contrapositive of p⇒q is:
 - [ ] q⇒p
 - [ ] ¬p⇒¬q
 - [x] ¬q⇒¬p
 - [ ] p∧q
-> **Explanation:** Reverse the order and negate both statements.
+> Reverse the order and negate both statements.
 
-**3. The negation of 'all A are B' is:**
+3. The negation of 'all A are B' is:
 - [ ] No A are B
 - [x] Some A are not B
 - [ ] All B are A
 - [ ] Some B are A
-> **Explanation:** A counterexample is an A that is not B.
+> A counterexample is an A that is not B.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
