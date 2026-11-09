@@ -1,11 +1,7 @@
 ---
 title: Integration by Parts and Partial Fractions
 level: advanced
-lesson: 38
-subject: Mathematics
 ---
-
-# Lesson 38: Integration by Parts and Partial Fractions
 
 ## Learning objective
 
@@ -42,34 +38,27 @@ Handle products and rational functions using integration by parts and algebraic 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The integration-by-parts formula is:**
+1. The integration-by-parts formula is:
 - [ ] uv+∫vdu
 - [x] uv−∫vdu
 - [ ] u/v
 - [ ] u'v'
-> **Explanation:** It follows from the product rule.
+> It follows from the product rule.
 
-**2. ∫x e^x dx is:**
+2. ∫x e^x dx is:
 - [ ] xe^x+C
 - [x] e^x(x−1)+C
 - [ ] e^x(x+1)+C
 - [ ] x²e^x/2+C
-> **Explanation:** Apply integration by parts with u=x and dv=e^x dx.
+> Apply integration by parts with u=x and dv=e^x dx.
 
-**3. A rational function with numerator degree greater than denominator degree is:**
+3. A rational function with numerator degree greater than denominator degree is:
 - [ ] Always proper
 - [x] Improper
 - [ ] A polynomial only
 - [ ] Undefined
-> **Explanation:** Polynomial division is needed before partial fractions.
+> Polynomial division is needed before partial fractions.
 
 
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
