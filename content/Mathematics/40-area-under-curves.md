@@ -1,11 +1,7 @@
 ---
 title: Area Under Curves
 level: advanced
-lesson: 40
-subject: Mathematics
 ---
-
-# Lesson 40: Area Under Curves
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Area between upper f and lower g: ∫_a^b[f(x)−g(x)]dx.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Area under y=3 from x=0 to 2 is:**
+1. Area under y=3 from x=0 to 2 is:
 - [ ] 3
 - [ ] 5
 - [x] 6
 - [ ] 9
-> **Explanation:** The rectangle has width 2 and height 3, so area is 6.
+> The rectangle has width 2 and height 3, so area is 6.
 
-**2. For area between two curves using vertical slices, integrate:**
+2. For area between two curves using vertical slices, integrate:
 - [ ] Lower minus upper
 - [x] Upper minus lower
 - [ ] Their product
 - [ ] Their derivatives
-> **Explanation:** The vertical height is upper y minus lower y.
+> The vertical height is upper y minus lower y.
 
-**3. If a curve crosses the x-axis, total area is found by:**
+3. If a curve crosses the x-axis, total area is found by:
 - [ ] One signed integral only
 - [x] Splitting at crossings or integrating absolute value
 - [ ] Differentiating
 - [ ] Ignoring negative parts
-> **Explanation:** Geometric area counts all regions positively.
+> Geometric area counts all regions positively.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
