@@ -1,11 +1,7 @@
 ---
 title: Trigonometric Functions, Graphs and Inverse Trigonometry
 level: intermediate
-lesson: 24
-subject: Mathematics
 ---
-
-# Lesson 24: Trigonometric Functions, Graphs and Inverse Trigonometry
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Period of sin(bx) and cos(bx)=2π/|b|; period of tan(bx)=π/|b|.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The range of sin x is:**
+1. The range of sin x is:
 - [ ] All real numbers
 - [x] [−1,1]
 - [ ] [0,1]
 - [ ] (−∞,1]
-> **Explanation:** Sine values lie between −1 and 1 inclusive.
+> Sine values lie between −1 and 1 inclusive.
 
-**2. The period of sin 4x is:**
+2. The period of sin 4x is:
 - [ ] 2π
 - [ ] π
 - [x] π/2
 - [ ] π/4
-> **Explanation:** Period = 2π/4 = π/2.
+> Period = 2π/4 = π/2.
 
-**3. tan⁻¹(1), principal value, is:**
+3. tan⁻¹(1), principal value, is:
 - [ ] 0
 - [ ] π/6
 - [x] π/4
 - [ ] π/2
-> **Explanation:** The principal angle whose tangent is 1 is π/4.
+> The principal angle whose tangent is 1 is π/4.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
