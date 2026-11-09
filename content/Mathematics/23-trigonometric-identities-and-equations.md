@@ -1,11 +1,7 @@
 ---
 title: Trigonometric Identities and Equations
 level: intermediate
-lesson: 23
-subject: Mathematics
 ---
-
-# Lesson 23: Trigonometric Identities and Equations
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ sin²x+cos²x=1; sin2x=2sinx cosx; cos2x=cos²x−sin²x.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The period of tan x is:**
+1. The period of tan x is:
 - [ ] π/2
 - [x] π
 - [ ] 2π
 - [ ] 4π
-> **Explanation:** tan(x+π)=tan x.
+> tan(x+π)=tan x.
 
-**2. sin 2x equals:**
+2. sin 2x equals:
 - [x] 2sin x cos x
 - [ ] sin²x−cos²x
 - [ ] 2cos²x
 - [ ] 1−sin x
-> **Explanation:** This is the sine double-angle identity.
+> This is the sine double-angle identity.
 
-**3. Solutions of cos x=0 in [0,2π) are:**
+3. Solutions of cos x=0 in [0,2π) are:
 - [ ] 0, π
 - [x] π/2, 3π/2
 - [ ] π/2 only
 - [ ] π, 2π
-> **Explanation:** Cosine is zero at the two odd quarter-turns in this interval.
+> Cosine is zero at the two odd quarter-turns in this interval.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
