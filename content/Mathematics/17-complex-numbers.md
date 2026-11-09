@@ -1,11 +1,7 @@
 ---
 title: Complex Numbers
 level: intermediate
-lesson: 17
-subject: Mathematics
 ---
-
-# Lesson 17: Complex Numbers
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ z=a+ib; z̄=a−ib; |z|=√(a²+b²); i²=−1.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. i^6 equals:**
+1. i^6 equals:
 - [ ] 1
 - [x] −1
 - [ ] i
 - [ ] −i
 > **Explanation:** i^6=i^4×i²=1×(−1)=−1.
 
-**2. The conjugate of 4−7i is:**
+2. The conjugate of 4−7i is:
 - [ ] −4+7i
 - [x] 4+7i
 - [ ] −4−7i
 - [ ] 7+4i
 > **Explanation:** Change only the sign of the imaginary part.
 
-**3. The modulus of 3+4i is:**
+3. The modulus of 3+4i is:
 - [ ] 7
 - [ ] 1
 - [x] 5
 - [ ] 25
 > **Explanation:** √(3²+4²)=5.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
