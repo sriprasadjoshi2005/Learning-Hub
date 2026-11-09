@@ -1,11 +1,7 @@
 ---
-title: Differentiation: Rules and Standard Derivatives
+title: Differentiation-Rules and Standard Derivatives
 level: intermediate
-lesson: 33
-subject: Mathematics
 ---
-
-# Lesson 33: Differentiation: Rules and Standard Derivatives
 
 ## Learning objective
 
@@ -42,34 +38,27 @@ d(x^n)/dx=nx^(n−1); (uv)'=u'v+uv'; chain rule: [f(g(x))]'=f'(g(x))g'(x).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. d(x⁵)/dx is:**
+1. d(x⁵)/dx is:
 - [ ] x⁴
 - [x] 5x⁴
 - [ ] 5x
 - [ ] x⁶/6
-> **Explanation:** Apply the power rule.
+> Apply the power rule.
 
-**2. d(cos x)/dx is:**
+2. d(cos x)/dx is:
 - [ ] sin x
 - [x] −sin x
 - [ ] cos x
 - [ ] −cos x
-> **Explanation:** The derivative of cosine is negative sine.
+> The derivative of cosine is negative sine.
 
-**3. d(e^(3x))/dx is:**
+3. d(e^(3x))/dx is:
 - [ ] e^(3x)
 - [x] 3e^(3x)
 - [ ] e^3x
 - [ ] 3e^x
-> **Explanation:** Use the chain rule: derivative of 3x is 3.
+> Use the chain rule: derivative of 3x is 3.
 
 
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
