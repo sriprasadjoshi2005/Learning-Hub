@@ -1,11 +1,7 @@
 ---
 title: Continuity and Differentiability
 level: intermediate
-lesson: 32
-subject: Mathematics
 ---
-
-# Lesson 32: Continuity and Differentiability
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Continuity at a: lim(x→a)f(x)=f(a); differentiability implies continuity.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Differentiability at a point implies:**
+1. Differentiability at a point implies:
 - [ ] Discontinuity
 - [x] Continuity
 - [ ] A local maximum
 - [ ] A zero derivative
-> **Explanation:** Every differentiable function is continuous at that point.
+> Every differentiable function is continuous at that point.
 
-**2. The function |x| at x=0 is:**
+2. The function |x| at x=0 is:
 - [ ] Discontinuous
 - [ ] Differentiable
 - [x] Continuous but not differentiable
 - [ ] Neither continuous nor defined
-> **Explanation:** Its one-sided derivatives differ.
+> Its one-sided derivatives differ.
 
-**3. For continuity at x=a, the limit must equal:**
+3. For continuity at x=a, the limit must equal:
 - [ ] 0
 - [x] f(a)
 - [ ] f'(a)
 - [ ] a
-> **Explanation:** Continuity requires lim f(x)=f(a).
+> Continuity requires lim f(x)=f(a).
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
