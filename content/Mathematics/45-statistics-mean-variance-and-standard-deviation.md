@@ -1,11 +1,7 @@
 ---
-title: Statistics: Mean, Variance and Standard Deviation
+title: Statistics-Mean, Variance and Standard Deviation
 level: intermediate
-lesson: 45
-subject: Mathematics
 ---
-
-# Lesson 45: Statistics: Mean, Variance and Standard Deviation
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Population variance=Σ(xᵢ−x̄)²/n; standard deviation=√variance.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The mean of 2, 4, 6, 8 is:**
+1. The mean of 2, 4, 6, 8 is:
 - [ ] 4
 - [x] 5
 - [ ] 6
 - [ ] 20
-> **Explanation:** The sum is 20 and there are four observations.
+> The sum is 20 and there are four observations.
 
-**2. Standard deviation is:**
+2. Standard deviation is:
 - [ ] Variance squared
 - [x] Square root of variance
 - [ ] Mean squared
 - [ ] Range divided by 2
-> **Explanation:** By definition, standard deviation is the non-negative square root of variance.
+> By definition, standard deviation is the non-negative square root of variance.
 
-**3. The median of 1, 3, 7 is:**
+3. The median of 1, 3, 7 is:
 - [ ] 1
 - [x] 3
 - [ ] 7
 - [ ] 11/3
-> **Explanation:** The middle value after ordering is 3.
+> The middle value after ordering is 3.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
