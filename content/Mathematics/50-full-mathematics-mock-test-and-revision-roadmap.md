@@ -1,11 +1,7 @@
 ---
 title: Full Mathematics Mock Test and Revision Roadmap
-level: exam-preparation
-lesson: 50
-subject: Mathematics
+level: exam
 ---
-
-# Lesson 50: Full Mathematics Mock Test and Revision Roadmap
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Use an error log: concept gap, formula recall, algebra slip, misread condition, 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. A good error log should record:**
+1. A good error log should record:
 - [ ] Only the final score
 - [x] The question, error type and correction
 - [ ] Only difficult formulas
 - [ ] Only questions answered correctly
-> **Explanation:** The purpose is to identify patterns and prevent repeated mistakes.
+> The purpose is to identify patterns and prevent repeated mistakes.
 
-**2. Before applying a theorem, you should:**
+2. Before applying a theorem, you should:
 - [ ] Ignore its conditions
 - [x] Check its assumptions and domain
 - [ ] Round every value
 - [ ] Choose an option randomly
-> **Explanation:** The conditions determine whether the result is valid.
+> The conditions determine whether the result is valid.
 
-**3. A useful final revision strategy is:**
+3. A useful final revision strategy is:
 - [ ] One long rereading only
 - [x] Timed mixed practice plus error review
 - [ ] Avoiding weak topics
 - [ ] Memorising answers
-> **Explanation:** Retrieval practice, timed application and error correction support durable learning.
+> Retrieval practice, timed application and error correction support durable learning.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
