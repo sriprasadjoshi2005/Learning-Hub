@@ -1,11 +1,7 @@
 ---
 title: Binomial Theorem
 level: intermediate
-lesson: 15
-subject: Mathematics
 ---
-
-# Lesson 15: Binomial Theorem
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Expand powers of binomials efficiently and identify general terms, coefficients 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The coefficient of x² in (x+2)^4 is:**
+1. The coefficient of x² in (x+2)^4 is:
 - [ ] 4
 - [ ] 8
 - [ ] 16
 - [x] 24
-> **Explanation:** Choose r=2 for x²: C(4,2)×2²=6×4=24. Correct option: 24.
+> Choose r=2 for x²: C(4,2)×2²=6×4=24. Correct option: 24.
 
-**2. The number of terms in (a+b)^7 after expansion is:**
+2. The number of terms in (a+b)^7 after expansion is:
 - [ ] 7
 - [x] 8
 - [ ] 14
 - [ ] 49
-> **Explanation:** There are n+1=8 terms before any like terms combine.
+> There are n+1=8 terms before any like terms combine.
 
-**3. C(6,2) equals:**
+3. C(6,2) equals:
 - [ ] 12
 - [x] 15
 - [ ] 20
 - [ ] 30
-> **Explanation:** 6!/(2!4!)=15.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> 6!/(2!4!)=15.
