@@ -1,11 +1,7 @@
 ---
 title: Polynomials and Factor Theorem
 level: intermediate
-lesson: 9
-subject: Mathematics
 ---
-
-# Lesson 9: Polynomials and Factor Theorem
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ For ax²+bx+c, root sum=−b/a and product=c/a.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. If P(3)=0, which is a factor?**
+1. If P(3)=0, which is a factor?
 - [ ] x+3
 - [x] x−3
 - [ ] x²−3
 - [ ] 3x−1
-> **Explanation:** By the factor theorem, P(3)=0 implies x−3 is a factor.
+> By the factor theorem, P(3)=0 implies x−3 is a factor.
 
-**2. The sum of roots of 2x²−6x+1=0 is:**
+2. The sum of roots of 2x²−6x+1=0 is:
 - [ ] −3
 - [x] 3
 - [ ] 1/2
 - [ ] −1/2
-> **Explanation:** The sum is −b/a = 6/2 = 3.
+> The sum is −b/a = 6/2 = 3.
 
-**3. A non-zero polynomial of degree 4 has at most how many distinct real roots?**
+3. A non-zero polynomial of degree 4 has at most how many distinct real roots?
 - [ ] 2
 - [ ] 3
 - [x] 4
 - [ ] 5
-> **Explanation:** A degree-n polynomial has at most n distinct roots.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> A degree-n polynomial has at most n distinct roots.
