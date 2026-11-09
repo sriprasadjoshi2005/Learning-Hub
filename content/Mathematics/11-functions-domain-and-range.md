@@ -1,11 +1,7 @@
 ---
 title: Functions, Domain and Range
 level: intermediate
-lesson: 11
-subject: Mathematics
 ---
-
-# Lesson 11: Functions, Domain and Range
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Understand functions as input-output rules and learn to determine domain, range 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The domain of f(x)=1/(x−5) is:**
+1. The domain of f(x)=1/(x−5) is:
 - [ ] All real numbers
 - [ ] x>5
 - [x] x≠5
 - [ ] x≥5
-> **Explanation:** The denominator cannot be zero.
+> The denominator cannot be zero.
 
-**2. If f(x)=x²+1, f(−2) is:**
+2. If f(x)=x²+1, f(−2) is:
 - [ ] −3
 - [ ] 3
 - [ ] 4
 - [x] 5
-> **Explanation:** (−2)²+1=5.
+> (−2)²+1=5.
 
-**3. A function satisfying f(−x)=f(x) is:**
+3. A function satisfying f(−x)=f(x) is:
 - [ ] Odd
 - [x] Even
 - [ ] One-one
 - [ ] Constant
-> **Explanation:** This is the definition of an even function.
+> This is the definition of an even function.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
