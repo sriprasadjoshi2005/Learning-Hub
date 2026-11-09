@@ -1,11 +1,7 @@
 ---
-title: Vectors: Algebra, Dot Product and Geometry
+title: Vectors-Algebra, Dot Product and Geometry
 level: advanced
-lesson: 43
-subject: Mathematics
 ---
-
-# Lesson 43: Vectors: Algebra, Dot Product and Geometry
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ a·b=|a||b|cosθ; |a|=√(a₁²+a₂²+a₃²).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The magnitude of 2i−3j is:**
+1. The magnitude of 2i−3j is:
 - [ ] 1
 - [ ] √5
 - [x] √13
 - [ ] 5
-> **Explanation:** Magnitude is √(2²+(−3)²)=√13.
+> Magnitude is √(2²+(−3)²)=√13.
 
-**2. If a·b=0 for non-zero vectors, they are:**
+2. If a·b=0 for non-zero vectors, they are:
 - [ ] Parallel
 - [x] Perpendicular
 - [ ] Equal
 - [ ] Opposite
-> **Explanation:** The cosine of the angle is zero.
+> The cosine of the angle is zero.
 
-**3. A unit vector has magnitude:**
+3. A unit vector has magnitude:
 - [ ] 0
 - [x] 1
 - [ ] −1
 - [ ] Depends on direction
-> **Explanation:** That is the definition of a unit vector.
+> That is the definition of a unit vector.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
