@@ -1,11 +1,7 @@
 ---
 title: Algebraic Expressions and Identities
-level: beginner
-lesson: 6
-subject: Mathematics
+level: foundation
 ---
-
-# Lesson 6: Algebraic Expressions and Identities
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Translate arithmetic patterns into algebra, simplify expressions and use standar
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Expand (x+2)^2.**
+1. Expand (x+2)^2.
 - [ ] x²+4
 - [ ] x²+2x+4
 - [x] x²+4x+4
 - [ ] x²−4x+4
-> **Explanation:** Use a²+2ab+b² with a=x and b=2.
+> Use a²+2ab+b² with a=x and b=2.
 
-**2. Factorise x²−16.**
+2. Factorise x²−16.
 - [ ] (x−8)(x+2)
 - [x] (x−4)(x+4)
 - [ ] (x−16)(x+1)
 - [ ] (x−4)²
-> **Explanation:** This is a difference of squares.
+> This is a difference of squares.
 
-**3. Simplify 5a−2a+3.**
+3. Simplify 5a−2a+3.
 - [x] 3a+3
 - [ ] 8a+3
 - [ ] 3a
 - [ ] 6a
-> **Explanation:** Combine the like terms 5a and −2a.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> Combine the like terms 5a and −2a.
