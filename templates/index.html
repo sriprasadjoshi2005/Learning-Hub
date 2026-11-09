@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Welcome{% endblock %}
 {% block content %}
-<div class="hero">
-  <h1>Learn Maths, Physics &amp; Computer Science</h1>
-  <p>Short lessons, quick quizzes, and remarks to guide you along the way.</p>
+<section class="hero">
+  <h1>Learn at your own pace</h1>
+  <p>Short lessons, quick quizzes, and feedback on every answer.</p>
   <a class="btn" href="{{ url_for('login') }}">Sign in with Google</a>
+</section>
+{% if overview %}
+<div class="cards">
+  {% for s in overview %}
+  <div class="card"><strong>{{ s.name }}</strong><br>{{ s.count }} lessons</div>
+  {% endfor %}
 </div>
+{% endif %}
 {% endblock %}

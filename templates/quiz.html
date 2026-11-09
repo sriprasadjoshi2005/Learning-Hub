@@ -2,21 +2,20 @@
 {% block title %}Quiz: {{ lesson.title }}{% endblock %}
 {% block content %}
 <h1>Quiz: {{ lesson.title }}</h1>
-<form method="POST">
-  {% for q in lesson.quiz %}
-    {% set qidx = loop.index0 %}
-<fieldset>
-  <div class="question">
-    {{ loop.index }}. {{ q.question }}
-  </div>
-  {% for opt in q.options %}
+<form method="post">
+  {% for q in shown %}
+  {% set qi = loop.index0 %}
+  <fieldset>
+    <div class="question">{{ loop.index }}. {{ q.question | safe }}</div>
+    {% for idx, text in q.options %}
     <label class="option">
-      <input type="radio" name="q{{ qidx }}" value="{{ loop.index0 }}" required>
-      <span>{{ opt }}</span>
+      <input type="radio" name="q{{ qi }}" value="{{ idx }}" required>
+      <span>{{ text | safe }}</span>
     </label>
-  {% endfor %}
-</fieldset>
+    {% endfor %}
+  </fieldset>
   {% endfor %}
   <button class="btn" type="submit">Submit answers</button>
 </form>
+<p><a href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=lesson.id) }}">&larr; Back to the lesson</a></p>
 {% endblock %}

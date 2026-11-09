@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Learning Hub{% endblock %}</title>
+  <title>{% block title %}{% endblock %} | Learning Hub</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload='renderMathInElement(document.body,{delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false});'></script>
 </head>
 <body>
   <header>
-    <a href="{{ url_for('index') }}" class="brand">Learning Hub</a>
-    {% if session.get('user_id') %}
-      <nav>
+    <a class="brand" href="{{ url_for('index') }}">Learning Hub</a>
+    <nav>
+      {% if session.get('user_id') %}
         <a href="{{ url_for('dashboard') }}">Dashboard</a>
         <a href="{{ url_for('logout') }}">Logout</a>
-      </nav>
-    {% endif %}
+      {% endif %}
+    </nav>
   </header>
   <main>
     {% block content %}{% endblock %}

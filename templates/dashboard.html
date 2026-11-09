@@ -6,8 +6,10 @@
 <div class="cards">
   {% for s in subjects %}
   <a class="card" href="{{ url_for('subject_view', subject_key=s.key) }}">
-    <h2>{{ s.name }}</h2>
-    <p>{{ s.done }} / {{ s.total }} lessons completed</p>
+    <strong>{{ s.name }}</strong>
+    {% if s.description %}<div class="muted">{{ s.description }}</div>{% endif %}
+    <div class="bar"><span style="width: {{ (s.done * 100 // s.total) if s.total else 0 }}%"></span></div>
+    <div class="muted">{{ s.done }} / {{ s.total }} lessons completed{% if s.next_id %} &middot; next: lesson {{ s.next_id }}{% endif %}</div>
   </a>
   {% endfor %}
 </div>

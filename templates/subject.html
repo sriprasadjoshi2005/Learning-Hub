@@ -4,15 +4,21 @@
 <h1>{{ subject_name }}</h1>
 <ul class="lesson-list">
   {% for l in lessons %}
-  <li class="{{ 'done' if l.completed else '' }} {{ 'locked' if not l.unlocked else '' }}">
-    {% if l.unlocked %}
-      <a href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=l.id) }}">{{ l.title }}</a>
-    {% else %}
-      <span>{{ l.title }} (locked)</span>
-    {% endif %}
-    {% if l.completed %}<span class="badge">Completed</span>{% endif %}
+  <li class="{% if not l.unlocked %}locked{% endif %}">
+    <span>
+      {% if l.unlocked %}
+        <a href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=l.id) }}">{{ l.id }}. {{ l.title }}</a>
+      {% else %}
+        {{ l.id }}. {{ l.title }} (locked)
+      {% endif %}
+      {% if l.level_label %}<span class="level level-{{ l.level }}">{{ l.level_label }}</span>{% endif %}
+    </span>
+    <span>
+      {% if l.best is not none %}<span class="muted">best {{ l.best }}%</span>{% endif %}
+      {% if l.completed %}<span class="badge">Completed</span>{% endif %}
+    </span>
   </li>
   {% endfor %}
 </ul>
-<a href="{{ url_for('dashboard') }}">&larr; Back to dashboard</a>
+<p><a href="{{ url_for('dashboard') }}">&larr; Back to dashboard</a></p>
 {% endblock %}
