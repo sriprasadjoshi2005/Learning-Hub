@@ -1,11 +1,7 @@
 ---
 title: Differential Calculus and Integral Revision
 level: advanced
-lesson: 42
-subject: Mathematics
 ---
-
-# Lesson 42: Differential Calculus and Integral Revision
 
 ## Learning objective
 
@@ -42,34 +38,27 @@ d/dx[∫_{g(x)}^{h(x)}f(t)dt]=f(h(x))h'(x)−f(g(x))g'(x).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. d/dx[∫_0^x t³dt] equals:**
+1. d/dx[∫_0^x t³dt] equals:
 - [x] x³
 - [ ] 3x²
 - [ ] x⁴/4
 - [ ] 0
-> **Explanation:** By the fundamental theorem, the derivative is the integrand evaluated at x.
+> By the fundamental theorem, the derivative is the integrand evaluated at x.
 
-**2. d/dx[∫_0^{3x} f(t)dt] is:**
+2. d/dx[∫_0^{3x} f(t)dt] is:
 - [ ] f(3x)
 - [x] 3f(3x)
 - [ ] f'(3x)
 - [ ] 3f'(3x)
-> **Explanation:** Apply the chain rule to the upper limit.
+> Apply the chain rule to the upper limit.
 
-**3. For a variable lower limit x, differentiation contributes:**
+3. For a variable lower limit x, differentiation contributes:
 - [ ] +f(x)
 - [x] −f(x)
 - [ ] f'(x)
 - [ ] 0
-> **Explanation:** The lower-limit term is subtracted.
+> The lower-limit term is subtracted.
 
 
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
