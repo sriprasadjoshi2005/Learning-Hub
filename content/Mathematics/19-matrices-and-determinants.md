@@ -1,11 +1,7 @@
 ---
 title: Matrices and Determinants
 level: intermediate
-lesson: 19
-subject: Mathematics
 ---
-
-# Lesson 19: Matrices and Determinants
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ For [[a,b],[c,d]], det=ad−bc; inverse exists iff det≠0.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The determinant of [[2,3],[1,4]] is:**
+1. The determinant of [[2,3],[1,4]] is:
 - [x] 5
 - [ ] 8
 - [ ] 11
 - [ ] −5
-> **Explanation:** 2×4−3×1=5.
+> 2×4−3×1=5.
 
-**2. If A is 2×3 and B is 3×4, AB has order:**
+2. If A is 2×3 and B is 3×4, AB has order:
 - [ ] 3×3
 - [x] 2×4
 - [ ] 4×2
 - [ ] 2×3
-> **Explanation:** The inner dimensions match and the result uses the outer dimensions.
+> The inner dimensions match and the result uses the outer dimensions.
 
-**3. A square matrix is invertible if its determinant is:**
+3. A square matrix is invertible if its determinant is:
 - [ ] Zero
 - [x] Non-zero
 - [ ] One row
 - [ ] Negative only
-> **Explanation:** A square matrix has an inverse exactly when its determinant is non-zero.
+> A square matrix has an inverse exactly when its determinant is non-zero.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
