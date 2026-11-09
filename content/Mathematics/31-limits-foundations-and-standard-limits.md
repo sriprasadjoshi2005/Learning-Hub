@@ -1,11 +1,7 @@
 ---
-title: Limits: Foundations and Standard Limits
+title: Limits-Foundations and Standard Limits
 level: intermediate
-lesson: 31
-subject: Mathematics
 ---
-
-# Lesson 31: Limits: Foundations and Standard Limits
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ lim(x→0)sinx/x=1 and lim(x→0)(1−cosx)/x²=1/2 (radians).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. lim(x→2)(3x+1) equals:**
+1. lim(x→2)(3x+1) equals:
 - [ ] 5
 - [ ] 6
 - [x] 7
 - [ ] 8
-> **Explanation:** Direct substitution gives 3×2+1=7.
+> Direct substitution gives 3×2+1=7.
 
-**2. lim(x→0) sin x/x equals (radians):**
+2. lim(x→0) sin x/x equals (radians):
 - [ ] 0
 - [x] 1
 - [ ] ∞
 - [ ] Does not exist
-> **Explanation:** This is a fundamental standard limit.
+> This is a fundamental standard limit.
 
-**3. lim(x→1)(x²−1)/(x−1) equals:**
+3. lim(x→1)(x²−1)/(x−1) equals:
 - [ ] 0
 - [ ] 1
 - [x] 2
 - [ ] Does not exist
-> **Explanation:** Factorise to x+1 and evaluate at 1.
+> Factorise to x+1 and evaluate at 1.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
