@@ -1,11 +1,7 @@
 ---
 title: Ellipse
 level: advanced
-lesson: 29
-subject: Mathematics
 ---
-
-# Lesson 29: Ellipse
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Ellipse: c²=a²−b²; e=c/a; latus rectum=2b²/a.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. For x²/25+y²/9=1, the eccentricity is:**
+1. For x²/25+y²/9=1, the eccentricity is:
 - [ ] 3/5
 - [x] 4/5
 - [ ] 5/4
 - [ ] 1/5
-> **Explanation:** c=4 and a=5, so e=4/5.
+> c=4 and a=5, so e=4/5.
 
-**2. An ellipse has eccentricity:**
+2. An ellipse has eccentricity:
 - [ ] Greater than 1
 - [ ] Equal to 1
 - [x] Between 0 and 1
 - [ ] Negative
-> **Explanation:** A non-degenerate ellipse has 0≤e<1; for a non-circular ellipse, 0<e<1.
+> A non-degenerate ellipse has 0≤e<1; for a non-circular ellipse, 0<e<1.
 
-**3. The major-axis length for a=7 is:**
+3. The major-axis length for a=7 is:
 - [ ] 7
 - [x] 14
 - [ ] 49
 - [ ] 28
-> **Explanation:** The full major axis is 2a.
+> The full major axis is 2a.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
