@@ -1,11 +1,7 @@
 ---
 title: Angles, Triangles and Polygon Geometry
 level: beginner
-lesson: 21
-subject: Mathematics
 ---
-
-# Lesson 21: Angles, Triangles and Polygon Geometry
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Triangle angle sum=180°; polygon interior-angle sum=(n−2)180°.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The sum of angles in a triangle is:**
+1. The sum of angles in a triangle is:
 - [ ] 90°
 - [x] 180°
 - [ ] 270°
 - [ ] 360°
-> **Explanation:** This is a basic Euclidean geometry result.
+> This is a basic Euclidean geometry result.
 
-**2. Each interior angle of a regular pentagon is:**
+2. Each interior angle of a regular pentagon is:
 - [x] 108°
 - [ ] 120°
 - [ ] 135°
 - [ ] 144°
-> **Explanation:** (5−2)×180°/5=108°.
+> (5−2)×180°/5=108°.
 
-**3. In a right triangle, the hypotenuse is:**
+3. In a right triangle, the hypotenuse is:
 - [ ] The shortest side
 - [ ] A side beside the right angle
 - [x] Opposite the right angle
 - [ ] Always equal to a leg
-> **Explanation:** The hypotenuse is the side opposite the 90° angle.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> The hypotenuse is the side opposite the 90° angle.
