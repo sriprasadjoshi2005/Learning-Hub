@@ -1,11 +1,7 @@
 ---
 title: Sets, Intervals and Basic Set Operations
-level: beginner
-lesson: 5
-subject: Mathematics
+level: foundation
 ---
-
-# Lesson 5: Sets, Intervals and Basic Set Operations
 
 ## Learning objective
 
@@ -43,34 +39,25 @@ n(A∪B)=n(A)+n(B)−n(A∩B).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. If A={1,2,3} and B={2,3,4}, then A∩B is:**
+1. If A={1,2,3} and B={2,3,4}, then A∩B is:
 - [ ] {1,4}
 - [x] {2,3}
 - [ ] {1,2,3,4}
 - [ ] ∅
-> **Explanation:** The intersection contains only common elements.
+> The intersection contains only common elements.
 
-**2. The interval x > 4 is:**
+2. The interval x > 4 is:
 - [ ] [4,∞)
 - [x] (4,∞)
 - [ ] (−∞,4)
 - [ ] (4,∞]
-> **Explanation:** Four is excluded, so use a parenthesis.
+> Four is excluded, so use a parenthesis.
 
-**3. If U={1,2,3,4} and A={1,3}, A' is:**
+3. If U={1,2,3,4} and A={1,3}, A' is:
 - [ ] {1,3}
 - [x] {2,4}
 - [ ] {1,2,3,4}
 - [ ] ∅
-> **Explanation:** The complement contains elements of U not in A.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> The complement contains elements of U not in A.
