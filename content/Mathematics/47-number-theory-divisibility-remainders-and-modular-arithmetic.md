@@ -1,11 +1,7 @@
 ---
-title: Number Theory: Divisibility, Remainders and Modular Arithmetic
+title: Number Theory-Divisibility, Remainders and Modular Arithmetic
 level: intermediate
-lesson: 47
-subject: Mathematics
 ---
-
-# Lesson 47: Number Theory: Divisibility, Remainders and Modular Arithmetic
 
 ## Learning objective
 
@@ -42,34 +38,27 @@ For positive integers a,b: gcd(a,b)×lcm(a,b)=ab.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. gcd(12,18) is:**
+1. gcd(12,18) is:
 - [ ] 2
 - [ ] 3
 - [x] 6
 - [ ] 36
-> **Explanation:** The greatest common divisor is 6.
+> The greatest common divisor is 6.
 
-**2. 17 mod 5 equals:**
+2. 17 mod 5 equals:
 - [ ] 1
 - [x] 2
 - [ ] 3
 - [ ] 5
-> **Explanation:** 17=3×5+2.
+> 17=3×5+2.
 
-**3. Which is prime?**
+3. Which is prime?
 - [ ] 21
 - [ ] 27
 - [x] 29
 - [ ] 33
-> **Explanation:** 29 has no positive divisors other than 1 and 29.
+> 29 has no positive divisors other than 1 and 29.
 
 
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
