@@ -1,11 +1,7 @@
 ---
 title: Graphs, Transformations and Inverse Functions
 level: intermediate
-lesson: 12
-subject: Mathematics
 ---
-
-# Lesson 12: Graphs, Transformations and Inverse Functions
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Inverse: interchange x,y in y=f(x), then solve for y.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The graph of y=f(x)+3 is shifted:**
+1. The graph of y=f(x)+3 is shifted:
 - [ ] 3 units left
 - [ ] 3 units right
 - [x] 3 units up
 - [ ] 3 units down
-> **Explanation:** Adding 3 outside the function shifts it upward.
+> Adding 3 outside the function shifts it upward.
 
-**2. The inverse of f(x)=2x+4 is:**
+2. The inverse of f(x)=2x+4 is:
 - [ ] (x+4)/2
 - [x] (x−4)/2
 - [ ] 2x−4
 - [ ] 4−2x
-> **Explanation:** Swap x and y and solve x=2y+4.
+> Swap x and y and solve x=2y+4.
 
-**3. The horizontal line test checks whether a function is:**
+3. The horizontal line test checks whether a function is:
 - [ ] Continuous
 - [x] One-one
 - [ ] Even
 - [ ] Periodic
-> **Explanation:** A horizontal line meeting the graph more than once shows repeated outputs.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> A horizontal line meeting the graph more than once shows repeated outputs.
