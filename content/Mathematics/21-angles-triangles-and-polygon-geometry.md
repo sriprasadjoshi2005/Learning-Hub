@@ -1,6 +1,6 @@
 ---
 title: Angles, Triangles and Polygon Geometry
-level: beginner
+level: intermediate
 ---
 
 ## Learning objective
