@@ -47,14 +47,14 @@ a^m a^n=a^(m+n); a^m/a^n=a^(m−n); (a^m)^n=a^(mn); a^(−n)=1/a^n.
 - [ ] 9^4
 > Add exponents with the same non-zero base: 3^(2+4) = 3^6.
 
-**2. Evaluate 5^0.**
+2. Evaluate 5^0.
 - [ ] 0
 - [ ] 5
 - [x] 1
 - [ ] −1
 > Any non-zero number raised to zero is 1.
 
-**3. Simplify √50.**
+3. Simplify √50.
 - [ ] 25√2
 - [x] 5√2
 - [ ] 10√5
