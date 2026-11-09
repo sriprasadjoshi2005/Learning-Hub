@@ -40,7 +40,7 @@ P(A')=1−P(A); P(A∪B)=P(A)+P(B)−P(A∩B).
 
 ## Quiz
 
-**1. A fair die is rolled. Probability of getting 5 is:**
+1. A fair die is rolled. Probability of getting 5 is:
 - [ ] 1/2
 - [ ] 1/3
 - [x] 1/6
