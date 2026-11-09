@@ -1,11 +1,7 @@
 ---
 title: Ratio, Proportion, Percentages and Averages
-level: beginner
-lesson: 3
-subject: Mathematics
+level: foundation
 ---
-
-# Lesson 3: Ratio, Proportion, Percentages and Averages
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Percentage change multiplier = 1 ± p/100; mean = sum/count.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. A quantity is divided in the ratio 2:3. What fraction is the smaller share?**
+1. A quantity is divided in the ratio 2:3. What fraction is the smaller share?
 - [ ] 2/3
 - [ ] 3/5
 - [x] 2/5
 - [ ] 1/2
-> **Explanation:** There are five total parts, of which two belong to the smaller share.
+> There are five total parts, of which two belong to the smaller share.
 
-**2. A value of 200 increases by 15%. What is the result?**
+2. A value of 200 increases by 15%. What is the result?
 - [ ] 215
 - [x] 230
 - [ ] 235
 - [ ] 170
-> **Explanation:** 15% of 200 is 30; the new value is 230.
+> 15% of 200 is 30; the new value is 230.
 
-**3. The mean of 4, 8 and 12 is:**
+3. The mean of 4, 8 and 12 is:
 - [ ] 6
 - [ ] 7
 - [x] 8
 - [ ] 9
-> **Explanation:** (4 + 8 + 12)/3 = 24/3 = 8.
+> (4 + 8 + 12)/3 = 24/3 = 8.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
