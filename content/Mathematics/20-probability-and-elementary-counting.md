@@ -1,11 +1,7 @@
 ---
 title: Probability and Elementary Counting
 level: intermediate
-lesson: 20
-subject: Mathematics
 ---
-
-# Lesson 20: Probability and Elementary Counting
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ P(A')=1−P(A); P(A∪B)=P(A)+P(B)−P(A∩B).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
 **1. A fair die is rolled. Probability of getting 5 is:**
 - [ ] 1/2
 - [ ] 1/3
 - [x] 1/6
 - [ ] 5/6
-> **Explanation:** One of six equally likely faces is 5.
+> One of six equally likely faces is 5.
 
-**2. If P(A)=0.3, P(A') is:**
+2. If P(A)=0.3, P(A') is:
 - [ ] 0.3
 - [x] 0.7
 - [ ] 1.3
 - [ ] 0
-> **Explanation:** The complement has probability 1−0.3=0.7.
+> The complement has probability 1−0.3=0.7.
 
-**3. For independent events A and B, P(A∩B) equals:**
+3. For independent events A and B, P(A∩B) equals:
 - [ ] P(A)+P(B)
 - [ ] P(A)−P(B)
 - [x] P(A)P(B)
 - [ ] P(A)/P(B)
-> **Explanation:** Independence gives the product rule.
+> Independence gives the product rule.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
