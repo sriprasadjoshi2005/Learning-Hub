@@ -1,11 +1,7 @@
 ---
 title: Sequences and Arithmetic Progressions
 level: intermediate
-lesson: 13
-subject: Mathematics
 ---
-
-# Lesson 13: Sequences and Arithmetic Progressions
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ AP: a_n=a+(n−1)d; S_n=n[2a+(n−1)d]/2.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The 12th term of 2, 5, 8, ... is:**
+1. The 12th term of 2, 5, 8, ... is:
 - [ ] 32
 - [x] 35
 - [ ] 38
 - [ ] 29
-> **Explanation:** a_12=2+11×3=35.
+> a_12=2+11×3=35.
 
-**2. The common difference of 9, 4, −1, −6 is:**
+2. The common difference of 9, 4, −1, −6 is:
 - [ ] 5
 - [x] −5
 - [ ] −4
 - [ ] −6
-> **Explanation:** Each term decreases by 5.
+> Each term decreases by 5.
 
-**3. The sum of the first 5 positive integers is:**
+3. The sum of the first 5 positive integers is:
 - [ ] 10
 - [x] 15
 - [ ] 20
 - [ ] 25
-> **Explanation:** 5×6/2=15.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> 5×6/2=15.
