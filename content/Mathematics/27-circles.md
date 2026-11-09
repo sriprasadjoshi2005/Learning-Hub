@@ -1,11 +1,7 @@
 ---
 title: Circles
 level: intermediate
-lesson: 27
-subject: Mathematics
 ---
-
-# Lesson 27: Circles
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Circle: (x−h)²+(y−k)²=r².
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The centre of (x−2)²+(y+3)²=16 is:**
+1. The centre of (x−2)²+(y+3)²=16 is:
 - [ ] (2,3)
 - [ ] (−2,3)
 - [x] (2,−3)
 - [ ] (−2,−3)
-> **Explanation:** The standard form gives centre (h,k)=(2,−3).
+> The standard form gives centre (h,k)=(2,−3).
 
-**2. The radius of x²+y²=49 is:**
+2. The radius of x²+y²=49 is:
 - [x] 7
 - [ ] 49
 - [ ] 14
 - [ ] √7
-> **Explanation:** The radius is √49=7.
+> The radius is √49=7.
 
-**3. A tangent to a circle at a point is perpendicular to:**
+3. A tangent to a circle at a point is perpendicular to:
 - [ ] A chord
 - [ ] The diameter anywhere
 - [x] The radius at contact
 - [ ] The x-axis
-> **Explanation:** The radius to the point of contact is normal to the tangent.
+> The radius to the point of contact is normal to the tangent.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
