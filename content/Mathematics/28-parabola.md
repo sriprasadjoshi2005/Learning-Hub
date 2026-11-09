@@ -1,11 +1,7 @@
 ---
 title: Parabola
 level: advanced
-lesson: 28
-subject: Mathematics
 ---
-
-# Lesson 28: Parabola
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ y²=4ax: focus (a,0), directrix x=−a, latus rectum length 4a.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. For y²=20x, the focus is:**
+1. For y²=20x, the focus is:
 - [x] (5,0)
 - [ ] (0,5)
 - [ ] (−5,0)
 - [ ] (0,−5)
-> **Explanation:** 4a=20 gives a=5 and focus (a,0).
+> 4a=20 gives a=5 and focus (a,0).
 
-**2. The length of the latus rectum of x²=4ay is:**
+2. The length of the latus rectum of x²=4ay is:
 - [ ] a
 - [ ] 2a
 - [x] 4a
 - [ ] 8a
-> **Explanation:** The standard latus rectum length is 4a.
+> The standard latus rectum length is 4a.
 
-**3. The directrix of y²=16x is:**
+3. The directrix of y²=16x is:
 - [ ] x=4
 - [x] x=−4
 - [ ] y=−4
 - [ ] y=4
-> **Explanation:** Here a=4, so directrix is x=−a=−4.
+> Here a=4, so directrix is x=−a=−4.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
