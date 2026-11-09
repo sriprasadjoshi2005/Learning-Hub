@@ -1,11 +1,7 @@
 ---
-title: Exam Problem-Solving: Trigonometry, Coordinate Geometry and Calculus
-level: exam-preparation
-lesson: 49
-subject: Mathematics
+title: Exam Problem-Solving-Trigonometry, Coordinate Geometry and Calculus
+level: exam
 ---
-
-# Lesson 49: Exam Problem-Solving: Trigonometry, Coordinate Geometry and Calculus
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ Use domain, sign, interval and endpoint checks before accepting a result.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. For f(x)=x² on [−1,2], the absolute maximum is:**
+1. For f(x)=x² on [−1,2], the absolute maximum is:
 - [ ] 0
 - [ ] 1
 - [ ] 2
 - [x] 4
-> **Explanation:** The endpoint values are 1 and 4; the minimum at 0 is 0.
+> The endpoint values are 1 and 4; the minimum at 0 is 0.
 
-**2. The tangent to x²+y²=9 at (0,3) is:**
+2. The tangent to x²+y²=9 at (0,3) is:
 - [ ] x+y=3
 - [x] y=3
 - [ ] x=3
 - [ ] y=0
-> **Explanation:** Use xx₁+yy₁=9: 3y=9.
+> Use xx₁+yy₁=9: 3y=9.
 
-**3. If an integral's integrand is odd and limits are −a to a, the value is:**
+3. If an integral's integrand is odd and limits are −a to a, the value is:
 - [ ] 1
 - [ ] 2
 - [x] 0
 - [ ] Depends on a
-> **Explanation:** Odd symmetry makes the two halves cancel.
+> Odd symmetry makes the two halves cancel.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
