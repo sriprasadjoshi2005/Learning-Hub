@@ -1,11 +1,7 @@
 ---
 title: Definite Integrals and Fundamental Theorem
 level: advanced
-lesson: 39
-subject: Mathematics
 ---
-
-# Lesson 39: Definite Integrals and Fundamental Theorem
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ If F'=f, ∫_a^b f(x)dx=F(b)−F(a).
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. ∫_0^1 2x dx equals:**
+1. ∫_0^1 2x dx equals:
 - [ ] 0
 - [x] 1
 - [ ] 2
 - [ ] 4
-> **Explanation:** Antiderivative is x²; evaluate 1−0=1.
+> Antiderivative is x²; evaluate 1−0=1.
 
-**2. For an odd function f, ∫_−a^a f(x)dx is:**
+2. For an odd function f, ∫_−a^a f(x)dx is:
 - [ ] 2∫_0^a f
 - [x] 0
 - [ ] a
 - [ ] Always positive
-> **Explanation:** Odd symmetry cancels the two halves.
+>Odd symmetry cancels the two halves.
 
-**3. ∫_a^b f(x)dx equals:**
+3. ∫_a^b f(x)dx equals:
 - [ ] ∫_b^a f
 - [x] −∫_b^a f
 - [ ] 0
 - [ ] |∫_b^a f|
-> **Explanation:** Interchanging limits reverses orientation.
+> Interchanging limits reverses orientation.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
