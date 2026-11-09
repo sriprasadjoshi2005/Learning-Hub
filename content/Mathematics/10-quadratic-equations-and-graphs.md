@@ -1,11 +1,7 @@
 ---
 title: Quadratic Equations and Graphs
 level: intermediate
-lesson: 10
-subject: Mathematics
 ---
-
-# Lesson 10: Quadratic Equations and Graphs
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ x=[−b±√(b²−4ac)]/(2a); D=b²−4ac.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The discriminant of x²−4x+4=0 is:**
+1. The discriminant of x²−4x+4=0 is:
 - [ ] 16
 - [ ] 8
 - [x] 0
 - [ ] −4
-> **Explanation:** D=(−4)²−4(1)(4)=16−16=0.
+> D=(−4)²−4(1)(4)=16−16=0.
 
-**2. The roots of x²−7x+12=0 are:**
+2. The roots of x²−7x+12=0 are:
 - [ ] 2, 6
 - [x] 3, 4
 - [ ] −3, −4
 - [ ] 1, 12
-> **Explanation:** Factorise as (x−3)(x−4)=0.
+> Factorise as (x−3)(x−4)=0.
 
-**3. For y=−2x²+1, the parabola opens:**
+3. For y=−2x²+1, the parabola opens:
 - [ ] Upward
 - [x] Downward
 - [ ] Sideways
 - [ ] It is a line
-> **Explanation:** A negative coefficient of x² means the parabola opens downward.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> A negative coefficient of x² means the parabola opens downward.
