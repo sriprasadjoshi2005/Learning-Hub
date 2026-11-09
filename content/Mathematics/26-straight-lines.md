@@ -1,11 +1,7 @@
 ---
 title: Straight Lines
 level: intermediate
-lesson: 26
-subject: Mathematics
 ---
-
-# Lesson 26: Straight Lines
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Slope m=(y₂−y₁)/(x₂−x₁); point-line distance=|Ax₁+By₁+C|/√(A²
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The slope of y=−3x+7 is:**
+1. The slope of y=−3x+7 is:
 - [ ] 7
 - [x] −3
 - [ ] 3
 - [ ] −7
-> **Explanation:** The coefficient of x in slope-intercept form is the slope.
+> The coefficient of x in slope-intercept form is the slope.
 
-**2. A line perpendicular to slope 2 has slope:**
+2. A line perpendicular to slope 2 has slope:
 - [ ] 2
 - [ ] −2
 - [ ] 1/2
 - [x] −1/2
-> **Explanation:** The product of perpendicular slopes is −1.
+> The product of perpendicular slopes is −1.
 
-**3. Distance from (0,0) to 3x+4y−10=0 is:**
+3. Distance from (0,0) to 3x+4y−10=0 is:
 - [x] 2
 - [ ] 10
 - [ ] 5
 - [ ] 4
-> **Explanation:** Distance = |−10|/√(9+16)=10/5=2.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> Distance = |−10|/√(9+16)=10/5=2.
