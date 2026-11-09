@@ -1,11 +1,7 @@
 ---
 title: Exam Problem-Solving: Equations, Functions and Algebra
-level: exam-preparation
-lesson: 48
-subject: Mathematics
+level: exam
 ---
-
-# Lesson 48: Exam Problem-Solving: Equations, Functions and Algebra
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ For ax²+bx+c=0 to have real roots, b²−4ac≥0.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. For x+1/x with real x≠0, the expression can never be:**
+1. For x+1/x with real x≠0, the expression can never be:
 - [ ] 2
 - [ ] 3
 - [ ] −2
 - [x] 0
-> **Explanation:** By AM-GM for positive x, or by x+1/x=0 giving x²+1=0, zero is impossible over the reals.
+> By AM-GM for positive x, or by x+1/x=0 giving x²+1=0, zero is impossible over the reals.
 
-**2. The quadratic x²−4x+k=0 has real roots when:**
+2. The quadratic x²−4x+k=0 has real roots when:
 - [ ] k>4
 - [x] k≤4
 - [ ] k<−4
 - [ ] k≥4
-> **Explanation:** D=16−4k≥0 gives k≤4.
+> D=16−4k≥0 gives k≤4.
 
-**3. If f is one-one, f(a)=f(b) implies:**
+3. If f is one-one, f(a)=f(b) implies:
 - [ ] a≠b
 - [x] a=b
 - [ ] a=0
 - [ ] b=0
-> **Explanation:** This is the defining implication for injectivity.
+> This is the defining implication for injectivity.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
