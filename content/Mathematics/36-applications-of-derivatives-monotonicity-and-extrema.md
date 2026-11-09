@@ -1,11 +1,7 @@
 ---
-title: Applications of Derivatives: Monotonicity and Extrema
+title: Applications of Derivatives-Monotonicity and Extrema
 level: advanced
-lesson: 36
-subject: Mathematics
 ---
-
-# Lesson 36: Applications of Derivatives: Monotonicity and Extrema
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ f'>0 increasing; f'<0 decreasing; f'=0 candidates for extrema.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. If f' changes from positive to negative, the point is a:**
+1. If f' changes from positive to negative, the point is a:
 - [ ] Local minimum
 - [x] Local maximum
 - [ ] Point of inflection always
 - [ ] Discontinuity
-> **Explanation:** The function changes from increasing to decreasing.
+> The function changes from increasing to decreasing.
 
-**2. For f(x)=x², the critical point x=0 is a:**
+2. For f(x)=x², the critical point x=0 is a:
 - [ ] Maximum
 - [x] Minimum
 - [ ] Neither
 - [ ] Undefined point
-> **Explanation:** f''(0)=2>0, so it is a minimum.
+> f''(0)=2>0, so it is a minimum.
 
-**3. To find absolute extrema on [a,b], compare:**
+3. To find absolute extrema on [a,b], compare:
 - [ ] Only f'(a) and f'(b)
 - [ ] Only stationary points
 - [x] Critical-point values and endpoint values
 - [ ] Only second derivatives
-> **Explanation:** All candidates in the closed interval must be checked.
+> All candidates in the closed interval must be checked.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
