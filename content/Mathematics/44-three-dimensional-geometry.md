@@ -1,11 +1,7 @@
 ---
 title: Three-Dimensional Geometry
 level: advanced
-lesson: 44
-subject: Mathematics
 ---
-
-# Lesson 44: Three-Dimensional Geometry
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Extend coordinate geometry to space using distance, direction ratios, lines and 
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Distance between (0,0,0) and (1,2,2) is:**
+1. Distance between (0,0,0) and (1,2,2) is:
 - [ ] 2
 - [x] 3
 - [ ] 5
 - [ ] √5
-> **Explanation:** √(1+4+4)=3.
+> √(1+4+4)=3.
 
-**2. A normal vector to 2x−y+3z=4 is:**
+2. A normal vector to 2x−y+3z=4 is:
 - [x] (2,−1,3)
 - [ ] (4,0,0)
 - [ ] (1,2,3)
 - [ ] (2,1,−3)
-> **Explanation:** The plane coefficients give a normal vector.
+> The plane coefficients give a normal vector.
 
-**3. The distance formula from a point to a plane has denominator:**
+3. The distance formula from a point to a plane has denominator:
 - [ ] a+b+c
 - [x] √(a²+b²+c²)
 - [ ] a²+b²+c²
 - [ ] 1
-> **Explanation:** It is the magnitude of the plane's normal vector.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> It is the magnitude of the plane's normal vector.
