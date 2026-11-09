@@ -1,11 +1,7 @@
 ---
 title: Linear Equations and Word Problems
-level: beginner
-lesson: 7
-subject: Mathematics
+level: foundation
 ---
-
-# Lesson 7: Linear Equations and Word Problems
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ ax+b=c ⇒ x=(c−b)/a, provided a≠0.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Solve 4x+3=19.**
+1. Solve 4x+3=19.
 - [ ] 3
 - [x] 4
 - [ ] 5
 - [ ] 6
-> **Explanation:** Subtract 3 to get 4x=16, hence x=4.
+> Subtract 3 to get 4x=16, hence x=4.
 
-**2. Solve 2(x−3)=10.**
+2. Solve 2(x−3)=10.
 - [ ] 2
 - [ ] 5
 - [x] 8
 - [ ] 13
-> **Explanation:** Divide by 2: x−3=5, so x=8.
+> Divide by 2: x−3=5, so x=8.
 
-**3. If x/3=7, x equals:**
+3. If x/3=7, x equals:
 - [ ] 10
 - [ ] 14
 - [x] 21
 - [ ] 28
-> **Explanation:** Multiply both sides by 3.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> Multiply both sides by 3.
