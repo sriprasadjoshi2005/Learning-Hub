@@ -1,11 +1,7 @@
 ---
-title: Coordinate Geometry: Cartesian Plane and Distance
-level: beginner
-lesson: 25
-subject: Mathematics
+title: Coordinate Geometry-Cartesian Plane and Distance
+level: intermediate
 ---
-
-# Lesson 25: Coordinate Geometry: Cartesian Plane and Distance
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ Distance=√[(x₂−x₁)²+(y₂−y₁)²]; midpoint=((x₁+x₂)/2,(y₁+y�
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Distance between (0,0) and (3,4) is:**
+1. Distance between (0,0) and (3,4) is:
 - [ ] 3
 - [ ] 4
 - [x] 5
 - [ ] 7
-> **Explanation:** √(9+16)=5.
+> √(9+16)=5.
 
-**2. The midpoint of (2,−1) and (4,5) is:**
+2. The midpoint of (2,−1) and (4,5) is:
 - [x] (3,2)
 - [ ] (2,3)
 - [ ] (6,4)
 - [ ] (1,2)
-> **Explanation:** Average the x-coordinates and y-coordinates separately.
+> Average the x-coordinates and y-coordinates separately.
 
-**3. The point (0,−3) lies on:**
+3. The point (0,−3) lies on:
 - [ ] x-axis
 - [x] y-axis
 - [ ] Both axes
 - [ ] Neither axis
-> **Explanation:** Its x-coordinate is zero.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> Its x-coordinate is zero.
