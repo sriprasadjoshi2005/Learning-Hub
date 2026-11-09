@@ -1,11 +1,7 @@
 ---
 title: Powers, Roots and Scientific Notation
-level: beginner
-lesson: 4
-subject: Mathematics
+level: foundation
 ---
-
-# Lesson 4: Powers, Roots and Scientific Notation
 
 ## Learning objective
 
@@ -42,34 +38,25 @@ a^m a^n=a^(m+n); a^m/a^n=a^(m−n); (a^m)^n=a^(mn); a^(−n)=1/a^n.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. Simplify 3² × 3^4.**
+1. Simplify 3² × 3^4.
 - [ ] 3^8
 - [x] 3^6
 - [ ] 3^2
 - [ ] 9^4
-> **Explanation:** Add exponents with the same non-zero base: 3^(2+4) = 3^6.
+> Add exponents with the same non-zero base: 3^(2+4) = 3^6.
 
 **2. Evaluate 5^0.**
 - [ ] 0
 - [ ] 5
 - [x] 1
 - [ ] −1
-> **Explanation:** Any non-zero number raised to zero is 1.
+> Any non-zero number raised to zero is 1.
 
 **3. Simplify √50.**
 - [ ] 25√2
 - [x] 5√2
 - [ ] 10√5
 - [ ] 2√5
-> **Explanation:** √50 = √(25 × 2) = 5√2.
-
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
+> √50 = √(25 × 2) = 5√2.
