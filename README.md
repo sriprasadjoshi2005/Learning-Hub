@@ -1,121 +1,70 @@
 # Learning Hub
 
-A very simple Flask website: sign in with Google, pick a subject (Maths, Physics,
-Computer Science), work through short lessons, and take a quiz after each one.
-Quizzes give a remark based on your score and unlock the next lesson if you pass (60%+).
+A Flask site: sign in with Google, pick a subject, read short lessons, and take a quiz after each one.
+Quizzes show the correct answer and an explanation for every question. Passing (60%+) unlocks the next lesson.
+Your best score is kept; a failed retake never undoes a pass.
 
 ## Project structure
 
 ```
-learning-hub/
-├── app.py              # Flask routes, auth, quiz grading
-├── content.py           # All lesson text and quiz questions (edit this to add content)
-├── requirements.txt
-├── .env.example          # Copy to .env and fill in your own values
-├── templates/            # HTML pages (Jinja2)
-├── static/style.css       # Plain CSS
-└── database.db            # Created automatically on first run (SQLite)
+app.py              Flask routes, login, quiz grading
+content_loader.py   Reads lessons from content/ (and the old content.py, if it is still there)
+check_content.py    Validates every lesson. Run it before every push.
+content/            One folder per subject, one Markdown file per lesson
+templates/, static/ Pages and styling
 ```
 
-## 1. Get Google OAuth credentials
-
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a project
-   (or use an existing one).
-2. Go to **APIs & Services > OAuth consent screen** and set it up (External is fine for testing).
-3. Go to **APIs & Services > Credentials > Create Credentials > OAuth client ID**.
-4. Choose **Web application**.
-5. Under **Authorized redirect URIs**, add:
-   - `http://localhost:5000/callback` (for local testing)
-   - Your production URL + `/callback` once you deploy (e.g. `https://yourapp.onrender.com/callback`)
-6. Copy the **Client ID** and **Client Secret**.
-
-## 2. Set up locally
+## Run locally
 
 ```bash
-cd learning-hub
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
-cp .env.example .env
-# then edit .env and paste in your Google Client ID, Client Secret,
-# and any random string for FLASK_SECRET_KEY
-```
-
-## 3. Run it
-
-```bash
+cp .env.example .env        # fill in Google keys and a random FLASK_SECRET_KEY
+python check_content.py
 python app.py
 ```
 
-Visit `http://localhost:5000`, sign in with Google, and start a subject.
+## Adding or editing lessons
 
-The SQLite file `database.db` is created automatically and stores users and progress.
+Create `content/<subject>/NN-topic-name.md` (numbers run 01, 02, 03... with no gaps).
+A new subject is a new folder with a `_subject.md` (name, description, order).
 
-## 4. Push to GitHub
+```
+---
+title: Quadratic Equations
+level: intermediate
+---
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
+Lesson text in Markdown. Write maths with $x^2$ inline or $$x = \frac{-b}{2a}$$ on its own line.
+Write a literal dollar sign as \$.
+
+## Quiz
+
+1. Question text?
+   - [ ] wrong option
+   - [x] correct option (exactly one)
+   - [ ] wrong option
+   - [ ] wrong option
+   > Explanation shown after the quiz.
 ```
 
-`.env` and `database.db` are already excluded via `.gitignore`, so your secrets and
-personal data won't be uploaded.
+Rules (enforced by `check_content.py`): level is `foundation`, `intermediate`, `advanced` or `exam`;
+2 or 3 questions per lesson; exactly 4 options and one `[x]`; every question has an explanation.
+Options are shuffled on screen, so the position of the correct answer in the file does not matter.
 
-## 5. Deploying to Render
+A folder in `content/` replaces an old subject with the same name in `content.py`.
 
-This repo includes `render.yaml`, `Procfile`, and a `gunicorn` entry, so it deploys with
-almost no manual setup.
+## Settings (environment variables)
 
-**Option A — Blueprint (recommended, uses `render.yaml`):**
+| Name | Purpose |
+|---|---|
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Google login |
+| `FLASK_SECRET_KEY` | Signs login sessions (Render generates it) |
+| `UNLOCK_MODE` | `sequential` (default) or `open` (all lessons available) |
+| `DATABASE_URL` | Neon/Postgres connection string. When set, progress is stored there (permanent). |
+| `DB_PATH` | Location of the local SQLite file, used only when `DATABASE_URL` is empty |
 
-1. Push this repo to GitHub.
-2. In the [Render dashboard](https://dashboard.render.com/), click **New > Blueprint**
-   and select your repo. Render reads `render.yaml` and creates the web service.
-3. When prompted, fill in the two secret env vars: `GOOGLE_CLIENT_ID` and
-   `GOOGLE_CLIENT_SECRET`. `FLASK_SECRET_KEY` is generated for you.
-4. Deploy. Render gives you a URL like `https://learning-hub-xxxx.onrender.com`.
-5. Back in Google Cloud Console (**Credentials > your OAuth client**), add
-   `https://learning-hub-xxxx.onrender.com/callback` to **Authorized redirect URIs**.
+## Render and the database
 
-**Option B — Manual web service (no Blueprint):**
-
-1. **New > Web Service**, connect the repo.
-2. Runtime: **Python 3**. Build command: `pip install -r requirements.txt`.
-   Start command: `gunicorn app:app` (already set via `Procfile` too).
-3. Under **Environment**, add `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and a random
-   `FLASK_SECRET_KEY`.
-4. Add `https://<your-render-url>/callback` to Google Cloud Console's redirect URIs.
-
-### About the database on Render
-
-Render's default filesystem is **ephemeral** — anything written to disk (like the
-SQLite file) is wiped on every deploy or restart. By default this repo runs fine on
-Render's free plan, but user progress will reset each time you redeploy or the service
-restarts, because the free plan doesn't support persistent disks.
-
-If you upgrade to a paid Render plan and want progress to survive deploys:
-
-- Using `render.yaml` (Option A): uncomment the `disk:` block and the `DB_PATH` env var
-  in `render.yaml`, then redeploy the Blueprint.
-- Manual setup (Option B): add a disk yourself (**Settings > Disks > Add Disk**, e.g.
-  mount path `/opt/render/project/src/data`) and set an env var `DB_PATH` to
-  `/opt/render/project/src/data/database.db`.
-
-### Local development still works the same way
-
-Locally, `DB_PATH` and `PORT` aren't set, so the app falls back to a `database.db` file
-next to `app.py` and port 5000, and `FLASK_DEBUG` defaults to on. Run it with
-`python app.py` as before — Render's `gunicorn app:app` start command is only used in
-production.
-
-## Adding more content
-
-Open `content.py`. Each subject is a dictionary with a `name` and a list of `lessons`.
-Each lesson needs a unique, consecutive `id` (lessons unlock in order: 1, then 2, then 3...),
-a `title`, HTML `content`, and a `quiz` list of questions with `options` and the correct
-`answer` index (0-based). Just copy the pattern of an existing lesson.
+On Render's free plan the disk is wiped on every deploy and restart, so a local SQLite file loses progress.
+Set `DATABASE_URL` to a free Neon Postgres database and progress is permanent. Follow `DATABASE_SETUP.md`.
+Without `DATABASE_URL` the app still works, using a local SQLite file (fine for testing on your computer).

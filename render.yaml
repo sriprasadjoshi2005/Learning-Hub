@@ -14,13 +14,7 @@ services:
         generateValue: true
       - key: PYTHON_VERSION
         value: 3.11.9
-      # A persistent disk keeps the SQLite database across deploys/restarts, but
-      # Render's free plan doesn't support disks. If you upgrade to a paid plan,
-      # uncomment this var plus the "disk:" block below (see the README) so progress
-      # stops resetting on every deploy.
-      # - key: DB_PATH
-      #   value: /opt/render/project/src/data/database.db
-# disk:
-#   name: learning-hub-data
-#   mountPath: /opt/render/project/src/data
-#   sizeGB: 1
+      # Connection string of your free Neon (Postgres) database. Progress is stored there,
+      # so it survives restarts and redeploys. See DATABASE_SETUP.md.
+      - key: DATABASE_URL
+        sync: false
