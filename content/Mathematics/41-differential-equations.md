@@ -1,11 +1,7 @@
 ---
 title: Differential Equations
 level: advanced
-lesson: 41
-subject: Mathematics
 ---
-
-# Lesson 41: Differential Equations
 
 ## Learning objective
 
@@ -42,34 +38,26 @@ For separable dy/dx=f(x)g(y), write dy/g(y)=f(x)dx where valid.
 4. Substitute the result into the original condition whenever extraneous solutions are possible.
 5. Keep exact values (fractions, radicals and π) until a decimal approximation is requested.
 
-## Quick quiz
+## Quiz
 
-**1. The order of d²y/dx²+dy/dx+y=0 is:**
+1. The order of d²y/dx²+dy/dx+y=0 is:
 - [ ] 0
 - [ ] 1
 - [x] 2
 - [ ] 3
-> **Explanation:** The highest derivative is the second derivative.
+> The highest derivative is the second derivative.
 
-**2. A solution of dy/dx=2x is:**
+2. A solution of dy/dx=2x is:
 - [ ] y=x+C
 - [x] y=x²+C
 - [ ] y=2x²+C
 - [ ] y=e^(2x)
-> **Explanation:** Integrating 2x gives x²+C.
+> Integrating 2x gives x²+C.
 
-**3. For dy/dx=3y, the general solution is:**
+3. For dy/dx=3y, the general solution is:
 - [ ] 3x+C
 - [x] Ce^(3x)
 - [ ] 3e^x
 - [ ] C+3y
-> **Explanation:** Separate variables: dy/y=3dx, then exponentiate.
+> Separate variables: dy/y=3dx, then exponentiate.
 
-
-## Revision checklist
-
-- [ ] I can explain the main definitions without looking at the notes.
-- [ ] I can reproduce the essential formulae and state their conditions.
-- [ ] I can solve the worked examples independently.
-- [ ] I can explain why each incorrect quiz option is wrong.
-- [ ] I can solve a fresh board-level question and an entrance-style question on this topic.
