@@ -68,7 +68,7 @@ Hugo de Vries proposed Mutation Theory based on his observations of the evening 
 ### Comparison of Evolutionary Theories
 
 | Feature | Lamarckism | Darwinism | Mutation Theory |
-| ----- | ----- | ----- | ----- |
+|---|---|---|---|
 | Scientist | Jean-Baptiste Lamarck | Charles Darwin | Hugo de Vries |
 | Main Idea | Inheritance of acquired characters | Natural selection | Sudden mutations |
 | Main Mechanism | Use and disuse | Differential survival and reproduction | Heritable genetic changes |
@@ -137,7 +137,7 @@ The bottleneck effect occurs when a population undergoes a sudden, substantial r
 ### Founder Effect vs Bottleneck Effect
 
 | Feature | Founder Effect | Bottleneck Effect |
-| ----- | ----- | ----- |
+|---|---|---|
 | Main Event | A small group establishes a new population | Existing population undergoes a drastic reduction |
 | Genetic Change | New population inherits a limited sample of source variation | Surviving population retains a limited sample of original variation |
 | Main Cause | Migration and colonization | Sudden population reduction |
@@ -212,7 +212,7 @@ Disruptive selection favors both extreme phenotypes over intermediate phenotypes
 ### Comparison of Natural Selection Patterns
 
 | Type | Favored Phenotype | Effect on Distribution | Example |
-| ----- | ----- | ----- | ----- |
+|---|---|---|---|
 | **Stabilizing** | Intermediate | Narrows around the mean | Human birth weight |
 | **Directional** | One extreme | Shifts toward one extreme | Industrial melanism |
 | **Disruptive** | Both extremes | May produce two peaks | Different beak sizes favored by different food sources |
@@ -258,7 +258,7 @@ Therefore:
 Where:
 
 | Expression | Genotype | Meaning |
-| ----- | ----- | ----- |
+|---|---|---|
 | \(p^2\) | AA | Homozygous dominant |
 | \(2pq\) | Aa | Heterozygous |
 | \(q^2\) | aa | Homozygous recessive |
@@ -298,7 +298,7 @@ q^2=(0.3)^2=0.09
 **Final genotype distribution:**
 
 | Genotype | Frequency | Percentage |
-| ----- | ----- | ----- |
+|---|---|---|
 | AA | 0.49 | 49% |
 | Aa | 0.42 | 42% |
 | aa | 0.09 | 9% |
@@ -321,7 +321,7 @@ When these conditions are maintained, allele and genotype frequencies remain con
 The following factors can alter genetic equilibrium:
 
 | Factor | Effect |
-| ----- | ----- |
+|---|---|
 | **Gene Migration (Gene Flow)** | Introduces or removes alleles through movement between populations. |
 | **Genetic Drift** | Randomly changes allele frequencies, especially in small populations. |
 | **Mutation** | Creates new alleles or changes existing alleles. |
@@ -407,9 +407,9 @@ The following factors can alter genetic equilibrium:
 
 7. In a population, the frequency of allele A is 0.6 and the frequency of allele a is 0.4. Assuming Hardy-Weinberg equilibrium, what is the expected frequency of homozygous recessive individuals?
 
-- [ ] 0.16
 - [ ] 0.36
 - [ ] 0.48
+- [ ] 0.64
 - [x] 0.16
 
 > The homozygous recessive genotype frequency is \(q^2\). Since \(q=0.4\), \(q^2=(0.4)^2=0.16\), or 16%.
