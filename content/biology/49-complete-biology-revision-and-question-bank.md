@@ -1,185 +1,197 @@
 ---
-title: Complete Biology Revision and Question Bank
+title: Full-Length Biology Entrance Examination
 level: exam
 ---
 
-# COMPLETE BIOLOGY REVISION
+This mock examination evaluates understanding across all six curriculum phases: biological foundations, cell biology and genetics, plant physiology, animal and human biology, ecology and evolution, and biotechnology. It combines factual recall, conceptual reasoning, numerical problem-solving, and integrated biological applications.
 
-## Phase 1 — Classification, Cells and Biomolecules
+## Exam Specifications and Strategy
 
-- Monera: Prokaryotic organisms.
-- Protista: Mostly unicellular eukaryotes.
-- Fungi: Heterotrophic organisms with chitin cell walls.
-- Plantae: Photosynthetic organisms with cellulose cell walls.
-- Animalia: Multicellular heterotrophs without cell walls.
-- Prokaryotic cells have 70S ribosomes; eukaryotic cytoplasm has 80S ribosomes.
-- Mitochondria and chloroplasts contain 70S ribosomes.
-- Proteins contain amino acids; carbohydrates contain sugars; nucleic acids contain nucleotides.
-- Enzymes lower activation energy.
+- **Coverage:** Complete 50-lesson syllabus.
+- **Question types:** MCQs, integrated scenarios, numerical problems, and data analysis.
+- **Target time:** Maximum 90 seconds per question.
+- **Performance goal:** At least 90%.
 
-## Phase 2 — Cell Division and Genetics
+\[
+\text{Performance}=\frac{\text{Correct Answers}}{\text{Total Questions}}\times100
+\]
 
-- Mitosis produces two genetically similar cells.
-- Meiosis produces haploid cells.
-- Meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.
-- Crossing over occurs during pachytene.
-- Mendel's laws: dominance, segregation and independent assortment.
-- Incomplete dominance produces an intermediate phenotype; codominance expresses both alleles.
-- DNA replication is semi-conservative and proceeds in the 5' to 3' direction.
-- Transcription produces RNA; translation produces proteins.
-- AUG is the usual start codon. UAA, UAG and UGA are stop codons.
-- The lac operon is an inducible operon regulated by allolactose.
+**Strategy:** Read each question carefully; identify negative keywords (NOT, EXCEPT, INCORRECT, FALSE); eliminate incorrect options; verify units and calculations; avoid spending too long on one question; revisit uncertain answers at the end.
 
-## Phase 3 — Plant Biology
+## Core Concept Refresher Map
 
-- Root vascular bundles are radial; stem bundles are generally conjoint.
-- Dicot stems usually have bundles in a ring; monocot stems have scattered bundles.
-- Casparian strips occur in the root endodermis.
-- C3 plants use RuBP and RuBisCO; their first stable product is 3-PGA.
-- C4 plants use PEP and PEP carboxylase; their first stable product is oxaloacetate.
-- C4 plants reduce photorespiration by concentrating CO2 around RuBisCO.
-- Cyclic photophosphorylation produces ATP only.
-- Non-cyclic photophosphorylation produces ATP, NADPH and oxygen.
-- Xylem transports water and minerals; phloem transports organic food.
-- Auxins promote elongation; gibberellins promote growth and germination.
-- Cytokinins promote cell division; ABA promotes dormancy and stomatal closure.
-- Ethylene promotes fruit ripening.
+```text
+                   Full Syllabus
+                       |
+    -----------------------------------------------
+    |          |          |          |             |
+  Phase 1    Phase 2    Phase 3    Phase 4      Phases 5 & 6
+    |          |          |          |             |
+ Taxonomy   Cytology    Plant      Human        Ecology
+ Foundations Genetics   Anatomy    Physiology   Evolution
+            Molecular  Physiology Reproduction Biotechnology
+            Biology    Reproduction Health
+```
 
-## Phase 4 — Human Biology
+## Phase-Wise Examination Coverage
 
-Human Organ Systems:
-- Bile emulsifies fats but contains no digestive enzymes.
-- Haemoglobin transports most oxygen.
-- SA node is the natural pacemaker of the heart.
-- Nephron is the functional unit of the kidney.
-- Neurons transmit impulses; hormones regulate target organs.
+| Phase | Major Areas | Important Concepts |
+|---|---|---|
+| 1. Foundations | Diversity, taxonomy, morphology, anatomy | Classification, tissues, plant and animal structures |
+| 2. Cell Biology and Genetics | Cells, biomolecules, cell division, inheritance, molecular biology | Organelles, enzymes, Mendelian ratios, DNA replication, transcription |
+| 3. Plant Biology | Physiology, transport, growth, reproduction | Photosynthesis, respiration, hormones, mineral nutrition, fertilization |
+| 4. Animal and Human Biology | Animal organisation, physiology, reproduction, health | Organ systems, hormones, immunity, diseases, reproductive health |
+| 5. Ecology and Evolution | Population, ecosystem, biodiversity, evolution | Population growth, energy flow, natural selection, conservation |
+| 6. Biotechnology | Principles, tools, applications | Recombinant DNA, PCR, vectors, genetic engineering, gene therapy |
 
-Heart and ECG:
-- LUB: Closure of atrioventricular valves.
-- DUB: Closure of semilunar valves.
-- P wave: Atrial depolarization.
-- QRS complex: Ventricular depolarization.
-- T wave: Ventricular repolarization.
+## Common Exam Traps
 
-Immunity:
-- IgA: Mucosal secretions and colostrum.
-- IgE: Allergic reactions.
-- IgG: Crosses the placenta.
-- IgM: First major antibody in a primary response.
-- IgD: B-cell surface receptor.
-- Active immunity develops through the body's own immune response.
-- Passive immunity involves receiving preformed antibodies.
-- T cells mature in the thymus; B cells mature in bone marrow.
-
-Reproduction:
-- Spermatogenesis occurs in seminiferous tubules.
-- Sertoli cells nourish developing sperm.
-- Leydig cells produce testosterone.
-- Fertilization occurs at the ampullary-isthmic junction.
-- Implantation occurs in the uterine endometrium.
-- hCG maintains the corpus luteum during early pregnancy.
-- Prolactin produces milk; oxytocin causes milk ejection.
-
-## Phase 5 — Evolution, Ecology and Biodiversity
-
-- Homologous organs indicate divergent evolution.
-- Analogous organs indicate convergent evolution.
-- Natural selection and genetic drift change allele frequencies.
-- Hardy-Weinberg equilibrium describes genetic stability under ideal conditions.
-- Producers form the first trophic level.
-- Energy flows in one direction through ecosystems.
-- Approximately 10% of energy passes to the next trophic level.
-- Decomposition involves fragmentation, leaching, catabolism, humification and mineralization.
-- The energy pyramid is always upright.
-- Ecological interactions: mutualism, competition, predation, parasitism, commensalism and amensalism.
-- Biodiversity includes genetic, species and ecological diversity.
-- Habitat loss and fragmentation are major threats.
-- In-situ conservation protects organisms in natural habitats.
-- Ex-situ conservation includes zoos, botanical gardens, seed banks, gene banks and cryopreservation at approximately -196°C.
-
-## Phase 6 — Biotechnology
-
-- Restriction enzymes cut DNA at specific sequences.
-- DNA ligase joins DNA fragments.
-- Cloning vectors carry foreign DNA into host cells.
-- Vectors contain an origin of replication (ori) and selectable markers.
-- Bt cotton uses cry genes to resist certain insect pests.
-- RNA interference silences genes by degrading complementary mRNA.
-- Mature insulin contains Chain A (21 amino acids) and Chain B (30 amino acids), without C-peptide.
-- The first clinical gene therapy was performed in 1990 for ADA deficiency.
-- PCR amplifies DNA.
-- ELISA detects antigens or antibodies.
-
-## Important Exam Points
-
-- Prokaryotic ribosomes are 70S; eukaryotic cytoplasmic ribosomes are 80S.
-- Meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.
-- C3 plants use RuBisCO for initial carbon fixation; C4 plants use PEP carboxylase.
-- C4 plants strongly suppress photorespiration.
-- LUB is caused by AV valve closure; DUB by semilunar valve closure.
-- IgG crosses the placenta; IgA is abundant in colostrum.
-- Active immunity uses the body's own response; passive immunity transfers antibodies.
-- Podocyte foot processes form filtration slits.
-- Dicer processes double-stranded RNA; RISC helps target complementary RNA.
-- Bacterial operons can produce polycistronic mRNA.
-- Cryopreservation commonly uses liquid nitrogen at -196°C.
-
-## Assertion-Reasoning
-
-Evaluate Assertion (A) and Reason (R) separately.
-
-A. Both are true, and R correctly explains A.
-B. Both are true, but R does not explain A.
-C. A is true, but R is false.
-D. A is false, but R is true.
-
-Always check whether the reason actually explains the assertion. Two true statements do not necessarily have an explanatory relationship.
+- **Negative keywords:** Identify NOT, EXCEPT, INCORRECT, and FALSE before answering.
+- **Units:** Convert nanometres to metres and check units throughout calculations.
+- **DNA composition:** A double-stranded DNA molecule with \(n\) base pairs contains \(2n\) nucleotides.
+- **Enzymes:** DNA polymerase synthesizes DNA; RNA polymerase synthesizes RNA; DNA ligase joins DNA fragments.
+- **Growth models:** Exponential growth produces a J-shaped curve; logistic growth produces a sigmoid curve.
+- **Ribosomes:** Prokaryotic ribosomes are 70S; eukaryotic cytoplasmic ribosomes are 80S. Mitochondria and chloroplasts contain 70S ribosomes.
+- **Chromosome number vs DNA content:** DNA replication doubles DNA content, not chromosome number.
+- **Genetic ratios:** Distinguish genotype, phenotype, allele frequency, and recombination frequency.
+- **Significant figures:** Retain sufficient precision during calculations and round only the final result.
 
 ## Quiz
 
-1. **Assertion (A):** Photorespiration is strongly suppressed in C4 plants.
+1. A mutant strain of *E. coli* synthesizes functional RNA polymerase but fails to initiate transcription at promoter regions. Which component is most likely defective?
 
-   **Reason (R):** C4 plants concentrate CO2 around RuBisCO in bundle sheath cells through the Hatch-Slack pathway.
+- [ ] Alpha (\(\alpha\)) subunit
+- [ ] Beta (\(\beta\)) subunit
+- [x] Sigma (\(\sigma\)) factor
+- [ ] Rho (\(\rho\)) termination factor
 
-- [x] Both (A) and (R) are true, and (R) is the correct explanation of (A).
-- [ ] Both (A) and (R) are true, but (R) is not the correct explanation of (A).
-- [ ] (A) is true, but (R) is false.
-- [ ] (A) is false, but (R) is true.
+> The sigma factor associates with the core RNA polymerase to form the holoenzyme and provides promoter-recognition specificity. Rho is involved in transcription termination.
 
-> C4 plants initially fix CO2 using PEP carboxylase in mesophyll cells. The resulting C4 acids transport carbon to bundle sheath cells, where decarboxylation raises the local CO2 concentration around RuBisCO and suppresses its oxygenase activity.
+2. A double-stranded DNA molecule contains \(3.2\times10^6\) base pairs. Cytosine accounts for 30% of its nucleotides. Calculate its approximate length and total number of hydrogen bonds.
 
-2. Match the following immunoglobulins with their major functions.
+- [x] \(1.088\text{ mm}\); \(8.32\times10^6\) bonds
+- [ ] \(1.088\text{ mm}\); \(7.36\times10^6\) bonds
+- [ ] \(2.176\text{ mm}\); \(9.60\times10^6\) bonds
+- [ ] \(1.088\text{ cm}\); \(4.16\times10^6\) bonds
 
-| Column I | Column II |
-|---|---|
-| A. IgA | 1. Crosses the placenta |
-| B. IgE | 2. Mucosal secretions |
-| C. IgG | 3. Allergic reactions |
-| D. IgM | 4. Primary immune response |
+> **Length:**
+>
+> \[
+> L=3.2\times10^6\times0.34\text{ nm}
+> =1.088\times10^{-3}\text{ m}
+> =1.088\text{ mm}
+> \]
+>
+> By Chargaff's rule, \(G=C=30\%\) and \(A=T=20\%\).
+>
+> Therefore, GC pairs make up 60% of base pairs, while AT pairs make up 40%.
+>
+> \[
+> GC=0.60(3.2\times10^6)=1.92\times10^6
+> \]
+>
+> \[
+> AT=0.40(3.2\times10^6)=1.28\times10^6
+> \]
+>
+> Each GC pair has three hydrogen bonds, and each AT pair has two:
+>
+> \[
+> H=3(1.92\times10^6)+2(1.28\times10^6)
+> \]
+>
+> \[
+> \boxed{H=8.32\times10^6}
+> \]
 
-- [ ] A-1, B-2, C-3, D-4
-- [x] A-2, B-3, C-1, D-4
-- [ ] A-3, B-4, C-2, D-1
-- [ ] A-4, B-3, C-1, D-2
+3. A population's growth rate is maximum when its size reaches half its carrying capacity. Which model describes this population, and what is this point called?
 
-> IgA is abundant in mucosal secretions, IgE is involved in allergic reactions, IgG crosses the placenta, and IgM is the major antibody produced during the primary immune response.
+- [ ] Exponential growth; inflection point
+- [x] Logistic growth; inflection point
+- [ ] Geometric growth; carrying limit
+- [ ] Haplontic growth; equilibrium point
 
-3. Which of the following statements about cellular structures is incorrect?
+> Logistic growth follows:
+>
+> \[
+> \frac{dN}{dt}=rN\left(\frac{K-N}{K}\right)
+> \]
+>
+> Maximum growth occurs at \(N=K/2\), the inflection point of the sigmoid curve. At \(N=K\), net population growth is zero.
 
-- [ ] Prokaryotic ribosomes are 70S.
-- [ ] Mitochondria contain their own DNA and ribosomes.
-- [x] Eukaryotic cytoplasmic ribosomes are 70S.
-- [ ] Chloroplasts contain their own genetic material.
+4. A diploid cell has 24 chromosomes and 24 pg of DNA during G1. What are its chromosome number and DNA content immediately after S phase? Also, what is the expected heterozygote frequency in a Hardy-Weinberg population where 16% show an autosomal recessive phenotype?
 
-> Eukaryotic cytoplasmic ribosomes are 80S, consisting of 60S and 40S subunits. The 70S ribosomes are found in prokaryotes and in the mitochondria and chloroplasts of eukaryotic cells.
+- [ ] 48 chromosomes, 48 pg; 24% heterozygotes
+- [x] 24 chromosomes, 48 pg; 48% heterozygotes
+- [ ] 24 chromosomes, 24 pg; 16% heterozygotes
+- [ ] 48 chromosomes, 24 pg; 64% heterozygotes
 
-4. **Assertion (A):** IgG provides natural passive immunity to the developing fetus.
+> **After S phase:** DNA content doubles, but chromosome number remains unchanged because each chromosome consists of two sister chromatids.
+>
+> **Hardy-Weinberg calculation:**
+>
+> \[
+> q^2=0.16\Rightarrow q=0.4
+> \]
+>
+> \[
+> p=1-q=0.6
+> \]
+>
+> \[
+> 2pq=2(0.6)(0.4)=0.48=48\%
+> \]
 
-   **Reason (R):** IgG is capable of crossing the human placental barrier.
+5. Which statement correctly describes photosynthesis and carbon fixation?
 
-- [x] Both (A) and (R) are true, and (R) is the correct explanation of (A).
-- [ ] Both (A) and (R) are true, but (R) is not the correct explanation of (A).
-- [ ] (A) is true, but (R) is false.
-- [ ] (A) is false, but (R) is true.
+- [ ] C3 plants use PEP as their primary CO2 acceptor.
+- [x] C4 plants use PEP as their initial CO2 acceptor, while NADPH provides reducing power in the Calvin cycle.
+- [ ] Cyclic photophosphorylation produces ATP, NADPH, and oxygen.
+- [ ] RuBP is the primary CO2 acceptor in C4 plants.
 
-> Maternal IgG crosses the placenta and provides the fetus with preformed antibodies. This is natural passive immunity because the fetus receives antibodies rather than producing them through its own immune response.
+> C3 plants initially fix CO2 using RuBP and RuBisCO. C4 plants use PEP and PEP carboxylase to form oxaloacetate. Their CO2-concentrating mechanism suppresses photorespiration. Cyclic photophosphorylation produces ATP only, whereas non-cyclic photophosphorylation produces ATP, NADPH, and oxygen. NADPH supplies reducing power during the Calvin cycle.
+
+6. Which statement about human kidney function is INCORRECT?
+
+- [ ] The glomerulus is involved in ultrafiltration.
+- [ ] The proximal convoluted tubule reabsorbs most filtered glucose under normal conditions.
+- [x] The ascending limb of the loop of Henle is highly permeable to water.
+- [ ] ADH increases water reabsorption in collecting ducts.
+
+> The descending limb is highly permeable to water, whereas the ascending limb is relatively impermeable to water and reabsorbs electrolytes. ADH increases aquaporin-2 insertion in collecting duct cells. Podocytes form filtration slits around glomerular capillaries.
+
+7. Which combination correctly describes human reproductive and circulatory physiology?
+
+- [ ] LH stimulates Sertoli cells; the AV node is the natural pacemaker.
+- [x] LH stimulates Leydig cells to secrete androgens; the SA node is the natural pacemaker.
+- [ ] FSH stimulates Leydig cells to secrete testosterone; Purkinje fibres initiate the heartbeat.
+- [ ] Oxytocin stimulates sperm production; the Bundle of His initiates the heartbeat.
+
+> LH acts on Leydig cells to stimulate testosterone secretion, while FSH acts on Sertoli cells to support spermatogenesis. The heart's conduction pathway is SA node → AV node → Bundle of His → Purkinje fibres.
+
+8. Which statement correctly describes evolution, ecological interactions, and population growth?
+
+- [ ] Genetic drift is always directional; commensalism is \(+/+\).
+- [x] Natural selection increases the frequency of advantageous heritable traits; commensalism is \(+/0\).
+- [ ] Convergent evolution produces homologous structures; logistic growth is J-shaped.
+- [ ] Exponential growth reaches carrying capacity automatically; mutualism is \(-/-\).
+
+> Natural selection changes the frequency of heritable traits through differential survival and reproduction. Genetic drift causes random changes in allele frequencies, especially in small populations. Convergent evolution produces analogous structures. Logistic growth is sigmoid, while exponential growth is J-shaped. Commensalism is \(+/0\), mutualism \(+/+\), and competition \(-/-\).
+
+9. Which of the following correctly describes recombinant DNA technology and its applications?
+
+- [ ] DNA ligase cuts DNA; Dicer amplifies DNA during PCR.
+- [x] Restriction endonucleases cut DNA, DNA ligase joins fragments, and Taq polymerase amplifies DNA during PCR.
+- [ ] Selectable markers initiate translation; RNA polymerase joins DNA fragments.
+- [ ] RISC produces recombinant insulin; restriction enzymes synthesize mRNA.
+
+> Recombinant DNA technology involves isolating DNA, restriction digestion, ligation, transformation, and selection. Cloning vectors contain an origin of replication and selectable markers. Taq DNA polymerase from *Thermus aquaticus* is used in PCR. Bt cotton uses cry genes against certain insect pests; RNA interference uses Dicer and RISC to silence complementary RNA. Mature recombinant human insulin contains A (21 amino acids) and B (30 amino acids) chains without C-peptide. Gene therapy was first clinically performed in 1990 for ADA deficiency.
+
+10. Which statement correctly combines major concepts in ecology, plant transport, and biotechnology?
+
+- [ ] Energy pyramids may be inverted; Casparian strips promote unrestricted apoplastic movement.
+- [x] Energy pyramids are always upright; Casparian strips restrict apoplastic movement through the root endodermis.
+- [ ] NPP equals GPP plus respiration; xylem transports sugars from source to sink.
+- [ ] Ex-situ conservation protects species only in their natural habitats.
+
+> Energy decreases at successive trophic levels, so the energy pyramid is always upright. Net primary productivity is \(NPP=GPP-R\). Xylem primarily transports water and minerals, while phloem translocates organic solutes between source and sink regions. Casparian strips restrict apoplastic movement. In-situ conservation protects organisms in natural habitats; ex-situ conservation includes botanical gardens, zoological parks, seed banks, gene banks, and cryopreservation using liquid nitrogen at approximately \(-196^\circ\mathrm{C}\).
