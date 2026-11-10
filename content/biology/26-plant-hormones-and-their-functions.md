@@ -29,6 +29,7 @@ This classification is useful for understanding their major functions, although 
 Auxins are plant hormones primarily associated with cell elongation and the regulation of growth responses.
 
 **Important examples:**
+
 - **IAA (Indole-3-acetic acid)**: The major naturally occurring auxin.
 - **NAA (Naphthaleneacetic acid)**: A synthetic auxin used in agriculture and horticulture.
 - **2,4-D (2,4-Dichlorophenoxyacetic acid)**: A synthetic auxin used as a selective herbicide.
@@ -53,6 +54,7 @@ Auxins are plant hormones primarily associated with cell elongation and the regu
 Gibberellins are plant hormones that promote stem elongation, seed germination, and several developmental processes.
 
 **Important example:**
+
 - **GA₃ (Gibberellic Acid)** is a widely studied gibberellin.
 
 **Major functions:**
@@ -75,6 +77,7 @@ Gibberellins are plant hormones that promote stem elongation, seed germination, 
 Cytokinins are plant hormones that primarily stimulate cell division and promote shoot development.
 
 **Important examples:**
+
 - **Zeatin**: A naturally occurring cytokinin.
 - **Kinetin**: A cytokinin-like compound commonly used in plant tissue culture.
 
@@ -185,7 +188,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 ## Quiz
 
-### 1. A plant tissue culture scientist adjusts the nutrient medium to contain a high concentration of cytokinin relative to auxin. What type of organ development is generally induced from the callus?
+1. A plant tissue culture scientist adjusts the nutrient medium to contain a high concentration of cytokinin relative to auxin. What type of organ development is generally induced from the callus?
 
 - [ ] Root differentiation
 - [x] Shoot differentiation
@@ -194,7 +197,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 > A high cytokinin-to-auxin ratio generally promotes shoot initiation (caulogenesis), whereas a high auxin-to-cytokinin ratio favours root initiation (rhizogenesis).
 
-### 2. During severe drought, which plant growth regulator accumulates in leaves and triggers protective stomatal closure to reduce water loss?
+2. During severe drought, which plant growth regulator accumulates in leaves and triggers protective stomatal closure to reduce water loss?
 
 - [ ] Gibberellin (GA₃)
 - [ ] Indole-3-acetic acid (IAA)
@@ -203,7 +206,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 > Abscisic Acid is known as the stress hormone. During water deficit, ABA signalling causes guard cells to lose turgor, resulting in stomatal closure and reduced transpiration.
 
-### 3. The phenomenon of bolting, involving rapid stem and internode elongation before flowering in rosette plants such as cabbage and beet, is promoted by:
+3. The phenomenon of bolting, involving rapid stem and internode elongation before flowering in rosette plants such as cabbage and beet, is promoted by:
 
 - [ ] Auxin
 - [x] Gibberellin
@@ -212,7 +215,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 > Gibberellins stimulate internodal elongation and can induce bolting in rosette plants before flowering.
 
-### 4. Which plant growth regulator is responsible for delaying leaf senescence through the Richmond-Lang effect?
+4. Which plant growth regulator is responsible for delaying leaf senescence through the Richmond-Lang effect?
 
 - [ ] Ethylene
 - [ ] Abscisic Acid
@@ -221,7 +224,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 > Cytokinins delay leaf senescence by maintaining metabolic activity and promoting nutrient mobilisation in leaves. This phenomenon is known as the Richmond-Lang effect.
 
-### 5. Which synthetic plant growth regulator is commonly used as a selective herbicide to control broad-leaved weeds in cereal crops?
+5. Which synthetic plant growth regulator is commonly used as a selective herbicide to control broad-leaved weeds in cereal crops?
 
 - [ ] IAA
 - [ ] GA₃
@@ -230,7 +233,7 @@ The relative concentrations of auxins and cytokinins in a plant tissue culture m
 
 > 2,4-D is a synthetic auxin that, when used at suitable concentrations, selectively controls many broad-leaved dicot weeds while generally sparing monocot cereal crops.
 
-### 6. Which of the following is the only naturally occurring gaseous plant growth regulator?
+6. Which of the following is the only naturally occurring gaseous plant growth regulator?
 
 - [ ] Auxin
 - [ ] Gibberellin
