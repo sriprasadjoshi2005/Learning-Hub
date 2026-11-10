@@ -1,6 +1,6 @@
 ---
 title: Neural Control and Coordination
-level: intermediate → advanced
+level: advanced
 ---
 
 The nervous system controls and coordinates rapid communication throughout the body through **electrical impulses (action potentials)** and **chemical transmission across synapses**. It enables organisms to detect stimuli, process information, and produce appropriate responses.
