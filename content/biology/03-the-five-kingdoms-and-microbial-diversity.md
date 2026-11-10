@@ -1,5 +1,7 @@
-## title: The Five Kingdoms and Microbial Diversity
+---
+title: The Five Kingdoms and Microbial Diversity
 level: foundation
+---
 
 In 1969, **R.H. Whittaker** proposed the **Five Kingdom Classification** system. This system classifies all living organisms into Monera, Protista, Fungi, Plantae, and Animalia based on five main criteria: cell structure, thallus organisation, mode of nutrition, reproduction, and phylogenetic relationships.
 
