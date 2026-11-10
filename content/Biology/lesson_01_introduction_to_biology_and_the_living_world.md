@@ -5,9 +5,9 @@ level: foundation
 
 ## Learning objective
 
-**Biology** ($\mathrm{bios}$ = life, $\mathrm{logos}$ = study) is the branch of natural science that studies living organisms, their structure, function, growth, origin, evolution, and distribution. 
+ Biology is the branch of natural science that studies living organisms, their structure, function, growth, origin, evolution, and distribution. 
 
-Understanding what defines "life" is the foundation of biological science. While non-living structures can possess single isolated characteristics of life (such as crystal growth), living organisms exhibit a unique, integrated set of defining properties.
+ Understanding what defines "life" is the foundation of biological science. While non-living structures can possess single isolated characteristics of life (such   as crystal growth), living organisms exhibit a unique, integrated set of defining properties.
 
 ## Defining Characteristics of Living Organisms
 
@@ -46,8 +46,6 @@ $$\text{Observation} \longrightarrow \text{Hypothesis Formulation} \longrightarr
 - **Confusing growth mechanisms**: Living growth is **intrinsic** (internal cell division/expansion), whereas non-living growth is **extrinsic** (accumulation of matter on the surface).
 - **Listing reproduction as an absolute defining property**: Sterile organisms (mules, worker bees) are living but cannot reproduce. Therefore, reproduction is a characteristic of life, but **not** an absolute defining feature.
 - **Failing to distinguish between cellular and cell-free reactions**: Isolated metabolic reactions in test tubes ($in\ vitro$) are biological reactions, but they are not living organisms themselves because they lack cellular organisation.
-
----
 
 ## Quiz
 
