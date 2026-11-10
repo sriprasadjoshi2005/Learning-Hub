@@ -1,77 +1,153 @@
-## title: Photosynthesis — Fundamentals
+---
+title: Photosynthesis — Fundamentals
 level: intermediate
+---
 
-Photosynthesis is an anabolic physicochemical process where green plants, algae, and photosynthetic bacteria convert light energy into chemical energy stored in organic bonds.
+Photosynthesis is an **anabolic physicochemical process** in which green plants, algae, and certain bacteria convert light energy into chemical energy stored in organic compounds.
 
 ## Photosynthetic Reaction Summary
 
+The overall balanced equation for oxygenic photosynthesis is:
+
 $$
-\mathrm{6CO_2 + 12H_2O} \xrightarrow[\text{Chlorophyll}]{\text{Light Energy}} \mathrm{C_6H_{12}O_6 + 6H_2O + 6O_2 \uparrow}
+\mathrm{6CO_2 + 12H_2O}
+\xrightarrow[\text{Chlorophyll}]{\text{Light Energy}}
+\mathrm{C_6H_{12}O_6 + 6H_2O + 6O_2}
 $$
+
+- **Reactants**: Carbon dioxide ($\mathrm{CO_2}$) and water ($\mathrm{H_2O}$).
+- **Products**: Carbohydrates, water, and oxygen ($\mathrm{O_2}$).
+- **Energy source**: Sunlight, captured by photosynthetic pigments.
 
 ## Chloroplast Architecture and Pigment Systems
 
-* **Chloroplast Structure**:
-  * *Thylakoids / Grana*: Membrane-bound sacs carrying photosynthetic pigments; site of **Light-dependent Reactions**.
-  * *Stroma*: Fluid matrix containing enzymes for carbohydrate synthesis; site of **Dark Reactions (Calvin Cycle)**.
+Chloroplasts are the primary sites of photosynthesis in plant cells. Their internal structures are specialized for different stages of the process.
+
+### Chloroplast Structure
+
+| Structure | Description | Function |
+| ----- | ----- | ----- |
+| **Thylakoids** | Flattened, membrane-bound sacs containing photosynthetic pigments. | Site of light-dependent reactions. |
+| **Grana** | Stacks of thylakoids. | Increase the membrane surface area available for light absorption. |
+| **Stroma** | Fluid-filled matrix surrounding the grana. | Contains enzymes required for the Calvin cycle. |
 
 ### Photosynthetic Pigments
-Pigments absorb light at specific wavelengths:
-* **Chlorophyll *a***: Primary photosynthetic pigment (bright/blue-green).
-* **Chlorophyll *b***: Accessory pigment (yellow-green).
-* **Carotenoids**: Accessory pigments (yellow to orange-red) acting as antioxidants to prevent **photo-oxidation** (photobleaching) of chlorophyll *a*.
 
-## Action Spectrum vs Absorption Spectrum
+Photosynthetic pigments absorb light at specific wavelengths and transfer the captured energy to the photosynthetic reaction centres.
 
-```
-           Photosynthetic Pigment Spectra
-                        |
-  --------------------------------------------------
-  |                                                |
-Absorption Spectrum                              Action Spectrum
-(Plot of light absorption vs                     (Plot of photosynthetic rate
- wavelength for pigments)                         vs wavelength of light)
-```
+| Pigment | Colour | Role |
+| ----- | ----- | ----- |
+| **Chlorophyll *a*** | Blue-green | Primary photosynthetic pigment directly involved in the conversion of light energy into chemical energy. |
+| **Chlorophyll *b*** | Yellow-green | Accessory pigment that broadens the range of light absorbed. |
+| **Carotenoids** | Yellow, orange, or red | Accessory pigments that absorb additional wavelengths and protect chlorophyll from photo-oxidative damage. |
 
-> *Key Finding*: The action spectrum of photosynthesis closely matches the absorption spectra of **Chlorophyll *a*** and **Chlorophyll *b***, showing peak rates in the **Blue** ($430\text{ nm}$) and **Red** ($660\text{ nm}$) regions.
+- **Primary pigment**: Chlorophyll *a* is essential for oxygenic photosynthesis.
+- **Accessory pigments**: Chlorophyll *b* and carotenoids transfer absorbed energy to chlorophyll *a*.
+- **Photoprotection**: Carotenoids help prevent photo-oxidation by dissipating excess absorbed energy.
+
+## Absorption Spectrum vs Action Spectrum
+
+These two spectra describe different aspects of photosynthesis.
+
+### Absorption Spectrum
+
+Shows the amount of light absorbed by a photosynthetic pigment at different wavelengths.
+
+### Action Spectrum
+
+Shows the relative rate of photosynthesis at different wavelengths of light.
+
+### Comparison
+
+| Feature | Absorption Spectrum | Action Spectrum |
+| ----- | ----- | ----- |
+| Measures | Light absorption | Rate of photosynthesis |
+| Represents | Light absorbed by pigments | Effectiveness of different wavelengths in photosynthesis |
+| Determined by | Measuring pigment absorption | Measuring photosynthetic activity |
+
+### Important Wavelengths
+
+The action spectrum of photosynthesis broadly corresponds to the combined absorption spectra of photosynthetic pigments.
+
+- **Blue light**: High photosynthetic activity, around $430\text{ nm}$.
+- **Red light**: High photosynthetic activity, around $660\text{ nm}$.
+- **Green light**: Generally less effective because much of it is reflected or transmitted by leaves.
 
 ## Early Historical Experiments
 
-1. **Joseph Priestley (1770)**: Showed that plants restore air fouled by burning candles/animals (discovered $\mathrm{O_2}$).
-2. **Jan Ingenhousz (1779)**: Proved that sunlight is essential for plants to release $\mathrm{O_2}$.
-3. **T.W. Engelmann (1882)**: Placed *Cladophora* alga in a spectrum of light with aerobic bacteria to plot the first **action spectrum**.
-4. **Cornelis van Niel (1930)**: Demonstrated that $\mathrm{O_2}$ released during photosynthesis originates from **$\mathrm{H_2O}$**, not $\mathrm{CO_2}$, using purple/green sulfur bacteria ($\mathrm{H_2S}$ as hydrogen donor).
+Several scientists contributed to our understanding of photosynthesis through experiments.
+
+| Scientist | Year | Major Contribution |
+| ----- | ----- | ----- |
+| **Joseph Priestley** | 1770s | Demonstrated that plants could restore air that had been made unsuitable for burning by a candle or animal respiration. |
+| **Jan Ingenhousz** | 1779 | Established that sunlight is essential for plants to release oxygen and that this occurs mainly in their green parts. |
+| **T.W. Engelmann** | 1882 | Used *Cladophora* algae and aerobic bacteria to demonstrate the effectiveness of different wavelengths of light in photosynthesis. |
+| **Cornelis van Niel** | 1930s | Proposed that oxygen released during photosynthesis originates from water, not carbon dioxide. |
+
+### Engelmann's Experiment
+
+Engelmann passed light through a prism to illuminate different regions of a filamentous green alga called *Cladophora*. Aerobic bacteria were introduced to detect regions where oxygen production was highest.
+
+- The bacteria accumulated mainly in the **blue and red regions**.
+- These regions showed the highest rates of photosynthesis.
+- The experiment established the first action spectrum of photosynthesis.
+
+### Van Niel's Experiment
+
+Van Niel studied photosynthetic bacteria that used hydrogen sulfide ($\mathrm{H_2S}$) instead of water as their hydrogen donor.
+
+In these bacteria, sulfur was released instead of oxygen.
+
+This led to the general equation:
+
+$$
+\mathrm{CO_2 + 2H_2A}
+\xrightarrow{\text{Light}}
+\mathrm{(CH_2O) + H_2O + 2A}
+$$
+
+Here, $\mathrm{H_2A}$ represents the hydrogen donor.
+
+- In sulfur bacteria, $\mathrm{H_2A}$ is $\mathrm{H_2S}$, producing sulfur.
+- In green plants, $\mathrm{H_2A}$ is $\mathrm{H_2O}$, producing oxygen.
+
+**Conclusion**: The oxygen released during plant photosynthesis originates from the splitting of water molecules, not carbon dioxide.
 
 ## Common Exam Traps
 
-* **Source of Oxygen**: Oxygen gas released during plant photosynthesis comes entirely from the splitting of **water molecules** ($\mathrm{H_2O}$), not carbon dioxide ($\mathrm{CO_2}$).
-* **Most Effective Light Wavelengths**: Photosynthesis is most efficient under **Red** and **Blue** light; Green light is largely reflected, making it the least effective.
+- **Source of oxygen**: Oxygen released during oxygenic photosynthesis comes from water ($\mathrm{H_2O}$), not carbon dioxide ($\mathrm{CO_2}$).
+- **Primary pigment**: Chlorophyll *a* is the primary photosynthetic pigment; chlorophyll *b* and carotenoids are accessory pigments.
+- **Location of reactions**: Light-dependent reactions occur in the thylakoid membranes, while the Calvin cycle occurs in the stroma.
+- **Most effective wavelengths**: Blue and red light generally support the highest rates of photosynthesis.
+- **Green light**: It is less effective overall because much of it is reflected or transmitted, but it is not completely unused.
+- **Engelmann's experiment**: Aerobic bacteria accumulated in regions of blue and red light, where oxygen production was highest.
+- **Van Niel's conclusion**: Water is the source of oxygen released during oxygenic photosynthesis.
 
 ## Quiz
 
-1. T.W. Engelmann illuminated a filament of the green alga *Cladophora* split through a prism and introduced aerobic bacteria to track oxygen production. At which wavelengths of light did the bacteria accumulate in highest numbers?
+1. T.W. Engelmann illuminated a filament of the green alga *Cladophora* with different wavelengths of light and introduced aerobic bacteria to track oxygen production. In which regions did the bacteria accumulate in the highest numbers?
 
-* \[ \] Green and Yellow light
-* \[x\] Blue and Red light
-* \[ \] Violet and Infrared light
-* \[ \] Orange and Green light
+- [ ] Green and yellow light
+- [x] Blue and red light
+- [ ] Violet and infrared light
+- [ ] Orange and green light
 
-> Engelmann's classic experiment showed that aerobic bacteria gathered predominantly in the blue and red light regions, establishing the first action spectrum of photosynthesis.
+> Engelmann's experiment showed that aerobic bacteria gathered predominantly in the blue and red regions, where oxygen production was highest. This established the first action spectrum of photosynthesis.
 
-2. Van Niel’s experiments with photosynthetic purple and green sulfur bacteria ($\text{H}_2\text{S} \rightarrow 2\text{H}^+ + 2e^- + \text{S}$) led to which fundamental conclusion regarding plant photosynthesis?
+2. Van Niel's experiments with photosynthetic purple and green sulfur bacteria led to which fundamental conclusion regarding plant photosynthesis?
 
-* \[ \] Glucose synthesis occurs during the light reactions.
-* \[ \] Carbon dioxide is broken down to release oxygen gas.
-* \[x\] Oxygen evolved by green plants originates from water splitting, not carbon dioxide.
-* \[ \] Light is not required for ATP synthesis in thylakoids.
+- [ ] Glucose synthesis occurs during the light-dependent reactions.
+- [ ] Carbon dioxide is broken down to release oxygen gas.
+- [x] Oxygen evolved by green plants originates from water splitting, not carbon dioxide.
+- [ ] Light is not required for ATP synthesis in thylakoids.
 
-> By demonstrating that sulfur bacteria use $\text{H}_2\text{S}$ and release sulfur instead of oxygen, Van Niel deduced that green plants use $\text{H}_2\text{O}$ as a hydrogen donor, meaning released $\text{O}_2$ comes from water.
+> Van Niel demonstrated that sulfur bacteria use hydrogen sulfide and release sulfur instead of oxygen. He deduced that green plants use water as a hydrogen donor, meaning the released oxygen originates from water.
 
-3. Which accessory photosynthetic pigment functions as a protective shield, preventing photo-oxidative damage (photobleaching) of reaction center chlorophyll *a* molecules?
+3. Which accessory photosynthetic pigment helps prevent photo-oxidative damage to chlorophyll *a* by dissipating excess absorbed light energy?
 
-* \[ \] Chlorophyll *b*
-* \[x\] Carotenoids
-* \[ \] Phycobilins
-* \[ \] Xanthophylls only
+- [ ] Chlorophyll *b*
+- [x] Carotenoids
+- [ ] Phycobilins
+- [ ] Xanthophylls only
 
-> Carotenoids act as accessory pigments and protective antioxidants that absorb excess light energy and dissipate it as heat, shielding chlorophyll *a* from photo-oxidation.
+> Carotenoids act as accessory pigments and protective antioxidants. They help dissipate excess light energy and shield chlorophyll from photo-oxidation.
