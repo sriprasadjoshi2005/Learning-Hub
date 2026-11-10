@@ -9,7 +9,7 @@ level: foundation
 
  Understanding what defines "life" is the foundation of biological science. While non-living structures can possess single isolated characteristics of life (such   as crystal growth), living organisms exhibit a unique, integrated set of defining properties.
 
-## Defining Characteristics of Living Organisms
+## Core concepts
 
 To determine whether an entity is living, biologists evaluate specific functional and structural criteria:
 
@@ -21,8 +21,6 @@ To determine whether an entity is living, biologists evaluate specific functiona
 | **Growth** | Increase in mass and increase in number of individuals. | **No** (Non-living things like mountains and sand dunes grow by external accretion of material). |
 | **Reproduction** | Production of progeny possessing features more or less similar to parents. | **No** (Certain living organisms like sterile worker bees, mules, and infertile human couples do not reproduce). |
 
-## Diversity and Taxonomy Overview
-
 Earth hosts an estimated $1.7$ to $1.8\text{ million}$ described species—a range referred to as **biodiversity**. To handle this immense variety, biology relies on systematic branches:
 
 - **Botany**: Study of plants.
@@ -30,8 +28,6 @@ Earth hosts an estimated $1.7$ to $1.8\text{ million}$ described species—a ran
 - **Microbiology**: Study of microscopic organisms (bacteria, archaea, microscopic fungi, protists).
 - **Taxonomy**: Science of identification, nomenclature, and classification of organisms.
 - **Ecology**: Study of interactions between organisms and their abiotic/biotic environments.
-
-## The Scientific Method in Biology
 
 Biological knowledge progresses through systematic scientific inquiry:
 
@@ -41,11 +37,11 @@ $$\text{Observation} \longrightarrow \text{Hypothesis Formulation} \longrightarr
 2. **Dependent Variable**: The factor measured to determine the effect of changing the independent variable.
 3. **Control Group**: The baseline group kept under native conditions without the experimental variable applied.
 
-## Common Exam Traps
+## Common mistakes to avoid
 
-- **Confusing growth mechanisms**: Living growth is **intrinsic** (internal cell division/expansion), whereas non-living growth is **extrinsic** (accumulation of matter on the surface).
-- **Listing reproduction as an absolute defining property**: Sterile organisms (mules, worker bees) are living but cannot reproduce. Therefore, reproduction is a characteristic of life, but **not** an absolute defining feature.
-- **Failing to distinguish between cellular and cell-free reactions**: Isolated metabolic reactions in test tubes ($in\ vitro$) are biological reactions, but they are not living organisms themselves because they lack cellular organisation.
+1. Confusing growth mechanisms: Living growth is **intrinsic** (internal cell division/expansion), whereas non-living growth is **extrinsic** (accumulation of matter on the surface).
+2. Listing reproduction as an absolute defining property: Sterile organisms (mules, worker bees) are living but cannot reproduce. Therefore, reproduction is a characteristic of life, but **not** an absolute defining feature.
+3. Failing to distinguish between cellular and cell-free reactions: Isolated metabolic reactions in test tubes ($in\ vitro$) are biological reactions, but they are not living organisms themselves because they lack cellular organisation.
 
 ## Quiz
 
