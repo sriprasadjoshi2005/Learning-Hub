@@ -210,3 +210,11 @@ fieldset {
 
 @media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { header { padding: 0.8rem 1rem; } main { margin: 1.2rem auto; } }
+
+/* ---- skip option ---- */
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1rem 0; }
+.actions .btn, .actions form.inline .btn { margin-top: 0; margin-right: 0; }
+form.inline { display: inline; margin: 0; }
+.btn-secondary { background: #ffffff; color: #2563eb; border: 1px solid #2563eb; }
+.btn-secondary:hover { background: #eff6ff; }
+.badge-skipped { background: #fef3c7; color: #92400e; }

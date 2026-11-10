@@ -1,7 +1,7 @@
 # Learning Hub
 
 A Flask site: sign in with Google, pick a subject, read short lessons, and take a quiz after each one.
-Quizzes show the correct answer and an explanation for every question. Passing (60%+) unlocks the next lesson.
+Quizzes show the correct answer and an explanation for every question. Passing (60%+) unlocks the next lesson. Students can also skip a quiz: the next lesson opens, the skipped lesson is labelled "Skipped" (not "Completed"), and they can still take the quiz later.
 Your best score is kept; a failed retake never undoes a pass.
 
 ## Project structure
@@ -60,6 +60,7 @@ A folder in `content/` replaces an old subject with the same name in `content.py
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Google login |
 | `FLASK_SECRET_KEY` | Signs login sessions (Render generates it) |
 | `UNLOCK_MODE` | `sequential` (default) or `open` (all lessons available) |
+| `ALLOW_SKIP` | `true` (default) lets students skip a quiz and move on; `false` turns the option off |
 | `DATABASE_URL` | Neon/Postgres connection string. When set, progress is stored there (permanent). |
 | `DB_PATH` | Location of the local SQLite file, used only when `DATABASE_URL` is empty |
 

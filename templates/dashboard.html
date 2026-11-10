@@ -9,7 +9,7 @@
     <strong>{{ s.name }}</strong>
     {% if s.description %}<div class="muted">{{ s.description }}</div>{% endif %}
     <div class="bar"><span style="width: {{ (s.done * 100 // s.total) if s.total else 0 }}%"></span></div>
-    <div class="muted">{{ s.done }} / {{ s.total }} lessons completed{% if s.next_id %} &middot; next: lesson {{ s.next_id }}{% endif %}</div>
+    <div class="muted">{{ s.done }} / {{ s.total }} lessons completed{% if s.skipped %} &middot; {{ s.skipped }} skipped{% endif %}{% if s.next_id %} &middot; next: lesson {{ s.next_id }}{% endif %}</div>
   </a>
   {% endfor %}
 </div>

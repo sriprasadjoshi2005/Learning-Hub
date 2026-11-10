@@ -30,6 +30,11 @@
 {% else %}
   <a class="btn" href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=lesson.id) }}">Review the lesson</a>
   <a class="btn" href="{{ url_for('quiz_view', subject_key=subject_key, lesson_id=lesson.id) }}">Try again</a>
+  {% if allow_skip and next_lesson %}
+  <form method="post" action="{{ url_for('skip_view', subject_key=subject_key, lesson_id=lesson.id) }}" class="inline">
+    <button class="btn btn-secondary" type="submit">Skip and continue anyway &rarr;</button>
+  </form>
+  {% endif %}
 {% endif %}
 <p><a href="{{ url_for('subject_view', subject_key=subject_key) }}">&larr; Back to {{ subject_name }}</a></p>
 {% endblock %}

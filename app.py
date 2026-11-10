@@ -36,6 +36,8 @@ if USE_PG:
 PASS_MARK = 60
 # "sequential": pass a lesson's quiz to unlock the next.  "open": every lesson is available.
 UNLOCK_MODE = os.environ.get("UNLOCK_MODE", "sequential").lower()
+# Lets students skip a lesson's quiz and move on. Set ALLOW_SKIP=false to turn the option off.
+ALLOW_SKIP = os.environ.get("ALLOW_SKIP", "true").lower() == "true"
 
 SUBJECTS, CONTENT_ERRORS = load_all()
 for _err in CONTENT_ERRORS:
@@ -101,11 +103,27 @@ def init_db():
             score INTEGER DEFAULT 0,
             remark TEXT,
             updated_at TEXT,
+            skipped INTEGER DEFAULT 0,
             UNIQUE(user_id, subject, lesson_id)
         )
     """)
+    # Upgrade a database created before the skip option existed (keeps all existing progress).
+    # (Checked first, so a normal restart does not lock the table.)
+    if USE_PG:
+        has_col = conn.execute(
+            "SELECT 1 FROM information_schema.columns WHERE table_name = 'progress' AND column_name = 'skipped'"
+        ).fetchone()
+    else:
+        has_col = "skipped" in [r["name"] for r in conn.execute("PRAGMA table_info(progress)").fetchall()]
+    if not has_col:
+        conn.execute("ALTER TABLE progress ADD COLUMN skipped INTEGER DEFAULT 0")
     conn.commit()
     conn.close()
+
+
+def advanced_ids(rows):
+    """Lessons the student has moved past: passed, or skipped."""
+    return {r["lesson_id"] for r in rows if r["completed"] or r["skipped"]}
 
 
 def user_progress(subject_key=None):
@@ -214,19 +232,23 @@ def logout():
 @login_required
 def dashboard():
     rows = user_progress()
-    done_by_subject = {}
+    done_by_subject, skipped_by_subject = {}, {}
     for r in rows:
         if r["completed"]:
             done_by_subject.setdefault(r["subject"], set()).add(r["lesson_id"])
+        elif r["skipped"]:
+            skipped_by_subject.setdefault(r["subject"], set()).add(r["lesson_id"])
 
     summary = []
     for key, subject in SUBJECTS.items():
         done_ids = done_by_subject.get(key, set())
         total = len(subject["lessons"])
-        nxt = next((l for l in subject["lessons"] if l["id"] not in done_ids), None)
+        skipped_ids = skipped_by_subject.get(key, set())
+        nxt = next((l for l in subject["lessons"] if l["id"] not in done_ids and l["id"] not in skipped_ids), None)
         summary.append({
             "key": key, "name": subject["name"], "description": subject["description"],
             "total": total, "done": len([l for l in subject["lessons"] if l["id"] in done_ids]),
+            "skipped": len([l for l in subject["lessons"] if l["id"] in skipped_ids]),
             "next_id": nxt["id"] if nxt else None,
         })
     return render_template("dashboard.html", subjects=summary, user_name=session.get("user_name"))
@@ -238,13 +260,14 @@ def subject_view(subject_key):
     subject = get_subject_or_404(subject_key)
     rows = user_progress(subject_key)
     completed = {r["lesson_id"] for r in rows if r["completed"]}
+    skipped = {r["lesson_id"] for r in rows if r["skipped"] and not r["completed"]}
     best = {r["lesson_id"]: r["score"] for r in rows}
-    open_ids = unlocked_ids(subject, completed)
+    open_ids = unlocked_ids(subject, advanced_ids(rows))
 
     lessons = [{
         "id": l["id"], "title": l["title"], "level": l["level"],
         "level_label": LEVEL_LABELS.get(l["level"], ""),
-        "completed": l["id"] in completed, "unlocked": l["id"] in open_ids,
+        "completed": l["id"] in completed, "skipped": l["id"] in skipped, "unlocked": l["id"] in open_ids,
         "best": best.get(l["id"]),
     } for l in subject["lessons"]]
     return render_template("subject.html", subject_key=subject_key, subject_name=subject["name"], lessons=lessons)
@@ -254,8 +277,7 @@ def _guard(subject_key, lesson_id):
     """Returns (subject, lesson) or a redirect response if the lesson is still locked."""
     subject = get_subject_or_404(subject_key)
     lesson = get_lesson_or_404(subject, lesson_id)
-    completed = {r["lesson_id"] for r in user_progress(subject_key) if r["completed"]}
-    if lesson_id not in unlocked_ids(subject, completed):
+    if lesson_id not in unlocked_ids(subject, advanced_ids(user_progress(subject_key))):
         return subject, None
     return subject, lesson
 
@@ -266,8 +288,10 @@ def lesson_view(subject_key, lesson_id):
     subject, lesson = _guard(subject_key, lesson_id)
     if lesson is None:
         return redirect(url_for("subject_view", subject_key=subject_key))
+    status = next((r for r in user_progress(subject_key) if r["lesson_id"] == lesson_id), None)
+    moved_on = bool(status and (status["completed"] or status["skipped"]))
     return render_template("lesson.html", subject_key=subject_key, subject_name=subject["name"], lesson=lesson,
-                           level_label=LEVEL_LABELS.get(lesson["level"], ""),
+                           level_label=LEVEL_LABELS.get(lesson["level"], ""), moved_on=moved_on,
                            prev_id=lesson_id - 1 if lesson_id - 1 in subject["by_id"] else None,
                            next_id=lesson_id + 1 if lesson_id + 1 in subject["by_id"] else None)
 
@@ -313,9 +337,10 @@ def quiz_view(subject_key, lesson_id):
     conn = get_db()
     conn.execute(
         """
-        INSERT INTO progress (user_id, subject, lesson_id, completed, score, remark, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO progress (user_id, subject, lesson_id, completed, score, remark, updated_at, skipped)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 0)
         ON CONFLICT(user_id, subject, lesson_id) DO UPDATE SET
+            skipped = CASE WHEN excluded.completed = 1 THEN 0 ELSE progress.skipped END,
             completed = CASE WHEN excluded.completed > progress.completed THEN excluded.completed ELSE progress.completed END,
             remark = CASE WHEN excluded.score >= progress.score THEN excluded.remark ELSE progress.remark END,
             score = CASE WHEN excluded.score > progress.score THEN excluded.score ELSE progress.score END,
@@ -333,6 +358,41 @@ def quiz_view(subject_key, lesson_id):
         score=score_pct, best=best, correct=correct, total=len(questions), remark=remark, passed=passed,
         review=review, next_lesson=subject["by_id"].get(lesson_id + 1),
     )
+
+
+@app.route("/skip/<subject_key>/<int:lesson_id>", methods=["POST"])
+@login_required
+def skip_view(subject_key, lesson_id):
+    """Skip a lesson's quiz: opens the next lesson, but the lesson is not marked completed."""
+    if not ALLOW_SKIP:
+        abort(404)
+    subject, lesson = _guard(subject_key, lesson_id)
+    if lesson is None:
+        return redirect(url_for("subject_view", subject_key=subject_key))
+
+    conn = get_db()
+    # A passed lesson stays passed; otherwise it is recorded as skipped.
+    conn.execute(
+        """
+        INSERT INTO progress (user_id, subject, lesson_id, completed, score, remark, updated_at, skipped)
+        VALUES (?, ?, ?, 0, 0, '', ?, 1)
+        ON CONFLICT(user_id, subject, lesson_id) DO UPDATE SET
+            skipped = CASE WHEN progress.completed = 1 THEN 0 ELSE 1 END,
+            updated_at = excluded.updated_at
+        """,
+        (session["user_id"], subject_key, lesson_id, datetime.utcnow().isoformat()),
+    )
+    conn.commit()
+    conn.close()
+
+    if lesson_id + 1 in subject["by_id"]:
+        return redirect(url_for("lesson_view", subject_key=subject_key, lesson_id=lesson_id + 1))
+    return redirect(url_for("subject_view", subject_key=subject_key))
+
+
+@app.context_processor
+def inject_flags():
+    return {"allow_skip": ALLOW_SKIP}
 
 
 @app.errorhandler(404)

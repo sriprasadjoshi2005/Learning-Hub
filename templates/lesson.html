@@ -4,7 +4,14 @@
 <h1>{{ lesson.id }}. {{ lesson.title }}</h1>
 {% if level_label %}<p><span class="level level-{{ lesson.level }}">{{ level_label }}</span></p>{% endif %}
 <div class="lesson-content">{{ lesson.content | safe }}</div>
-<p><a class="btn" href="{{ url_for('quiz_view', subject_key=subject_key, lesson_id=lesson.id) }}">Take the quiz</a></p>
+<div class="actions">
+  <a class="btn" href="{{ url_for('quiz_view', subject_key=subject_key, lesson_id=lesson.id) }}">Take the quiz</a>
+  {% if allow_skip and next_id and not moved_on %}
+  <form method="post" action="{{ url_for('skip_view', subject_key=subject_key, lesson_id=lesson.id) }}" class="inline">
+    <button class="btn btn-secondary" type="submit">Skip quiz and continue &rarr;</button>
+  </form>
+  {% endif %}
+</div>
 <p class="pager">
   {% if prev_id %}<a href="{{ url_for('lesson_view', subject_key=subject_key, lesson_id=prev_id) }}">&larr; Previous lesson</a>{% endif %}
   <a href="{{ url_for('subject_view', subject_key=subject_key) }}">Back to {{ subject_name }}</a>

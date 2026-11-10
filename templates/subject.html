@@ -15,7 +15,7 @@
     </span>
     <span>
       {% if l.best is not none %}<span class="muted">best {{ l.best }}%</span>{% endif %}
-      {% if l.completed %}<span class="badge">Completed</span>{% endif %}
+      {% if l.completed %}<span class="badge">Completed</span>{% elif l.skipped %}<span class="badge badge-skipped">Skipped</span>{% endif %}
     </span>
   </li>
   {% endfor %}
