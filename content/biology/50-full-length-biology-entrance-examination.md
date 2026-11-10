@@ -1,4 +1,3 @@
-
 ---
 title: Full-Length Biology Entrance Examination
 level: exam
