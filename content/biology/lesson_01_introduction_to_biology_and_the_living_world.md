@@ -19,7 +19,7 @@ To determine whether an entity is living, biologists evaluate specific functiona
 | **Growth** | Increase in mass and increase in number of individuals. | **No** (Non-living things like mountains and sand dunes grow by external accretion of material). |
 | **Reproduction** | Production of progeny possessing features more or less similar to parents. | **No** (Certain living organisms like sterile worker bees, mules, and infertile human couples do not reproduce). |
 
-Earth hosts an estimated $1.7$ to $1.8\text{ million}$ described species—a range referred to as **biodiversity**. To handle this immense variety, biology relies on systematic branches:
+Earth hosts an estimated 1.7 to 1.8 million described species—a range referred to as **biodiversity**. To handle this immense variety, biology relies on systematic branches:
 
 - **Botany**: Study of plants.
 - **Zoology**: Study of animals.
@@ -29,17 +29,15 @@ Earth hosts an estimated $1.7$ to $1.8\text{ million}$ described species—a ran
 
 Biological knowledge progresses through systematic scientific inquiry:
 
-$$\text{Observation} \longrightarrow \text{Hypothesis Formulation} \longrightarrow \text{Controlled Experimentation} \longrightarrow \text{Data Analysis} \longrightarrow \text{Conclusion / Theory}$$
-
 1. **Independent Variable**: The factor deliberately changed by the experimenter.
 2. **Dependent Variable**: The factor measured to determine the effect of changing the independent variable.
 3. **Control Group**: The baseline group kept under native conditions without the experimental variable applied.
 
 ## Common mistakes to avoid
 
-- **Confusing growth mechanisms**: Living growth is **intrinsic** (internal cell division/expansion), whereas non-living growth is **extrinsic** (accumulation of matter on the surface).
-- **Listing reproduction as an absolute defining property**: Sterile organisms (mules, worker bees) are living but cannot reproduce. Therefore, reproduction is a characteristic of life, but **not** an absolute defining feature.
-- **Failing to distinguish between cellular and cell-free reactions**: Isolated metabolic reactions in test tubes ($in\ vitro$) are biological reactions, but they are not living organisms themselves because they lack cellular organisation.
+- Confusing growth mechanisms: Living growth is **intrinsic** (internal cell division/expansion), whereas non-living growth is **extrinsic** (accumulation of matter on the surface).
+- Listing reproduction as an absolute defining property: Sterile organisms (mules, worker bees) are living but cannot reproduce. Therefore, reproduction is a characteristic of life, but **not** an absolute defining feature.
+- Failing to distinguish between cellular and cell-free reactions: Isolated metabolic reactions in test tubes ($in\ vitro$) are biological reactions, but they are not living organisms themselves because they lack cellular organisation.
 
 ## Quiz
 
@@ -48,18 +46,18 @@ $$\text{Observation} \longrightarrow \text{Hypothesis Formulation} \longrightarr
    - [ ] Metabolism, Growth, and Consciousness
    - [x] Metabolism, Cellular Organisation, and Consciousness
    - [ ] Reproduction, Metabolism, and Self-consciousness
-   > Growth and reproduction have exceptions (e.g., non-living accretion, sterile organisms), whereas metabolism, cellular organisation, and consciousness are universal across all living entities without exception.
+   > Growth and reproduction have exceptions (e.g., non-living accretion, sterile organisms), whereas metabolism, cellular organisation, and consciousness are          universal across all living entities without exception.
 
-2. A student sets up an $in\ vitro$ enzymatic reaction in a test tube where glucose is phosphorylated to glucose-6-phosphate. How should this reaction be classified biologically?
+2. A student sets up an $in\ vitro$ enzymatic reaction in a test tube where glucose is phosphorylated to glucose-6-phosphate. How should this reaction be             classified biologically?
    - [ ] A living organism because it displays metabolic activity.
    - [ ] A non-living reaction because enzymes are non-biological catalysts.
    - [x] A living (biological) reaction, but not a living organism.
    - [ ] An extrinsic physical process of growth.
-   > Isolated metabolic reactions in test tubes are non-living events/systems, but they are undeniably living or biological reactions. They do not constitute an organism because cellular structure is absent.
+   > Isolated metabolic reactions in test tubes are non-living events/systems, but they are undeniably living or biological reactions. They do not constitute an        organism because cellular structure is absent.
 
-3. An investigator measures the rate of oxygen consumption in isolated mitochondria exposed to varying concentrations of pyruvate. In this experimental design, what are the independent and dependent variables respectively?
+3. An investigator measures the rate of oxygen consumption in isolated mitochondria exposed to varying concentrations of pyruvate. In this experimental design,       what are the independent and dependent variables respectively?
    - [ ] Oxygen consumption rate (Independent); Pyruvate concentration (Dependent)
    - [x] Pyruvate concentration (Independent); Oxygen consumption rate (Dependent)
    - [ ] Mitochondrial density (Independent); Oxygen consumption rate (Dependent)
    - [ ] Pyruvate concentration (Independent); Temperature (Dependent)
-   > The factor directly manipulated by the experimenter is the independent variable (pyruvate concentration), while the resulting measurement is the dependent variable (oxygen consumption rate).
+   > The factor directly manipulated by the experimenter is the independent variable (pyruvate concentration), while the resulting measurement is the dependent         variable (oxygen consumption rate).
