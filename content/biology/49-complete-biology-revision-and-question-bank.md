@@ -7,18 +7,20 @@ This lesson consolidates high-yield biological concepts across all six curriculu
 
 ## Rapid Revision Matrix
 
-    High-Yield Master Revision
-                 |
-    -----------------------------------------------
-    |             |              |                |
-    v             v              v                v
-    Phase 1 & 2   Phase 3        Phase 4          Phase 5 & 6
-    |             |              |                |
-    Cell Biology  Plant          Human Organ      Ecology
-    Biomolecules  Physiology     Systems          Evolution
-    Genetics      Morphology     Reproduction     Biotechnology
-    Molecular                    Immunity         Conservation
-    Biology
+```text
+                 High-Yield Master Revision
+                            |
+       -----------------------------------------------
+       |             |              |                |
+       v             v              v                v
+   Phase 1 & 2     Phase 3        Phase 4          Phase 5 & 6
+       |             |              |                |
+   Cell Biology    Plant          Human Organ       Ecology
+   Biomolecules    Physiology     Systems           Evolution
+   Genetics        Morphology     Reproduction      Biotechnology
+   Molecular                      Immunity          Conservation
+   Biology
+```
 
 ## Phase-Wise High-Yield Revision
 
