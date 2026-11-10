@@ -3,237 +3,137 @@ title: Complete Biology Revision and Question Bank
 level: exam
 ---
 
-This lesson consolidates high-yield biological concepts across all six curriculum phases. It focuses on rapid factual revision, conceptual distinctions, assertion-reasoning questions, matching exercises, and frequently tested examination statements.
+# COMPLETE BIOLOGY REVISION
 
-## Rapid Revision Matrix
+## Phase 1 — Classification, Cells and Biomolecules
 
-```text
-                 High-Yield Master Revision
-                            |
-       -----------------------------------------------
-       |             |              |                |
-       v             v              v                v
-   Phase 1 & 2     Phase 3        Phase 4          Phase 5 & 6
-       |             |              |                |
-   Cell Biology    Plant          Human Organ       Ecology
-   Biomolecules    Physiology     Systems           Evolution
-   Genetics        Morphology     Reproduction      Biotechnology
-   Molecular                      Immunity          Conservation
-   Biology
-```
-
-## Phase-Wise High-Yield Revision
-
-### Phase 1 — Diversity, Classification and Structural Organisation
-
-**Biological Classification**
-
-- **Monera:** Prokaryotic organisms without a membrane-bound nucleus.
-- **Protista:** Mostly unicellular eukaryotic organisms.
-- **Fungi:** Eukaryotic, heterotrophic organisms with chitinous cell walls.
-- **Plantae:** Multicellular, photosynthetic eukaryotes with cellulose cell walls.
-- **Animalia:** Multicellular, heterotrophic eukaryotes without cell walls.
-
-**Cell Biology**
-
-| Feature | Prokaryotic Cells | Eukaryotic Cells |
-|---|---|---|
-| Nucleus | No true nucleus | Membrane-bound nucleus |
-| Ribosomes | 70S (50S + 30S) | Cytoplasmic 80S (60S + 40S) |
-| Membrane-bound organelles | Absent | Present |
-| DNA | Usually circular | Nuclear DNA is linear |
-| Cell division | Binary fission in most bacteria | Mitosis or meiosis |
-
-**Important exceptions:**
-
+- Monera: Prokaryotic organisms.
+- Protista: Mostly unicellular eukaryotes.
+- Fungi: Heterotrophic organisms with chitin cell walls.
+- Plantae: Photosynthetic organisms with cellulose cell walls.
+- Animalia: Multicellular heterotrophs without cell walls.
+- Prokaryotic cells have 70S ribosomes; eukaryotic cytoplasm has 80S ribosomes.
 - Mitochondria and chloroplasts contain 70S ribosomes.
-- Prokaryotic ribosomes are 70S, not 80S.
-- The 70S and 80S values are sedimentation coefficients, not direct sums of their subunits.
+- Proteins contain amino acids; carbohydrates contain sugars; nucleic acids contain nucleotides.
+- Enzymes lower activation energy.
 
-**Biomolecules**
+## Phase 2 — Cell Division and Genetics
 
-- Proteins are polymers of amino acids joined by peptide bonds.
-- Polysaccharides are formed from monosaccharides through glycosidic bonds.
-- Nucleic acids contain nucleotide units joined by phosphodiester bonds.
-- Lipids are not true polymers of repeating monomeric units.
-- Enzymes lower activation energy without changing the overall free-energy change of a reaction.
+- Mitosis produces two genetically similar cells.
+- Meiosis produces haploid cells.
+- Meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.
+- Crossing over occurs during pachytene.
+- Mendel's laws: dominance, segregation and independent assortment.
+- Incomplete dominance produces an intermediate phenotype; codominance expresses both alleles.
+- DNA replication is semi-conservative and proceeds in the 5' to 3' direction.
+- Transcription produces RNA; translation produces proteins.
+- AUG is the usual start codon. UAA, UAG and UGA are stop codons.
+- The lac operon is an inducible operon regulated by allolactose.
 
-### Phase 2 — Cell Division, Genetics and Molecular Biology
+## Phase 3 — Plant Biology
 
-**Cell Division**
-
-- Mitosis produces two genetically similar daughter cells.
-- Meiosis produces haploid cells through two successive divisions following one round of DNA replication.
-- Meiosis I separates homologous chromosomes.
-- Meiosis II separates sister chromatids.
-- Crossing over occurs during the pachytene stage of prophase I.
-
-**Genetics**
-
-| Concept | Key Fact |
-|---|---|
-| Law of Dominance | One allele may mask the expression of another in a heterozygote |
-| Law of Segregation | Alleles separate during gamete formation |
-| Law of Independent Assortment | Different gene pairs assort independently when unlinked |
-| Incomplete Dominance | Heterozygote has an intermediate phenotype |
-| Codominance | Both alleles are expressed in the heterozygote |
-| Test Cross | Individual with dominant phenotype crossed with a homozygous recessive individual |
-
-**Molecular Biology**
-
-- DNA replication is semi-conservative.
-- DNA polymerase synthesizes DNA in the 5′ → 3′ direction.
-- Transcription produces RNA using DNA as a template.
-- Translation occurs on ribosomes.
-- AUG is the usual initiation codon and codes for methionine.
-- UAA, UAG, and UGA are stop codons.
-- The lac operon is an inducible operon regulated by lactose-derived allolactose.
-
-### Phase 3 — Plant Morphology and Physiology
-
-**Plant Anatomy and Morphology**
-
-- Root vascular bundles are radial.
-- Stem vascular bundles are generally conjoint.
-- Dicot stems usually have vascular bundles arranged in a ring.
-- Monocot stems generally have scattered vascular bundles.
-- Casparian strips occur in the endodermis of roots.
-
-**Photosynthesis**
-
-| Feature | C3 Plants | C4 Plants |
-|---|---|---|
-| Primary CO2 acceptor | RuBP (5C) | PEP (3C) |
-| First stable product | 3-PGA (3C) | Oxaloacetate (4C) |
-| First carboxylating enzyme | RuBisCO | PEP carboxylase |
-| Initial fixation site | Mesophyll cells | Mesophyll cells |
-| Calvin cycle | Mesophyll cells | Bundle sheath cells |
-| Photorespiration | Can occur | Strongly suppressed |
-
-**Important concepts:**
-
-- The Calvin cycle uses ATP and NADPH to fix carbon dioxide.
-- C4 plants concentrate CO2 around RuBisCO in bundle sheath cells.
-- Photorespiration is minimized in C4 plants because the elevated CO2 concentration favors RuBisCO's carboxylase activity.
-- Cyclic photophosphorylation produces ATP but does not produce NADPH or release oxygen.
-- Non-cyclic photophosphorylation produces ATP, NADPH, and oxygen.
-
-**Plant Transport and Hormones**
-
-- Transpiration pull operates through the cohesion-tension mechanism.
-- Xylem transports water and minerals primarily from roots towards aerial parts.
-- Phloem translocates organic solutes between source and sink regions.
-- Auxins promote cell elongation and apical dominance.
-- Gibberellins promote stem elongation and seed germination.
-- Cytokinins promote cell division and delay senescence.
-- Abscisic acid promotes stomatal closure and seed dormancy.
+- Root vascular bundles are radial; stem bundles are generally conjoint.
+- Dicot stems usually have bundles in a ring; monocot stems have scattered bundles.
+- Casparian strips occur in the root endodermis.
+- C3 plants use RuBP and RuBisCO; their first stable product is 3-PGA.
+- C4 plants use PEP and PEP carboxylase; their first stable product is oxaloacetate.
+- C4 plants reduce photorespiration by concentrating CO2 around RuBisCO.
+- Cyclic photophosphorylation produces ATP only.
+- Non-cyclic photophosphorylation produces ATP, NADPH and oxygen.
+- Xylem transports water and minerals; phloem transports organic food.
+- Auxins promote elongation; gibberellins promote growth and germination.
+- Cytokinins promote cell division; ABA promotes dormancy and stomatal closure.
 - Ethylene promotes fruit ripening.
 
-### Phase 4 — Human Physiology, Reproduction and Health
+## Phase 4 — Human Biology
 
-**Human Organ Systems**
+Human Organ Systems:
+- Bile emulsifies fats but contains no digestive enzymes.
+- Haemoglobin transports most oxygen.
+- SA node is the natural pacemaker of the heart.
+- Nephron is the functional unit of the kidney.
+- Neurons transmit impulses; hormones regulate target organs.
 
-| System | High-Yield Fact |
-|---|---|
-| Digestive | Bile emulsifies fats but contains no digestive enzymes |
-| Respiratory | Most oxygen is transported bound to haemoglobin |
-| Circulatory | SA node is the natural pacemaker |
-| Excretory | Nephron is the structural and functional unit of the kidney |
-| Nervous | Neurons transmit electrical impulses |
-| Endocrine | Hormones regulate physiological processes through target cells |
-
-**Heart Sounds**
-
-- **LUB:** Closure of atrioventricular valves.
-- **DUB:** Closure of semilunar valves.
-
-**ECG**
-
+Heart and ECG:
+- LUB: Closure of atrioventricular valves.
+- DUB: Closure of semilunar valves.
 - P wave: Atrial depolarization.
 - QRS complex: Ventricular depolarization.
 - T wave: Ventricular repolarization.
 
-**Immunity**
+Immunity:
+- IgA: Mucosal secretions and colostrum.
+- IgE: Allergic reactions.
+- IgG: Crosses the placenta.
+- IgM: First major antibody in a primary response.
+- IgD: B-cell surface receptor.
+- Active immunity develops through the body's own immune response.
+- Passive immunity involves receiving preformed antibodies.
+- T cells mature in the thymus; B cells mature in bone marrow.
 
-| Immunoglobulin | Major Function |
-|---|---|
-| IgA | Mucosal secretions and colostrum |
-| IgE | Allergic reactions and defence against certain parasites |
-| IgG | Major serum antibody; crosses the placenta |
-| IgM | First major antibody produced during a primary immune response |
-| IgD | Functions mainly as a B-cell surface receptor |
-
-**Important distinctions:**
-
-- Active immunity develops when the individual's immune system responds to an antigen.
-- Passive immunity results from receiving preformed antibodies.
-- IgG crosses the placenta and provides natural passive immunity to the fetus.
-- Colostrum contains abundant IgA and provides protection to newborns.
-- T lymphocytes mature in the thymus.
-- B lymphocytes mature in the bone marrow in humans.
-
-**Human Reproduction**
-
+Reproduction:
 - Spermatogenesis occurs in seminiferous tubules.
-- Sertoli cells nourish developing sperm cells.
-- Leydig cells secrete testosterone.
-- Fertilization normally occurs at the ampullary-isthmic junction of the Fallopian tube.
+- Sertoli cells nourish developing sperm.
+- Leydig cells produce testosterone.
+- Fertilization occurs at the ampullary-isthmic junction.
 - Implantation occurs in the uterine endometrium.
-- hCG helps maintain the corpus luteum during early pregnancy.
-- Prolactin stimulates milk production; oxytocin promotes milk ejection.
+- hCG maintains the corpus luteum during early pregnancy.
+- Prolactin produces milk; oxytocin causes milk ejection.
 
-### Phase 5 — Evolution, Ecology and Biodiversity
+## Phase 5 — Evolution, Ecology and Biodiversity
 
-- **Evolution:** Homologous organs indicate divergent evolution; analogous organs indicate convergent evolution. Natural selection and genetic drift alter allele frequencies. Hardy-Weinberg equilibrium describes genetic stability under ideal conditions.
-- **Ecology:** Producers occupy the first trophic level. Energy flows unidirectionally, with approximately 10% transferred between trophic levels. Decomposition involves fragmentation, leaching, catabolism, humification and mineralization. The energy pyramid is always upright.
-- **Ecological interactions:** Mutualism, competition, predation, parasitism, commensalism and amensalism.
-- **Biodiversity:** Genetic, species and ecological diversity. Habitat loss and fragmentation are major threats.
-- **Conservation:** In-situ protects organisms in natural habitats; ex-situ protects them outside their habitats through botanical gardens, zoos, seed/gene banks and cryopreservation (\(-196^\circ\mathrm{C}\)).
+- Homologous organs indicate divergent evolution.
+- Analogous organs indicate convergent evolution.
+- Natural selection and genetic drift change allele frequencies.
+- Hardy-Weinberg equilibrium describes genetic stability under ideal conditions.
+- Producers form the first trophic level.
+- Energy flows in one direction through ecosystems.
+- Approximately 10% of energy passes to the next trophic level.
+- Decomposition involves fragmentation, leaching, catabolism, humification and mineralization.
+- The energy pyramid is always upright.
+- Ecological interactions: mutualism, competition, predation, parasitism, commensalism and amensalism.
+- Biodiversity includes genetic, species and ecological diversity.
+- Habitat loss and fragmentation are major threats.
+- In-situ conservation protects organisms in natural habitats.
+- Ex-situ conservation includes zoos, botanical gardens, seed banks, gene banks and cryopreservation at approximately -196°C.
 
-### Phase 6 — Biotechnology and Its Applications
+## Phase 6 — Biotechnology
 
-- **Recombinant DNA technology:** Restriction enzymes cut DNA at specific sequences; DNA ligase joins fragments. Cloning vectors carry foreign DNA and contain an origin of replication (ori) and selectable markers.
-- **Applications:** Bt cotton uses cry genes against insect pests. RNA interference silences genes by degrading complementary mRNA.
-- **Human insulin:** Contains Chain A (21 amino acids) and Chain B (30 amino acids); mature insulin lacks C-peptide.
-- **Gene therapy:** First clinically performed in 1990 for ADA deficiency.
-- **Molecular techniques:** PCR amplifies DNA; ELISA detects antigens or antibodies through antigen-antibody interactions.
+- Restriction enzymes cut DNA at specific sequences.
+- DNA ligase joins DNA fragments.
+- Cloning vectors carry foreign DNA into host cells.
+- Vectors contain an origin of replication (ori) and selectable markers.
+- Bt cotton uses cry genes to resist certain insect pests.
+- RNA interference silences genes by degrading complementary mRNA.
+- Mature insulin contains Chain A (21 amino acids) and Chain B (30 amino acids), without C-peptide.
+- The first clinical gene therapy was performed in 1990 for ADA deficiency.
+- PCR amplifies DNA.
+- ELISA detects antigens or antibodies.
 
-## Assertion-Reasoning Rules
+## Important Exam Points
 
-Assertion-reasoning questions evaluate the truth of two statements and their logical relationship.
+- Prokaryotic ribosomes are 70S; eukaryotic cytoplasmic ribosomes are 80S.
+- Meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.
+- C3 plants use RuBisCO for initial carbon fixation; C4 plants use PEP carboxylase.
+- C4 plants strongly suppress photorespiration.
+- LUB is caused by AV valve closure; DUB by semilunar valve closure.
+- IgG crosses the placenta; IgA is abundant in colostrum.
+- Active immunity uses the body's own response; passive immunity transfers antibodies.
+- Podocyte foot processes form filtration slits.
+- Dicer processes double-stranded RNA; RISC helps target complementary RNA.
+- Bacterial operons can produce polycistronic mRNA.
+- Cryopreservation commonly uses liquid nitrogen at -196°C.
 
-| Option | Assertion (A) | Reason (R) | Relationship |
-|---|---|---|---|
-| A | True | True | R correctly explains A |
-| B | True | True | R does not explain A |
-| C | True | False | A is true, R is false |
-| D | False | True | A is false, R is true |
+## Assertion-Reasoning
 
-**Solving strategy:**
-1. Evaluate Assertion (A) independently.
-2. Evaluate Reason (R) independently.
-3. If both are true, determine whether R directly explains A.
-4. Choose the option based on both truth values and their relationship.
+Evaluate Assertion (A) and Reason (R) separately.
 
-**Key point:** Two statements may both be true without one explaining the other.
+A. Both are true, and R correctly explains A.
+B. Both are true, but R does not explain A.
+C. A is true, but R is false.
+D. A is false, but R is true.
 
-## Common Exam Traps
-
-- **Monera vs Protista:** Monera are prokaryotic, whereas Protista are eukaryotic.
-- **Ribosome Sizes:** Prokaryotic ribosomes are 70S; eukaryotic cytoplasmic ribosomes are 80S. Mitochondria and chloroplasts contain 70S ribosomes.
-- **C3 vs C4 Carbon Fixation:** RuBP is the primary CO2 acceptor in C3 plants; PEP is the primary acceptor in C4 plants.
-- **Photorespiration:** C4 plants strongly suppress photorespiration through their CO2-concentrating mechanism; it is not generally treated as completely impossible under every condition.
-- **Heart Sounds:** LUB is caused by AV valve closure; DUB is caused by semilunar valve closure.
-- **Immunoglobulins:** IgG crosses the placenta, whereas IgA is abundant in colostrum and mucosal secretions.
-- **Active vs Passive Immunity:** Active immunity involves the recipient's own immune response; passive immunity transfers ready-made antibodies.
-- **Mitosis vs Meiosis:** Meiosis I separates homologous chromosomes; meiosis II separates sister chromatids.
-- **Transpiration Pull:** Cohesion between water molecules and adhesion to xylem walls help maintain the continuous water column.
-- **Podocytes:** Their foot processes form filtration slits in the glomerular filtration barrier.
-- **Dicer and RISC:** Dicer processes double-stranded RNA into small interfering RNAs; RISC uses these RNAs to recognize complementary target RNA.
-- **Operon:** A typical bacterial operon is a transcriptional unit that can produce a polycistronic mRNA.
-- **Ex-situ Conservation:** Cryopreservation at approximately \(-196^\circ\mathrm{C}\) uses liquid nitrogen.
-- **Assertion-Reasoning:** Both statements being true does not automatically make the answer Option A.
-- **Matching Questions:** Verify the biological meaning of each pair instead of relying only on elimination.
+Always check whether the reason actually explains the assertion. Two true statements do not necessarily have an explanatory relationship.
 
 ## Quiz
 
