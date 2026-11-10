@@ -1,6 +1,6 @@
 ---
 title: Human Reproduction
-level: intermediate → advanced
+level: advanced
 ---
 
 Human reproduction involves **internal fertilization** and **viviparity**, in which the developing embryo receives nourishment within the mother's body and the offspring is delivered through parturition. The process includes gametogenesis, fertilization, implantation, gestation, and childbirth, all regulated by complex hormonal interactions.
