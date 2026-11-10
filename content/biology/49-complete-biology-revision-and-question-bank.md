@@ -184,79 +184,38 @@ This lesson consolidates high-yield biological concepts across all six curriculu
 
 ### Phase 5 — Evolution, Ecology and Biodiversity
 
-**Evolution**
-
-- Homologous organs indicate common ancestry and divergent evolution.
-- Analogous organs indicate similar functions arising through convergent evolution.
-- Natural selection changes the relative frequencies of heritable traits.
-- Genetic drift produces random changes in allele frequencies, especially in small populations.
-- Hardy-Weinberg equilibrium describes stable allele and genotype frequencies under ideal conditions.
-
-**Ecology**
-
-- Producers form the first trophic level.
-- Energy flow through ecosystems is unidirectional.
-- Approximately 10% of energy is transferred between successive trophic levels.
-- Decomposition involves fragmentation, leaching, catabolism, humification, and mineralization.
-- The energy pyramid is always upright.
-- Ecological interactions include mutualism, competition, predation, parasitism, commensalism, and amensalism.
-
-**Biodiversity and Conservation**
-
-- Genetic diversity, species diversity, and ecological diversity are the three major levels of biodiversity.
-- Habitat loss and fragmentation are major causes of biodiversity decline.
-- In-situ conservation protects organisms in their natural habitats.
-- Ex-situ conservation protects organisms outside their natural habitats.
-
-**Ex-situ conservation examples:**
-
-- Botanical gardens.
-- Zoological parks.
-- Seed banks.
-- Gene banks.
-- Cryopreservation, commonly using liquid nitrogen at approximately \(-196^\circ\mathrm{C}\).
+- **Evolution:** Homologous organs indicate divergent evolution; analogous organs indicate convergent evolution. Natural selection and genetic drift alter allele frequencies. Hardy-Weinberg equilibrium describes genetic stability under ideal conditions.
+- **Ecology:** Producers occupy the first trophic level. Energy flows unidirectionally, with approximately 10% transferred between trophic levels. Decomposition involves fragmentation, leaching, catabolism, humification and mineralization. The energy pyramid is always upright.
+- **Ecological interactions:** Mutualism, competition, predation, parasitism, commensalism and amensalism.
+- **Biodiversity:** Genetic, species and ecological diversity. Habitat loss and fragmentation are major threats.
+- **Conservation:** In-situ protects organisms in natural habitats; ex-situ protects them outside their habitats through botanical gardens, zoos, seed/gene banks and cryopreservation (\(-196^\circ\mathrm{C}\)).
 
 ### Phase 6 — Biotechnology and Its Applications
 
-**Recombinant DNA Technology**
-
-- Restriction endonucleases cut DNA at specific recognition sequences.
-- DNA ligase joins DNA fragments through phosphodiester bonds.
-- Cloning vectors carry foreign DNA into host cells.
-- The origin of replication (ori) controls vector replication.
-- Selectable markers help identify cells containing vectors.
-
-**Biotechnology Applications**
-
-- Bt cotton uses cry genes to provide resistance against certain insect pests.
-- RNA interference silences specific genes through degradation of complementary mRNA.
-- Recombinant human insulin contains Chain A (21 amino acids) and Chain B (30 amino acids).
-- Mature insulin lacks the C-peptide.
-- Gene therapy was first clinically performed in 1990 for ADA deficiency.
-- PCR amplifies specific DNA sequences.
-- ELISA detects antigens or antibodies through antigen-antibody interactions.
+- **Recombinant DNA technology:** Restriction enzymes cut DNA at specific sequences; DNA ligase joins fragments. Cloning vectors carry foreign DNA and contain an origin of replication (ori) and selectable markers.
+- **Applications:** Bt cotton uses cry genes against insect pests. RNA interference silences genes by degrading complementary mRNA.
+- **Human insulin:** Contains Chain A (21 amino acids) and Chain B (30 amino acids); mature insulin lacks C-peptide.
+- **Gene therapy:** First clinically performed in 1990 for ADA deficiency.
+- **Molecular techniques:** PCR amplifies DNA; ELISA detects antigens or antibodies through antigen-antibody interactions.
 
 ## Assertion-Reasoning Rules
 
-Assertion-reasoning questions test both factual accuracy and the logical relationship between two statements.
-
-**Standard four-option format:**
+Assertion-reasoning questions evaluate the truth of two statements and their logical relationship.
 
 | Option | Assertion (A) | Reason (R) | Relationship |
 |---|---|---|---|
 | A | True | True | R correctly explains A |
-| B | True | True | R does not correctly explain A |
-| C | True | False | Assertion is true, Reason is false |
-| D | False | True | Assertion is false, Reason is true |
+| B | True | True | R does not explain A |
+| C | True | False | A is true, R is false |
+| D | False | True | A is false, R is true |
 
 **Solving strategy:**
-
 1. Evaluate Assertion (A) independently.
 2. Evaluate Reason (R) independently.
-3. If both are true, check whether R directly explains why A is true.
-4. Select the option only after checking the logical relationship.
+3. If both are true, determine whether R directly explains A.
+4. Choose the option based on both truth values and their relationship.
 
-**Important:** Two statements can both be scientifically correct without one explaining the other.
+**Key point:** Two statements may both be true without one explaining the other.
 
 ## Common Exam Traps
 
@@ -324,48 +283,3 @@ Assertion-reasoning questions test both factual accuracy and the logical relatio
 - [ ] (A) is false, but (R) is true.
 
 > Maternal IgG crosses the placenta and provides the fetus with preformed antibodies. This is natural passive immunity because the fetus receives antibodies rather than producing them through its own immune response.
-
-5. Match the following biological structures with their corresponding functions.
-
-| Column I | Column II |
-|---|---|
-| A. Podocytes | 1. Counter-current exchange |
-| B. Vasa recta | 2. Glomerular filtration slits |
-| C. SA node | 3. Natural cardiac pacemaker |
-| D. Casparian strip | 4. Restricts apoplastic movement |
-
-- [ ] A-1, B-2, C-4, D-3
-- [x] A-2, B-1, C-3, D-4
-- [ ] A-3, B-4, C-1, D-2
-- [ ] A-4, B-3, C-2, D-1
-
-> Podocytes form filtration slits around glomerular capillaries. The vasa recta maintains the medullary osmotic gradient through counter-current exchange. The SA node initiates the heartbeat, while Casparian strips restrict apoplastic water movement in roots.
-
-6. Which statement correctly describes the primary carbon dioxide acceptors in C3 and C4 plants?
-
-- [ ] C3: PEP; C4: RuBP
-- [x] C3: RuBP; C4: PEP
-- [ ] C3: Oxaloacetate; C4: RuBP
-- [ ] C3: PGA; C4: PEP
-
-> RuBP, a five-carbon compound, accepts CO2 in C3 plants through RuBisCO. PEP, a three-carbon compound, accepts CO2 in C4 plants through PEP carboxylase.
-
-7. **Assertion (A):** The energy pyramid is always upright.
-
-   **Reason (R):** Energy decreases at successive trophic levels because only a fraction of energy is transferred to the next level.
-
-- [x] Both (A) and (R) are true, and (R) is the correct explanation of (A).
-- [ ] Both (A) and (R) are true, but (R) is not the correct explanation of (A).
-- [ ] (A) is true, but (R) is false.
-- [ ] (A) is false, but (R) is true.
-
-> Energy is lost at every trophic transfer through respiration, heat, and other metabolic processes. Consequently, the energy available at each successive trophic level decreases, making the energy pyramid necessarily upright.
-
-8. Which combination correctly describes the enzymes involved in RNA interference?
-
-- [ ] DNA ligase cuts dsRNA, while DNA polymerase destroys mRNA.
-- [x] Dicer processes dsRNA into small interfering RNAs, while RISC uses them to target complementary RNA.
-- [ ] RuBisCO processes dsRNA, while Taq polymerase silences genes.
-- [ ] Helicase translates siRNA into proteins.
-
-> Dicer processes double-stranded RNA into small RNA fragments. These guide RNA molecules associate with the RNA-induced silencing complex (RISC), which recognizes and silences complementary target RNA.
