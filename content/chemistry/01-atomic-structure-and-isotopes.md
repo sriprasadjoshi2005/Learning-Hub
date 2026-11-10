@@ -1,73 +1,49 @@
 ---
-title: Introduction to Biology and the Living World
+title: Atomic Structure and Isotopes
 level: foundation
 ---
 
-**Biology** is the branch of natural science that studies living organisms, including their structure, function, growth, origin, evolution, and distribution.
+Every atom has a tiny, dense **nucleus** made of protons and neutrons, surrounded by electrons. Three numbers describe it:
 
-Understanding what defines **life** is the foundation of biological science. Although non-living things may exhibit individual characteristics associated with life, such as crystal growth, living organisms display an integrated set of defining properties.
+- **Atomic number** $Z$ is the number of protons. It fixes the element: every atom with 6 protons is carbon.
+- **Mass number** $A$ is protons plus neutrons.
+- **Charge** is protons minus electrons. A neutral atom has equal numbers of each.
 
-## Characteristics of living organisms
+We write an atom or ion as ${}^{A}_{Z}\mathrm{X}^{\text{charge}}$. For example, ${}^{23}_{11}\mathrm{Na}^{+}$ has 11 protons, 12 neutrons ($23-11$) and 10 electrons ($11-1$).
 
-Biologists use several characteristics to distinguish living organisms from non-living things.
+## Ions
 
-| Characteristic | Description | Defining Feature of Life? |
-|---|---|---|
-| **Metabolism** | The sum total of all chemical reactions occurring within a biological system, including anabolism and catabolism. | **Yes** — All living organisms exhibit metabolism. |
-| **Cellular organisation** | Organisation into one or more cells containing protoplasm and cellular components. | **Yes** — Cells are the fundamental structural and functional units of life. |
-| **Consciousness** | The ability to sense environmental stimuli and respond to them. | **Yes** — All living organisms respond to environmental changes. |
-| **Growth** | An increase in mass and, in multicellular organisms, an increase in cell number. | **No** — Non-living things such as mountains and sand dunes can also grow through external accumulation of material. |
-| **Reproduction** | The production of offspring possessing characteristics similar to those of their parents. | **No** — Certain living organisms, such as mules and sterile worker bees, cannot reproduce. |
+Atoms become ions by gaining or losing electrons, never by changing protons. Losing electrons gives a positive ion (cation); gaining electrons gives a negative ion (anion). A common error is to adjust the proton count when the charge changes. The proton count is the identity of the element and stays fixed.
 
-The distinction between living and non-living growth is particularly important. Living organisms exhibit **intrinsic growth**, involving internal cell division and expansion, whereas non-living objects exhibit **extrinsic growth** through the accumulation of external material.
+## Isotopes and relative atomic mass
 
-Similarly, reproduction is a characteristic of living organisms but is not an absolute defining property because some living individuals are naturally sterile.
+**Isotopes** are atoms of the same element with different numbers of neutrons. They have the same atomic number and, because the electron arrangement is the same, essentially the same chemistry. They differ in mass and therefore in some physical properties, such as density and rate of diffusion.
 
-## Diversity and branches of biology
+The **relative atomic mass** listed in the periodic table is a weighted average over the natural isotopes:
 
-Earth contains an enormous variety of living organisms, collectively referred to as **biodiversity**. Millions of species have been described, and biological classification helps scientists organise and study this diversity.
+$$A_r = \sum_i (\text{fractional abundance}_i \times \text{isotopic mass}_i)$$
 
-Some important branches of biology include:
-
-- **Botany:** The study of plants.
-- **Zoology:** The study of animals.
-- **Microbiology:** The study of microscopic organisms, including bacteria, archaea, microscopic fungi, and protists.
-- **Taxonomy:** The science of identifying, naming, and classifying organisms.
-- **Ecology:** The study of interactions between organisms and their biotic and abiotic environments.
-
-## Scientific investigation in biology
-
-Biological knowledge develops through systematic observation, experimentation, and analysis. Controlled experiments help scientists determine relationships between different variables.
-
-Three important components of experimental design are:
-
-- **Independent variable:** The factor deliberately changed by the experimenter.
-- **Dependent variable:** The factor measured to determine the effect of changing the independent variable.
-- **Control group:** The baseline group maintained under standard conditions without the experimental treatment.
-
-For example, if an investigator studies how different concentrations of glucose affect cellular respiration, glucose concentration is the independent variable, while the rate of cellular respiration is the dependent variable.
-
-An important distinction also exists between biological reactions and living organisms. Isolated metabolic reactions can occur outside cells under laboratory conditions, such as in a test tube. These are called *in vitro* reactions. Although they are biological reactions, they do not constitute living organisms because they lack cellular organisation.
+Because it is weighted, the average is pulled toward the more abundant isotope. A simple unweighted average of the isotopic masses is almost always wrong.
 
 ## Quiz
 
-1. Which of the following sets consists exclusively of absolute defining features of living organisms?
-   - [ ] Growth, reproduction, and cellular organisation
-   - [ ] Metabolism, growth, and consciousness
-   - [x] Metabolism, cellular organisation, and consciousness
-   - [ ] Reproduction, metabolism, and self-consciousness
-   > Growth and reproduction are not universal defining properties. Non-living objects can grow through external accumulation, while certain living organisms, such as mules and worker bees, cannot reproduce. Metabolism, cellular organisation, and environmental responsiveness are fundamental characteristics of living organisms.
+1. An ion contains 26 protons, 30 neutrons and 23 electrons. Which symbol describes it?
+   - [ ] ${}^{56}\mathrm{Fe}^{3-}$
+   - [ ] ${}^{53}\mathrm{Fe}^{3+}$
+   - [x] ${}^{56}\mathrm{Fe}^{3+}$
+   - [ ] ${}^{56}\mathrm{Fe}^{2+}$
+   > Mass number is $26+30=56$. The charge is protons minus electrons, $26-23=+3$, so it is $\mathrm{Fe}^{3+}$.
 
-2. A student sets up an *in vitro* enzymatic reaction in a test tube where glucose is phosphorylated to glucose-6-phosphate. How should this reaction be classified biologically?
-   - [ ] A living organism because it displays metabolic activity.
-   - [ ] A non-living reaction because enzymes are non-biological catalysts.
-   - [x] A biological reaction, but not a living organism.
-   - [ ] An extrinsic physical process of growth.
-   > Isolated metabolic reactions are biological processes, but they do not constitute living organisms because they lack cellular organisation. Enzymes are biological catalysts that facilitate these reactions.
+2. Boron has two natural isotopes: ${}^{10}\mathrm{B}$ (mass 10.013, abundance 19.9%) and ${}^{11}\mathrm{B}$ (mass 11.009, abundance 80.1%). What is its relative atomic mass?
+   - [ ] 10.51
+   - [x] 10.81
+   - [ ] 10.21
+   - [ ] 11.01
+   > $0.199\times10.013+0.801\times11.009\approx10.81$. The value 10.51 is the unweighted mean of the two masses, which ignores that ${}^{11}\mathrm{B}$ is four times as abundant.
 
-3. An investigator measures the rate of oxygen consumption in isolated mitochondria exposed to varying concentrations of pyruvate. What are the independent and dependent variables, respectively?
-   - [ ] Oxygen consumption rate (independent); pyruvate concentration (dependent)
-   - [x] Pyruvate concentration (independent); oxygen consumption rate (dependent)
-   - [ ] Mitochondrial density (independent); oxygen consumption rate (dependent)
-   - [ ] Pyruvate concentration (independent); temperature (dependent)
-   > The independent variable is the factor deliberately manipulated by the experimenter, which is pyruvate concentration. The dependent variable is the measured response, which is the rate of oxygen consumption.
+3. Which statement about isotopes of the same element is incorrect?
+   - [x] They show very different chemical behaviour because their masses differ.
+   - [ ] They have the same atomic number.
+   - [ ] They differ in the number of neutrons.
+   - [ ] They can differ in physical properties such as density.
+   > Chemical behaviour depends on the electron arrangement, which is identical for isotopes. Mass differences change physical properties, and only slightly affect reaction rates for the lightest elements.
