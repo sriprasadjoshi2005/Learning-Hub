@@ -54,7 +54,7 @@ $$\text{Maximize } A(x) \implies A'(x) = 0 \quad \text{and check } A''(x) < 0$$
 ## Quiz
 
 1. A coefficient $b$ is chosen uniformly at random from the interval $[0, 6]$. What is the probability that the quadratic equation $x^2 + b x + 4 = 0$ has real roots?
-  - [ ] $\frac{1}{3}$
+  - [ ] $\frac{1}{4}$
   - [x] $\frac{1}{3}$
   - [ ] $\frac{2}{3}$
   - [ ] $\frac{1}{2}$
@@ -68,7 +68,7 @@ $$\text{Maximize } A(x) \implies A'(x) = 0 \quad \text{and check } A''(x) < 0$$
    > Let width be $x$. Length along wall is $40 - 2x$. Area $A(x) = x(40 - 2x) = 40x - 2x^2$. Differentiate: $A'(x) = 40 - 4x = 0 \implies x = 10\text{ m}$. Maximum area $A(10) = 10(40 - 20) = 200\text{ m}^2$.
 
 3. Evaluate the infinite complex series sum: $S = \sum_{n=0}^{\infty} \left(\frac{i}{2}\right)^n$.
-  - [ ] $\frac{4 + 2i}{5}$
+  - [ ] $\frac{4 + 9i}{5}$
   - [x] $\frac{4 + 2i}{5}$
   - [ ] $\frac{4 - 2i}{5}$
   - [ ] $1 + i$
