@@ -190,7 +190,7 @@ def _load_legacy():
 def load_all():
     """Returns (subjects ordered dict, list of error strings). Folders in content/ override content.py."""
     errors = []
-    subjects = {}
+    subjects = _load_legacy()
     if os.path.isdir(CONTENT_DIR):
         for name in sorted(os.listdir(CONTENT_DIR)):
             folder = os.path.join(CONTENT_DIR, name)
