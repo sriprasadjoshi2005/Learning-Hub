@@ -9,142 +9,98 @@ Functions describe how input values are mapped to output values. Understanding r
 
 ### Relations and Functions
 
-- **Relation (\(R\)):** Any subset of the Cartesian product \(A \times B\), consisting of ordered pairs \((x,y)\), where \(x \in A\) and \(y \in B\).
+- **Relation:** Any subset of the Cartesian product A x B, consisting of ordered pairs (x, y).
+- **Function:** A special relation in which every element of the domain has exactly one output.
+- **Domain:** The set of all permissible input values.
+- **Codomain:** The target set containing all designated output values.
+- **Range:** The set of actual output values produced by the function.
 
-  \[
-  R \subseteq A \times B
-  \]
+The range is always a subset of the codomain.
 
-- **Function (\(f:A \to B\)):** A special type of relation in which every element of the domain \(A\) is associated with exactly one element of the codomain \(B\).
+### Function Mapping Example
 
-  A function must satisfy two conditions:
-  1. Every element of the domain has an assigned output.
-  2. No element of the domain has more than one output.
+Consider a function f from A to B, where:
 
-- **Domain (\(\operatorname{Dom}(f)\)):** The set of all permissible input values for which the function is defined.
+A = {1, 2, 3}
 
-- **Codomain:** The target set \(B\) containing all possible designated output values.
+B = {a, b, c}
 
-- **Range (\(\operatorname{Ran}(f)\)):** The set of actual output values produced by the function.
+Suppose:
 
-  \[
-  \operatorname{Range}(f) \subseteq \operatorname{Codomain}(f)
-  \]
+f(1) = a
 
-### Function Mapping Illustration
+f(2) = b
 
-Consider a function \(f:A\to B\), where:
-
-\[
-A=\{1,2,3\}, \qquad B=\{a,b,c\}
-\]
-
-Suppose the mapping is:
-
-\[
-f(1)=a,\qquad f(2)=b,\qquad f(3)=b
-\]
+f(3) = b
 
 Then:
 
-- Domain: \(\{1,2,3\}\)
-- Codomain: \(\{a,b,c\}\)
-- Range: \(\{a,b\}\)
+- Domain: {1, 2, 3}
+- Codomain: {a, b, c}
+- Range: {a, b}
 
-The element \(c\) belongs to the codomain but not the range.
+The element c belongs to the codomain but not the range.
 
-**Important:** Multiple inputs may map to the same output. However, a single input cannot map to multiple outputs in a function.
+**Important:** Multiple inputs may map to the same output, but one input cannot map to multiple outputs in a function.
 
 ## Classification of Functions
 
-Functions can be classified according to how their domain and codomain elements are mapped.
-
 ### 1. Injective Function (One-to-One)
 
-A function is **injective** if distinct inputs always produce distinct outputs.
+A function is injective if different inputs always produce different outputs.
 
 Mathematically:
 
-\[
-f(x_1)=f(x_2)\implies x_1=x_2
-\]
-
-An equivalent condition is:
-
-\[
-x_1\neq x_2\implies f(x_1)\neq f(x_2)
-\]
+f(x1) = f(x2) implies x1 = x2.
 
 **Example:**
 
-\[
-f(x)=2x+3
-\]
+f(x) = 2x + 3
 
-If:
+If f(x1) = f(x2), then:
 
-\[
-f(x_1)=f(x_2)
-\]
+2x1 + 3 = 2x2 + 3
 
-then:
+Therefore:
 
-\[
-2x_1+3=2x_2+3
-\]
+x1 = x2
 
-\[
-x_1=x_2
-\]
-
-Therefore, the function is injective over \(\mathbb{R}\).
+Hence, the function is injective over the real numbers.
 
 ### 2. Surjective Function (Onto)
 
-A function is **surjective** if every element of its codomain is the output of at least one element from its domain.
+A function is surjective if every element of its codomain is reached by at least one input.
 
 Mathematically:
 
-\[
-\operatorname{Range}(f)=\operatorname{Codomain}(f)
-\]
-
-Equivalently, for every \(y\in B\), there exists at least one \(x\in A\) such that:
-
-\[
-f(x)=y
-\]
+Range(f) = Codomain(f)
 
 **Example:**
 
-\[
-f:\mathbb{R}\to\mathbb{R},\qquad f(x)=x^3
-\]
+f(x) = x³, where the domain and codomain are real numbers.
 
-For every real number \(y\), we can choose:
+For every real number y, choose:
 
-\[
-x=\sqrt[3]{y}
-\]
+x = cube root of y.
 
-Since \(f(x)=y\), every real number has a pre-image. Therefore, the function is surjective.
+Then f(x) = y.
+
+Therefore, the function is surjective.
 
 ### 3. Bijective Function
 
-A function is **bijective** if it is both injective and surjective.
+A function is bijective if it is both injective and surjective.
 
-It satisfies:
+It satisfies two conditions:
 
 - Every output corresponds to exactly one input.
 - Every element of the codomain is reached.
 
-A function has an inverse function from its codomain to its domain if and only if it is bijective.
+A function has an inverse function if and only if it is bijective.
 
 **Example:**
 
-\[
-f:\mathbb{R}\to\mathbb{R},\qquad f(x)=2x+1
-\]
+f(x) = 2x + 1, where the domain and codomain are real numbers.
 
 This function is both injective and surjective. Therefore, it is bijective.
 
@@ -154,49 +110,35 @@ This function is both injective and surjective. Therefore, it is bijective.
 
 A function is even if:
 
-\[
-f(-x)=f(x)
-\]
+f(-x) = f(x)
 
-Its graph is symmetric about the \(y\)-axis.
+Its graph is symmetric about the y-axis.
 
 Example:
 
-\[
-f(x)=x^2
-\]
+f(x) = x²
 
 Because:
 
-\[
-f(-x)=(-x)^2=x^2=f(x)
-\]
+f(-x) = (-x)² = x² = f(x)
 
 **Odd Function**
 
 A function is odd if:
 
-\[
-f(-x)=-f(x)
-\]
+f(-x) = -f(x)
 
 Its graph is symmetric about the origin.
 
 Example:
 
-\[
-f(x)=x^3
-\]
+f(x) = x³
 
 Because:
 
-\[
-f(-x)=(-x)^3=-x^3=-f(x)
-\]
+f(-x) = (-x)³ = -x³ = -f(x)
 
-**Important:** The domain must be symmetric about zero for a function to be classified as even or odd.
-
-A function can be neither even nor odd.
+**Important:** The domain must be symmetric about zero for a function to be classified as even or odd. A function can be neither even nor odd.
 
 ## Function Composition and Inverses
 
@@ -204,438 +146,291 @@ A function can be neither even nor odd.
 
 Function composition combines two functions by using the output of one function as the input of another.
 
-Suppose:
+If g maps A to B and f maps B to C, then the composite function maps A to C.
 
-\[
-g:A\to B
-\]
+The formula is:
 
-and:
+(f o g)(x) = f(g(x))
 
-\[
-f:B\to C
-\]
-
-The composite function \(f\circ g\) is defined as:
-
-\[
-f\circ g:A\to C
-\]
-
-Its algebraic expression is:
-
-\[
-\boxed{(f\circ g)(x)=f(g(x))}
-\]
-
-The function \(g\) is applied first, followed by \(f\).
+The function g is applied first, followed by f.
 
 **Example:**
 
 Given:
 
-\[
-f(x)=2x+3
-\]
+f(x) = 2x + 3
 
-\[
-g(x)=x^2-1
-\]
+g(x) = x² - 1
 
-Find \((f\circ g)(x)\).
+Find (f o g)(x).
 
-Substitute \(g(x)\) into \(f(x)\):
+Substitute g(x) into f(x):
 
-\[
-(f\circ g)(x)=2(x^2-1)+3
-\]
+(f o g)(x) = 2(x² - 1) + 3
 
-\[
-=2x^2-2+3
-\]
+= 2x² + 1
 
-\[
-\boxed{(f\circ g)(x)=2x^2+1}
-\]
+### Properties of Function Composition
 
 **Non-Commutative Property**
 
 Function composition is generally non-commutative:
 
-\[
-f\circ g\neq g\circ f
-\]
+f o g is not necessarily equal to g o f.
 
 For the previous functions:
 
-\[
-(g\circ f)(x)=(2x+3)^2-1
-\]
+(g o f)(x) = (2x + 3)² - 1
 
-\[
-=4x^2+12x+8
-\]
+= 4x² + 12x + 8
 
 This is different from:
 
-\[
-(f\circ g)(x)=2x^2+1
-\]
+(f o g)(x) = 2x² + 1
 
 **Associative Property**
 
 Function composition is associative whenever the compositions are defined:
 
-\[
-f\circ(g\circ h)=(f\circ g)\circ h
-\]
+f o (g o h) = (f o g) o h
 
 ### Inverse Function
 
-An **inverse function** reverses the mapping performed by the original function.
+An inverse function reverses the mapping performed by the original function.
 
-If \(f:A\to B\) is bijective, its inverse is:
-
-\[
-f^{-1}:B\to A
-\]
+If f is bijective, its inverse is written as f⁻¹.
 
 The inverse satisfies:
 
-\[
-f(f^{-1}(y))=y
-\]
+f(f⁻¹(x)) = x
 
-and:
+f⁻¹(f(x)) = x
 
-\[
-f^{-1}(f(x))=x
-\]
-
-These are called the inverse function identities.
+These are called inverse function identities.
 
 ### Steps to Find an Inverse Function
 
-1. Write the original function as \(y=f(x)\).
-2. Interchange \(x\) and \(y\).
-3. Solve the resulting equation for \(y\).
-4. Replace \(y\) with \(f^{-1}(x)\).
+1. Write the original function as y = f(x).
+2. Interchange x and y.
+3. Solve the equation for y.
+4. Replace y with f⁻¹(x).
 5. State the appropriate domain and range restrictions.
 
 **Example:**
 
 Find the inverse of:
 
-\[
-f(x)=\frac{3x-1}{x+2}
-\]
+f(x) = (3x - 1) / (x + 2)
 
 Let:
 
-\[
-y=\frac{3x-1}{x+2}
-\]
+y = (3x - 1) / (x + 2)
 
-Interchange \(x\) and \(y\):
+Interchange x and y:
 
-\[
-x=\frac{3y-1}{y+2}
-\]
+x = (3y - 1) / (y + 2)
 
 Cross-multiply:
 
-\[
-x(y+2)=3y-1
-\]
+x(y + 2) = 3y - 1
 
-\[
-xy+2x=3y-1
-\]
+xy + 2x = 3y - 1
 
-Collect the terms containing \(y\):
+Collect the terms containing y:
 
-\[
-xy-3y=-1-2x
-\]
+xy - 3y = -1 - 2x
 
-\[
-y(x-3)=-(1+2x)
-\]
+y(x - 3) = -(1 + 2x)
 
 Therefore:
 
-\[
-y=\frac{2x+1}{3-x}
-\]
+y = (2x + 1) / (3 - x)
 
 Hence:
 
-\[
-\boxed{f^{-1}(x)=\frac{2x+1}{3-x}}
-\]
+f⁻¹(x) = (2x + 1) / (3 - x)
 
-The original function has domain \(\mathbb{R}\setminus\{-2\}\) and range \(\mathbb{R}\setminus\{3\}\).
+The original function has:
 
-Consequently, the inverse has:
+- Domain: All real numbers except -2.
+- Range: All real numbers except 3.
 
-- Domain: \(\mathbb{R}\setminus\{3\}\)
-- Range: \(\mathbb{R}\setminus\{-2\}\)
+The inverse has:
+
+- Domain: All real numbers except 3.
+- Range: All real numbers except -2.
 
 ## Function Property Master Table
 
-| Function Type | Defining Algebraic Condition | Geometric / Graphical Feature | Inverse Status |
+| Function Type | Defining Condition | Graphical Feature | Inverse Status |
 |---|---|---|---|
-| Injective | \(f(a)=f(b)\implies a=b\) | Passes the Horizontal Line Test | Has a left inverse |
-| Surjective | \(\operatorname{Range}(f)=\operatorname{Codomain}(f)\) | Every codomain value is attained | Has a right inverse |
+| Injective | f(a) = f(b) implies a = b | Passes the Horizontal Line Test | Has a left inverse |
+| Surjective | Range equals codomain | Every codomain value is reached | Has a right inverse |
 | Bijective | Both injective and surjective | Passes the Horizontal Line Test and covers the codomain | Has a two-sided inverse |
-| Even | \(f(-x)=f(x)\) | Symmetric about the \(y\)-axis | Not necessarily injective |
-| Odd | \(f(-x)=-f(x)\) | Symmetric about the origin | Invertibility depends on the mapping |
+| Even | f(-x) = f(x) | Symmetric about the y-axis | Not necessarily injective |
+| Odd | f(-x) = -f(x) | Symmetric about the origin | Invertibility depends on the mapping |
 
-**Note:** The inverse-status statements for injective and surjective functions assume the usual set-theoretic setting with the appropriate domains and codomains. An injective function has a left inverse, while a surjective function has a right inverse.
+**Note:** An injective function has a left inverse, while a surjective function has a right inverse, under the usual set-theoretic conditions.
 
 ## Important Formulas and Domain Rules
 
-### Domain Restrictions for Real-Valued Functions
+### Domain Restrictions
 
-The domain of a real-valued function must satisfy all algebraic restrictions imposed by its expression.
+The domain of a real-valued function must satisfy all restrictions imposed by its expression.
 
 **1. Denominator Restriction**
 
-For a rational expression:
+For a rational function:
 
-\[
-f(x)=\frac{P(x)}{Q(x)}
-\]
+f(x) = P(x) / Q(x)
 
-the denominator must not be zero:
+The denominator must not be zero:
 
-\[
-\boxed{Q(x)\neq 0}
-\]
+Q(x) is not equal to zero.
 
 **2. Even-Root Restriction**
 
 For an even root:
 
-\[
-f(x)=\sqrt[2n]{g(x)}
-\]
+f(x) = square root of g(x)
 
-the radicand must be non-negative:
+The expression inside the root must be non-negative:
 
-\[
-\boxed{g(x)\geq 0}
-\]
+g(x) >= 0
 
-Odd roots, such as cube roots, are defined for all real radicands.
+Odd roots, such as cube roots, are defined for all real numbers.
 
 **3. Logarithmic Restriction**
 
-For a logarithmic expression:
+For a logarithmic function:
 
-\[
-f(x)=\log_b(g(x))
-\]
+f(x) = log base b of g(x)
 
-the restrictions are:
+The restrictions are:
 
-\[
-\boxed{g(x)>0,\qquad b>0,\qquad b\neq 1}
-\]
+- g(x) > 0
+- b > 0
+- b is not equal to 1
 
 **4. Combined Domain Restrictions**
 
 When a function contains multiple operations, all restrictions must be satisfied simultaneously.
 
-For example:
+Example:
 
-\[
-f(x)=\frac{\sqrt{x-3}}{x-5}
-\]
+f(x) = square root of (x - 3) / (x - 5)
 
-The square root requires:
+The square root requires x >= 3.
 
-\[
-x-3\geq 0\implies x\geq 3
-\]
-
-The denominator requires:
-
-\[
-x-5\neq 0\implies x\neq 5
-\]
+The denominator requires x is not equal to 5.
 
 Therefore:
 
-\[
-\boxed{\operatorname{Dom}(f)=[3,5)\cup(5,\infty)}
-\]
+Domain = [3, 5) union (5, infinity).
 
 ### Composition Domain Rule
 
-For two composable functions \(f\) and \(g\):
+For two composable functions f and g:
 
-\[
-\boxed{
-\operatorname{Dom}(f\circ g)
-=
-\{x\in\operatorname{Dom}(g)\mid g(x)\in\operatorname{Dom}(f)\}
-}
-\]
+The domain of (f o g) contains all values of x that satisfy both conditions:
 
-This means that an input must first belong to the domain of \(g\), and its output must then belong to the domain of \(f\).
+- x belongs to the domain of g.
+- g(x) belongs to the domain of f.
 
 ### Inverse Function Properties
 
-For a bijective function \(f\):
+For a bijective function f:
 
-\[
-f^{-1}(f(x))=x
-\]
+f⁻¹(f(x)) = x
 
-\[
-f(f^{-1}(x))=x
-\]
+f(f⁻¹(x)) = x
 
 The domain and range are interchanged:
 
-\[
-\operatorname{Dom}(f^{-1})=\operatorname{Range}(f)
-\]
-
-\[
-\operatorname{Range}(f^{-1})=\operatorname{Dom}(f)
-\]
+- Domain of f⁻¹ = Range of f.
+- Range of f⁻¹ = Domain of f.
 
 ## Common Exam Traps
 
 - **Confusing relations with functions:** A relation may assign multiple outputs to one input. A function must assign exactly one output to every element of its domain.
-
-- **Confusing domain, codomain, and range:** The domain contains inputs, the codomain is the designated target set, and the range contains actual outputs.
-
-- **Vertical vs. Horizontal Line Test:** The Vertical Line Test determines whether a graph represents a function. The Horizontal Line Test determines whether a function is injective.
-
+- **Confusing domain, codomain, and range:** The domain contains inputs, the codomain is the target set, and the range contains actual outputs.
+- **Vertical and Horizontal Line Tests:** The Vertical Line Test determines whether a graph represents a function. The Horizontal Line Test determines whether a function is injective.
 - **Assuming every function is bijective:** A function must be both injective and surjective to be bijective.
-
-- **Assuming composition is commutative:** In general, \(f\circ g\neq g\circ f\). Always follow the order of operations in the composite function.
-
-- **Incorrectly finding an inverse:** Remember to interchange \(x\) and \(y\) before solving for the new \(y\).
-
-- **Ignoring domain restrictions on inverses:** The domain of an inverse function is the range of the original function. Excluded values must remain excluded.
-
+- **Assuming composition is commutative:** In general, f o g is not equal to g o f.
+- **Incorrectly finding an inverse:** Interchange x and y before solving for the new y.
+- **Ignoring inverse domain restrictions:** The domain of an inverse is the range of the original function.
 - **Misclassifying even and odd functions:** Check the defining equations and ensure that the domain is symmetric about zero.
-
-- **Ignoring domain restrictions during composition:** The output of the inner function must belong to the domain of the outer function.
+- **Ignoring composition restrictions:** The output of the inner function must belong to the domain of the outer function.
 
 ## Quiz
 
-1. Find the domain of the real-valued function:
+1. Find the domain of the function:
 
-   \[
-   f(x)=\frac{\sqrt{x-3}}{x-5}
-   \]
+f(x) = square root of (x - 3) / (x - 5)
 
-   - [ ] \([3,\infty)\)
-   - [x] \([3,5)\cup(5,\infty)\)
-   - [ ] \((5,\infty)\)
-   - [ ] \((-\infty,3]\cup(5,\infty)\)
+- [ ] [3, infinity)
+- [x] [3, 5) union (5, infinity)
+- [ ] (5, infinity)
+- [ ] (-infinity, 3] union (5, infinity)
 
-   > The square root requires:
-   >
-   > \[
-   > x-3\geq 0\implies x\geq 3
-   > \]
-   >
-   > The denominator requires:
-   >
-   > \[
-   > x-5\neq 0\implies x\neq 5
-   > \]
-   >
-   > Combining both restrictions gives:
-   >
-   > \[
-   > \boxed{[3,5)\cup(5,\infty)}
-   > \]
+> The square root requires x - 3 >= 0, so x >= 3.
+>
+> The denominator requires x - 5 is not equal to zero, so x cannot equal 5.
+>
+> Combining both restrictions gives:
+>
+> [3, 5) union (5, infinity).
 
 2. Given:
 
-   \[
-   f(x)=2x+3,\qquad g(x)=x^2-1
-   \]
+f(x) = 2x + 3
 
-   evaluate the composite value \((f\circ g)(4)\).
+g(x) = x² - 1
 
-   - [x] \(33\)
-   - [ ] \(31\)
-   - [ ] \(120\)
-   - [ ] \(35\)
+Evaluate (f o g)(4).
 
-   > First, evaluate the inner function:
-   >
-   > \[
-   > g(4)=4^2-1=16-1=15
-   > \]
-   >
-   > Then substitute this result into \(f\):
-   >
-   > \[
-   > f(g(4))=f(15)
-   > \]
-   >
-   > \[
-   > =2(15)+3=33
-   > \]
-   >
-   > Therefore:
-   >
-   > \[
-   > \boxed{(f\circ g)(4)=33}
-   > \]
+- [x] 33
+- [ ] 31
+- [ ] 120
+- [ ] 35
 
-3. What is the algebraic inverse function \(f^{-1}(x)\) for the bijective function:
+> First, evaluate the inner function:
+>
+> g(4) = 4² - 1 = 15.
+>
+> Then substitute the result into f:
+>
+> f(15) = 2(15) + 3 = 33.
+>
+> Therefore, (f o g)(4) = 33.
 
-   \[
-   f(x)=\frac{3x-1}{x+2}
-   \]
+3. Find the inverse function of:
 
-   - [ ] \(f^{-1}(x)=\frac{x+2}{3x-1}\)
-   - [x] \(f^{-1}(x)=\frac{2x+1}{3-x}\)
-   - [ ] \(f^{-1}(x)=\frac{2x-1}{3+x}\)
-   - [ ] \(f^{-1}(x)=\frac{3x+1}{x-2}\)
+f(x) = (3x - 1) / (x + 2)
 
-   > Let:
-   >
-   > \[
-   > y=\frac{3x-1}{x+2}
-   > \]
-   >
-   > Cross-multiply:
-   >
-   > \[
-   > y(x+2)=3x-1
-   > \]
-   >
-   > Expand:
-   >
-   > \[
-   > yx+2y=3x-1
-   > \]
-   >
-   > Collect the terms containing \(x\):
-   >
-   > \[
-   > 2y+1=x(3-y)
-   > \]
-   >
-   > Therefore:
-   >
-   > \[
-   > x=\frac{2y+1}{3-y}
-   > \]
-   >
-   > Interchange the variables:
-   >
-   > \[
-   > \boxed{f^{-1}(x)=\frac{2x+1}{3-x}}
-   > \]
+- [ ] (x + 2) / (3x - 1)
+- [x] (2x + 1) / (3 - x)
+- [ ] (2x - 1) / (3 + x)
+- [ ] (3x + 1) / (x - 2)
+
+> Let y = (3x - 1) / (x + 2).
+>
+> Interchange x and y:
+>
+> x = (3y - 1) / (y + 2).
+>
+> Cross-multiply:
+>
+> xy + 2x = 3y - 1.
+>
+> Collect the terms containing y:
+>
+> xy - 3y = -1 - 2x.
+>
+> y(x - 3) = -(1 + 2x).
+>
+> Therefore:
+>
+> y = (2x + 1) / (3 - x).
+>
+> Hence, the inverse function is (2x + 1) / (3 - x).
