@@ -67,7 +67,7 @@ $$d = \frac{|(\mathbf{a}_2 - \mathbf{a}_1) \times \mathbf{b}|}{|\mathbf{b}|}$$
    > By symmetry, Area $= 2 \int_{0}^{1} 2\sqrt{x} \, dx = 4 \Big[ \frac{2}{3} x^{3/2} \Big]_{0}^{1} = 4 \times \frac{2}{3} = \frac{8}{3}$.
 
 3. [PYQ Style] Evaluate the sum of all roots of the equation $|x^2 - 3x + 2| = 2$.
-  - [ ] $3$
+  - [ ] $9$
   - [x] $3$
   - [ ] $6$
   - [ ] $0$
