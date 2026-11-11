@@ -3,23 +3,21 @@ title: Functions and Relations
 level: intermediate
 ---
 
-Functions describe how input values are mapped to output values. This lesson covers relations, domains, ranges, types of functions, composition, and inverse functions.
+Functions describe how input values are connected to output values. This lesson covers relations, types of functions, domain, range, composition, and inverse functions.
 
-## Relations, Functions, Domain, and Range
+## Relations and Functions
 
-### Relations and Functions
-
-- **Relation:** A set of ordered pairs that connects elements of two sets.
-- **Function:** A relation in which every input has exactly one output.
-- **Domain:** The set of all possible input values.
-- **Codomain:** The set of designated possible output values.
-- **Range:** The set of actual output values.
+- **Relation:** A connection between elements of two sets.
+- **Function:** A relation where every input has exactly one output.
+- **Domain:** All possible input values.
+- **Codomain:** The set of possible output values.
+- **Range:** The actual output values.
 
 The range is always a subset of the codomain.
 
-### Function Mapping Example
+### Example
 
-Consider:
+Let:
 
 A = {1, 2, 3}
 
@@ -35,19 +33,21 @@ f(3) = b
 
 Then:
 
-- Domain: {1, 2, 3}
-- Codomain: {a, b, c}
-- Range: {a, b}
+- Domain = {1, 2, 3}
+- Codomain = {a, b, c}
+- Range = {a, b}
 
-The element c belongs to the codomain but not the range.
+The element c is in the codomain but not in the range.
 
-**Important:** Multiple inputs can have the same output, but one input cannot have multiple outputs in a function.
+**Important:** Different inputs can have the same output, but one input cannot have two different outputs.
 
-## Classification of Functions
+## Types of Functions
 
-### 1. Injective Function (One-to-One)
+### 1. Injective Function
 
-A function is injective if different inputs always produce different outputs.
+An injective function is also called a one-to-one function.
+
+Different inputs produce different outputs.
 
 Condition:
 
@@ -59,21 +59,19 @@ f(x) = 2x + 3
 
 If:
 
-f(x1) = f(x2)
+2x1 + 3 = 2x2 + 3
 
 Then:
 
-2x1 + 3 = 2x2 + 3
-
-Therefore:
-
 x1 = x2
 
-Hence, the function is injective over the real numbers.
+Therefore, the function is injective over the real numbers.
 
-### 2. Surjective Function (Onto)
+### 2. Surjective Function
 
-A function is surjective if every element of its codomain is reached by at least one input.
+A surjective function is also called an onto function.
+
+Every element of the codomain must be reached.
 
 Condition:
 
@@ -81,30 +79,28 @@ Range = Codomain
 
 **Example:**
 
-f(x) = x³, where the domain and codomain are real numbers.
+f(x) = x³
 
-For every real number y, we can choose:
+For every real number y, we can choose x as the cube root of y.
 
-x = cube root of y.
-
-Therefore, f(x) = y, and the function is surjective.
+Therefore, the function is surjective when its domain and codomain are both real numbers.
 
 ### 3. Bijective Function
 
-A function is bijective if it is both injective and surjective.
+A bijective function is both injective and surjective.
 
 It satisfies two conditions:
 
-- Every output corresponds to exactly one input.
+- Every output comes from exactly one input.
 - Every element of the codomain is reached.
 
-A function has an inverse function if and only if it is bijective.
+A function has an inverse if and only if it is bijective.
 
 **Example:**
 
-f(x) = 2x + 1, where the domain and codomain are real numbers.
+f(x) = 2x + 1
 
-This function is both injective and surjective. Therefore, it is bijective.
+When the domain and codomain are real numbers, this function is bijective.
 
 ### 4. Even and Odd Functions
 
@@ -120,10 +116,6 @@ Example:
 
 f(x) = x²
 
-Because:
-
-f(-x) = (-x)² = x² = f(x)
-
 **Odd Function**
 
 A function is odd if:
@@ -136,25 +128,19 @@ Example:
 
 f(x) = x³
 
-Because:
+**Important:** The domain must be symmetric about zero. A function can also be neither even nor odd.
 
-f(-x) = (-x)³ = -x³ = -f(x)
+## Function Composition
 
-**Important:** The domain must be symmetric about zero for a function to be even or odd. A function can also be neither even nor odd.
+Function composition means applying one function after another.
 
-## Function Composition and Inverses
-
-### Function Composition
-
-Function composition combines two functions by using the output of one function as the input of another.
-
-The formula is:
+Formula:
 
 (f o g)(x) = f(g(x))
 
-The inner function g is applied first, followed by f.
+The function g is applied first, followed by f.
 
-**Example:**
+### Example
 
 Given:
 
@@ -168,67 +154,65 @@ Substitute g(x) into f(x):
 
 (f o g)(x) = 2(x² - 1) + 3
 
-= 2x² + 1
+Answer:
 
-### Properties of Function Composition
+2x² + 1
+
+### Properties of Composition
 
 **Non-Commutative Property**
 
-Function composition is generally not commutative.
-
-This means:
+The order of functions usually matters.
 
 (f o g)(x) is not necessarily equal to (g o f)(x).
 
-For the previous functions:
+For the previous example:
 
 (g o f)(x) = (2x + 3)² - 1
 
 = 4x² + 12x + 8
 
-But:
+Therefore:
 
-(f o g)(x) = 2x² + 1
-
-Therefore, the two compositions are different.
+f o g is not equal to g o f.
 
 **Associative Property**
 
-Function composition is associative whenever the compositions are defined.
+Function composition is associative:
 
 f o (g o h) = (f o g) o h
 
-### Inverse Function
+This holds whenever the compositions are defined.
 
-An inverse function reverses the mapping of the original function.
+## Inverse Functions
 
-The inverse of f is written as f⁻¹.
+An inverse function reverses the operation of the original function.
+
+It is written as f⁻¹.
 
 A function has an inverse if it is bijective.
 
-The inverse satisfies:
+The inverse identities are:
 
 f(f⁻¹(x)) = x
 
 f⁻¹(f(x)) = x
 
-These are called inverse function identities.
+### Steps to Find an Inverse
 
-### Steps to Find an Inverse Function
-
-1. Write the function as y = f(x).
+1. Write y = f(x).
 2. Interchange x and y.
 3. Solve for y.
 4. Replace y with f⁻¹(x).
-5. State the domain and range restrictions.
+5. State the domain and range.
 
-**Example:**
+### Example
 
 Find the inverse of:
 
 f(x) = (3x - 1) / (x + 2)
 
-Let:
+Start with:
 
 y = (3x - 1) / (x + 2)
 
@@ -238,149 +222,132 @@ x = (3y - 1) / (y + 2)
 
 Cross-multiply:
 
-x(y + 2) = 3y - 1
-
 xy + 2x = 3y - 1
 
-Collect the terms containing y:
+Collect y terms:
 
 xy - 3y = -1 - 2x
 
-y(x - 3) = -(1 + 2x)
+y(x - 3) = -1 - 2x
 
 Therefore:
 
-y = (2x + 1) / (3 - x)
-
-Hence:
-
 f⁻¹(x) = (2x + 1) / (3 - x)
 
-The original function has:
+**Domain and Range:**
 
+Original function:
 - Domain: All real numbers except -2.
 - Range: All real numbers except 3.
 
-The inverse function has:
-
+Inverse function:
 - Domain: All real numbers except 3.
 - Range: All real numbers except -2.
 
-## Function Properties
+## Function Properties Summary
 
-| Function Type | Condition | Graphical Feature |
+| Type | Condition | Graph Feature |
 |---|---|---|
-| Injective | f(a) = f(b) implies a = b | Passes the Horizontal Line Test |
-| Surjective | Range = Codomain | Every codomain value is reached |
-| Bijective | Both injective and surjective | Passes the Horizontal Line Test and covers the codomain |
-| Even | f(-x) = f(x) | Symmetric about the y-axis |
-| Odd | f(-x) = -f(x) | Symmetric about the origin |
+| Injective | Different inputs have different outputs | Passes the Horizontal Line Test |
+| Surjective | Range equals codomain | Every codomain value is reached |
+| Bijective | Both injective and surjective | Has an inverse |
+| Even | f(-x) = f(x) | Symmetric about y-axis |
+| Odd | f(-x) = -f(x) | Symmetric about origin |
 
 **Inverse Properties:**
 
-- An injective function has a left inverse.
-- A surjective function has a right inverse.
-- A bijective function has a two-sided inverse.
+- Injective functions have a left inverse.
+- Surjective functions have a right inverse.
+- Bijective functions have a two-sided inverse.
 
-These statements assume the usual set-theoretic conditions.
+## Domain Rules
 
-## Important Formulas and Domain Rules
+The domain contains all values for which a function is defined.
 
-### Domain Restrictions
+### 1. Fractions
 
-The domain of a function must satisfy all restrictions imposed by its expression.
+The denominator cannot be zero.
 
-**1. Denominator Restriction**
+Example:
 
-For a rational function:
+f(x) = 1 / (x - 2)
 
-f(x) = P(x) / Q(x)
+Here, x cannot equal 2.
 
-The denominator must not be zero.
+### 2. Square Roots
 
-Q(x) is not equal to zero.
+The expression inside an even root must be zero or positive.
 
-**2. Even-Root Restriction**
+Example:
 
-For an even root:
+f(x) = square root of (x - 3)
 
-f(x) = square root of g(x)
+Here:
 
-The expression inside the root must be non-negative.
+x >= 3
 
-g(x) >= 0
+Cube roots can accept any real number.
 
-Odd roots, such as cube roots, are defined for all real numbers.
+### 3. Logarithms
 
-**3. Logarithmic Restriction**
+For log base b of x:
 
-For a logarithmic function:
+- x must be greater than zero.
+- b must be greater than zero.
+- b cannot equal 1.
 
-f(x) = log base b of g(x)
-
-The restrictions are:
-
-- g(x) > 0
-- b > 0
-- b is not equal to 1
-
-**4. Combined Domain Restrictions**
-
-When a function contains multiple operations, all restrictions must be satisfied.
+### 4. Combined Restrictions
 
 Example:
 
 f(x) = square root of (x - 3) / (x - 5)
 
-The square root requires:
+The square root requires x >= 3.
 
-x >= 3
-
-The denominator requires:
-
-x is not equal to 5.
+The denominator cannot equal zero, so x cannot equal 5.
 
 Therefore:
 
 Domain = [3, 5) union (5, infinity).
 
-### Composition Domain Rule
+## Composition and Inverse Domain Rules
 
-For two functions f and g:
+### Composition Domain
 
-The domain of (f o g) must satisfy both conditions:
+For (f o g)(x), both conditions must be satisfied:
 
-- x belongs to the domain of g.
-- g(x) belongs to the domain of f.
+- x must belong to the domain of g.
+- g(x) must belong to the domain of f.
 
-### Inverse Function Properties
+### Inverse Domain and Range
 
 For a bijective function:
+
+- Domain of f⁻¹ = Range of f.
+- Range of f⁻¹ = Domain of f.
+
+Also:
 
 f⁻¹(f(x)) = x
 
 f(f⁻¹(x)) = x
 
-The domain and range are interchanged:
-
-- Domain of f⁻¹ = Range of f.
-- Range of f⁻¹ = Domain of f.
-
 ## Common Exam Traps
 
-- **Relations and functions:** A function must assign exactly one output to every input.
-- **Domain, codomain, and range:** The domain contains inputs, the codomain is the target set, and the range contains actual outputs.
-- **Vertical and Horizontal Line Tests:** The Vertical Line Test checks whether a graph is a function. The Horizontal Line Test checks whether it is injective.
-- **Bijective functions:** A function must be both injective and surjective to be bijective.
-- **Function composition:** In general, f o g is not equal to g o f.
-- **Finding inverses:** Interchange x and y before solving for the new y.
-- **Inverse restrictions:** The domain of an inverse is the range of the original function.
-- **Even and odd functions:** Check the defining equations and ensure that the domain is symmetric about zero.
-- **Composition restrictions:** The output of the inner function must belong to the domain of the outer function.
+- **Function definition:** One input cannot have multiple outputs.
+- **Range and codomain:** The range contains only actual outputs.
+- **Injective and surjective:** These are different properties.
+- **Bijective functions:** A function must be both injective and surjective to have an inverse.
+- **Line tests:** The Vertical Line Test checks functions. The Horizontal Line Test checks injectivity.
+- **Composition order:** Apply the inner function first.
+- **Inverse functions:** Interchange x and y before solving.
+- **Even and odd functions:** Check the defining equations and domain.
+- **Domain restrictions:** Never allow a zero denominator or a negative value inside an even root.
+- **Composition domain:** The output of the inner function must be valid for the outer function.
 
 ## Quiz
 
-1. Find the domain of the function:
+1. Find the domain of:
 
 f(x) = square root of (x - 3) / (x - 5)
 
@@ -389,13 +356,11 @@ f(x) = square root of (x - 3) / (x - 5)
 - [ ] (5, infinity)
 - [ ] (-infinity, 3] union (5, infinity)
 
-> The square root requires x - 3 >= 0, so x >= 3.
+> The square root requires x >= 3.
 >
-> The denominator requires x - 5 is not equal to zero, so x cannot equal 5.
+> The denominator cannot equal zero, so x cannot equal 5.
 >
-> Combining both restrictions gives:
->
-> [3, 5) union (5, infinity).
+> Therefore, the domain is [3, 5) union (5, infinity).
 
 2. Given:
 
@@ -403,24 +368,24 @@ f(x) = 2x + 3
 
 g(x) = x² - 1
 
-Evaluate (f o g)(4).
+Find (f o g)(4).
 
 - [x] 33
 - [ ] 31
 - [ ] 120
 - [ ] 35
 
-> First, evaluate the inner function:
+> First, calculate g(4):
 >
 > g(4) = 4² - 1 = 15.
 >
-> Substitute the result into f:
+> Now calculate f(15):
 >
 > f(15) = 2(15) + 3 = 33.
 >
-> Therefore, (f o g)(4) = 33.
+> Answer: 33.
 
-3. Find the inverse function of:
+3. Find the inverse of:
 
 f(x) = (3x - 1) / (x + 2)
 
@@ -429,24 +394,20 @@ f(x) = (3x - 1) / (x + 2)
 - [ ] (2x - 1) / (3 + x)
 - [ ] (3x + 1) / (x - 2)
 
-> Let y = (3x - 1) / (x + 2).
+> Start with:
+>
+> y = (3x - 1) / (x + 2)
 >
 > Interchange x and y:
 >
-> x = (3y - 1) / (y + 2).
+> x = (3y - 1) / (y + 2)
 >
-> Cross-multiply:
+> Cross-multiply and collect the y terms:
 >
-> xy + 2x = 3y - 1.
+> xy + 2x = 3y - 1
 >
-> Collect the terms containing y:
->
-> xy - 3y = -1 - 2x.
->
-> y(x - 3) = -(1 + 2x).
+> y(x - 3) = -1 - 2x
 >
 > Therefore:
 >
-> y = (2x + 1) / (3 - x).
->
-> Hence, the inverse function is (2x + 1) / (3 - x).
+> f⁻¹(x) = (2x + 1) / (3 - x).
