@@ -3,261 +3,285 @@ title: Advanced Inequalities and Absolute Value
 level: intermediate
 ---
 
-Advanced inequalities involve absolute values, quadratic expressions, rational functions, and radical expressions. Solving them requires understanding inequality properties, identifying critical points, analyzing signs across intervals, and applying techniques such as the **Wavy Curve Method** and **AM-GM inequality**.
+Advanced inequalities involve absolute values, polynomial expressions, rational expressions, and radicals. This lesson covers absolute value properties, sign analysis, the Wavy Curve Method, and the AM-GM inequality.
 
-## Absolute Value Equations and Inequalities
+## 1. Absolute Value
 
-The **absolute value** of a real number \(x\), denoted by \(|x|\), represents its non-negative distance from zero on the number line.
+The absolute value of a real number is its non-negative distance from zero.
 
 \[
 |x| =
 \begin{cases}
-x & \text{if } x \geq 0 \\
--x & \text{if } x < 0
+x, & x \geq 0 \\
+-x, & x < 0
 \end{cases}
 \]
 
-For example:
+Examples:
 
 \[
-|5| = 5, \qquad |-5| = 5
+|5|=5,\qquad |-5|=5
 \]
 
-### Fundamental Absolute Value Theorems
+### 1.1 Absolute Value Equations
 
-For \(a > 0\), the following properties are essential:
-
-1. **Absolute Value Equation**
-
-   \[
-   |x| = a \iff x = a \text{ or } x = -a
-   \]
-
-2. **Less-Than Absolute Value Inequality**
-
-   \[
-   |x| < a \iff -a < x < a
-   \]
-
-   This represents a bounded interval:
-
-   \[
-   x \in (-a,a)
-   \]
-
-3. **Greater-Than Absolute Value Inequality**
-
-   \[
-   |x| > a \iff x < -a \text{ or } x > a
-   \]
-
-   This represents two unbounded intervals:
-
-   \[
-   x \in (-\infty,-a) \cup (a,\infty)
-   \]
-
-4. **Absolute Values of Two Expressions**
-
-   \[
-   |f(x)| = |g(x)|
-   \]
-
-   is equivalent to:
-
-   \[
-   f(x) = g(x) \quad \text{or} \quad f(x) = -g(x)
-   \]
-
-### Inclusive Inequalities
-
-When the inequality contains equality, the boundary points must also be included.
+For \(a>0\):
 
 \[
-|x| \leq a \iff -a \leq x \leq a
+|x|=a \iff x=a \text{ or } x=-a
 \]
 
+For two expressions:
+
 \[
-|x| \geq a \iff x \leq -a \text{ or } x \geq a
+|f(x)|=|g(x)|
 \]
 
-For a shifted absolute value expression:
+Therefore:
 
 \[
-|x-c| \leq r
+f(x)=g(x) \text{ or } f(x)=-g(x)
 \]
 
-the solution is:
+### 1.2 Absolute Value Inequalities
+
+For \(a>0\):
+
+**Less than:**
 
 \[
-c-r \leq x \leq c+r
+|x|<a \iff -a<x<a
 \]
 
-Similarly:
+**Less than or equal to:**
 
 \[
-|x-c| \geq r
+|x|\leq a \iff -a\leq x\leq a
+\]
+
+**Greater than:**
+
+\[
+|x|>a \iff x<-a \text{ or } x>a
+\]
+
+**Greater than or equal to:**
+
+\[
+|x|\geq a \iff x\leq-a \text{ or } x\geq a
+\]
+
+### 1.3 Shifted Absolute Value
+
+For \(r\geq0\):
+
+\[
+|x-c|\leq r
 \]
 
 gives:
 
 \[
-x \leq c-r \quad \text{or} \quad x \geq c+r
+c-r\leq x\leq c+r
 \]
 
-where \(r \geq 0\).
-
-## Rational Inequalities and the Wavy Curve Method
-
-The **Wavy Curve Method**, also called the **Sign Scheme**, is used to solve polynomial and rational inequalities by analyzing the signs of their factors across intervals.
-
-It is particularly useful for inequalities of the form:
+Similarly:
 
 \[
-\frac{P(x)}{Q(x)} > 0
+|x-c|\geq r
 \]
 
-or
+gives:
 
 \[
-\frac{P(x)}{Q(x)} \leq 0
+x\leq c-r \text{ or } x\geq c+r
 \]
 
-where \(P(x)\) and \(Q(x)\) are polynomials and \(Q(x) \neq 0\).
+## 2. Rational Inequalities
 
-### Steps of the Wavy Curve Method
+Rational inequalities contain polynomial expressions in the numerator and denominator.
 
-1. **Move all terms to one side:** Rewrite the inequality so that the other side is zero.
+Examples:
 
-2. **Factorize:** Express the numerator and denominator as products of linear factors, wherever possible.
+\[
+\frac{x-2}{x+3}>0
+\]
 
-3. **Identify critical points:** Find the real roots of the numerator and denominator.
+\[
+\frac{x^2-4}{x-1}\leq0
+\]
 
-4. **Mark the number line:** Arrange all distinct critical points in increasing order.
-   - Numerator roots are included only when the inequality permits equality.
-   - Denominator roots are always excluded because division by zero is undefined.
+The denominator must never equal zero.
 
-5. **Determine the signs:** Start with the sign in the rightmost interval and move across the critical points.
-   - At a root with odd multiplicity, the sign changes.
-   - At a root with even multiplicity, the sign remains unchanged.
+### 2.1 Wavy Curve Method
 
-6. **Select the required intervals:** Choose the intervals where the expression satisfies the given inequality.
+The Wavy Curve Method is a technique for determining where a factored polynomial or rational expression is positive or negative.
 
-### Example: Solving a Rational Inequality
+**Procedure:**
+
+1. Move all terms to one side.
+2. Factorize the numerator and denominator.
+3. Find the real zeros of all factors.
+4. Arrange the critical points in increasing order.
+5. Divide the number line into intervals.
+6. Determine the sign in each interval.
+7. Select the intervals satisfying the inequality.
+
+**Important rules:**
+
+- Numerator roots can be included when equality is allowed.
+- Denominator roots must always be excluded.
+- Odd-multiplicity roots change the sign.
+- Even-multiplicity roots do not change the sign.
+
+### 2.2 Worked Example
 
 Solve:
 
 \[
-\frac{x-3}{x+1} \leq 0
+\frac{x-3}{x+1}\leq0
 \]
 
-**Step 1: Identify the critical points.**
+**Step 1: Find the critical points.**
 
 Numerator:
 
 \[
-x-3=0 \implies x=3
+x-3=0\implies x=3
 \]
 
 Denominator:
 
 \[
-x+1=0 \implies x=-1
+x+1=0\implies x=-1
 \]
 
-**Step 2: Arrange the critical points.**
+**Step 2: Divide the number line.**
+
+The intervals are:
 
 \[
--1 < 3
+(-\infty,-1),\quad(-1,3),\quad(3,\infty)
 \]
 
-These points divide the number line into three intervals:
+**Step 3: Determine the signs.**
 
-\[
-(-\infty,-1), \quad (-1,3), \quad (3,\infty)
-\]
-
-**Step 3: Analyze the signs.**
-
-| Interval | Sign of \(x-3\) | Sign of \(x+1\) | Overall sign |
+| Interval | Numerator | Denominator | Expression |
 |---|---|---|---|
-| \((-\infty,-1)\) | \(-\) | \(-\) | \(+\) |
-| \((-1,3)\) | \(-\) | \(+\) | \(-\) |
-| \((3,\infty)\) | \(+\) | \(+\) | \(+\) |
+| \((-\infty,-1)\) | Negative | Negative | Positive |
+| \((-1,3)\) | Negative | Positive | Negative |
+| \((3,\infty)\) | Positive | Positive | Positive |
 
-**Step 4: Select the required intervals.**
+**Step 4: Select the solution.**
 
-Since the inequality is \(\leq 0\), select the negative interval and include the numerator root \(x=3\).
+The expression must be less than or equal to zero.
 
-The denominator root \(x=-1\) must be excluded.
+- Select \((-1,3)\), where the expression is negative.
+- Include \(x=3\), where the numerator is zero.
+- Exclude \(x=-1\), where the denominator is zero.
 
-Therefore:
+Final answer:
 
 \[
-\boxed{x \in (-1,3]}
+\boxed{x\in(-1,3]}
 \]
 
-## Absolute Value and Inequality Theorem Table
+## 3. Important Inequality Formulas
 
-| Form / Condition | Solution Set / Transformation | Interval Notation |
-|---|---|---|
-| \(|x-c| \leq r\) | \(c-r \leq x \leq c+r\) | \([c-r,c+r]\) |
-| \(|x-c| < r\) | \(c-r < x < c+r\) | \((c-r,c+r)\) |
-| \(|x-c| \geq r\) | \(x \leq c-r\) or \(x \geq c+r\) | \((-\infty,c-r] \cup [c+r,\infty)\) |
-| \(|x-c| > r\) | \(x < c-r\) or \(x > c+r\) | \((-\infty,c-r) \cup (c+r,\infty)\) |
-| \((x-a)(x-b) < 0,\ a<b\) | \(a < x < b\) | \((a,b)\) |
-| \((x-a)(x-b) > 0,\ a<b\) | \(x < a\) or \(x > b\) | \((-\infty,a) \cup (b,\infty)\) |
-| \(\frac{x-a}{x-b} \leq 0,\ a<b\) | \(a \leq x < b\) | \([a,b)\) |
+### 3.1 Absolute Value Rules
 
-**Important:** In the last row, \(x=a\) is included because it makes the numerator zero, whereas \(x=b\) is excluded because it makes the denominator zero.
+| Inequality | Solution |
+|---|---|
+| \(|x-c|<r\) | \(c-r<x<c+r\) |
+| \(|x-c|\leq r\) | \(c-r\leq x\leq c+r\) |
+| \(|x-c|>r\) | \(x<c-r\) or \(x>c+r\) |
+| \(|x-c|\geq r\) | \(x\leq c-r\) or \(x\geq c+r\) |
 
-## Important Formulas and AM-GM Inequality
+### 3.2 Quadratic Sign Rules
 
-### Arithmetic Mean-Geometric Mean Inequality
-
-The **AM-GM inequality** states that the arithmetic mean of two non-negative real numbers is greater than or equal to their geometric mean.
-
-For \(a,b \geq 0\):
+For \(a<b\):
 
 \[
-\frac{a+b}{2} \geq \sqrt{ab}
+(x-a)(x-b)<0
+\]
+
+Solution:
+
+\[
+a<x<b
+\]
+
+Similarly:
+
+\[
+(x-a)(x-b)>0
+\]
+
+Solution:
+
+\[
+x<a \text{ or } x>b
+\]
+
+### 3.3 Rational Sign Rule
+
+For \(a<b\):
+
+\[
+\frac{x-a}{x-b}\leq0
+\]
+
+Solution:
+
+\[
+\boxed{x\in[a,b)}
+\]
+
+The numerator root \(a\) is included, but the denominator root \(b\) is excluded.
+
+## 4. AM-GM Inequality
+
+The Arithmetic Mean-Geometric Mean inequality states that the arithmetic mean of two non-negative numbers is greater than or equal to their geometric mean.
+
+For \(a,b\geq0\):
+
+\[
+\frac{a+b}{2}\geq\sqrt{ab}
 \]
 
 Equivalently:
 
 \[
-a+b \geq 2\sqrt{ab}
+\boxed{a+b\geq2\sqrt{ab}}
 \]
 
-Equality holds if and only if:
+Equality holds when:
 
 \[
 a=b
 \]
 
-**Application: Finding a Minimum Value**
+### 4.1 Finding Minimum Values
 
 Consider:
 
 \[
-f(x)=x+\frac{9}{x}, \qquad x>0
+f(x)=x+\frac{9}{x},\qquad x>0
 \]
 
 Applying AM-GM:
 
 \[
 x+\frac{9}{x}
-\geq 2\sqrt{x\cdot\frac{9}{x}}
+\geq2\sqrt{x\cdot\frac{9}{x}}
 \]
 
 \[
-=2\sqrt{9}=6
+x+\frac{9}{x}\geq2\sqrt{9}
 \]
 
-Therefore:
-
 \[
-f(x)\geq 6
+x+\frac{9}{x}\geq6
 \]
 
 Equality occurs when:
@@ -276,31 +300,31 @@ Since \(x>0\):
 x=3
 \]
 
-Hence, the minimum value is:
+Therefore, the minimum value is:
 
 \[
 \boxed{6}
 \]
 
-### Triangle Inequality
+## 5. Triangle Inequality
 
 For any real numbers \(a\) and \(b\):
 
 \[
-|a+b| \leq |a|+|b|
+|a+b|\leq|a|+|b|
 \]
 
 \[
-|a-b| \leq |a|+|b|
+|a-b|\leq|a|+|b|
 \]
 
 The reverse triangle inequality is:
 
 \[
-\boxed{\left||a|-|b|\right| \leq |a\pm b|}
+\boxed{\left||a|-|b|\right|\leq|a\pm b|}
 \]
 
-These inequalities are useful for estimating absolute values without evaluating them directly.
+These properties are useful when simplifying and estimating absolute value expressions.
 
 ### Square of Absolute Value
 
@@ -310,79 +334,62 @@ For every real number \(x\):
 \boxed{|x|^2=x^2}
 \]
 
-This follows because squaring eliminates the sign of a real number.
+## 6. Common Exam Traps
 
-## Common Exam Traps
-
-- **Including denominator roots:** A denominator root must always be excluded from the solution set, even when the inequality contains \(\leq\) or \(\geq\). Equality cannot make division by zero valid.
-
-- **Incorrectly splitting absolute value inequalities:** Writing \(|x|>5\) as \(-5>x>5\) is incorrect. The correct interpretation is:
-
-  \[
-  x<-5 \quad \text{or} \quad x>5
-  \]
-
-- **Ignoring sign changes when multiplying inequalities:** Multiplying or dividing an inequality by a negative expression reverses its direction. If the sign of a variable expression is unknown, analyze its sign before multiplying.
-
-- **Confusing strict and inclusive inequalities:** The symbols \(<\) and \(>\) exclude boundary points, whereas \(\leq\) and \(\geq\) include valid boundary points.
-
-- **Applying AM-GM without checking non-negativity:** The standard AM-GM inequality requires non-negative quantities. Check the domain before applying it.
-
-- **Assuming every critical point changes the sign:** Sign changes occur at roots of odd multiplicity. Roots of even multiplicity do not change the sign.
+- **Including denominator roots:** Denominator roots are always excluded because division by zero is undefined.
+- **Incorrect absolute value splitting:** The inequality \(|x|>5\) gives \(x<-5\) or \(x>5\), not a double inequality.
+- **Ignoring negative multiplication:** Multiplying or dividing by a negative number reverses the inequality sign.
+- **Confusing strict and inclusive inequalities:** Strict inequalities exclude boundary points; inclusive inequalities include valid boundary points.
+- **Incorrect AM-GM application:** The quantities must be non-negative.
+- **Ignoring multiplicity:** Odd-multiplicity roots change signs, while even-multiplicity roots do not.
 
 ## Quiz
 
-1. Solve the absolute value inequality for \(x\):
+1. Solve the inequality:
 
    \[
-   |2x-3| \leq 7
+   |2x-3|\leq7
    \]
 
    - [x] \([-2,5]\)
-   - [ ] \((-\infty,-2] \cup [5,\infty)\)
+   - [ ] \((-\infty,-2]\cup[5,\infty)\)
    - [ ] \([-5,2]\)
    - [ ] \((-2,5)\)
 
-   > Rewrite the inequality as a double inequality:
+   > Remove the absolute value:
    >
    > \[
-   > -7 \leq 2x-3 \leq 7
+   > -7\leq2x-3\leq7
    > \]
    >
-   > Add \(3\) to all three parts:
+   > Add 3:
    >
    > \[
-   > -4 \leq 2x \leq 10
+   > -4\leq2x\leq10
    > \]
    >
-   > Divide by \(2\):
+   > Divide by 2:
    >
    > \[
-   > -2 \leq x \leq 5
+   > \boxed{-2\leq x\leq5}
    > \]
-   >
-   > Therefore, the solution interval is \([-2,5]\).
 
-2. Find the solution set for the rational inequality:
+2. Solve the rational inequality:
 
    \[
-   \frac{x-3}{x+1} \leq 0
+   \frac{x-3}{x+1}\leq0
    \]
 
    - [ ] \([-1,3]\)
    - [x] \((-1,3]\)
-   - [ ] \((-\infty,-1) \cup [3,\infty)\)
+   - [ ] \((-\infty,-1)\cup[3,\infty)\)
    - [ ] \([-1,3)\)
 
-   > The critical points are \(x=3\), obtained from the numerator, and \(x=-1\), obtained from the denominator.
+   > The critical points are \(x=-1\) and \(x=3\).
    >
-   > These points divide the number line into three intervals:
+   > Sign analysis shows that the expression is negative between these points.
    >
-   > \[
-   > (-\infty,-1),\quad (-1,3),\quad (3,\infty)
-   > \]
-   >
-   > Sign analysis shows that the expression is negative in \((-1,3)\). The numerator becomes zero at \(x=3\), so this point is included. However, \(x=-1\) makes the denominator zero and must be excluded.
+   > Include \(x=3\) because it makes the numerator zero. Exclude \(x=-1\) because it makes the denominator zero.
    >
    > Therefore:
    >
@@ -390,10 +397,10 @@ This follows because squaring eliminates the sign of a real number.
    > \boxed{(-1,3]}
    > \]
 
-3. Using the AM-GM inequality, what is the minimum value of the function?
+3. Find the minimum value using AM-GM:
 
    \[
-   f(x)=x+\frac{9}{x}, \qquad x>0
+   f(x)=x+\frac{9}{x},\qquad x>0
    \]
 
    - [ ] \(3\)
@@ -401,25 +408,25 @@ This follows because squaring eliminates the sign of a real number.
    - [ ] \(9\)
    - [ ] \(12\)
 
-   > By AM-GM, for two non-negative quantities \(a=x\) and \(b=\frac{9}{x}\):
+   > By AM-GM:
    >
    > \[
-   > \frac{x+\frac{9}{x}}{2}
-   > \geq \sqrt{x\cdot\frac{9}{x}}
+   > x+\frac{9}{x}
+   > \geq2\sqrt{x\cdot\frac{9}{x}}
    > \]
-   >
-   > Simplifying:
    >
    > \[
-   > \frac{x+\frac{9}{x}}{2}\geq 3
+   > x+\frac{9}{x}\geq6
    > \]
    >
-   > Therefore:
+   > Equality occurs when:
    >
    > \[
-   > x+\frac{9}{x}\geq 6
+   > x=\frac{9}{x}\implies x=3
    > \]
    >
-   > Equality occurs when \(x=\frac{9}{x}\), giving \(x=3\) because \(x>0\).
+   > Therefore, the minimum value is:
    >
-   > Hence, the minimum value is \(\boxed{6}\).
+   > \[
+   > \boxed{6}
+   > \]
