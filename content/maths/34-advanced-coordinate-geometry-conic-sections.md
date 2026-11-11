@@ -1,5 +1,5 @@
 ---
-title: Advanced Coordinate Geometry: Conic Sections
+title: Advanced Coordinate Geometry- Conic Sections
 level: advanced
 ---
 
