@@ -186,21 +186,21 @@ This holds whenever the compositions are defined.
 
 An inverse function reverses the operation of the original function.
 
-It is written as f⁻¹.
+It is written as f^(-1).
 
 A function has an inverse if it is bijective.
 
 **Inverse Identities:**
 
-- f(f⁻¹(x)) = x
-- f⁻¹(f(x)) = x
+- f(f^(-1)(x)) = x
+- f^(-1)(f(x)) = x
 
 ### Steps to Find an Inverse
 
 1. Write y = f(x).
 2. Interchange x and y.
 3. Solve for y.
-4. Replace y with f⁻¹(x).
+4. Replace y with f^(-1)(x).
 5. State the domain and range.
 
 ### Example
@@ -229,15 +229,17 @@ y(x - 3) = -1 - 2x
 
 Therefore:
 
-f⁻¹(x) = (2x + 1) / (3 - x)
+f^(-1)(x) = (2x + 1) / (3 - x)
 
 **Domain and Range:**
 
 Original function:
+
 - Domain: All real numbers except -2.
 - Range: All real numbers except 3.
 
 Inverse function:
+
 - Domain: All real numbers except 3.
 - Range: All real numbers except -2.
 
@@ -320,13 +322,13 @@ For (f o g)(x), both conditions must be satisfied:
 
 For a bijective function:
 
-- Domain of f⁻¹ = Range of f.
-- Range of f⁻¹ = Domain of f.
+- Domain of f^(-1) = Range of f.
+- Range of f^(-1) = Domain of f.
 
 Also:
 
-- f⁻¹(f(x)) = x
-- f(f⁻¹(x)) = x
+- f^(-1)(f(x)) = x
+- f(f^(-1)(x)) = x
 
 ## Common Exam Traps
 
@@ -344,7 +346,6 @@ Also:
 ## Quiz
 
 1. What is the domain of the function sqrt(x - 3) / (x - 5)?
-
 - [ ] [3, infinity)
 - [x] [3, 5) union (5, infinity)
 - [ ] (5, infinity)
@@ -357,7 +358,6 @@ Also:
 > Therefore, the domain is [3, 5) union (5, infinity).
 
 2. Given f(x) = 2x + 3 and g(x) = x² - 1, find (f o g)(4).
-
 - [x] 33
 - [ ] 31
 - [ ] 120
@@ -374,7 +374,6 @@ Also:
 > Answer: 33.
 
 3. Find the inverse of the function (3x - 1) / (x + 2).
-
 - [ ] (x + 2) / (3x - 1)
 - [x] (2x + 1) / (3 - x)
 - [ ] (2x - 1) / (3 + x)
@@ -396,4 +395,4 @@ Also:
 >
 > Therefore:
 >
-> f⁻¹(x) = (2x + 1) / (3 - x).
+> f^(-1)(x) = (2x + 1) / (3 - x).
