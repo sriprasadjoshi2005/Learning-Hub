@@ -1,5 +1,5 @@
 ---
-title: Integral Calculus: Fundamentals
+title: Integral Calculus- Fundamentals
 level: advanced
 ---
 
