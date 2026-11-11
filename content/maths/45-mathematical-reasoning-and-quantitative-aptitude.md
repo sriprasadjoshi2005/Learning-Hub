@@ -62,7 +62,7 @@ $$\text{Unit Digit}(a^n) = \text{Unit Digit}(a^r) \quad (\text{If } r = 0, \text
 
 1. What is the unit digit of the large exponential number $7^{103}$?
   - [ ] $1$
-  - [ ] $3$
+  - [ ] $5$
   - [x] $3$
   - [ ] $9$
    > Cyclicity of $7$ is $4$. Divide exponent $103$ by $4$: $103 = 4 \times 25 + 3 \implies$ remainder $r = 3$. Unit digit is $7^3 = 343 \implies 3$.
