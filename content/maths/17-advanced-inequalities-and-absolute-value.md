@@ -11,10 +11,10 @@ Absolute value represents the non-negative distance of a number from zero.
 
 For any real number x:
 
-- If x is positive or zero, |x| = x.
-- If x is negative, |x| = -x.
+- If x is positive or zero, abs(x) = x.
+- If x is negative, abs(x) = -x.
 
-Examples: |5| = 5 and |-5| = 5.
+Examples: abs(5) = 5 and abs(-5) = 5.
 
 ### Absolute Value Properties
 
@@ -22,15 +22,15 @@ For a positive number a:
 
 | Expression | Equivalent form |
 |---|---|
-| |x| = a | x = a or x = -a |
-| |x| < a | -a < x < a |
-| |x| <= a | -a <= x <= a |
-| |x| > a | x < -a or x > a |
-| |x| >= a | x <= -a or x >= a |
+| abs(x) = a | x = a or x = -a |
+| abs(x) < a | -a < x < a |
+| abs(x) <= a | -a <= x <= a |
+| abs(x) > a | x < -a or x > a |
+| abs(x) >= a | x <= -a or x >= a |
 
 For two expressions:
 
-|f(x)| = |g(x)|
+abs(f(x)) = abs(g(x))
 
 Therefore:
 
@@ -40,8 +40,8 @@ f(x) = g(x) or f(x) = -g(x).
 
 For r >= 0:
 
-- |x - c| <= r means c - r <= x <= c + r.
-- |x - c| >= r means x <= c - r or x >= c + r.
+- abs(x - c) <= r means c - r <= x <= c + r.
+- abs(x - c) >= r means x <= c - r or x >= c + r.
 
 ## Rational Inequalities
 
@@ -49,9 +49,8 @@ A rational inequality contains a fraction involving polynomial expressions.
 
 Examples:
 
-(x - 2) / (x + 3) > 0
-
-(x² - 4) / (x - 1) <= 0
+- (x - 2) / (x + 3) > 0
+- (x² - 4) / (x - 1) <= 0
 
 The denominator must never equal zero.
 
@@ -120,10 +119,10 @@ Exclude x = -1 because the denominator is zero.
 
 | Inequality | Solution |
 |---|---|
-| |x - c| < r | c - r < x < c + r |
-| |x - c| <= r | c - r <= x <= c + r |
-| |x - c| > r | x < c - r or x > c + r |
-| |x - c| >= r | x <= c - r or x >= c + r |
+| abs(x - c) < r | c - r < x < c + r |
+| abs(x - c) <= r | c - r <= x <= c + r |
+| abs(x - c) > r | x < c - r or x > c + r |
+| abs(x - c) >= r | x <= c - r or x >= c + r |
 
 ### Quadratic Expressions
 
@@ -184,21 +183,21 @@ Since x is positive, x = 3.
 
 For real numbers a and b:
 
-- |a + b| <= |a| + |b|
-- |a - b| <= |a| + |b|
+- abs(a + b) <= abs(a) + abs(b)
+- abs(a - b) <= abs(a) + abs(b)
 
 The reverse triangle inequality is:
 
-||a| - |b|| <= |a + b|
+abs(abs(a) - abs(b)) <= abs(a + b)
 
 Also:
 
-|x|² = x²
+abs(x)² = x²
 
 ## Common Exam Traps
 
 - **Denominator roots:** Never include values that make the denominator zero.
-- **Absolute value splitting:** |x| > 5 means x < -5 or x > 5.
+- **Absolute value splitting:** abs(x) > 5 means x < -5 or x > 5.
 - **Negative multiplication:** Reverse the inequality sign when multiplying or dividing by a negative number.
 - **Boundary points:** Strict inequalities exclude endpoints. Inclusive inequalities include valid endpoints.
 - **AM-GM conditions:** Both quantities must be non-negative.
@@ -206,8 +205,7 @@ Also:
 
 ## Quiz
 
-1. Solve |2x - 3| <= 7.
-
+1. Solve abs(2x - 3) <= 7.
 - [x] [-2, 5]
 - [ ] (-infinity, -2] or [5, infinity)
 - [ ] [-5, 2]
@@ -222,7 +220,6 @@ Also:
 > Answer: [-2, 5].
 
 2. Solve (x - 3) / (x + 1) <= 0.
-
 - [ ] [-1, 3]
 - [x] (-1, 3]
 - [ ] (-infinity, -1) or [3, infinity)
@@ -233,7 +230,6 @@ Also:
 > Answer: (-1, 3].
 
 3. Find the minimum value of f(x) = x + 9/x, where x > 0.
-
 - [ ] 3
 - [x] 6
 - [ ] 9
