@@ -3,23 +3,23 @@ title: Functions and Relations
 level: intermediate
 ---
 
-Functions describe how input values are mapped to output values. Understanding relations, domains, ranges, function classifications, composition, and inverse functions forms the foundation of mathematical analysis and calculus.
+Functions describe how input values are mapped to output values. This lesson covers relations, domains, ranges, types of functions, composition, and inverse functions.
 
 ## Relations, Functions, Domain, and Range
 
 ### Relations and Functions
 
-- **Relation:** Any subset of the Cartesian product A x B, consisting of ordered pairs (x, y).
-- **Function:** A special relation in which every element of the domain has exactly one output.
-- **Domain:** The set of all permissible input values.
-- **Codomain:** The target set containing all designated output values.
-- **Range:** The set of actual output values produced by the function.
+- **Relation:** A set of ordered pairs that connects elements of two sets.
+- **Function:** A relation in which every input has exactly one output.
+- **Domain:** The set of all possible input values.
+- **Codomain:** The set of designated possible output values.
+- **Range:** The set of actual output values.
 
 The range is always a subset of the codomain.
 
 ### Function Mapping Example
 
-Consider a function f from A to B, where:
+Consider:
 
 A = {1, 2, 3}
 
@@ -41,7 +41,7 @@ Then:
 
 The element c belongs to the codomain but not the range.
 
-**Important:** Multiple inputs may map to the same output, but one input cannot map to multiple outputs in a function.
+**Important:** Multiple inputs can have the same output, but one input cannot have multiple outputs in a function.
 
 ## Classification of Functions
 
@@ -49,15 +49,19 @@ The element c belongs to the codomain but not the range.
 
 A function is injective if different inputs always produce different outputs.
 
-Mathematically:
+Condition:
 
-f(x1) = f(x2) implies x1 = x2.
+If f(x1) = f(x2), then x1 = x2.
 
 **Example:**
 
 f(x) = 2x + 3
 
-If f(x1) = f(x2), then:
+If:
+
+f(x1) = f(x2)
+
+Then:
 
 2x1 + 3 = 2x2 + 3
 
@@ -71,21 +75,19 @@ Hence, the function is injective over the real numbers.
 
 A function is surjective if every element of its codomain is reached by at least one input.
 
-Mathematically:
+Condition:
 
-Range(f) = Codomain(f)
+Range = Codomain
 
 **Example:**
 
 f(x) = x³, where the domain and codomain are real numbers.
 
-For every real number y, choose:
+For every real number y, we can choose:
 
 x = cube root of y.
 
-Then f(x) = y.
-
-Therefore, the function is surjective.
+Therefore, f(x) = y, and the function is surjective.
 
 ### 3. Bijective Function
 
@@ -138,7 +140,7 @@ Because:
 
 f(-x) = (-x)³ = -x³ = -f(x)
 
-**Important:** The domain must be symmetric about zero for a function to be classified as even or odd. A function can be neither even nor odd.
+**Important:** The domain must be symmetric about zero for a function to be even or odd. A function can also be neither even nor odd.
 
 ## Function Composition and Inverses
 
@@ -146,13 +148,11 @@ f(-x) = (-x)³ = -x³ = -f(x)
 
 Function composition combines two functions by using the output of one function as the input of another.
 
-If g maps A to B and f maps B to C, then the composite function maps A to C.
-
 The formula is:
 
 (f o g)(x) = f(g(x))
 
-The function g is applied first, followed by f.
+The inner function g is applied first, followed by f.
 
 **Example:**
 
@@ -174,9 +174,11 @@ Substitute g(x) into f(x):
 
 **Non-Commutative Property**
 
-Function composition is generally non-commutative:
+Function composition is generally not commutative.
 
-f o g is not necessarily equal to g o f.
+This means:
+
+(f o g)(x) is not necessarily equal to (g o f)(x).
 
 For the previous functions:
 
@@ -184,21 +186,25 @@ For the previous functions:
 
 = 4x² + 12x + 8
 
-This is different from:
+But:
 
 (f o g)(x) = 2x² + 1
 
+Therefore, the two compositions are different.
+
 **Associative Property**
 
-Function composition is associative whenever the compositions are defined:
+Function composition is associative whenever the compositions are defined.
 
 f o (g o h) = (f o g) o h
 
 ### Inverse Function
 
-An inverse function reverses the mapping performed by the original function.
+An inverse function reverses the mapping of the original function.
 
-If f is bijective, its inverse is written as f⁻¹.
+The inverse of f is written as f⁻¹.
+
+A function has an inverse if it is bijective.
 
 The inverse satisfies:
 
@@ -210,11 +216,11 @@ These are called inverse function identities.
 
 ### Steps to Find an Inverse Function
 
-1. Write the original function as y = f(x).
+1. Write the function as y = f(x).
 2. Interchange x and y.
-3. Solve the equation for y.
+3. Solve for y.
 4. Replace y with f⁻¹(x).
-5. State the appropriate domain and range restrictions.
+5. State the domain and range restrictions.
 
 **Example:**
 
@@ -255,28 +261,34 @@ The original function has:
 - Domain: All real numbers except -2.
 - Range: All real numbers except 3.
 
-The inverse has:
+The inverse function has:
 
 - Domain: All real numbers except 3.
 - Range: All real numbers except -2.
 
-## Function Property Master Table
+## Function Properties
 
-| Function Type | Defining Condition | Graphical Feature | Inverse Status |
-|---|---|---|---|
-| Injective | f(a) = f(b) implies a = b | Passes the Horizontal Line Test | Has a left inverse |
-| Surjective | Range equals codomain | Every codomain value is reached | Has a right inverse |
-| Bijective | Both injective and surjective | Passes the Horizontal Line Test and covers the codomain | Has a two-sided inverse |
-| Even | f(-x) = f(x) | Symmetric about the y-axis | Not necessarily injective |
-| Odd | f(-x) = -f(x) | Symmetric about the origin | Invertibility depends on the mapping |
+| Function Type | Condition | Graphical Feature |
+|---|---|---|
+| Injective | f(a) = f(b) implies a = b | Passes the Horizontal Line Test |
+| Surjective | Range = Codomain | Every codomain value is reached |
+| Bijective | Both injective and surjective | Passes the Horizontal Line Test and covers the codomain |
+| Even | f(-x) = f(x) | Symmetric about the y-axis |
+| Odd | f(-x) = -f(x) | Symmetric about the origin |
 
-**Note:** An injective function has a left inverse, while a surjective function has a right inverse, under the usual set-theoretic conditions.
+**Inverse Properties:**
+
+- An injective function has a left inverse.
+- A surjective function has a right inverse.
+- A bijective function has a two-sided inverse.
+
+These statements assume the usual set-theoretic conditions.
 
 ## Important Formulas and Domain Rules
 
 ### Domain Restrictions
 
-The domain of a real-valued function must satisfy all restrictions imposed by its expression.
+The domain of a function must satisfy all restrictions imposed by its expression.
 
 **1. Denominator Restriction**
 
@@ -284,7 +296,7 @@ For a rational function:
 
 f(x) = P(x) / Q(x)
 
-The denominator must not be zero:
+The denominator must not be zero.
 
 Q(x) is not equal to zero.
 
@@ -294,7 +306,7 @@ For an even root:
 
 f(x) = square root of g(x)
 
-The expression inside the root must be non-negative:
+The expression inside the root must be non-negative.
 
 g(x) >= 0
 
@@ -314,15 +326,19 @@ The restrictions are:
 
 **4. Combined Domain Restrictions**
 
-When a function contains multiple operations, all restrictions must be satisfied simultaneously.
+When a function contains multiple operations, all restrictions must be satisfied.
 
 Example:
 
 f(x) = square root of (x - 3) / (x - 5)
 
-The square root requires x >= 3.
+The square root requires:
 
-The denominator requires x is not equal to 5.
+x >= 3
+
+The denominator requires:
+
+x is not equal to 5.
 
 Therefore:
 
@@ -330,16 +346,16 @@ Domain = [3, 5) union (5, infinity).
 
 ### Composition Domain Rule
 
-For two composable functions f and g:
+For two functions f and g:
 
-The domain of (f o g) contains all values of x that satisfy both conditions:
+The domain of (f o g) must satisfy both conditions:
 
 - x belongs to the domain of g.
 - g(x) belongs to the domain of f.
 
 ### Inverse Function Properties
 
-For a bijective function f:
+For a bijective function:
 
 f⁻¹(f(x)) = x
 
@@ -352,15 +368,15 @@ The domain and range are interchanged:
 
 ## Common Exam Traps
 
-- **Confusing relations with functions:** A relation may assign multiple outputs to one input. A function must assign exactly one output to every element of its domain.
-- **Confusing domain, codomain, and range:** The domain contains inputs, the codomain is the target set, and the range contains actual outputs.
-- **Vertical and Horizontal Line Tests:** The Vertical Line Test determines whether a graph represents a function. The Horizontal Line Test determines whether a function is injective.
-- **Assuming every function is bijective:** A function must be both injective and surjective to be bijective.
-- **Assuming composition is commutative:** In general, f o g is not equal to g o f.
-- **Incorrectly finding an inverse:** Interchange x and y before solving for the new y.
-- **Ignoring inverse domain restrictions:** The domain of an inverse is the range of the original function.
-- **Misclassifying even and odd functions:** Check the defining equations and ensure that the domain is symmetric about zero.
-- **Ignoring composition restrictions:** The output of the inner function must belong to the domain of the outer function.
+- **Relations and functions:** A function must assign exactly one output to every input.
+- **Domain, codomain, and range:** The domain contains inputs, the codomain is the target set, and the range contains actual outputs.
+- **Vertical and Horizontal Line Tests:** The Vertical Line Test checks whether a graph is a function. The Horizontal Line Test checks whether it is injective.
+- **Bijective functions:** A function must be both injective and surjective to be bijective.
+- **Function composition:** In general, f o g is not equal to g o f.
+- **Finding inverses:** Interchange x and y before solving for the new y.
+- **Inverse restrictions:** The domain of an inverse is the range of the original function.
+- **Even and odd functions:** Check the defining equations and ensure that the domain is symmetric about zero.
+- **Composition restrictions:** The output of the inner function must belong to the domain of the outer function.
 
 ## Quiz
 
@@ -398,7 +414,7 @@ Evaluate (f o g)(4).
 >
 > g(4) = 4² - 1 = 15.
 >
-> Then substitute the result into f:
+> Substitute the result into f:
 >
 > f(15) = 2(15) + 3 = 33.
 >
