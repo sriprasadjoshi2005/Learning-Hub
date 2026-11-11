@@ -67,8 +67,8 @@ The important inverse trigonometric derivatives are:
 
 | Function | Derivative |
 |---|---|
-| sin⁻¹ x | 1 / √(1 - x²) |
-| cos⁻¹ x | -1 / √(1 - x²) |
+| sin⁻¹ x | 1 / sqrt(1 - x²) |
+| cos⁻¹ x | -1 / sqrt(1 - x²) |
 | tan⁻¹ x | 1 / (1 + x²) |
 
 For a function containing u instead of x, apply the Chain Rule.
@@ -77,7 +77,7 @@ For a function containing u instead of x, apply the Chain Rule.
 
 If y = tan⁻¹(u), then
 
-dy/dx = (1 / (1 + u²)) × (du/dx)
+dy/dx = (1 / (1 + u²)) * (du/dx)
 
 ## Important Differentiation Formulas
 
@@ -120,8 +120,7 @@ When n is greater than m for a non-negative integer power m, the derivative is z
 ## Quiz
 
 1. Find dy/dx for the curve x³ + y³ = 6xy.
-
-- [ ] (2y - x²) / (y² - 2x)
+- [ ] (x² - 2y) / (y² - 2x)
 - [x] (2y - x²) / (y² - 2x)
 - [ ] (x² - 2y) / (2x - y²)
 - [ ] (3x² - 6y) / (6x - 3y²)
@@ -129,16 +128,14 @@ When n is greater than m for a non-negative integer power m, the derivative is z
 > Differentiating implicitly gives 3x² + 3y²(dy/dx) = 6y + 6x(dy/dx). Rearranging gives 3(y² - 2x)(dy/dx) = 3(2y - x²). Therefore, dy/dx = (2y - x²)/(y² - 2x).
 
 2. Find the derivative of y = xˣ, where x is positive.
-
 - [ ] xˣ
-- [ ] x × xˣ⁻¹
+- [ ] x * xˣ⁻¹
 - [x] xˣ(1 + ln x)
 - [ ] xˣ ln x
 
 > Taking logarithms gives ln y = x ln x. Differentiating gives (1/y)(dy/dx) = ln x + 1. Therefore, dy/dx = xˣ(1 + ln x).
 
 3. Find the slope of the tangent to the parametric curve x = 2t² and y = t³ - t at t = 2.
-
 - [ ] 3/2
 - [x] 11/8
 - [ ] 12/8
