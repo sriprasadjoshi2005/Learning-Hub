@@ -9,9 +9,9 @@ Functions describe how input values are connected to output values. This lesson 
 
 - **Relation:** A connection between elements of two sets.
 - **Function:** A relation where every input has exactly one output.
-- **Domain:** All possible input values.
+- **Domain:** The set of all possible input values.
 - **Codomain:** The set of possible output values.
-- **Range:** The actual output values.
+- **Range:** The set of actual output values.
 
 The range is always a subset of the codomain.
 
@@ -25,11 +25,9 @@ B = {a, b, c}
 
 Suppose:
 
-f(1) = a
-
-f(2) = b
-
-f(3) = b
+- f(1) = a
+- f(2) = b
+- f(3) = b
 
 Then:
 
@@ -37,7 +35,7 @@ Then:
 - Codomain = {a, b, c}
 - Range = {a, b}
 
-The element c is in the codomain but not in the range.
+The element c belongs to the codomain but not to the range.
 
 **Important:** Different inputs can have the same output, but one input cannot have two different outputs.
 
@@ -49,7 +47,7 @@ An injective function is also called a one-to-one function.
 
 Different inputs produce different outputs.
 
-Condition:
+**Condition:**
 
 If f(x1) = f(x2), then x1 = x2.
 
@@ -73,7 +71,7 @@ A surjective function is also called an onto function.
 
 Every element of the codomain must be reached.
 
-Condition:
+**Condition:**
 
 Range = Codomain
 
@@ -81,9 +79,9 @@ Range = Codomain
 
 f(x) = x³
 
-For every real number y, we can choose x as the cube root of y.
+For every real number y, there is a real number x whose cube equals y.
 
-Therefore, the function is surjective when its domain and codomain are both real numbers.
+Therefore, the function is surjective when its domain and codomain are both the real numbers.
 
 ### 3. Bijective Function
 
@@ -91,7 +89,7 @@ A bijective function is both injective and surjective.
 
 It satisfies two conditions:
 
-- Every output comes from exactly one input.
+- Different inputs produce different outputs.
 - Every element of the codomain is reached.
 
 A function has an inverse if and only if it is bijective.
@@ -134,7 +132,7 @@ f(x) = x³
 
 Function composition means applying one function after another.
 
-Formula:
+**Formula:**
 
 (f o g)(x) = f(g(x))
 
@@ -192,11 +190,10 @@ It is written as f⁻¹.
 
 A function has an inverse if it is bijective.
 
-The inverse identities are:
+**Inverse Identities:**
 
-f(f⁻¹(x)) = x
-
-f⁻¹(f(x)) = x
+- f(f⁻¹(x)) = x
+- f⁻¹(f(x)) = x
 
 ### Steps to Find an Inverse
 
@@ -224,7 +221,7 @@ Cross-multiply:
 
 xy + 2x = 3y - 1
 
-Collect y terms:
+Collect the y terms:
 
 xy - 3y = -1 - 2x
 
@@ -251,8 +248,8 @@ Inverse function:
 | Injective | Different inputs have different outputs | Passes the Horizontal Line Test |
 | Surjective | Range equals codomain | Every codomain value is reached |
 | Bijective | Both injective and surjective | Has an inverse |
-| Even | f(-x) = f(x) | Symmetric about y-axis |
-| Odd | f(-x) = -f(x) | Symmetric about origin |
+| Even | f(-x) = f(x) | Symmetric about the y-axis |
+| Odd | f(-x) = -f(x) | Symmetric about the origin |
 
 **Inverse Properties:**
 
@@ -280,7 +277,7 @@ The expression inside an even root must be zero or positive.
 
 Example:
 
-f(x) = square root of (x - 3)
+f(x) = sqrt(x - 3)
 
 Here:
 
@@ -300,7 +297,7 @@ For log base b of x:
 
 Example:
 
-f(x) = square root of (x - 3) / (x - 5)
+f(x) = sqrt(x - 3) / (x - 5)
 
 The square root requires x >= 3.
 
@@ -328,9 +325,8 @@ For a bijective function:
 
 Also:
 
-f⁻¹(f(x)) = x
-
-f(f⁻¹(x)) = x
+- f⁻¹(f(x)) = x
+- f(f⁻¹(x)) = x
 
 ## Common Exam Traps
 
@@ -347,9 +343,7 @@ f(f⁻¹(x)) = x
 
 ## Quiz
 
-1. Find the domain of:
-
-f(x) = square root of (x - 3) / (x - 5)
+1. What is the domain of the function sqrt(x - 3) / (x - 5)?
 
 - [ ] [3, infinity)
 - [x] [3, 5) union (5, infinity)
@@ -362,13 +356,7 @@ f(x) = square root of (x - 3) / (x - 5)
 >
 > Therefore, the domain is [3, 5) union (5, infinity).
 
-2. Given:
-
-f(x) = 2x + 3
-
-g(x) = x² - 1
-
-Find (f o g)(4).
+2. Given f(x) = 2x + 3 and g(x) = x² - 1, find (f o g)(4).
 
 - [x] 33
 - [ ] 31
@@ -385,9 +373,7 @@ Find (f o g)(4).
 >
 > Answer: 33.
 
-3. Find the inverse of:
-
-f(x) = (3x - 1) / (x + 2)
+3. Find the inverse of the function (3x - 1) / (x + 2).
 
 - [ ] (x + 2) / (3x - 1)
 - [x] (2x + 1) / (3 - x)
