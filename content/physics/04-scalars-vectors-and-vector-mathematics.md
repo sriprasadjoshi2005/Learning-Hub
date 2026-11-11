@@ -546,7 +546,7 @@ Its unit vector is:
 
 2. Two perpendicular vectors have magnitudes 6 units and 8 units. What is the magnitude of their resultant?
 
-- [ ] 10 units
+- [ ] 15 units
 - [x] 10 units
 - [ ] 14 units
 - [ ] 48 units
