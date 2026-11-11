@@ -3,88 +3,145 @@ title: Advanced Differentiation and Applications
 level: advanced
 ---
 
-Advanced differentiation encompasses implicit functions, logarithmic differentiation, parametric curves, higher-order derivatives, and inverse trigonometric rates of change.
+Advanced differentiation includes implicit differentiation, logarithmic differentiation, parametric differentiation, inverse trigonometric derivatives, and higher-order derivatives.
 
-## Implicit, Logarithmic, and Parametric Differentiation
+## Implicit Differentiation
 
-### Implicit Differentiation
+Implicit differentiation is used when an equation contains both x and y without expressing y directly in terms of x.
 
-When an equation defines $y$ implicitly as a function of $x$ ($F(x, y) = 0$), differentiate both sides with respect to $x$, applying the Chain Rule to all terms containing $y$ ($\frac{d}{dx}[g(y)] = g'(y) \frac{dy}{dx}$), then solve for $\frac{dy}{dx}$.
+Differentiate both sides with respect to x. Whenever differentiating a term containing y, multiply by dy/dx.
 
-$$\text{Example}: x^2 + y^2 = r^2 \implies 2x + 2y \frac{dy}{dx} = 0 \implies \frac{dy}{dx} = -\frac{x}{y}$$
+**Example:**
 
-### Logarithmic Differentiation
+x² + y² = r²
 
-Used for functions containing variable exponents ($y = [f(x)]^{g(x)}$) or complicated products/quotients:
+2x + 2y(dy/dx) = 0
 
-1. Take natural logarithm of both sides: $\ln y = g(x) \ln[f(x)]$.
-2. Differentiate implicitly: $\frac{1}{y} \frac{dy}{dx} = \frac{d}{dx}\left\{g(x) \ln[f(x)]\right\}$.
-3. Multiply by $y$ to solve for $\frac{dy}{dx}$.
+Therefore,
 
-### Parametric Differentiation
+dy/dx = -x/y
 
-When $x$ and $y$ are both expressed in terms of a parameter $t$ ($x = f(t), y = g(t)$):
+## Logarithmic Differentiation
 
-- **First Derivative:**
-$$\frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}} \quad \left(\frac{dx}{dt} \neq 0\right)$$
+Logarithmic differentiation is useful for functions with variable exponents or complicated products and quotients.
 
-- **Second Derivative:**
-$$\frac{d^2y}{dx^2} = \frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{\frac{d}{dt}\left(\frac{dy}{dx}\right)}{\frac{dx}{dt}}$$
+**Steps:**
 
-## Inverse Trigonometric Derivatives and Higher Orders
+1. Take the natural logarithm of both sides.
+2. Differentiate both sides with respect to x.
+3. Multiply by y to find dy/dx.
 
-### Inverse Trigonometric Derivatives
+**Example:**
 
-- $\frac{d}{dx}(\arcsin x) = \frac{1}{\sqrt{1 - x^2}} \quad (|x| < 1)$
-- $\frac{d}{dx}(\arccos x) = -\frac{1}{\sqrt{1 - x^2}} \quad (|x| < 1)$
-- $\frac{d}{dx}(\arctan x) = \frac{1}{1 + x^2}$
+y = xˣ
 
-## Advanced Derivatives Master Table
+Taking logarithms:
 
-| Expression Form | Differentiation Strategy | Output Derivative Formula |
-|---|---|---|
-| $y = f(x)^g(x)$ | Logarithmic Differentiation | $y' = f(x)^g(x) \left[ g'(x)\ln f(x) + \frac{g(x)f'(x)}{f(x)} \right]$ |
-| $x = f(t), y = g(t)$ | Parametric Rule | $\frac{dy}{dx} = \frac{g'(t)}{f'(t)}$ |
-| $F(x, y) = 0$ | Implicit Differentiation | $\frac{dy}{dx} = -\frac{F_x}{F_y}$ |
-| $y = \arctan(u)$ | Chain Rule + Inv. Trig | $\frac{dy}{dx} = \frac{1}{1 + u^2} \cdot \frac{du}{dx}$ |
-| $y = a^x \quad (a > 0)$ | General Exponential | $\frac{dy}{dx} = a^x \ln a$ |
-| $y = \log_a x$ | General Logarithm | $\frac{dy}{dx} = \frac{1}{x \ln a}$ |
+ln y = x ln x
 
-## Important Formulas and Parametric Identities
+Differentiating:
 
-Parametric Second Derivative Formula:
+(1/y)(dy/dx) = ln x + 1
 
-$$\frac{d^2y}{dx^2} = \frac{\frac{d}{dt}\left(\frac{dy}{dx}\right)}{\frac{dx}{dt}} \neq \frac{\frac{d^2y}{dt^2}}{\frac{d^2x}{dt^2}}$$
+Therefore,
 
-N-th Derivative Power Rule:
+dy/dx = xˣ(1 + ln x)
 
-$$\frac{d^n}{dx^n}(x^m) = \begin{cases} \frac{m!}{(m-n)!} x^{m-n} & \text{if } n \le m \\ 0 & \text{if } n > m \end{cases}$$
+## Parametric Differentiation
+
+In parametric equations, both x and y are expressed in terms of another variable called a parameter t.
+
+**First Derivative:**
+
+dy/dx = (dy/dt) / (dx/dt)
+
+**Second Derivative:**
+
+d²y/dx² = [d/dt(dy/dx)] / (dx/dt)
+
+The second derivative must be calculated by differentiating dy/dx with respect to t and then dividing by dx/dt.
+
+## Inverse Trigonometric Derivatives
+
+The important inverse trigonometric derivatives are:
+
+| Function | Derivative |
+|---|---|
+| sin⁻¹ x | 1 / √(1 - x²) |
+| cos⁻¹ x | -1 / √(1 - x²) |
+| tan⁻¹ x | 1 / (1 + x²) |
+
+For a function containing u instead of x, apply the Chain Rule.
+
+**Example:**
+
+If y = tan⁻¹(u), then
+
+dy/dx = (1 / (1 + u²)) × (du/dx)
+
+## Important Differentiation Formulas
+
+| Function | Derivative |
+|---|---|
+| f(x)^g(x) | f(x)^g(x) [g'(x) ln f(x) + g(x)f'(x)/f(x)] |
+| aˣ | aˣ ln a |
+| logₐ x | 1 / (x ln a) |
+| xᵐ | mxᵐ⁻¹ |
+
+For an implicitly defined equation F(x, y) = 0:
+
+dy/dx = -Fₓ / Fᵧ
+
+This formula applies when Fᵧ is nonzero.
+
+## Higher-Order Derivatives
+
+Higher-order derivatives are obtained by differentiating a function repeatedly.
+
+- First derivative: dy/dx
+- Second derivative: d²y/dx²
+- Third derivative: d³y/dx³
+- Nth derivative: dⁿy/dxⁿ
+
+For a power function:
+
+dⁿ(xᵐ)/dxⁿ = [m! / (m - n)!] xᵐ⁻ⁿ
+
+When n is greater than m for a non-negative integer power m, the derivative is zero.
 
 ## Common Exam Traps
 
-- **Parametric Second Derivative Error:** Calculating $\frac{d^2y}{dx^2}$ as $\frac{y''(t)}{x''(t)}$. You must differentiate $\frac{dy}{dx}$ with respect to $t$, then divide by $\frac{dx}{dt}$.
-- **Forgetting $\frac{dy}{dx}$ during Implicit Steps:** Differentiating $y^3$ with respect to $x$ as $3y^2$ instead of $3y^2 \frac{dy}{dx}$.
-- **Applying Power Rule to Variable Exponents:** Differentiating $x^x$ as $x \cdot x^{x-1} = x^x$. The correct derivative using logarithmic differentiation is $x^x(1 + \ln x)$.
+- **Forgetting the Chain Rule:** The derivative of y³ with respect to x is 3y²(dy/dx), not just 3y².
+- **Incorrect Parametric Second Derivative:** Do not calculate d²y/dx² as (d²y/dt²) / (d²x/dt²).
+- **Variable Exponents:** Do not apply the ordinary power rule directly to xˣ. Use logarithmic differentiation.
+- **Inverse Trigonometric Signs:** The derivative of cos⁻¹ x is negative, unlike the derivative of sin⁻¹ x.
+- **Missing Logarithmic Conditions:** For real-valued logarithmic differentiation, ensure the logarithm is defined.
 
 ## Quiz
 
-1. Find $\frac{dy}{dx}$ for the curve defined implicitly by $x^3 + y^3 = 6xy$.
-  - [ ] $\frac{2y - x^2}{y^2 - 2x}$
-  - [x] $\frac{2y - x^2}{y^2 - 2x}$
-  - [ ] $\frac{x^2 - 2y}{2x - y^2}$
-  - [ ] $\frac{3x^2 - 6y}{6x - 3y^2}$
-   > Differentiate implicitly with respect to $x$: $3x^2 + 3y^2 \frac{dy}{dx} = 6y + 6x \frac{dy}{dx} \implies 3y^2 \frac{dy}{dx} - 6x \frac{dy}{dx} = 6y - 3x^2 \implies 3(y^2 - 2x)\frac{dy}{dx} = 3(2y - x^2) \implies \frac{dy}{dx} = \frac{2y - x^2}{y^2 - 2x}$.
+1. Find dy/dx for the curve x³ + y³ = 6xy.
 
-2. Find the derivative $\frac{dy}{dx}$ of $y = x^x$ for $x > 0$.
-  - [ ] $x^x$
-  - [ ] $x \cdot x^{x-1}$
-  - [x] $x^x (1 + \ln x)$
-  - [ ] $x^x \ln x$
-   > Take natural log: $\ln y = x \ln x$. Differentiate implicitly: $\frac{1}{y} \frac{dy}{dx} = (1)(\ln x) + x\left(\frac{1}{x}\right) = \ln x + 1$. Multiply by $y$: $\frac{dy}{dx} = y (1 + \ln x) = x^x (1 + \ln x)$.
+- [ ] (2y - x²) / (y² - 2x)
+- [x] (2y - x²) / (y² - 2x)
+- [ ] (x² - 2y) / (2x - y²)
+- [ ] (3x² - 6y) / (6x - 3y²)
 
-3. Find the slope of the tangent line $\frac{dy}{dx}$ to the parametric curve $x = 2t^2, y = t^3 - t$ at parameter $t = 2$.
-  - [ ] $\frac{11}{8}$
-  - [x] $\frac{11}{8}$
-  - [ ] $\frac{12}{8}$
-  - [ ] $\frac{8}{11}$
-   > $\frac{dx}{dt} = 4t$ and $\frac{dy}{dt} = 3t^2 - 1$. So $\frac{dy}{dx} = \frac{3t^2 - 1}{4t}$. At $t = 2$: $\frac{dy}{dx} = \frac{3(2)^2 - 1}{4(2)} = \frac{12 - 1}{8} = \frac{11}{8}$.
+> Differentiating implicitly gives 3x² + 3y²(dy/dx) = 6y + 6x(dy/dx). Rearranging gives 3(y² - 2x)(dy/dx) = 3(2y - x²). Therefore, dy/dx = (2y - x²)/(y² - 2x).
+
+2. Find the derivative of y = xˣ, where x is positive.
+
+- [ ] xˣ
+- [ ] x × xˣ⁻¹
+- [x] xˣ(1 + ln x)
+- [ ] xˣ ln x
+
+> Taking logarithms gives ln y = x ln x. Differentiating gives (1/y)(dy/dx) = ln x + 1. Therefore, dy/dx = xˣ(1 + ln x).
+
+3. Find the slope of the tangent to the parametric curve x = 2t² and y = t³ - t at t = 2.
+
+- [ ] 3/2
+- [x] 11/8
+- [ ] 12/8
+- [ ] 8/11
+
+> dx/dt = 4t and dy/dt = 3t² - 1. Therefore, dy/dx = (3t² - 1)/(4t). Substituting t = 2 gives (12 - 1)/8 = 11/8.
