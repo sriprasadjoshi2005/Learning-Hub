@@ -79,7 +79,7 @@ $$\text{Hyperbola } \left(\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1\right): c = \pm 
 
 3. Calculate the length of the latus rectum of the hyperbola $\frac{x^2}{16} - \frac{y^2}{9} = 1$.
   - [ ] $\frac{9}{4}$
-  - [ ] $\frac{9}{2}$
+  - [ ] $\frac{9}{6}$
   - [x] $\frac{9}{2}$
   - [ ] $\frac{8}{3}$
    > Here $a^2 = 16 \implies a = 4$, and $b^2 = 9$. Latus rectum length $= \frac{2b^2}{a} = \frac{2(9)}{4} = \frac{18}{4} = \frac{9}{2}$.
