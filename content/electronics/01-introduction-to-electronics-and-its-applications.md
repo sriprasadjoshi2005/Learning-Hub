@@ -1,4 +1,3 @@
-
 ---
 title: Introduction to Electronics and Its Applications
 level: foundation
