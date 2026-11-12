@@ -1,4 +1,3 @@
-
 ---
 title: Electrical Energy and Circuit Measurements
 level: intermediate
