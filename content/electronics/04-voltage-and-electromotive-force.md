@@ -1,4 +1,3 @@
-
 ---
 title: Voltage and Electromotive Force
 level: foundation
