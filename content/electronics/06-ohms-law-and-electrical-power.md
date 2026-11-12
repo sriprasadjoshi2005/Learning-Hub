@@ -1,4 +1,3 @@
-
 ---
 title: Ohm's Law and Electrical Power
 level: foundation
