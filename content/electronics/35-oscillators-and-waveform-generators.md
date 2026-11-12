@@ -534,37 +534,31 @@ Oscillators and waveform generators are used in:
 14. The Barkhausen criterion alone does not guarantee stable practical oscillation.
 15. Oscillation amplitude must be controlled in a practical oscillator.
 
-## 16. Quiz
+## Quiz
 
-### Question 1
-
-Which oscillator is commonly used to generate low-distortion sinusoidal signals?
+1. Which oscillator is commonly used to generate low-distortion sinusoidal signals?
 
 - [ ] Astable multivibrator.
 - [x] Wien bridge oscillator.
 - [ ] Bistable multivibrator.
 - [ ] Digital counter.
 
-> **Explanation:** A Wien bridge oscillator uses an RC feedback network and amplitude stabilization to generate low-distortion sinusoidal signals.
+> A Wien bridge oscillator uses an RC feedback network and amplitude stabilization to generate low-distortion sinusoidal signals.
 
-### Question 2
-
-What is the ideal resonant frequency of an LC oscillator?
+2. What is the ideal resonant frequency of an LC oscillator?
 
 - [ ] \(1/(2\pi RC)\).
 - [ ] \(RC/(2\pi)\).
 - [x] \(1/(2\pi\sqrt{LC})\).
 - [ ] \(2\pi LC\).
 
-> **Explanation:** The ideal resonant frequency of an LC circuit is \(f_o=1/(2\pi\sqrt{LC})\).
+> The ideal resonant frequency of an LC circuit is \(f_o=1/(2\pi\sqrt{LC})\).
 
-### Question 3
-
-Which multivibrator has no stable state and continuously switches between two states?
+3. Which multivibrator has no stable state and continuously switches between two states?
 
 - [x] Astable.
 - [ ] Monostable.
 - [ ] Bistable.
 - [ ] Differential.
 
-> **Explanation:** An astable multivibrator has no stable state. Its timing network causes continuous switching between two output states.
+> An astable multivibrator has no stable state. Its timing network causes continuous switching between two output states.
