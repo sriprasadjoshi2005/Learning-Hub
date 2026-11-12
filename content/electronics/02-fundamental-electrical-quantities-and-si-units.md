@@ -1,4 +1,3 @@
-
 ---
 title: Fundamental Electrical Quantities and SI Units
 level: foundation
