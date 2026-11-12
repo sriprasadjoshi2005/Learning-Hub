@@ -648,37 +648,31 @@ Counters, registers, and memory support timing, input/output handling, control, 
 19. Memory capacity is the number of locations multiplied by the word size.
 20. A 4-bit binary counter has 16 natural states, not 4.
 
-## 22. Quiz
+## Quiz
 
-### Question 1
-
-How many distinct states can a 6-bit binary counter represent?
+1. How many distinct states can a 6-bit binary counter represent?
 
 - [ ] 6.
 - [ ] 32.
 - [x] 64.
 - [ ] 128.
 
-> **Explanation:** An \(n\)-bit binary counter has \(2^n\) states. Therefore, \(2^6=64\).
+> An \(n\)-bit binary counter has \(2^n\) states. Therefore, \(2^6=64\).
 
-### Question 2
-
-Which memory type requires periodic refreshing?
+2. Which memory type requires periodic refreshing?
 
 - [ ] SRAM.
 - [x] DRAM.
 - [ ] EEPROM.
 - [ ] Flash memory.
 
-> **Explanation:** DRAM stores information using capacitive charge that gradually leaks. Periodic refresh operations are required to maintain the stored data.
+> DRAM stores information using capacitive charge that gradually leaks. Periodic refresh operations are required to maintain the stored data.
 
-### Question 3
-
-A memory contains 1024 locations, each storing 8 bits. What is its total capacity?
+3. A memory contains 1024 locations, each storing 8 bits. What is its total capacity?
 
 - [ ] 512 bytes.
 - [x] 1024 bytes.
 - [ ] 2048 bytes.
 - [ ] 8192 bytes.
 
-> **Explanation:** Capacity is \(1024\times8=8192\) bits. Dividing by 8 gives 1024 bytes, equivalent to 1 KiB.
+> Capacity is \(1024\times8=8192\) bits. Dividing by 8 gives 1024 bytes, equivalent to 1 KiB.
