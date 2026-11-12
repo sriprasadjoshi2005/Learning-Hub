@@ -1,0 +1,242 @@
+---
+title: Theories of Knowledge and Epistemic Justification
+level: advanced
+---
+
+# Lesson 26: Theories of Knowledge and Epistemic Justification
+
+Theories of knowledge attempt to explain how beliefs become justified and what distinguishes reliable knowledge from unsupported opinion. This lesson examines major epistemological approaches, including foundationalism, coherentism, reliabilism, internalism and externalism.
+
+## 1. The Problem of Justification
+
+A person may believe something without having sufficient reasons to accept it.
+
+For example, someone may believe that a particular medicine is effective because of a rumour.
+
+Even if the medicine happens to be effective, the person's belief may not be justified.
+
+Epistemology therefore investigates the standards that make beliefs rationally acceptable.
+
+Important questions include:
+
+- What counts as sufficient evidence?
+- Must a person know why their belief is justified?
+- Can a belief be justified without certainty?
+- Does justification depend on reliable processes?
+- Can beliefs justify one another?
+
+## 2. Foundationalism
+
+Foundationalism maintains that knowledge is structured around basic beliefs that support other beliefs.
+
+These basic beliefs do not depend entirely on other beliefs for their justification.
+
+### 2.1 Structure of Foundationalism
+
+A simplified structure is:
+
+\[
+B_1 \rightarrow B_2 \rightarrow B_3
+\]
+
+Here, \(B_1\) represents a foundational belief that supports further beliefs.
+
+For example:
+
+1. A person has a particular visual experience.
+2. The person forms a belief about an object.
+3. The belief supports further conclusions about the surrounding environment.
+
+### 2.2 Classical Foundationalism
+
+Classical foundationalism often treats certain beliefs as especially secure.
+
+Descartes attempted to identify an indubitable foundation for knowledge through methodical doubt.
+
+His conclusion that thinking establishes the existence of the thinking subject is expressed as:
+
+\[
+\text{Cogito, ergo sum}
+\]
+
+This means "I think, therefore I am."
+
+### 2.3 Criticism of Foundationalism
+
+Critics ask:
+
+- Which beliefs are genuinely foundational?
+- How can foundational beliefs be justified?
+- Are perceptual experiences sufficiently reliable?
+- Can a complex system of knowledge depend on a limited set of basic beliefs?
+
+## 3. Coherentism
+
+Coherentism maintains that beliefs are justified through their relationships within a coherent system.
+
+A belief receives support from other beliefs that fit together consistently.
+
+For example, a scientific explanation may be supported by:
+
+- Experimental observations.
+- Established theories.
+- Mathematical relationships.
+- Independent measurements.
+- Repeated predictions.
+
+The strength of the explanation depends partly on how well these elements fit together.
+
+### 3.1 Coherence and Consistency
+
+A coherent system should exhibit logical consistency and explanatory connections.
+
+However, internal consistency alone may not guarantee truth.
+
+A fictional story can be internally consistent without accurately describing the real world.
+
+Therefore, coherentism must explain how coherence connects with reality and evidence.
+
+## 4. Infinitism
+
+Infinitism proposes that justification may involve an infinite sequence of reasons.
+
+For every belief, another reason can be supplied to support it.
+
+This approach rejects the need for an ultimate foundational stopping point.
+
+Its central difficulty concerns whether human beings can actually complete or possess an infinite chain of justification.
+
+## 5. Internalism and Externalism
+
+Internalism and externalism are important approaches to epistemic justification.
+
+### 5.1 Internalism
+
+Internalism maintains that the factors relevant to justification must be accessible to the subject's reflective perspective, at least in the relevant sense.
+
+A person should have access to the reasons or evidence supporting their belief.
+
+For example, someone who believes a scientific claim may be expected to understand the evidence and reasoning supporting it.
+
+### 5.2 Externalism
+
+Externalism maintains that justification can depend on factors outside the subject's conscious awareness.
+
+For example, a perceptual belief may be justified because it is produced by a reliable perceptual process, even if the person cannot explain the process in detail.
+
+## 6. Reliabilism
+
+Reliabilism is an influential externalist theory of knowledge.
+
+It maintains that a belief is justified or qualifies as knowledge when it is produced through a sufficiently reliable process.
+
+Examples of potentially reliable processes include:
+
+- Normal perception under suitable conditions.
+- Careful memory.
+- Valid logical reasoning.
+- Properly conducted scientific measurement.
+
+A simplified representation is:
+
+\[
+R = \frac{\text{True outputs}}{\text{Total outputs}}
+\]
+
+Here, \(R\) represents the proportion of true outputs generated by a process in an appropriate set of cases.
+
+This ratio is illustrative rather than a complete formal definition of epistemic reliability.
+
+### 6.1 Limitations of Reliabilism
+
+Reliabilism raises questions about:
+
+- How reliability should be measured.
+- Whether reliability depends on context.
+- Whether a person must understand the process.
+- Whether reliable processes can still produce false beliefs.
+
+## 7. Virtue Epistemology
+
+Virtue epistemology focuses on the intellectual character and abilities of the person acquiring knowledge.
+
+Important intellectual virtues include:
+
+- Open-mindedness.
+- Intellectual honesty.
+- Carefulness.
+- Curiosity.
+- Fair-mindedness.
+- Willingness to revise beliefs.
+- Intellectual courage.
+
+Virtue epistemologists argue that knowledge involves not only correct beliefs but also the responsible exercise of intellectual abilities.
+
+## 8. Contextualism
+
+Contextualism maintains that the standards for correctly attributing knowledge can vary with the context of discussion.
+
+For example, ordinary conversation may use relatively relaxed standards when someone says they know that a familiar building exists.
+
+In a high-stakes investigation, much stronger evidence may be required.
+
+Contextualism attempts to explain why knowledge claims can appear reasonable in ordinary circumstances but become difficult to defend under intense philosophical scrutiny.
+
+## 9. Comparing the Major Theories
+
+| Theory | Central idea |
+|---|---|
+| Foundationalism | Basic beliefs support other beliefs. |
+| Coherentism | Beliefs are justified through mutual support within a system. |
+| Infinitism | Justification involves an endless sequence of reasons. |
+| Internalism | Justification depends on factors accessible to the subject. |
+| Externalism | Justification can depend on factors outside conscious access. |
+| Reliabilism | Reliable belief-forming processes are central to justification. |
+| Virtue epistemology | Intellectual virtues and abilities contribute to knowledge. |
+| Contextualism | Standards for knowledge attribution vary with context. |
+
+## 10. Applications
+
+These theories help evaluate:
+
+- Scientific evidence.
+- Medical information.
+- Historical claims.
+- Educational assessments.
+- News and online information.
+- Expert testimony.
+- Artificial intelligence systems.
+
+They encourage us to ask not only whether a claim is true, but also why we should believe it.
+
+## 11. Summary
+
+Epistemic justification concerns the reasons and processes that make beliefs rationally acceptable.
+
+Foundationalism, coherentism and infinitism explain the structure of justification. Internalism and externalism examine whether justification must be accessible to the believer. Reliabilism focuses on reliable belief-forming processes, while virtue epistemology emphasises intellectual character.
+
+## Quiz
+
+1. Which theory maintains that basic beliefs provide support for other beliefs?
+    - [ ] Coherentism
+    - [x] Foundationalism
+    - [ ] Infinitism
+    - [ ] Contextualism
+
+    > Foundationalism argues that some basic beliefs provide the foundation upon which further justified beliefs are constructed.
+
+2. What is the central principle of reliabilism?
+    - [ ] All beliefs must be certain.
+    - [ ] Beliefs are justified only through agreement.
+    - [x] Reliable belief-forming processes are central to justification.
+    - [ ] Knowledge must depend exclusively on introspection.
+
+    > Reliabilism evaluates beliefs partly through the reliability of the processes that produce them.
+
+3. Which approach focuses on intellectual qualities such as honesty, open-mindedness and careful reasoning?
+    - [ ] Nominalism
+    - [ ] Substance dualism
+    - [x] Virtue epistemology
+    - [ ] Hard determinism
+
+    > Virtue epistemology emphasises the intellectual character and abilities required for responsible knowledge acquisition.
