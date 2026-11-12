@@ -359,7 +359,7 @@ Circuit simulators use network equations derived from Kirchhoff's laws to determ
 
 3. A mesh analysis assumes clockwise currents of 3 A and 5 A in two adjacent meshes. A 4 $\Omega$ resistor is shared by the meshes, with the assumed mesh currents passing through it in opposite directions. What is the magnitude of the current through the shared resistor?
 
-   - [ ] 2 A
+   - [ ] 5 A
    - [ ] 3 A
    - [x] 2 A
    - [ ] 8 A
