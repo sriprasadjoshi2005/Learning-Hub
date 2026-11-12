@@ -559,37 +559,31 @@ High-voltage semiconductor devices use carefully engineered doping profiles to b
 9. The Fermi level moves towards the conduction band in N-type material and towards the valence band in P-type material.
 10. Doping changes carrier concentration and generally changes mobility as well.
 
-## 13. Quiz
+## Quiz
 
-### Question 1
-
-Which impurity is commonly used to produce N-type silicon?
+1. Which impurity is commonly used to produce N-type silicon?
 
 - [ ] Boron.
 - [x] Phosphorus.
 - [ ] Aluminium.
 - [ ] Gallium.
 
-> **Explanation:** Phosphorus is pentavalent and has five valence electrons. Four participate in covalent bonds, while the fifth can be released as a conduction electron. It therefore acts as a donor impurity.
+> Phosphorus is pentavalent and has five valence electrons. Four participate in covalent bonds, while the fifth can be released as a conduction electron. It therefore acts as a donor impurity.
 
-### Question 2
-
-In a P-type semiconductor, which carriers are the majority carriers?
+2. In a P-type semiconductor, which carriers are the majority carriers?
 
 - [ ] Free electrons.
 - [ ] Protons.
 - [x] Holes.
 - [ ] Neutrons.
 
-> **Explanation:** Trivalent acceptor impurities create holes in the valence band. These holes become the majority carriers, while electrons remain minority carriers.
+> Trivalent acceptor impurities create holes in the valence band. These holes become the majority carriers, while electrons remain minority carriers.
 
-### Question 3
-
-An N-type semiconductor has an electron concentration of \(4\times10^{16}\,cm^{-3}\). Its intrinsic carrier concentration is \(2\times10^{10}\,cm^{-3}\). Assuming thermal equilibrium, calculate its hole concentration.
+3. An N-type semiconductor has an electron concentration of \(4\times10^{16}\,cm^{-3}\). Its intrinsic carrier concentration is \(2\times10^{10}\,cm^{-3}\). Assuming thermal equilibrium, calculate its hole concentration.
 
 - [ ] \(8\times10^{26}\,cm^{-3}\).
 - [x] \(1\times10^4\,cm^{-3}\).
 - [ ] \(2\times10^{10}\,cm^{-3}\).
 - [ ] \(4\times10^{16}\,cm^{-3}\).
 
-> **Explanation:** Apply the mass-action law: \(np=n_i^2\). Therefore, \(p=(2\times10^{10})^2/(4\times10^{16})=1\times10^4\,cm^{-3}\).
+> Apply the mass-action law: \(np=n_i^2\). Therefore, \(p=(2\times10^{10})^2/(4\times10^{16})=1\times10^4\,cm^{-3}\).
