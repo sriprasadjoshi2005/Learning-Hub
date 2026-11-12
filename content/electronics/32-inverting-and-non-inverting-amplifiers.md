@@ -410,37 +410,31 @@ Voltage followers are particularly useful when connecting a high-impedance senso
 11. Practical output voltage is limited by the supply and output-stage characteristics.
 12. A high voltage gain does not guarantee unlimited bandwidth.
 
-## 11. Quiz
+## Quiz
 
-### Question 1
-
-An inverting amplifier has \(R_f=60\,k\Omega\) and \(R_1=10\,k\Omega\). What is its voltage gain?
+1. An inverting amplifier has \(R_f=60\,k\Omega\) and \(R_1=10\,k\Omega\). What is its voltage gain?
 
 - [ ] +6.
 - [x] -6.
 - [ ] +10.
 - [ ] -10.
 
-> **Explanation:** The inverting gain is \(A_v=-R_f/R_1=-60/10=-6\). The negative sign represents 180° phase inversion.
+> The inverting gain is \(A_v=-R_f/R_1=-60/10=-6\). The negative sign represents 180° phase inversion.
 
-### Question 2
-
-What is the ideal voltage gain of a voltage follower?
+2. What is the ideal voltage gain of a voltage follower?
 
 - [ ] Zero.
 - [ ] -1.
 - [x] +1.
 - [ ] Infinite.
 
-> **Explanation:** A voltage follower directly connects the output to the inverting input. Negative feedback makes the output voltage equal to the input voltage.
+> A voltage follower directly connects the output to the inverting input. Negative feedback makes the output voltage equal to the input voltage.
 
-### Question 3
-
-Which configuration normally offers the higher input resistance?
+3. Which configuration normally offers the higher input resistance?
 
 - [ ] Inverting amplifier.
 - [x] Non-inverting amplifier.
 - [ ] Both always have zero input resistance.
 - [ ] Neither has an input terminal.
 
-> **Explanation:** The non-inverting input of an ideal op-amp draws no current, giving the non-inverting configuration extremely high input resistance.
+> The non-inverting input of an ideal op-amp draws no current, giving the non-inverting configuration extremely high input resistance.
