@@ -476,37 +476,31 @@ Operational amplifiers are used in:
 14. Slew rate limits how rapidly the output can change.
 15. Gain-bandwidth product limits the combination of closed-loop gain and bandwidth.
 
-## 13. Quiz
+## Quiz
 
-### Question 1
-
-What is the ideal input resistance of an operational amplifier?
+1. What is the ideal input resistance of an operational amplifier?
 
 - [ ] Zero.
 - [ ] 50 ohms.
 - [x] Infinite.
 - [ ] Equal to its output resistance.
 
-> **Explanation:** An ideal op-amp draws no current at either input terminal. This corresponds to infinite input resistance.
+> An ideal op-amp draws no current at either input terminal. This corresponds to infinite input resistance.
 
-### Question 2
-
-Under negative feedback and linear operation, what is the approximate relationship between the two input voltages?
+2. Under negative feedback and linear operation, what is the approximate relationship between the two input voltages?
 
 - [ ] \(V_+=2V_-\).
 - [x] \(V_+\approx V_-\).
 - [ ] \(V_+=0\) under all conditions.
 - [ ] \(V_+-V_-=V_{CC}\).
 
-> **Explanation:** Negative feedback drives the differential input voltage towards zero. The two input voltages become approximately equal, although they are not physically shorted together.
+> Negative feedback drives the differential input voltage towards zero. The two input voltages become approximately equal, although they are not physically shorted together.
 
-### Question 3
-
-What does slew rate specify?
+3. What does slew rate specify?
 
 - [ ] Maximum input resistance.
 - [ ] Maximum common-mode voltage.
 - [x] Maximum rate of change of output voltage.
 - [ ] Maximum DC current entering the input.
 
-> **Explanation:** Slew rate is the maximum value of the output-voltage derivative, usually expressed in volts per microsecond.
+> Slew rate is the maximum value of the output-voltage derivative, usually expressed in volts per microsecond.
