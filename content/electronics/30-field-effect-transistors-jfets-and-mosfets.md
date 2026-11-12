@@ -694,37 +694,31 @@ The comparison is general. Actual device behaviour depends on construction, circ
 13. \(R_{DS(on)}\) determines an important part of MOSFET conduction loss.
 14. The Shockley JFET equation and idealized MOSFET equations apply only under their stated assumptions.
 
-## 18. Quiz
+## Quiz
 
-### Question 1
-
-What is the main mechanism used by a JFET to control its channel current?
+1. What is the main mechanism used by a JFET to control its channel current?
 
 - [ ] Forward current through the gate junction.
 - [x] Changing the depletion-region width using a reverse-biased gate junction.
 - [ ] Injecting base current into the channel.
 - [ ] Changing the resistance of an external collector resistor.
 
-> **Explanation:** A JFET uses a reverse-biased gate-channel PN junction. Changing the gate-to-source voltage changes the depletion-region width and therefore the effective conducting channel.
+> A JFET uses a reverse-biased gate-channel PN junction. Changing the gate-to-source voltage changes the depletion-region width and therefore the effective conducting channel.
 
-### Question 2
-
-Which statement correctly describes an N-channel enhancement MOSFET?
+2. Which statement correctly describes an N-channel enhancement MOSFET?
 
 - [ ] It normally conducts strongly when its gate-to-source voltage is zero.
 - [x] It requires a sufficiently positive gate-to-source voltage to form a conducting channel.
 - [ ] It uses a forward-biased gate PN junction as its normal control mechanism.
 - [ ] It requires continuous DC gate current to maintain conduction.
 
-> **Explanation:** An N-channel enhancement MOSFET is normally OFF at zero gate-to-source voltage. A sufficiently positive gate voltage creates an inversion channel. The insulated gate requires very little steady-state DC current.
+> An N-channel enhancement MOSFET is normally OFF at zero gate-to-source voltage. A sufficiently positive gate voltage creates an inversion channel. The insulated gate requires very little steady-state DC current.
 
-### Question 3
-
-A power MOSFET carries 10 A and has an on-resistance of 0.02 Ω. Calculate its approximate conduction loss.
+3. A power MOSFET carries 10 A and has an on-resistance of 0.02 Ω. Calculate its approximate conduction loss.
 
 - [ ] 0.2 W.
 - [ ] 1 W.
 - [x] 2 W.
 - [ ] 20 W.
 
-> **Explanation:** Conduction loss is \(P=I_D^2R_{DS(on)}\). Therefore, \(P=10^2\times0.02=100\times0.02=2\,W\).
+> Conduction loss is \(P=I_D^2R_{DS(on)}\). Therefore, \(P=10^2\times0.02=100\times0.02=2\,W\).
