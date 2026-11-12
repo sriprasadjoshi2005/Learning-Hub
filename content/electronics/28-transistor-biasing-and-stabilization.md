@@ -687,37 +687,31 @@ A bias circuit should remain reasonably stable even when the transistor is repla
 11. The transistor must remain within its power and voltage limits.
 12. A stable DC bias network does not automatically guarantee a good AC amplifier.
 
-## 13. Quiz
+## Quiz
 
-### Question 1
-
-What does the Q-point represent in a transistor amplifier?
+1. What does the Q-point represent in a transistor amplifier?
 
 - [ ] The maximum AC input frequency.
 - [x] The DC operating current and voltage with no AC input signal.
 - [ ] The transistor's maximum breakdown voltage.
 - [ ] The output resistance of the transistor.
 
-> **Explanation:** The quiescent point represents the transistor's DC operating condition in the absence of an AC signal. It is commonly specified using collector current and collector-emitter voltage.
+> The quiescent point represents the transistor's DC operating condition in the absence of an AC signal. It is commonly specified using collector current and collector-emitter voltage.
 
-### Question 2
-
-Why is an emitter resistor used in a transistor biasing circuit?
+2. Why is an emitter resistor used in a transistor biasing circuit?
 
 - [ ] To eliminate the collector current.
 - [ ] To increase beta to an unlimited value.
 - [x] To provide negative feedback and improve operating-point stability.
 - [ ] To make the transistor permanently saturated.
 
-> **Explanation:** If emitter current increases, the emitter-resistor voltage increases. This reduces base-emitter voltage and opposes the original increase in current.
+> If emitter current increases, the emitter-resistor voltage increases. This reduces base-emitter voltage and opposes the original increase in current.
 
-### Question 3
-
-Which biasing method is widely used for stable BJT amplifier operation?
+3. Which biasing method is widely used for stable BJT amplifier operation?
 
 - [ ] Fixed bias without feedback.
 - [x] Voltage-divider bias with an emitter resistor.
 - [ ] Reverse-active bias.
 - [ ] Collector short-circuit bias.
 
-> **Explanation:** Voltage-divider bias establishes a relatively stable base voltage, while the emitter resistor provides negative feedback. Together they reduce sensitivity to beta and temperature variations.
+> Voltage-divider bias establishes a relatively stable base voltage, while the emitter resistor provides negative feedback. Together they reduce sensitivity to beta and temperature variations.
