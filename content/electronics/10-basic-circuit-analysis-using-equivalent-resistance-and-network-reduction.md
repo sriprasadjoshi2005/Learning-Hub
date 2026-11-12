@@ -1,4 +1,3 @@
-
 ---
 title: Basic Circuit Analysis Using Equivalent Resistance and Network Reduction
 level: intermediate
