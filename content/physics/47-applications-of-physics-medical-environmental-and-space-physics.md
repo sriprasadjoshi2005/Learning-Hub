@@ -1,5 +1,5 @@
 ---
-title: Applications of Physics: Medical, Environmental and Space Physics
+title: Applications of Physics- Medical, Environmental and Space Physics
 level: advanced
 ---
 
