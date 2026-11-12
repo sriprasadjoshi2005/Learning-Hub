@@ -533,37 +533,31 @@ Combinational circuits are used in:
 14. A basic encoder assumes only one active input unless priority behaviour is specified.
 15. A magnitude comparator determines whether one binary number is greater than, equal to, or less than another.
 
-## 16. Quiz
+## Quiz
 
-### Question 1
-
-What is the main difference between a half adder and a full adder?
+1. What is the main difference between a half adder and a full adder?
 
 - [ ] A half adder has two outputs, while a full adder has one.
 - [x] A full adder accepts a carry input, while a half adder does not.
 - [ ] A full adder cannot produce a carry output.
 - [ ] A half adder performs subtraction.
 
-> **Explanation:** A full adder adds three input bits, including a carry from a previous stage. A half adder adds only two input bits.
+> A full adder adds three input bits, including a carry from a previous stage. A half adder adds only two input bits.
 
-### Question 2
-
-How many select lines are required for a 16-to-1 multiplexer?
+2. How many select lines are required for a 16-to-1 multiplexer?
 
 - [ ] 2.
 - [ ] 3.
 - [x] 4.
 - [ ] 16.
 
-> **Explanation:** The number of select lines is \(\log_2N\). For 16 inputs, \(\log_2 16=4\).
+> The number of select lines is \(\log_2N\). For 16 inputs, \(\log_2 16=4\).
 
-### Question 3
-
-Which circuit converts a binary input code into one of several active output lines?
+3. Which circuit converts a binary input code into one of several active output lines?
 
 - [ ] Encoder.
 - [ ] Multiplexer.
 - [x] Decoder.
 - [ ] Full subtractor.
 
-> **Explanation:** A decoder accepts a binary code and activates the corresponding output line. It is commonly used in memory selection and address decoding.
+> A decoder accepts a binary code and activates the corresponding output line. It is commonly used in memory selection and address decoding.
