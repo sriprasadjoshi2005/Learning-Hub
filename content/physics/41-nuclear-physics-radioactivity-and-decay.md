@@ -1,5 +1,5 @@
 ---
-title: Nuclear Physics: The Nucleus, Radioactivity and Nuclear Decay
+title: Nuclear Physics- The Nucleus, Radioactivity and Nuclear Decay
 level: advanced
 ---
 
