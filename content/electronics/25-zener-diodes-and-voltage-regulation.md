@@ -541,37 +541,31 @@ Although Zener regulators are simple, they have limitations:
 9. A Zener diode does not produce an exactly constant voltage under all conditions.
 10. Zener breakdown and avalanche breakdown are different physical mechanisms.
 
-## 15. Quiz
+## Quiz
 
-### Question 1
-
-How is a Zener diode normally connected when used as a voltage regulator?
+1. How is a Zener diode normally connected when used as a voltage regulator?
 
 - [ ] In forward bias without a series resistor.
 - [x] In reverse bias with a suitable current-limiting resistor.
 - [ ] In series with the load in forward bias.
 - [ ] With both terminals connected to ground.
 
-> **Explanation:** A Zener regulator uses the reverse-breakdown region of the diode. A series resistor limits current and protects the diode from excessive power dissipation.
+> A Zener regulator uses the reverse-breakdown region of the diode. A series resistor limits current and protects the diode from excessive power dissipation.
 
-### Question 2
-
-A Zener regulator has a series current of 30 mA and a load current of 18 mA. What is the Zener current?
+2. A Zener regulator has a series current of 30 mA and a load current of 18 mA. What is the Zener current?
 
 - [ ] 48 mA.
 - [ ] 30 mA.
 - [x] 12 mA.
 - [ ] 18 mA.
 
-> **Explanation:** By Kirchhoff's current law, \(I_S=I_Z+I_L\). Therefore, \(I_Z=30-18=12\,mA\).
+> By Kirchhoff's current law, \(I_S=I_Z+I_L\). Therefore, \(I_Z=30-18=12\,mA\).
 
-### Question 3
-
-A 5.6 V Zener diode carries 20 mA. Calculate its power dissipation.
+3. A 5.6 V Zener diode carries 20 mA. Calculate its power dissipation.
 
 - [ ] 11.2 W.
 - [ ] 0.0112 W.
 - [x] 0.112 W.
 - [ ] 2.8 W.
 
-> **Explanation:** \(P_Z=V_ZI_Z=5.6\times0.020=0.112\,W\), which is 112 mW.
+> \(P_Z=V_ZI_Z=5.6\times0.020=0.112\,W\), which is 112 mW.
