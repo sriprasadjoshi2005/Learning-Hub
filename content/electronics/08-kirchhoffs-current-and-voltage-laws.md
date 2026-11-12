@@ -1,4 +1,3 @@
-
 ---
 title: Kirchhoff's Current and Voltage Laws
 level: intermediate
