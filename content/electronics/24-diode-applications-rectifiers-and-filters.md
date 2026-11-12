@@ -668,37 +668,31 @@ The selected diode must have a suitable voltage rating with an appropriate safet
 9. Ripple factor and rectification efficiency describe different properties.
 10. The peak inverse voltage rating must be sufficient to withstand reverse voltage.
 
-## 14. Quiz
+## Quiz
 
-### Question 1
-
-A full-wave rectifier is supplied with a 50 Hz sinusoidal input. What is its output ripple frequency before filtering?
+1. A full-wave rectifier is supplied with a 50 Hz sinusoidal input. What is its output ripple frequency before filtering?
 
 - [ ] 25 Hz.
 - [ ] 50 Hz.
 - [x] 100 Hz.
 - [ ] 200 Hz.
 
-> **Explanation:** A full-wave rectifier uses both half-cycles. Therefore, it produces two output pulses for every input cycle. The ripple frequency is \(2f=2(50)=100\,Hz\).
+> A full-wave rectifier uses both half-cycles. Therefore, it produces two output pulses for every input cycle. The ripple frequency is \(2f=2(50)=100\,Hz\).
 
-### Question 2
-
-Where is a capacitor connected in a basic capacitor-filter rectifier circuit?
+2. Where is a capacitor connected in a basic capacitor-filter rectifier circuit?
 
 - [ ] In series with the AC source only.
 - [x] In parallel with the load.
 - [ ] In series with the diode.
 - [ ] Across the transformer primary only.
 
-> **Explanation:** The capacitor charges near the rectified voltage peaks and discharges through the load between peaks. Connecting it in parallel with the load smooths the output voltage.
+> The capacitor charges near the rectified voltage peaks and discharges through the load between peaks. Connecting it in parallel with the load smooths the output voltage.
 
-### Question 3
-
-A full-wave rectifier operates at 60 Hz. What is its ripple frequency?
+3. A full-wave rectifier operates at 60 Hz. What is its ripple frequency?
 
 - [ ] 30 Hz.
 - [ ] 60 Hz.
 - [x] 120 Hz.
 - [ ] 240 Hz.
 
-> **Explanation:** The ripple frequency of a full-wave rectifier is twice the AC input frequency. Thus, \(f_r=2(60)=120\,Hz\).
+> The ripple frequency of a full-wave rectifier is twice the AC input frequency. Thus, \(f_r=2(60)=120\,Hz\).
