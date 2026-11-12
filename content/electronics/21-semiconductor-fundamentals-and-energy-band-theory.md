@@ -563,37 +563,31 @@ Materials such as silicon carbide and gallium nitride are used in high-efficienc
 9. Conductivity depends on both carrier concentration and mobility.
 10. Thermal excitation generally increases the conductivity of an intrinsic semiconductor.
 
-## 12. Quiz
+## Quiz
 
-### Question 1
-
-Which statement best describes the forbidden energy gap?
+1. Which statement best describes the forbidden energy gap?
 
 - [ ] It is the region containing all free electrons.
 - [x] It is the energy interval between the valence band and conduction band where no allowed electron energy states exist in the ideal band model.
 - [ ] It is the region occupied by protons.
 - [ ] It is the energy required to remove an atom from a crystal.
 
-> **Explanation:** The forbidden energy gap separates the valence band from the conduction band. An electron must acquire sufficient energy to cross this gap and enter the conduction band.
+> The forbidden energy gap separates the valence band from the conduction band. An electron must acquire sufficient energy to cross this gap and enter the conduction band.
 
-### Question 2
-
-What happens when a covalent bond in a pure semiconductor breaks due to thermal energy?
+2. What happens when a covalent bond in a pure semiconductor breaks due to thermal energy?
 
 - [ ] Two holes are produced.
 - [ ] Two free electrons are produced.
 - [x] One free electron and one hole are produced.
 - [ ] The semiconductor becomes a conductor permanently.
 
-> **Explanation:** When a valence electron gains sufficient thermal energy to leave its covalent bond, it becomes a free electron. The empty state left behind behaves as a hole. They form an electron-hole pair.
+> When a valence electron gains sufficient thermal energy to leave its covalent bond, it becomes a free electron. The empty state left behind behaves as a hole. They form an electron-hole pair.
 
-### Question 3
-
-An intrinsic semiconductor has an electron concentration of \(5\times10^{15}\,m^{-3}\). What is its hole concentration at thermal equilibrium?
+3. An intrinsic semiconductor has an electron concentration of \(5\times10^{15}\,m^{-3}\). What is its hole concentration at thermal equilibrium?
 
 - [ ] \(2.5\times10^{15}\,m^{-3}\).
 - [ ] \(1\times10^{16}\,m^{-3}\).
 - [ ] Zero.
 - [x] \(5\times10^{15}\,m^{-3}\).
 
-> **Explanation:** In an intrinsic semiconductor, electrons and holes are generated in pairs. Therefore, their equilibrium concentrations are equal: \(n=p=n_i\).
+> In an intrinsic semiconductor, electrons and holes are generated in pairs. Therefore, their equilibrium concentrations are equal: \(n=p=n_i\).
