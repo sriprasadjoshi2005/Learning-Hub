@@ -1,5 +1,5 @@
 ---
-title: Comprehensive Physics Capstone: Advanced Topics, Connections and Remaining Syllabus
+title: Comprehensive Physics Capstone- Advanced Topics, Connections and Remaining Syllabus
 level: exam
 ---
 
