@@ -629,37 +629,31 @@ They are the basic building blocks from which more complex digital systems are c
 14. Boolean addition does not mean ordinary arithmetic addition.
 15. Boolean multiplication does not mean ordinary arithmetic multiplication.
 
-## 19. Quiz
+## Quiz
 
-### Question 1
-
-What is the output of an XOR gate when both inputs are 1?
+1. What is the output of an XOR gate when both inputs are 1?
 
 - [ ] 1.
 - [x] 0.
 - [ ] 2.
 - [ ] Undefined.
 
-> **Explanation:** XOR produces 1 only when its inputs are different. Since both inputs are 1, they are equal, so the output is 0.
+> XOR produces 1 only when its inputs are different. Since both inputs are 1, they are equal, so the output is 0.
 
-### Question 2
-
-Which of the following is a universal logic gate?
+2. Which of the following is a universal logic gate?
 
 - [ ] AND only.
 - [ ] OR only.
 - [x] NAND.
 - [ ] XOR only.
 
-> **Explanation:** NAND is a universal gate because NOT, AND, OR, and any other Boolean function can be constructed using NAND gates alone. NOR is also universal.
+> NAND is a universal gate because NOT, AND, OR, and any other Boolean function can be constructed using NAND gates alone. NOR is also universal.
 
-### Question 3
-
-Which expression is equivalent to \(\overline{A+B}\)?
+3. Which expression is equivalent to \(\overline{A+B}\)?
 
 - [ ] \(\overline A+\overline B\).
 - [x] \(\overline A\cdot\overline B\).
 - [ ] \(AB\).
 - [ ] \(A+B\).
 
-> **Explanation:** De Morgan's second theorem states that the complement of an OR operation equals the AND of the individual complements.
+> De Morgan's second theorem states that the complement of an OR operation equals the AND of the individual complements.
