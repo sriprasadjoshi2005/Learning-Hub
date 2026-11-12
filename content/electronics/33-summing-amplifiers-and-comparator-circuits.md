@@ -483,37 +483,31 @@ Zero-crossing detectors identify transitions of AC signals through zero volts.
 11. Noise near the threshold can cause repeated switching.
 12. Comparator output levels depend on the device and its supply arrangement.
 
-## 15. Quiz
+## Quiz
 
-### Question 1
-
-An inverting summing amplifier has equal input resistors and a feedback resistor twice their value. What is its output?
+1. An inverting summing amplifier has equal input resistors and a feedback resistor twice their value. What is its output?
 
 - [ ] The positive average of the inputs.
 - [x] Negative twice the sum of the inputs.
 - [ ] Positive twice the sum of the inputs.
 - [ ] Zero for every input combination.
 
-> **Explanation:** With equal input resistors \(R\) and \(R_f=2R\), the output is \(-2(V_1+V_2+\cdots+V_n)\).
+> With equal input resistors \(R\) and \(R_f=2R\), the output is \(-2(V_1+V_2+\cdots+V_n)\).
 
-### Question 2
-
-A non-inverting comparator has \(V_{in}=4\,V\) and \(V_{ref}=3\,V\). What output state is expected?
+2. A non-inverting comparator has \(V_{in}=4\,V\) and \(V_{ref}=3\,V\). What output state is expected?
 
 - [x] HIGH.
 - [ ] LOW.
 - [ ] Always zero.
 - [ ] It behaves as a unity-gain amplifier.
 
-> **Explanation:** The signal is connected to the non-inverting input. Since \(V_{in}>V_{ref}\), the output moves towards its high state.
+> The signal is connected to the non-inverting input. Since \(V_{in}>V_{ref}\), the output moves towards its high state.
 
-### Question 3
-
-What does a zero-crossing detector identify?
+3. What does a zero-crossing detector identify?
 
 - [ ] The maximum amplitude of a signal.
 - [ ] The signal's RMS value.
 - [x] The points at which a signal crosses zero volts.
 - [ ] The frequency at which amplifier gain becomes zero.
 
-> **Explanation:** A zero-crossing detector compares the input against a zero-volt reference and changes output state when the signal crosses that reference.
+> A zero-crossing detector compares the input against a zero-volt reference and changes output state when the signal crosses that reference.
