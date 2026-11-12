@@ -5,3 +5,4 @@ requests>=2.31
 gunicorn>=22.0
 markdown>=3.5
 psycopg[binary]>=3.1
+google-genai>=1.0,<3.0.0
