@@ -563,37 +563,31 @@ Choose common-collector when:
 11. Incremental gain is based on changes in current or voltage, not necessarily the ratio of total values.
 12. A transistor configuration's actual gain depends on its external circuit.
 
-## 12. Quiz
+## Quiz
 
-### Question 1
-
-Which BJT configuration is commonly called an emitter follower?
+1. Which BJT configuration is commonly called an emitter follower?
 
 - [ ] Common-base.
 - [ ] Common-emitter.
 - [x] Common-collector.
 - [ ] Reverse-active.
 
-> **Explanation:** In the common-collector configuration, the output is taken from the emitter. Its voltage approximately follows the base input voltage, which gives it the name emitter follower.
+> In the common-collector configuration, the output is taken from the emitter. Its voltage approximately follows the base input voltage, which gives it the name emitter follower.
 
-### Question 2
-
-Which configuration normally produces approximately 180° phase inversion between input and output voltage?
+2. Which configuration normally produces approximately 180° phase inversion between input and output voltage?
 
 - [ ] Common-base.
 - [x] Common-emitter.
 - [ ] Common-collector.
 - [ ] All three configurations.
 
-> **Explanation:** In a common-emitter amplifier, increasing base current increases collector current. The larger voltage drop across the collector resistor reduces collector output voltage, producing phase inversion.
+> In a common-emitter amplifier, increasing base current increases collector current. The larger voltage drop across the collector resistor reduces collector output voltage, producing phase inversion.
 
-### Question 3
-
-A transistor has a common-emitter current gain of 49. What is its approximate common-collector current gain?
+3. A transistor has a common-emitter current gain of 49. What is its approximate common-collector current gain?
 
 - [ ] 49.
 - [ ] 48.
 - [x] 50.
 - [ ] 98.
 
-> **Explanation:** Common-collector current gain is approximately \(\beta+1\). Therefore, \(49+1=50\).
+> Common-collector current gain is approximately \(\beta+1\). Therefore, \(49+1=50\).
