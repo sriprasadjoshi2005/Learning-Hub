@@ -1,5 +1,5 @@
 ---
-title: Geometrical Optics: Reflection and Refraction
+title: Geometrical Optics- Reflection and Refraction
 level: intermediate
 ---
 
