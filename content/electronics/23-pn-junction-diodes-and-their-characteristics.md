@@ -492,37 +492,31 @@ This application is particularly important for relay coils and small motors.
 9. Zener and avalanche breakdown are different physical mechanisms.
 10. A normal diode requires current limiting if it is operated in a region of substantial conduction.
 
-## 14. Quiz
+## Quiz
 
-### Question 1
-
-What happens to the depletion region when a PN junction diode is forward-biased?
+1. What happens to the depletion region when a PN junction diode is forward-biased?
 
 - [ ] It becomes infinitely wide.
 - [x] It becomes narrower.
 - [ ] It disappears under every possible forward voltage.
 - [ ] It changes into an insulating crystal.
 
-> **Explanation:** Forward bias opposes the built-in potential barrier. This reduces the depletion-region width and allows majority carriers to cross the junction more easily.
+> Forward bias opposes the built-in potential barrier. This reduces the depletion-region width and allows majority carriers to cross the junction more easily.
 
-### Question 2
-
-Which carriers are mainly responsible for the small reverse saturation current in an ordinary PN junction diode?
+2. Which carriers are mainly responsible for the small reverse saturation current in an ordinary PN junction diode?
 
 - [ ] Majority carriers only.
 - [ ] Fixed donor ions.
 - [x] Minority carriers.
 - [ ] Neutrons.
 
-> **Explanation:** Minority carriers generated thermally near the junction can be swept across the depletion region by the electric field, producing the small reverse saturation current.
+> Minority carriers generated thermally near the junction can be swept across the depletion region by the electric field, producing the small reverse saturation current.
 
-### Question 3
-
-A silicon diode has a forward voltage of 0.7 V and carries 15 mA. What is its power dissipation?
+3. A silicon diode has a forward voltage of 0.7 V and carries 15 mA. What is its power dissipation?
 
 - [ ] 1.05 W.
 - [ ] 0.105 W.
 - [x] 10.5 mW.
 - [ ] 105 mW.
 
-> **Explanation:** Power is \(P=VI\). Therefore, \(P=0.7\times0.015=0.0105\,W=10.5\,mW\).
+> Power is \(P=VI\). Therefore, \(P=0.7\times0.015=0.0105\,W=10.5\,mW\).
