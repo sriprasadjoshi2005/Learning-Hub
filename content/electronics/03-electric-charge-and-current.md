@@ -1,4 +1,3 @@
-
 ---
 title: Electric Charge and Current
 level: foundation
