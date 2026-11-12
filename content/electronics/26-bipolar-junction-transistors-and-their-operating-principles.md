@@ -631,37 +631,31 @@ Matched transistor pairs are used in differential amplifier circuits, including 
 11. A PNP transistor has the opposite symbol-arrow direction to an NPN transistor.
 12. A base resistor is normally necessary when driving a BJT from a voltage source.
 
-## 14. Quiz
+## Quiz
 
-### Question 1
-
-Which transistor region is normally used for linear signal amplification?
+1. Which transistor region is normally used for linear signal amplification?
 
 - [ ] Cut-off.
 - [x] Forward-active.
 - [ ] Saturation.
 - [ ] Reverse breakdown.
 
-> **Explanation:** In forward-active operation, the emitter-base junction is forward-biased and the collector-base junction is reverse-biased. Collector current is controlled by base current, allowing signal amplification.
+> In forward-active operation, the emitter-base junction is forward-biased and the collector-base junction is reverse-biased. Collector current is controlled by base current, allowing signal amplification.
 
-### Question 2
-
-A BJT has a base current of 50 μA and a common-emitter current gain of 80. Calculate its collector current.
+2. A BJT has a base current of 50 μA and a common-emitter current gain of 80. Calculate its collector current.
 
 - [ ] 0.625 mA.
 - [ ] 50 mA.
 - [x] 4 mA.
 - [ ] 6.4 mA.
 
-> **Explanation:** The collector current is \(I_C=\beta I_B=80\times50\,\mu A=4000\,\mu A=4\,mA\).
+> The collector current is \(I_C=\beta I_B=80\times50\,\mu A=4000\,\mu A=4\,mA\).
 
-### Question 3
-
-Which statement correctly describes an NPN transistor operating in saturation?
+3. Which statement correctly describes an NPN transistor operating in saturation?
 
 - [ ] Both junctions are reverse-biased.
 - [ ] Only the collector-base junction is forward-biased.
 - [x] Both the emitter-base and collector-base junctions are forward-biased.
 - [ ] The transistor has no collector current.
 
-> **Explanation:** In saturation, both PN junctions are forward-biased. The transistor is strongly conducting and behaves approximately like a closed switch.
+> In saturation, both PN junctions are forward-biased. The transistor is strongly conducting and behaves approximately like a closed switch.
