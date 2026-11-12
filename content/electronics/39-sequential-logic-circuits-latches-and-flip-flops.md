@@ -577,37 +577,31 @@ Sequential circuits are used in:
 14. Asynchronous controls can act independently of the clock.
 15. The clock period is the reciprocal of clock frequency.
 
-## 18. Quiz
+## Quiz
 
-### Question 1
-
-Which flip-flop toggles its output when both J and K are HIGH?
+1. Which flip-flop toggles its output when both J and K are HIGH?
 
 - [ ] D flip-flop.
 - [ ] SR latch.
 - [x] JK flip-flop.
 - [ ] Non-inverting buffer.
 
-> **Explanation:** When J and K are both 1, a JK flip-flop complements its previous output at the active clock edge.
+> When J and K are both 1, a JK flip-flop complements its previous output at the active clock edge.
 
-### Question 2
-
-What is the main difference between a latch and an edge-triggered flip-flop?
+2. What is the main difference between a latch and an edge-triggered flip-flop?
 
 - [ ] A latch cannot store information.
 - [x] A latch is level-sensitive, while an edge-triggered flip-flop responds to a clock edge.
 - [ ] A flip-flop has no output.
 - [ ] A latch always requires two clock inputs.
 
-> **Explanation:** A latch can respond throughout an active enable level, whereas an edge-triggered flip-flop changes state at a specified clock transition.
+> A latch can respond throughout an active enable level, whereas an edge-triggered flip-flop changes state at a specified clock transition.
 
-### Question 3
-
-A flip-flop has a setup time of 5 ns and a hold time of 2 ns. What do these values represent?
+3. A flip-flop has a setup time of 5 ns and a hold time of 2 ns. What do these values represent?
 
 - [ ] Output voltage limits.
 - [ ] Maximum clock frequency and duty cycle.
 - [x] Required data stability intervals before and after the active clock edge.
 - [ ] The time required to power the circuit.
 
-> **Explanation:** Setup time specifies how long the data must be stable before the active edge. Hold time specifies how long it must remain stable afterward.
+> Setup time specifies how long the data must be stable before the active edge. Hold time specifies how long it must remain stable afterward.
