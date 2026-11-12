@@ -1,4 +1,3 @@
-
 ---
 title: Resistance and Conductance
 level: foundation
