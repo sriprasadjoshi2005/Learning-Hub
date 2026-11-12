@@ -699,37 +699,31 @@ Several amplifier stages can be connected to obtain the required overall gain, b
 14. Class B has an ideal conduction angle of 180°.
 15. High gain does not automatically mean high efficiency or low distortion.
 
-## 15. Quiz
+## Quiz
 
-### Question 1
-
-What does transistor transconductance represent?
+1. What does transistor transconductance represent?
 
 - [ ] The ratio of collector voltage to emitter voltage.
 - [x] The change in collector current per unit change in base-emitter voltage.
 - [ ] The ratio of input power to output power.
 - [ ] The total DC resistance of the collector.
 
-> **Explanation:** Transconductance is \(g_m=\Delta I_C/\Delta V_{BE}\) for small variations. At the Q-point, it is approximately \(I_{CQ}/V_T\) for a BJT.
+> Transconductance is \(g_m=\Delta I_C/\Delta V_{BE}\) for small variations. At the Q-point, it is approximately \(I_{CQ}/V_T\) for a BJT.
 
-### Question 2
-
-A transistor has \(\beta=120\) and \(g_m=60\,mS\). What is its approximate hybrid-pi resistance?
+2. A transistor has \(\beta=120\) and \(g_m=60\,mS\). What is its approximate hybrid-pi resistance?
 
 - [ ] 0.5 Ω.
 - [ ] 60 Ω.
 - [x] 2 kΩ.
 - [ ] 7.2 kΩ.
 
-> **Explanation:** \(r_\pi=\beta/g_m=120/0.06=2000\,\Omega=2\,k\Omega\).
+> \(r_\pi=\beta/g_m=120/0.06=2000\,\Omega=2\,k\Omega\).
 
-### Question 3
-
-Which amplifier class has an ideal conduction angle of 180°?
+3. Which amplifier class has an ideal conduction angle of 180°?
 
 - [ ] Class A.
 - [x] Class B.
 - [ ] Class AB.
 - [ ] Class C.
 
-> **Explanation:** A Class B amplifier's active device conducts for approximately half of the input cycle, corresponding to 180°.
+> A Class B amplifier's active device conducts for approximately half of the input cycle, corresponding to 180°.
