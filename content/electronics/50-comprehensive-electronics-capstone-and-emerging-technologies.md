@@ -975,7 +975,7 @@ Smart-city infrastructure may use:
 24. Advanced packaging supports dense integration of multiple semiconductor dies.
 25. Modern electronic products combine analog, digital, communication, power, and control technologies.
 
-## Final Quiz
+## Quiz
 
 1. What is the primary purpose of an anti-aliasing filter in a digital signal-processing system?
 
