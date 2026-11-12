@@ -758,37 +758,31 @@ Hexadecimal is especially useful because it represents four binary bits with one
 13. Two's-complement subtraction is performed by adding the two's complement of the subtrahend.
 14. The most significant bit has a negative weight in signed two's-complement representation.
 
-## 19. Quiz
+## Quiz
 
-### Question 1
-
-What is the decimal equivalent of \(10110_2\)?
+1. What is the decimal equivalent of \(10110_2\)?
 
 - [ ] 18.
 - [x] 22.
 - [ ] 24.
 - [ ] 26.
 
-> **Explanation:** \(10110_2=1(16)+0(8)+1(4)+1(2)+0(1)=22\).
+> \(10110_2=1(16)+0(8)+1(4)+1(2)+0(1)=22\).
 
-### Question 2
-
-How many binary bits correspond to one hexadecimal digit?
+2. How many binary bits correspond to one hexadecimal digit?
 
 - [ ] 2.
 - [ ] 3.
 - [x] 4.
 - [ ] 8.
 
-> **Explanation:** Hexadecimal has base 16, and \(16=2^4\). Therefore, each hexadecimal digit represents exactly four binary bits.
+> Hexadecimal has base 16, and \(16=2^4\). Therefore, each hexadecimal digit represents exactly four binary bits.
 
-### Question 3
-
-What is the 8-bit two's-complement representation of -5?
+3. What is the 8-bit two's-complement representation of -5?
 
 - [ ] 00000101.
 - [ ] 11111010.
 - [x] 11111011.
 - [ ] 10000101.
 
-> **Explanation:** Positive 5 is 00000101. Invert the bits to obtain 11111010, then add 1 to obtain 11111011.
+> Positive 5 is 00000101. Invert the bits to obtain 11111010, then add 1 to obtain 11111011.
