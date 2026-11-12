@@ -540,37 +540,31 @@ Filters remove unwanted interference from physiological measurement signals.
 13. Sampling above the Nyquist limit alone does not eliminate aliasing if unwanted high-frequency components are present.
 14. Active filters require suitable power supplies and have practical bandwidth limits.
 
-## 17. Quiz
+## Quiz
 
-### Question 1
-
-Which filter allows low frequencies to pass while attenuating high frequencies?
+1. Which filter allows low frequencies to pass while attenuating high frequencies?
 
 - [x] Low-pass filter.
 - [ ] High-pass filter.
 - [ ] Band-stop filter.
 - [ ] Notch filter.
 
-> **Explanation:** A low-pass filter passes frequencies below its cutoff region and attenuates frequencies above it.
+> A low-pass filter passes frequencies below its cutoff region and attenuates frequencies above it.
 
-### Question 2
-
-An RC filter has \(R=10\,k\Omega\) and \(C=10\,nF\). What is its approximate cutoff frequency?
+2. An RC filter has \(R=10\,k\Omega\) and \(C=10\,nF\). What is its approximate cutoff frequency?
 
 - [ ] 159 Hz.
 - [x] 1.59 kHz.
 - [ ] 15.9 kHz.
 - [ ] 159 kHz.
 
-> **Explanation:** \(f_c=1/(2\pi RC)\). Substituting \(R=10000\,\Omega\) and \(C=10\times10^{-9}\,F\) gives approximately \(1591.5\,Hz\).
+> \(f_c=1/(2\pi RC)\). Substituting \(R=10000\,\Omega\) and \(C=10\times10^{-9}\,F\) gives approximately \(1591.5\,Hz\).
 
-### Question 3
-
-What is the primary purpose of an anti-aliasing filter?
+3. What is the primary purpose of an anti-aliasing filter?
 
 - [ ] Increase the ADC's resolution.
 - [ ] Convert an analog signal into a digital signal.
 - [x] Attenuate unwanted high-frequency components before sampling.
 - [ ] Increase the DC supply voltage.
 
-> **Explanation:** An anti-aliasing filter reduces frequency components that could otherwise fold into the sampled frequency range and distort the digital representation.
+> An anti-aliasing filter reduces frequency components that could otherwise fold into the sampled frequency range and distort the digital representation.
