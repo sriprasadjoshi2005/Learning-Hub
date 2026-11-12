@@ -1,4 +1,3 @@
-
 ---
 title: Series and Parallel Circuits
 level: foundation
