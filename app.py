@@ -2,13 +2,17 @@ import os
 import random
 import secrets
 import sqlite3
+import re
+from html import unescape
 from datetime import datetime
 from functools import wraps
 
-from flask import Flask, render_template, redirect, url_for, session, request, abort
+from flask import Flask, render_template, redirect, url_for, session, request, abort, jsonify
 from werkzeug.middleware.proxy_fix import ProxyFix
 from authlib.integrations.flask_client import OAuth
 from dotenv import load_dotenv
+from google import genai
+from google.genai import types
 
 from content_loader import load_all, LEVEL_LABELS
 
