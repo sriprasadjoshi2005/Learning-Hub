@@ -434,7 +434,7 @@ Guidelines:
                 if status_code is None:
                     status_code = getattr(exc, "status_code", None)
 
-                if status_code != 503 or attempt == 2:
+                if status_code not in (503, 504) or attempt == 2:
                     raise
 
                 wait_seconds = 2 ** attempt
