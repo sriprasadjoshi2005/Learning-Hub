@@ -42,6 +42,8 @@ PASS_MARK = 60
 UNLOCK_MODE = os.environ.get("UNLOCK_MODE", "sequential").lower()
 # Lets students skip a lesson's quiz and move on. Set ALLOW_SKIP=false to turn the option off.
 ALLOW_SKIP = os.environ.get("ALLOW_SKIP", "true").lower() == "true"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 SUBJECTS, CONTENT_ERRORS = load_all()
 for _err in CONTENT_ERRORS:
