@@ -440,7 +440,8 @@ Guidelines:
                 wait_seconds = 2 ** attempt
 
                 app.logger.warning(
-                    "Gemini returned 503. Retrying in %s seconds (attempt %s/3).",
+                    "Gemini returned HTTP %s. Retrying in %s seconds (attempt %s/3).",
+                    status_code,
                     wait_seconds,
                     attempt + 2,
                 )
