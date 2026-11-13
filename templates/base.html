@@ -3,18 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}?v=1">
   <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
   <title>{% block title %}{% endblock %} | Learning Hub</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
     onload='renderMathInElement(document.body,{delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false});'></script>
+
+  {% if session.get('user_id') %}
+    <script defer src="{{ url_for('static', filename='chatbot.js') }}?v=1"></script>
+  {% endif %}
 </head>
+
 <body>
   <header>
     <a class="brand" href="{{ url_for('index') }}">Learning Hub</a>
+
     <nav>
       {% if session.get('user_id') %}
         <a href="{{ url_for('dashboard') }}">Dashboard</a>
@@ -22,8 +34,103 @@
       {% endif %}
     </nav>
   </header>
+
   <main>
     {% block content %}{% endblock %}
   </main>
+
+  {% if session.get('user_id') %}
+    <div
+      id="learning-hub-chat"
+      data-endpoint="{{ url_for('chat_api') }}"
+      data-subject-key="{{ subject_key|default('') }}"
+      data-lesson-id="{{ lesson.id if lesson is defined else '' }}"
+    >
+      <button
+        type="button"
+        id="chat-toggle"
+        class="chat-toggle"
+        aria-label="Open AI learning assistant"
+        aria-expanded="false"
+        aria-controls="chat-panel"
+      >
+        <span class="chat-toggle-icon">✦</span>
+        <span class="chat-toggle-label">Ask AI</span>
+      </button>
+
+      <section
+        id="chat-panel"
+        class="chat-panel"
+        aria-label="AI learning assistant"
+        hidden
+      >
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <span class="chat-avatar">✦</span>
+            <div>
+              <strong>Learning Assistant</strong>
+              <span class="chat-status">Here to help you learn</span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="chat-close"
+            class="chat-close"
+            aria-label="Close chat"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div
+          id="chat-messages"
+          class="chat-messages"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+          <div class="chat-message assistant-message">
+            <div class="chat-bubble">
+              Hi! I'm your Learning Hub AI assistant. Ask me about any subject,
+              request an explanation, solve a problem, or ask how to use the website.
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="chat-typing"
+          class="chat-typing"
+          hidden
+        >
+          Assistant is thinking...
+        </div>
+
+        <form id="chat-form" class="chat-form">
+          <textarea
+            id="chat-input"
+            class="chat-input"
+            rows="1"
+            maxlength="4000"
+            placeholder="Ask me anything..."
+            aria-label="Your message"
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            id="chat-send"
+            class="chat-send"
+            aria-label="Send message"
+          >
+            &#10148;
+          </button>
+        </form>
+
+        <div class="chat-footer">
+          AI-generated answers may occasionally be inaccurate. Verify important information.
+        </div>
+      </section>
+    </div>
+  {% endif %}
 </body>
 </html>
